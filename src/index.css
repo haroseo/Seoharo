@@ -1,0 +1,91 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Pretendard', 'Outfit', sans-serif;
+    background: #ffffff;
+    color: #111827;
+    position: relative;
+  }
+
+  /* 질감 배경 */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, 0.5) 25%, rgba(255, 255, 255, 0.5) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.5) 75%, rgba(255, 255, 255, 0.5) 76%, transparent 77%, transparent),
+      linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, 0.5) 25%, rgba(255, 255, 255, 0.5) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.5) 75%, rgba(255, 255, 255, 0.5) 76%, transparent 77%, transparent);
+    background-size: 50px 50px;
+    opacity: 0.02;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  ::selection {
+    background: #e5e7eb;
+    color: #111827;
+  }
+
+  .font-display {
+    font-family: 'Outfit', 'Pretendard', sans-serif;
+  }
+
+  .section-title {
+    @apply text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-slate-950;
+  }
+
+  .section-overline {
+    @apply text-xs uppercase tracking-[0.35em] text-slate-500;
+  }
+
+  .glass-card {
+    @apply rounded-[32px] border border-slate-200 bg-white backdrop-blur-3xl;
+    box-shadow: 0 40px 120px rgba(15, 23, 42, 0.08);
+  }
+
+  .notion-card {
+    @apply rounded-[32px] border border-slate-200 bg-white p-8 shadow-[0_30px_80px_rgba(15,23,42,0.08)];
+  }
+}
+
+/* 추가 질감 및 고급 효과 */
+@layer utilities {
+  .texture-overlay {
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.02) 0px,
+        rgba(0, 0, 0, 0.02) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+  }
+
+  .subtle-border {
+    border: 1px solid rgba(15, 23, 42, 0.08);
+  }
+
+  .elevated-shadow {
+    box-shadow:
+      0 1px 2px rgba(15, 23, 42, 0.05),
+      0 4px 12px rgba(15, 23, 42, 0.08),
+      0 12px 32px rgba(15, 23, 42, 0.1);
+  }
+}
+
