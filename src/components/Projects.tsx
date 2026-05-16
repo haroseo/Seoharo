@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
-import { Code, ExternalLink, ArrowRight } from 'lucide-react';
+import { Code, ArrowRight } from 'lucide-react';
 
 export default function Projects() {
   const featuredProjects = portfolioData.projects.filter(p => p.featured);
