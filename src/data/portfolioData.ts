@@ -148,23 +148,6 @@ export const portfolioData: {
     },
     {
       id: 5,
-      title: "HANN봇",
-      description:
-        "디스코드 서버 운영 자동화 및 풍부한 커뮤니티 이벤트를 지원하는 다기능 Discord API 봇 프로그램입니다.",
-      tags: ["TypeScript", "Discord.js", "Bot Automation"],
-      link: "https://github.com/haroseo/HANN-BOT",
-      github: "https://github.com/haroseo/HANN-BOT",
-      featured: true,
-      image: "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?q=80&w=2574&auto=format&fit=crop",
-      category: "development",
-      details: {
-        background: "디스코드 커뮤니티의 관리가 복잡해짐에 따라, 관리자의 수작업을 줄이고 자동 등급 부여 및 활동 포인트 관리를 하기 위해 구축되었습니다.",
-        strategy: "Discord.js API 기반의 분산 처리 구조를 구축하여 수백 명의 동시 활성 유저에 대한 빠른 응답 속도를 설계했습니다.",
-        metrics: "커뮤니티 적용 후 반복적인 관리성 문의가 70% 감소하였으며, 사용자 활동 기반 포인트 이벤트 활성화율 45% 증가."
-      }
-    },
-    {
-      id: 6,
       title: "Security & Growth Toolkit",
       description:
         "보안 약점 스캐닝 인텔리전스와 유저 유입 분석 툴을 유기적으로 연계한 시스템 진단 도구입니다.",
@@ -175,7 +158,7 @@ export const portfolioData: {
       category: "development"
     },
     {
-      id: 7,
+      id: 6,
       title: "Lua Creative Scripts",
       description:
         "가상 개발 플랫폼의 인터랙티브 맵 오브젝트와 복잡한 카메라 움직임을 효율화하는 스크립트 패키지입니다.",
@@ -260,14 +243,14 @@ export const portfolioData: {
 
   socialLinks: [
     { icon: "github", label: "GitHub", url: "https://github.com/haroseo" },
-    { icon: "discord", label: "Discord", url: "https://discord.com/users/harobuger" },
+    { icon: "discord", label: "Discord", url: "https://discord.com/users/seoharo" },
     { icon: "mail", label: "Email", url: "mailto:seoharo0111@gmail.com" },
   ],
 
   contact: {
     email: "seoharo0111@gmail.com",
     github: "https://github.com/haroseo",
-    discord: "@harobuger",
+    discord: "seoharo",
     location: "평택 (Pyeongtaek)",
   },
 

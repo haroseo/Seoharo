@@ -20,7 +20,7 @@
 - **Interactive Business Card:** 마우스의 움직임에 따라 반응하는 3D 명함 인터랙션 구현
 - **Premium Typography:** 국내 탑티어 웹 서비스에서 사용되는 `Pretendard`와 트렌디한 영문 폰트 `Outfit` 조합
 - **Smooth Animations:** 사용자 경험(UX)을 극대화하는 스크롤 진행바 및 페이드 인/아웃 효과
-- **Projects & Communities:** `Design Pick`, `나랏말싸미(훈민정음)`, `HANN봇` 등 제가 리드하고 있는 다채로운 프로젝트들과 총 2,000명 이상의 유저와 교감해 온 디스코드 커뮤니티 운영 기록 (`로블갤러리`, `Limited™`, `로폴더`)
+- **Projects & Communities:** `Design Pick`, `나랏말싸미(훈민정음)`, `Planor` 등 제가 리드하고 있는 다채로운 프로젝트들과 총 1,200명 이상의 유저와 교감해 온 디스코드 커뮤니티 운영 기록 (`Limited™`, `로폴더`)
 
 ## 💻 Local Development
 
@@ -45,7 +45,7 @@ npm run dev
 언제든 재미있는 프로젝트 제안이나 소통을 환영합니다!
 
 - **Email:** seoharo0111@gmail.com
-- **Discord:** @harobuger
+- **Discord:** seoharo
 - **GitHub:** [github.com/haroseo](https://github.com/haroseo)
 
 ---

@@ -119,7 +119,7 @@ export default function Hero() {
                 <span>Design Pick (디자인 픽)</span>
                 <span>Planor (플래너)</span>
                 <span>크티 (ctee.kr/place/seoharo)</span>
-                <span>HANN봇 (Discord Bot)</span>
+                <span>Security & Growth Toolkit</span>
               </div>
             </div>
           </motion.div>

@@ -95,30 +95,48 @@ export default function About() {
           <div className="glass-card p-8 sm:p-10 border border-slate-200 bg-white/80 backdrop-blur-md shadow-lg sticky top-28">
             <p className="section-overline">Profile</p>
             <div className="mt-8 space-y-6 text-slate-700">
-              <div className="rounded-3xl border border-slate-200 bg-slate-50/50 p-6 shadow-sm hover:shadow transition-all">
+              <motion.div 
+                initial={{ opacity: 0, x: 25 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, type: 'spring', damping: 20 }}
+                viewport={{ once: true }}
+                className="rounded-3xl border border-slate-200 bg-slate-50/50 p-6 shadow-sm hover:shadow transition-all"
+              >
                 <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-500">
                   Role
                 </p>
                 <p className="mt-2 text-lg font-bold text-slate-950">
                   Brand Designer, Marketer, & CEO
                 </p>
-              </div>
-              <div className="rounded-3xl border border-slate-200 bg-slate-50/50 p-6 shadow-sm hover:shadow transition-all">
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, x: 25 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.1, type: 'spring', damping: 20 }}
+                viewport={{ once: true }}
+                className="rounded-3xl border border-slate-200 bg-slate-50/50 p-6 shadow-sm hover:shadow transition-all"
+              >
                 <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-500">
                   Approach
                 </p>
                 <p className="mt-2 text-lg font-bold text-slate-950">
                   깔끔한 아이디어, 고객과의 활발한 교류, 빠른 연락
                 </p>
-              </div>
-              <div className="rounded-3xl border border-slate-200 bg-slate-50/50 p-6 shadow-sm hover:shadow transition-all">
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, x: 25 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2, type: 'spring', damping: 20 }}
+                viewport={{ once: true }}
+                className="rounded-3xl border border-slate-200 bg-slate-50/50 p-6 shadow-sm hover:shadow transition-all"
+              >
                 <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-500">
                   Focus
                 </p>
                 <p className="mt-2 text-lg font-bold text-slate-950">
                   브랜드 · UX · 마케팅 · Programming
                 </p>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>

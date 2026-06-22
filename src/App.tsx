@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { RouterProvider, useRouter } from './components/router';
 import Header from './components/Header';
 import ProgressBar from './components/ProgressBar';
@@ -7,6 +8,7 @@ import Timeline from './components/Timeline';
 import Communities from './components/Communities';
 import Skills from './components/Skills';
 import PortfolioPage from './components/PortfolioPage';
+import ChatPage from './components/ChatPage';
 import ContactPage from './components/ContactPage';
 import Footer from './components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -14,6 +16,17 @@ import './index.css';
 
 function AppContent() {
   const { currentPath } = useRouter();
+
+  // Block middle-click auto-scroll globally
+  useEffect(() => {
+    const handleMouseDown = (e: MouseEvent) => {
+      if (e.button === 1) { // Middle button clicked
+        e.preventDefault();
+      }
+    };
+    window.addEventListener('mousedown', handleMouseDown, { passive: false });
+    return () => window.removeEventListener('mousedown', handleMouseDown);
+  }, []);
 
   return (
     <div className="min-h-screen bg-white flex flex-col justify-between transition-colors duration-300">
@@ -39,6 +52,7 @@ function AppContent() {
                 </>
               )}
               {currentPath === '/portfolio' && <PortfolioPage />}
+              {currentPath === '/chat' && <ChatPage />}
               {currentPath === '/contact' && <ContactPage />}
             </motion.div>
           </AnimatePresence>

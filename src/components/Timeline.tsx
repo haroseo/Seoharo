@@ -1,8 +1,17 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
+import { useState, useRef } from 'react';
 
 export default function Timeline() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  // Soft spring for buttery smooth line drawing
+  const scaleY = useSpring(scrollYProgress, { stiffness: 70, damping: 26 });
 
   const timelineEvents = [
     {
@@ -39,7 +48,7 @@ export default function Timeline() {
       year: '2026',
       keywords: ['Scale', 'Community', 'Operation'],
       title: 'Scale & Community',
-      description: '3개 서버 운영으로 2000명 유저와 교감하며 제품 설계와 커뮤니티 관리에 집중합니다.',
+      description: 'Rofolder 및 Limited™ 서버 운영으로 1,200명 이상의 유저와 소통하며 성장 가치를 만듭니다.',
     },
   ];
 
@@ -53,16 +62,22 @@ export default function Timeline() {
           viewport={{ once: true }}
           className="mb-24 text-center"
         >
-          <p className="text-sm uppercase tracking-[0.28em] text-slate-500">Journey</p>
-          <h2 className="section-title mt-4 mb-6">From Ideas to Impact</h2>
+          <p className="text-sm uppercase tracking-[0.28em] text-slate-500 font-mono">Journey</p>
+          <h2 className="section-title mt-4 mb-6 font-bold">From Ideas to Impact</h2>
           <p className="mx-auto max-w-2xl text-lg text-slate-500 font-light">
             5년간의 디지털 창작 여정. 각 지점에 마우스를 올려 상세한 스토리를 확인해보세요.
           </p>
         </motion.div>
 
-        <div className="relative mt-16">
-          {/* Main vertical line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-slate-200 transform md:-translate-x-1/2" />
+        <div ref={containerRef} className="relative mt-16">
+          {/* Background vertical line */}
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-slate-100 transform md:-translate-x-1/2" />
+          
+          {/* Scroll-driven active path */}
+          <motion.div 
+            style={{ scaleY, transformOrigin: 'top' }}
+            className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-slate-950 transform md:-translate-x-1/2" 
+          />
 
           <div className="space-y-20">
             {timelineEvents.map((event, index) => (
@@ -134,13 +149,12 @@ export default function Timeline() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mt-40 grid gap-6 grid-cols-2 md:grid-cols-4"
+          className="mt-40 grid gap-6 grid-cols-2 md:grid-cols-3 max-w-3xl mx-auto"
         >
           {[
             { label: 'Years Active', value: '5+' },
-            { label: 'Projects Built', value: '20+' },
-            { label: 'Active Users', value: '2000+' },
-            { label: 'Communities', value: '3' },
+            { label: 'Active Users', value: '1200+' },
+            { label: 'Active Communities', value: '2' },
           ].map((stat, index) => (
             <div
               key={index}

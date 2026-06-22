@@ -143,32 +143,44 @@ export default function Communities() {
                   </div>
                 </div>
 
-                {/* Screenshot Section (Browser Mockup) */}
-                <div className="space-y-4">
-                  <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">
-                    Workspace Overview / Discord Mockup
-                  </h4>
-                  <div className="rounded-2xl border border-slate-200/80 bg-slate-900 shadow-lg overflow-hidden relative">
-                    {/* Mockup Title bar */}
-                    <div className="h-9 bg-slate-950/60 px-4 border-b border-slate-900/80 flex items-center gap-2 select-none">
-                      <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-                      <div className="flex-1 text-center text-[10px] text-slate-500 font-mono tracking-tight pr-10">
-                        discord.com/channels/{selectedCommunity.name.toLowerCase()}
+                {/* Core Achievements & Capabilities */}
+                {(() => {
+                  const career = portfolioData.careers.find(c => 
+                    c.id === (selectedCommunity.name.includes("로폴더") ? "rofolder" : "limited")
+                  );
+                  if (!career) return null;
+                  return (
+                    <div className="space-y-6 border-t border-slate-100 pt-6">
+                      <div className="space-y-4">
+                        <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
+                          <Compass className="w-3.5 h-3.5 text-slate-400" />
+                          Key Accomplishments & Leadership
+                        </h4>
+                        <ul className="space-y-3">
+                          {career.achievements.map((ach, idx) => (
+                            <li key={idx} className="flex gap-3 text-sm text-slate-700 leading-relaxed font-light">
+                              <span className="text-slate-950 font-bold mt-0.5">•</span>
+                              <span>{ach}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div className="space-y-3 border-t border-slate-100 pt-5">
+                        <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                          Core Capabilities
+                        </h4>
+                        <div className="flex flex-wrap gap-1.5">
+                          {career.skills.map((skill, idx) => (
+                            <span key={idx} className="px-2.5 py-1 rounded-md bg-slate-100 border border-slate-200 text-slate-700 text-xs font-semibold">
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                    {/* Mockup image */}
-                    <div className="aspect-[16/10] bg-slate-950 overflow-hidden flex items-center justify-center">
-                      <img 
-                        src="/assets/server-detail-screenshot.png" 
-                        alt="Discord Server Screenshot" 
-                        className="w-full h-full object-cover select-none"
-                      />
-                    </div>
-                  </div>
-                </div>
-
+                  );
+                })()}
               </div>
 
               {/* Modal Action Footer */}
