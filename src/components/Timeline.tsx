@@ -127,10 +127,10 @@ export default function Timeline() {
                     <AnimatePresence>
                       {hoveredIndex === index && (
                         <motion.div
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -10 }}
-                          transition={{ duration: 0.25 }}
+                          initial={{ opacity: 0, y: -12, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: -12, scale: 0.95 }}
+                          transition={{ type: 'spring', stiffness: 380, damping: 26 }}
                           className="overflow-hidden"
                         >
                           <div className={`mt-4 text-xs text-zinc-400 leading-relaxed max-w-sm rounded-2xl bg-zinc-950 border border-zinc-900 shadow-2xl p-5 ${index % 2 === 0 ? 'ml-auto' : 'mr-auto'}`}>

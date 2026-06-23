@@ -40,7 +40,7 @@ export default function Skills() {
           </p>
         </motion.div>
 
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-8 lg:grid-cols-3">
           {portfolioData.skills.map((skillGroup, groupIndex) => (
             <motion.div
               key={groupIndex}
@@ -48,22 +48,35 @@ export default function Skills() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="glass-card p-8 border border-zinc-900 bg-zinc-950/40 shadow-2xl"
+              className="glass-card p-8 border border-zinc-900 bg-zinc-950/40 shadow-2xl flex flex-col justify-between"
             >
-              <h3 className="text-lg font-bold text-white mb-5 font-display tracking-tight">
-                {skillGroup.category}
-              </h3>
-              <motion.div variants={containerVariants} className="flex flex-wrap gap-2.5">
-                {skillGroup.items.map((skill, itemIndex) => (
-                  <motion.span
-                    key={itemIndex}
-                    variants={itemVariants}
-                    className="rounded-lg border border-zinc-900 bg-zinc-900/60 px-3.5 py-1.5 text-xs font-mono text-zinc-300 transition-all hover:border-zinc-700 hover:text-white"
-                  >
-                    {skill}
-                  </motion.span>
-                ))}
-              </motion.div>
+              <div>
+                <h3 className="text-lg font-bold text-white mb-2 font-display tracking-tight">
+                  {skillGroup.category}
+                </h3>
+                <p className="text-[10px] font-mono text-zinc-550 uppercase tracking-widest mb-6">
+                  {skillGroup.category === 'Design' && 'Creative Interface'}
+                  {skillGroup.category === 'Marketing' && 'Growth Strategy'}
+                  {skillGroup.category === 'Programming' && 'Systems & Logic'}
+                </p>
+                <motion.div variants={containerVariants} className="flex flex-wrap gap-2.5">
+                  {skillGroup.items.map((skill, itemIndex) => (
+                    <motion.span
+                      key={itemIndex}
+                      variants={itemVariants}
+                      whileHover={{ 
+                        scale: 1.04, 
+                        borderColor: '#ffffff', 
+                        color: '#ffffff',
+                        boxShadow: '0 0 10px rgba(255, 255, 255, 0.05)'
+                      }}
+                      className="rounded-lg border border-zinc-900 bg-zinc-900/60 px-3.5 py-1.5 text-xs font-mono text-zinc-400 transition-all select-none cursor-pointer"
+                    >
+                      {skill}
+                    </motion.span>
+                  ))}
+                </motion.div>
+              </div>
             </motion.div>
           ))}
         </div>

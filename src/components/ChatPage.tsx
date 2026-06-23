@@ -85,10 +85,10 @@ export default function ChatPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-black flex items-center justify-center pt-28 pb-10 px-4 sm:px-6 overflow-hidden">
+    <div className="relative min-h-screen bg-black flex items-center justify-center pt-36 sm:pt-40 pb-12 px-4 sm:px-6 overflow-hidden">
       
       {/* Sleek, KakaoTalk/Telegram-style dark messenger frame */}
-      <div className="w-full max-w-xl bg-zinc-950/80 border border-zinc-900 rounded-[28px] shadow-[0_24px_60px_rgba(0,0,0,0.9)] flex flex-col h-[70vh] relative overflow-hidden backdrop-blur-2xl">
+      <div className="w-full max-w-xl bg-zinc-950/80 border border-zinc-900 rounded-[28px] shadow-[0_24px_60px_rgba(0,0,0,0.9)] flex flex-col h-[68vh] sm:h-[72vh] relative overflow-hidden backdrop-blur-2xl">
         
         {/* Chat Room Header */}
         <div className="px-6 py-4.5 border-b border-zinc-900/80 flex items-center bg-zinc-950/90 backdrop-blur-md sticky top-0 z-10">
@@ -180,13 +180,28 @@ export default function ChatPage() {
                     initial={{ opacity: 0, scale: 0.97, y: 4 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.97, y: -4 }}
-                    whileHover={{ scale: 1.01, borderColor: '#ffffff', backgroundColor: '#18181b' }}
+                    whileHover="hover"
+                    variants={{
+                      hover: {
+                        scale: 1.015,
+                        borderColor: '#ffffff',
+                        backgroundColor: '#121214',
+                        boxShadow: '0 0 12px rgba(255, 255, 255, 0.08)'
+                      }
+                    }}
                     transition={{ type: 'spring', stiffness: 350, damping: 28 }}
                     onClick={() => handleOptionClick(optId)}
-                    className="w-full px-4 py-2.5 rounded-xl bg-zinc-900/60 border border-zinc-850 text-zinc-300 hover:text-white text-xs font-semibold text-left flex items-center justify-between group shadow-sm transition-all select-none cursor-pointer"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#0a0a0c]/80 border border-zinc-900 text-zinc-300 hover:text-white text-xs font-semibold text-left flex items-center justify-between group shadow-sm transition-all select-none cursor-pointer relative overflow-hidden"
                   >
-                    <span>{opt.text}</span>
-                    <ArrowRight size={12} className="text-zinc-500 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent pointer-events-none"
+                      variants={{
+                        hover: { x: ['-100%', '100%'] }
+                      }}
+                      transition={{ duration: 0.8, ease: 'easeInOut' }}
+                    />
+                    <span className="relative z-10">{opt.text}</span>
+                    <ArrowRight size={12} className="text-zinc-550 group-hover:text-white group-hover:translate-x-0.5 transition-all relative z-10" />
                   </motion.button>
                 );
               })}

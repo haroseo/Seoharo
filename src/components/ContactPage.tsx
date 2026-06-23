@@ -192,21 +192,23 @@ export default function ContactPage() {
                 { type: 'discord', label: 'Copy Discord', value: portfolioData.contact.discord, icon: MessageSquare },
                 { type: 'github', label: 'Copy GitHub', value: portfolioData.contact.github, icon: GithubIcon }
               ].map(badge => (
-                <button
+                <motion.button
                   key={badge.type}
                   onClick={() => handleCopy(badge.type as any, badge.value)}
-                  className="flex items-center justify-between p-4 bg-zinc-950 border border-zinc-900 rounded-2xl hover:border-zinc-700 shadow-xl cursor-pointer hover:bg-zinc-900/60 transition-all select-none"
+                  whileHover={{ scale: 1.025, borderColor: '#ffffff', boxShadow: '0 0 12px rgba(255, 255, 255, 0.05)' }}
+                  whileTap={{ scale: 0.96 }}
+                  className="flex items-center justify-between p-4 bg-[#0a0a0c] border border-zinc-900 rounded-2xl cursor-pointer hover:bg-zinc-900/40 transition-all select-none"
                 >
                   <div className="flex items-center gap-2">
-                    <badge.icon className="w-4 h-4 text-zinc-400" />
+                    <badge.icon className="w-4 h-4 text-zinc-450" />
                     <span className="text-[10px] font-mono font-bold text-zinc-300 uppercase tracking-wider">{badge.label}</span>
                   </div>
                   {copiedText === badge.type ? (
                     <Check className="w-4 h-4 text-zinc-300" />
                   ) : (
-                    <Copy className="w-4 h-4 text-zinc-600" />
+                    <Copy className="w-4 h-4 text-zinc-650" />
                   )}
-                </button>
+                </motion.button>
               ))}
             </div>
 
@@ -228,7 +230,7 @@ export default function ContactPage() {
                     value={formState.name}
                     onChange={(e) => setFormState(prev => ({ ...prev, name: e.target.value }))}
                     placeholder="홍길동"
-                    className="w-full px-4 py-3 rounded-xl border border-zinc-900 focus:border-zinc-700 focus:ring-1 focus:ring-zinc-800 text-white text-xs outline-none bg-zinc-900/40 font-light"
+                    className="w-full px-4 py-3 rounded-xl border border-zinc-900 focus:border-white focus:ring-0 text-white text-xs outline-none bg-zinc-950/20 font-light transition-all duration-300 hover:border-zinc-800"
                   />
                 </div>
                 <div>
@@ -240,7 +242,7 @@ export default function ContactPage() {
                     value={formState.email}
                     onChange={(e) => setFormState(prev => ({ ...prev, email: e.target.value }))}
                     placeholder="example@email.com"
-                    className="w-full px-4 py-3 rounded-xl border border-zinc-900 focus:border-zinc-700 focus:ring-1 focus:ring-zinc-800 text-white text-xs outline-none bg-zinc-900/40 font-light"
+                    className="w-full px-4 py-3 rounded-xl border border-zinc-900 focus:border-white focus:ring-0 text-white text-xs outline-none bg-zinc-950/20 font-light transition-all duration-300 hover:border-zinc-800"
                   />
                 </div>
                 <div>
@@ -252,13 +254,15 @@ export default function ContactPage() {
                     value={formState.message}
                     onChange={(e) => setFormState(prev => ({ ...prev, message: e.target.value }))}
                     placeholder="프로젝트 의뢰 내용 및 협업 아이디어를 공유해 주세요."
-                    className="w-full px-4 py-3 rounded-xl border border-zinc-900 focus:border-zinc-700 focus:ring-1 focus:ring-zinc-800 text-white text-xs outline-none bg-zinc-900/40 font-light resize-none"
+                    className="w-full px-4 py-3 rounded-xl border border-zinc-900 focus:border-white focus:ring-0 text-white text-xs outline-none bg-zinc-950/20 font-light resize-none transition-all duration-300 hover:border-zinc-800"
                   />
                 </div>
 
-                <button
+                <motion.button
                   type="submit"
                   disabled={formStatus !== 'idle'}
+                  whileHover={{ scale: 1.012 }}
+                  whileTap={{ scale: 0.98 }}
                   className="w-full py-4 px-6 rounded-xl bg-white hover:bg-zinc-200 text-black font-bold text-xs uppercase tracking-widest shadow-xl flex items-center justify-center gap-2 cursor-pointer transition-all disabled:bg-zinc-800 disabled:text-zinc-650 disabled:cursor-not-allowed"
                 >
                   {formStatus === 'idle' && (
@@ -269,7 +273,7 @@ export default function ContactPage() {
                   )}
                   {formStatus === 'sending' && 'Sending...'}
                   {formStatus === 'success' && 'Message Sent Successfully!'}
-                </button>
+                </motion.button>
               </form>
             </motion.div>
           </div>

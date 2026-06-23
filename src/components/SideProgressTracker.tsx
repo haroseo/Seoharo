@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from './router';
 
@@ -19,6 +19,9 @@ export default function SideProgressTracker() {
   const { currentPath } = useRouter();
   const [activeSection, setActiveSection] = useState<string>('hero');
   const [hoveredSection, setHoveredSection] = useState<string | null>(null);
+  
+  const isScrollingRef = useRef(false);
+  const scrollTimeoutRef = useRef<number | null>(null);
 
   const shouldRender = currentPath === '/' || currentPath === '/about';
 
@@ -27,7 +30,8 @@ export default function SideProgressTracker() {
 
     // Scroll listener to catch the bottom page limit (guarantees STACK highlights)
     const handleScroll = () => {
-      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 80;
+      if (isScrollingRef.current) return;
+      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100;
       if (isAtBottom) {
         setActiveSection('skills');
       }
@@ -35,13 +39,14 @@ export default function SideProgressTracker() {
 
     const observerOptions = {
       root: null,
-      rootMargin: '-30% 0px -65% 0px',
+      rootMargin: '-25% 0px -45% 0px',
       threshold: 0
     };
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      // If we are already at the bottom, let the scroll listener handle the STACK section
-      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 80;
+      if (isScrollingRef.current) return;
+
+      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100;
       if (isAtBottom) {
         setActiveSection('skills');
         return;
@@ -69,18 +74,30 @@ export default function SideProgressTracker() {
         if (el) observer.unobserve(el);
       });
       window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeoutRef.current) {
+        window.clearTimeout(scrollTimeoutRef.current);
+      }
     };
   }, [shouldRender]);
 
   if (!shouldRender) return null;
 
   const handleScrollTo = (id: string) => {
-    // Instantly sync active state on click
     setActiveSection(id);
+    isScrollingRef.current = true;
+    if (scrollTimeoutRef.current) {
+      window.clearTimeout(scrollTimeoutRef.current);
+    }
+
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+
+    // Release scroll lock after 800ms
+    scrollTimeoutRef.current = window.setTimeout(() => {
+      isScrollingRef.current = false;
+    }, 800);
   };
 
   return (

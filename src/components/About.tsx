@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 
-function GlowCard({ children, className = "", style = {}, onClick }: { children: React.ReactNode, className?: string, style?: any, onClick?: () => void }) {
+function GlowCard({ children, className = "", style = {}, onClick, layout }: { children: React.ReactNode, className?: string, style?: any, onClick?: () => void, layout?: boolean }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [coords, setCoords] = useState({ x: -9999, y: -9999 });
   const [isHovered, setIsHovered] = useState(false);
@@ -16,8 +16,9 @@ function GlowCard({ children, className = "", style = {}, onClick }: { children:
   };
 
   return (
-    <div
+    <motion.div
       ref={cardRef}
+      layout={layout}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
@@ -36,7 +37,7 @@ function GlowCard({ children, className = "", style = {}, onClick }: { children:
         }}
       />
       {children}
-    </div>
+    </motion.div>
   );
 }
 
@@ -218,12 +219,13 @@ export default function About() {
               return (
                 <GlowCard
                   key={idx}
+                  layout
                   onClick={() => setActiveStat(isActive ? null : idx)}
                   className={`glass-card p-6 text-center border transition-all duration-300 cursor-pointer ${
-                    isActive ? 'border-white bg-zinc-900/60' : 'border-zinc-900 bg-zinc-950/20'
+                    isActive ? 'border-white bg-zinc-905/80' : 'border-zinc-900 bg-zinc-950/20'
                   }`}
                 >
-                  <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-zinc-500 mb-2">
+                  <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-zinc-550 mb-2">
                     {stat.label}
                   </p>
                   <p className="text-4xl font-extrabold tracking-tight text-white font-display mb-3">
@@ -236,10 +238,11 @@ export default function About() {
                       {isActive ? (
                         <motion.p
                           key="proof"
-                          initial={{ opacity: 0, y: 5 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -5 }}
-                          className="text-[11px] leading-relaxed text-zinc-300"
+                          initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: -8, scale: 0.96 }}
+                          transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+                          className="text-[11px] leading-relaxed text-zinc-350"
                         >
                           {stat.proof}
                         </motion.p>
@@ -247,9 +250,10 @@ export default function About() {
                         <motion.p
                           key="click-me"
                           initial={{ opacity: 0 }}
-                          animate={{ opacity: 0.6 }}
+                          animate={{ opacity: 0.5 }}
                           exit={{ opacity: 0 }}
-                          className="text-[10px] text-zinc-500 font-mono"
+                          transition={{ duration: 0.15 }}
+                          className="text-[10px] text-zinc-550 font-mono tracking-widest"
                         >
                           CLICK TO EXPLAIN
                         </motion.p>

@@ -47,9 +47,9 @@ export default function Hero() {
           <motion.div variants={itemVariants} className="space-y-8 text-center lg:text-left">
             <div className="flex items-center justify-center lg:justify-start gap-3">
               <span className="text-[10px] font-mono tracking-[0.4em] text-zinc-500 uppercase">
-                [00 // ANTIGRAVITY ENGINE]
+                INTRO // SEOHARO
               </span>
-              <span className="h-px w-6 bg-zinc-800" />
+              <span className="h-px w-6 bg-zinc-850" />
             </div>
 
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold uppercase tracking-tight text-white leading-tight">
@@ -82,7 +82,7 @@ export default function Hero() {
             className="rounded-3xl border border-zinc-900 bg-zinc-950/40 p-8 md:p-10 shadow-2xl backdrop-blur-md"
           >
             <p className="text-[9px] uppercase tracking-[0.35em] text-zinc-500 font-mono">
-              SYSTEM_READOUT.DAT
+              PROFILE // OVERVIEW
             </p>
             <div className="mt-8 space-y-6">
               <div className="flex items-end justify-between gap-4">
@@ -94,7 +94,7 @@ export default function Hero() {
                     {portfolioData.name}
                   </h2>
                 </div>
-                <div className="rounded-full border border-cyan-500/20 bg-cyan-950/10 px-3 py-1 text-[9px] font-mono font-bold uppercase tracking-wider text-cyan-400">
+                <div className="rounded-full border border-zinc-850 bg-zinc-900/40 px-3 py-1 text-[9px] font-mono font-bold uppercase tracking-wider text-zinc-300">
                   ACTIVE
                 </div>
               </div>
@@ -126,11 +126,9 @@ export default function Hero() {
               </div>
 
               {/* Minimal Project Links */}
-              <div className="pt-6 border-t border-zinc-900 text-[9px] font-mono tracking-widest text-zinc-500 grid gap-2 uppercase">
-                <span>[01 // DESIGN PICK]</span>
-                <span>[02 // PLANOR]</span>
-                <span>[03 // NARAMARSAMI]</span>
-                <span>[04 // SECURITY TOOLKIT]</span>
+              <div className="pt-6 border-t border-zinc-900 text-[9px] font-mono tracking-widest text-zinc-500 grid gap-1.5 uppercase">
+                <span>ROLES & POSITION</span>
+                <span className="text-xs text-white font-sans font-bold">ROFOLDER CEO / LIMITED FOUNDER / CREATIVE DEVS</span>
               </div>
             </div>
           </motion.div>

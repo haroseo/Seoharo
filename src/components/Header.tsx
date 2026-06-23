@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { useRouter } from './router';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -66,7 +66,7 @@ export default function Header() {
                 <motion.div
                   layoutId="active-nav-capsule"
                   className="absolute inset-0 bg-zinc-900 border border-zinc-800 rounded-full -z-10"
-                  transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+                  transition={{ type: 'spring', stiffness: 380, damping: 22 }}
                 />
               )}
               {item.label}
@@ -86,23 +86,31 @@ export default function Header() {
       </div>
 
       {/* Mobile Drawer */}
-      {isOpen && (
-        <div className="absolute top-16 left-4 right-4 bg-black/95 backdrop-blur-2xl border border-zinc-900 rounded-3xl p-5 flex flex-col gap-3 shadow-[0_30px_60px_rgba(0,0,0,0.9)] pointer-events-auto md:hidden">
-          {navItems.map((item) => (
-            <button
-              key={item.label}
-              onClick={() => handleNavClick(item.path)}
-              className={`w-full text-left py-2.5 px-4 rounded-xl text-xs font-bold font-mono tracking-[0.2em] uppercase cursor-pointer transition-colors ${
-                isLinkActive(item.path)
-                  ? 'bg-zinc-900 text-white border border-zinc-800'
-                  : 'text-zinc-500 hover:text-zinc-200'
-              }`}
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="absolute top-16 left-4 right-4 bg-black/95 backdrop-blur-3xl border border-zinc-900 rounded-3xl p-5 flex flex-col gap-3 shadow-[0_30px_60px_rgba(0,0,0,0.9)] pointer-events-auto md:hidden"
+          >
+            {navItems.map((item) => (
+              <button
+                key={item.label}
+                onClick={() => handleNavClick(item.path)}
+                className={`w-full text-left py-2.5 px-4 rounded-xl text-xs font-bold font-mono tracking-[0.2em] uppercase cursor-pointer transition-colors ${
+                  isLinkActive(item.path)
+                    ? 'bg-zinc-900 text-white border border-zinc-800'
+                    : 'text-zinc-500 hover:text-zinc-200'
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

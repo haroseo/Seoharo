@@ -117,11 +117,11 @@ export default function Communities() {
                   <div className="space-y-4">
                     <div className="flex flex-wrap gap-2 items-center">
                       <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 text-[9px] font-mono uppercase tracking-wider">
-                        <Shield size={10} className="text-cyan-400" />
+                        <Shield size={10} className="text-zinc-400" />
                         {selectedCommunity.role}
                       </span>
                       <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 text-[9px] font-mono uppercase tracking-wider">
-                        <Users size={10} className="text-cyan-400" />
+                        <Users size={10} className="text-zinc-400" />
                         {selectedCommunity.members} Members
                       </span>
                     </div>
@@ -163,7 +163,7 @@ export default function Communities() {
                         <ul className="space-y-2.5">
                           {career.achievements.map((ach, idx) => (
                             <li key={idx} className="flex gap-2.5 text-xs text-zinc-400 leading-relaxed font-light">
-                              <span className="text-cyan-400 font-bold">•</span>
+                              <span className="text-zinc-300 font-bold">•</span>
                               <span>{ach}</span>
                             </li>
                           ))}
