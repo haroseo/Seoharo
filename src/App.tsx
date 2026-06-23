@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { RouterProvider, useRouter } from './components/router';
 import Header from './components/Header';
 import ProgressBar from './components/ProgressBar';
+import SideProgressTracker from './components/SideProgressTracker';
 import Hero from './components/Hero';
 import About from './components/About';
 import Timeline from './components/Timeline';
@@ -29,10 +30,11 @@ function AppContent() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white flex flex-col justify-between transition-colors duration-300">
+    <div className="min-h-screen bg-black flex flex-col justify-between transition-colors duration-300">
       <div>
         <ProgressBar />
         <Header />
+        <SideProgressTracker />
         <main>
           <AnimatePresence mode="wait">
             <motion.div

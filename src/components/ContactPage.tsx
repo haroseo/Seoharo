@@ -77,22 +77,22 @@ export default function ContactPage() {
   };
 
   return (
-    <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-slate-50 min-h-[calc(100vh-80px)] flex flex-col justify-center overflow-hidden">
-      <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at center, #0f172a 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
-      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-slate-100 to-transparent pointer-events-none" />
+    <section className="relative py-28 px-4 sm:px-6 lg:px-8 bg-black text-white min-h-screen flex flex-col justify-center overflow-hidden">
+      {/* Decorative grids */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at center, #ffffff 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
 
       <div className="relative z-10 mx-auto max-w-7xl w-full">
         <div className="grid gap-16 lg:grid-cols-[1.1fr_0.9fr] items-center">
           
           {/* Card Showcase Side */}
-          <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-12">
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-10">
             <div className="space-y-4">
-              <p className="section-overline">Interactive Card</p>
-              <h2 className="section-title text-slate-950 font-bold">
+              <p className="section-overline">[03 // CONNECTION]</p>
+              <h2 className="section-title font-display bg-gradient-to-r from-white via-zinc-200 to-zinc-500 bg-clip-text text-transparent font-bold">
                 Let’s shape your next story.
               </h2>
-              <p className="max-w-xl text-lg leading-relaxed text-slate-600 font-light">
-                명확한 비주얼, 데이터 기반 마케팅, 그리고 신뢰받는 웹 설계를 지향합니다. 카드를 터치하여 정보를 뒤집어보세요.
+              <p className="max-w-xl text-sm leading-relaxed text-zinc-400 font-light">
+                명확한 비주얼 기획, 논리적인 개발 설계, 그리고 빠른 소통을 지향합니다. 카드를 클릭해 명함을 뒤집어보세요.
               </p>
             </div>
 
@@ -112,11 +112,11 @@ export default function ContactPage() {
                   rotateY: isFlipped ? 180 : rotateY,
                   transformStyle: "preserve-3d",
                 }}
-                className="relative w-[340px] sm:w-[440px] h-[220px] sm:h-[260px] rounded-2xl shadow-[0_25px_60px_-15px_rgba(15,23,42,0.15)] bg-[#fdfbf7] border border-slate-200/80 transition-all duration-300 hover:shadow-[0_30px_70px_-15px_rgba(15,23,42,0.22)]"
+                className="relative w-[340px] sm:w-[440px] h-[220px] sm:h-[260px] rounded-3xl shadow-2xl bg-zinc-950 border border-zinc-900 transition-all duration-300"
               >
-                {/* Paper texture */}
+                {/* Tech grain texture */}
                 <div 
-                  className="absolute inset-0 rounded-2xl mix-blend-multiply opacity-40 pointer-events-none"
+                  className="absolute inset-0 rounded-3xl opacity-5 pointer-events-none"
                   style={{
                     backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
                   }}
@@ -129,21 +129,21 @@ export default function ContactPage() {
                 >
                   <div className="flex justify-between items-start">
                     <div>
-                      <h3 className="text-3xl font-extrabold tracking-tight text-slate-900" style={{ transform: "translateZ(20px)" }}>SEOHARO</h3>
-                      <p className="text-[10px] font-bold tracking-widest text-slate-500 mt-2 uppercase" style={{ transform: "translateZ(15px)" }}>
+                      <h3 className="text-3xl font-extrabold tracking-tight text-white font-display" style={{ transform: "translateZ(20px)" }}>SEOHARO</h3>
+                      <p className="text-[9px] font-mono tracking-widest text-zinc-500 mt-2 uppercase" style={{ transform: "translateZ(15px)" }}>
                         Brand Designer, Marketer, & CEO
                       </p>
                     </div>
                     <div 
-                      className="w-12 h-12 rounded-full bg-slate-950 flex items-center justify-center text-white font-bold text-xl shadow-lg"
+                      className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-black font-extrabold text-lg shadow-lg font-display"
                       style={{ transform: "translateZ(30px)" }}
                     >
                       S
                     </div>
                   </div>
                   
-                  <div className="flex items-center gap-2 text-slate-500 text-xs font-semibold uppercase tracking-wider" style={{ transform: "translateZ(25px)" }}>
-                    <MapPin size={14} className="text-slate-400" />
+                  <div className="flex items-center gap-2 text-zinc-500 text-[10px] font-mono uppercase tracking-wider" style={{ transform: "translateZ(25px)" }}>
+                    <MapPin size={12} className="text-zinc-650" />
                     {portfolioData.contact.location}
                   </div>
                 </div>
@@ -157,26 +157,26 @@ export default function ContactPage() {
                   }}
                 >
                   <div className="space-y-4">
-                    <span className="text-[9px] uppercase tracking-widest text-slate-400 font-bold">Contact Node</span>
+                    <span className="text-[8.5px] font-mono uppercase tracking-widest text-zinc-500">Contact Node</span>
                     <div className="space-y-2">
                       <div className="flex items-center gap-3">
-                        <Mail className="w-4 h-4 text-slate-400" />
-                        <span className="text-xs sm:text-sm font-semibold text-slate-800 tracking-tight">{portfolioData.contact.email}</span>
+                        <Mail className="w-4 h-4 text-zinc-500" />
+                        <span className="text-xs font-mono text-zinc-350">{portfolioData.contact.email}</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <GithubIcon className="w-4 h-4 text-slate-400" />
-                        <span className="text-xs sm:text-sm font-semibold text-slate-800 tracking-tight">github.com/haroseo</span>
+                        <GithubIcon className="w-4 h-4 text-zinc-500" />
+                        <span className="text-xs font-mono text-zinc-350">github.com/haroseo</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <MessageSquare className="w-4 h-4 text-slate-400" />
-                        <span className="text-xs sm:text-sm font-semibold text-slate-800 tracking-tight">{portfolioData.contact.discord}</span>
+                        <MessageSquare className="w-4 h-4 text-zinc-500" />
+                        <span className="text-xs font-mono text-zinc-350">{portfolioData.contact.discord}</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="text-[9px] text-slate-400 font-semibold tracking-wider uppercase flex justify-between items-center border-t border-slate-200/60 pt-4">
+                  <div className="text-[8.5px] text-zinc-500 font-mono tracking-wider uppercase flex justify-between items-center border-t border-zinc-900 pt-4">
                     <span>seoharo.kro.kr</span>
-                    <span className="text-slate-500 font-bold">Flip back</span>
+                    <span className="text-zinc-400 font-bold">Flip back</span>
                   </div>
                 </div>
               </motion.div>
@@ -195,16 +195,16 @@ export default function ContactPage() {
                 <button
                   key={badge.type}
                   onClick={() => handleCopy(badge.type as any, badge.value)}
-                  className="flex items-center justify-between p-4 bg-white rounded-2xl border border-slate-200 hover:border-slate-400 shadow-sm cursor-pointer hover:bg-slate-50 transition-all select-none"
+                  className="flex items-center justify-between p-4 bg-zinc-950 border border-zinc-900 rounded-2xl hover:border-zinc-700 shadow-xl cursor-pointer hover:bg-zinc-900/60 transition-all select-none"
                 >
                   <div className="flex items-center gap-2">
-                    <badge.icon className="w-4 h-4 text-slate-500" />
-                    <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">{badge.label}</span>
+                    <badge.icon className="w-4 h-4 text-zinc-400" />
+                    <span className="text-[10px] font-mono font-bold text-zinc-300 uppercase tracking-wider">{badge.label}</span>
                   </div>
                   {copiedText === badge.type ? (
-                    <Check className="w-4 h-4 text-emerald-500" />
+                    <Check className="w-4 h-4 text-cyan-400" />
                   ) : (
-                    <Copy className="w-4 h-4 text-slate-400" />
+                    <Copy className="w-4 h-4 text-zinc-655" />
                   )}
                 </button>
               ))}
@@ -215,12 +215,12 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="rounded-[32px] border border-slate-200 bg-white p-8 md:p-10 shadow-[0_24px_80px_rgba(15,23,42,0.06)]"
+              className="rounded-3xl border border-zinc-900 bg-zinc-950/40 p-8 md:p-10 shadow-2xl backdrop-blur-md"
             >
-              <h3 className="text-xl font-bold tracking-tight text-slate-900 mb-6">Send a Quick Message</h3>
+              <h3 className="text-lg font-bold tracking-tight text-white mb-6 font-display">Send a Quick Message</h3>
               <form onSubmit={handleFormSubmit} className="space-y-5">
                 <div>
-                  <label htmlFor="name" className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Name</label>
+                  <label htmlFor="name" className="block text-[8px] font-mono font-bold text-zinc-500 uppercase tracking-widest mb-2">Name</label>
                   <input
                     id="name"
                     type="text"
@@ -228,11 +228,11 @@ export default function ContactPage() {
                     value={formState.name}
                     onChange={(e) => setFormState(prev => ({ ...prev, name: e.target.value }))}
                     placeholder="홍길동"
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-slate-950 focus:ring-1 focus:ring-slate-950/20 text-slate-800 text-sm font-medium outline-none bg-slate-50/50"
+                    className="w-full px-4 py-3 rounded-xl border border-zinc-900 focus:border-zinc-700 focus:ring-1 focus:ring-zinc-800 text-white text-xs outline-none bg-zinc-900/40 font-light"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Email Address</label>
+                  <label htmlFor="email" className="block text-[8px] font-mono font-bold text-zinc-500 uppercase tracking-widest mb-2">Email Address</label>
                   <input
                     id="email"
                     type="email"
@@ -240,31 +240,31 @@ export default function ContactPage() {
                     value={formState.email}
                     onChange={(e) => setFormState(prev => ({ ...prev, email: e.target.value }))}
                     placeholder="example@email.com"
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-slate-950 focus:ring-1 focus:ring-slate-950/20 text-slate-800 text-sm font-medium outline-none bg-slate-50/50"
+                    className="w-full px-4 py-3 rounded-xl border border-zinc-900 focus:border-zinc-700 focus:ring-1 focus:ring-zinc-800 text-white text-xs outline-none bg-zinc-900/40 font-light"
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Message</label>
+                  <label htmlFor="message" className="block text-[8px] font-mono font-bold text-zinc-500 uppercase tracking-widest mb-2">Message</label>
                   <textarea
                     id="message"
                     required
                     rows={4}
                     value={formState.message}
                     onChange={(e) => setFormState(prev => ({ ...prev, message: e.target.value }))}
-                    placeholder="프로젝트 의뢰 내용 및 아이디어를 보내주세요."
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-slate-950 focus:ring-1 focus:ring-slate-950/20 text-slate-800 text-sm font-medium outline-none bg-slate-50/50 resize-none"
+                    placeholder="프로젝트 의뢰 내용 및 협업 아이디어를 공유해 주세요."
+                    className="w-full px-4 py-3 rounded-xl border border-zinc-900 focus:border-zinc-700 focus:ring-1 focus:ring-zinc-800 text-white text-xs outline-none bg-zinc-900/40 font-light resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={formStatus !== 'idle'}
-                  className="w-full py-4 px-6 rounded-xl bg-slate-950 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-widest shadow-lg shadow-slate-950/15 flex items-center justify-center gap-2 cursor-pointer transition-all disabled:bg-slate-400 disabled:cursor-not-allowed"
+                  className="w-full py-4 px-6 rounded-xl bg-white hover:bg-zinc-200 text-black font-bold text-xs uppercase tracking-widest shadow-xl flex items-center justify-center gap-2 cursor-pointer transition-all disabled:bg-zinc-800 disabled:text-zinc-650 disabled:cursor-not-allowed"
                 >
                   {formStatus === 'idle' && (
                     <>
                       Send Message
-                      <Send size={14} />
+                      <Send size={12} />
                     </>
                   )}
                   {formStatus === 'sending' && 'Sending...'}

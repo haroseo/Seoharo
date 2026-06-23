@@ -1,440 +1,321 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
-import type { Project, Career } from '../data/portfolioData';
+import type { Project } from '../data/portfolioData';
 import InteractiveParticles from './InteractiveParticles';
-import { X, ExternalLink, Code, Calendar, Award, Compass, Sparkles, Briefcase } from 'lucide-react';
+import { X, ExternalLink, Code, Compass, Sparkles, Award } from 'lucide-react';
 
 export default function PortfolioPage() {
-  const [filter, setFilter] = useState<'all' | 'brand' | 'marketing' | 'development'>('all');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [selectedCareer, setSelectedCareer] = useState<Career | null>(null);
-  const [activeSegment, setActiveSegment] = useState<'projects' | 'careers'>('projects');
 
-  // Filter projects
-  const filteredProjects = portfolioData.projects.filter(p => {
-    if (filter === 'all') return true;
-    return p.category === filter;
-  });
+  // Separate main featured projects from open-source tools
+  const mainProjects = portfolioData.projects.filter(p => p.featured);
+  const openSourceTools = portfolioData.projects.filter(p => !p.featured);
 
   return (
-    <div className="relative min-h-[calc(100vh-80px)] bg-slate-950 text-white overflow-hidden p-6 sm:p-12 flex flex-col justify-start">
-      
-      {/* 3D Particle Background */}
+    <div className="relative min-h-screen bg-black text-white overflow-x-hidden pt-24 pb-20">
+      {/* Immersive Background Particles */}
       <InteractiveParticles />
 
-      {/* Grid Pattern overlay */}
+      {/* Subtle Grid guides */}
       <div 
-        className="absolute inset-0 opacity-5 pointer-events-none" 
+        className="absolute inset-0 opacity-20 pointer-events-none" 
         style={{ 
-          backgroundImage: 'radial-gradient(circle at center, #94a3b8 1px, transparent 1px)', 
-          backgroundSize: '32px 32px' 
+          backgroundImage: `
+            linear-gradient(rgba(24, 24, 27, 0.4) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(24, 24, 27, 0.4) 1px, transparent 1px)
+          `, 
+          backgroundSize: '80px 80px' 
         }} 
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto w-full space-y-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8">
         
-        {/* Title and Segment Toggle */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6 border-b border-slate-800 pb-8">
-          <div className="text-center md:text-left space-y-2">
-            <h2 className="text-3xl font-extrabold tracking-tight font-display bg-gradient-to-r from-slate-200 via-slate-100 to-slate-400 bg-clip-text text-transparent">
-              Spatial Creative Catalog
-            </h2>
-            <p className="text-xs text-slate-500 font-medium uppercase tracking-widest font-mono">
-              Branding x Growth Marketing x Development
-            </p>
-          </div>
-
-          {/* Segment Selector (Projects vs Careers) */}
-          <div className="flex bg-slate-900/60 border border-slate-800 p-1.5 rounded-full backdrop-blur-md select-none">
-            <button
-              onClick={() => setActiveSegment('projects')}
-              className={`px-6 py-2.5 rounded-full text-xs font-bold tracking-wide uppercase transition-all cursor-pointer ${
-                activeSegment === 'projects'
-                  ? 'bg-white text-slate-950 shadow-md scale-102'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              Projects
-            </button>
-            <button
-              onClick={() => setActiveSegment('careers')}
-              className={`px-6 py-2.5 rounded-full text-xs font-bold tracking-wide uppercase transition-all cursor-pointer ${
-                activeSegment === 'careers'
-                  ? 'bg-white text-slate-950 shadow-md scale-102'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              Experience
-            </button>
-          </div>
+        {/* Page Header */}
+        <div className="border-b border-zinc-900 pb-10 mb-20 text-center md:text-left">
+          <p className="text-[10px] font-mono tracking-[0.4em] text-zinc-500 uppercase">
+            [PROJECT CATALOG]
+          </p>
+          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight font-display bg-gradient-to-r from-white via-zinc-200 to-zinc-500 bg-clip-text text-transparent mt-3">
+            Creative Artifacts
+          </h1>
+          <p className="text-xs text-zinc-500 font-mono mt-2 uppercase tracking-widest">
+            Brand Design x Web Service x Automation Scripts
+          </p>
         </div>
 
-        {/* Categories Filter (Only visible for Projects segment) */}
-        {activeSegment === 'projects' && (
-          <div className="flex flex-wrap justify-center md:justify-start gap-2.5 select-none">
-            {[
-              { id: 'all', label: 'All Works' },
-              { id: 'brand', label: 'Brand Design' },
-              { id: 'marketing', label: 'Growth Marketing' },
-              { id: 'development', label: 'Development' }
-            ].map(btn => (
-              <button
-                key={btn.id}
-                onClick={() => setFilter(btn.id as any)}
-                className={`px-4.5 py-2 rounded-full text-[11px] font-bold uppercase tracking-wider border transition-all cursor-pointer ${
-                  filter === btn.id
-                    ? 'bg-slate-100 text-slate-950 border-white font-extrabold shadow-sm scale-102'
-                    : 'bg-transparent text-slate-400 border-slate-800 hover:border-slate-700 hover:text-slate-200'
-                }`}
+        {/* 1. Main Projects: Full-Screen Sequential Showcase */}
+        <div className="space-y-36">
+          {mainProjects.map((project, idx) => {
+            const isEven = idx % 2 === 0;
+
+            return (
+              <motion.section
+                key={project.id}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: 'easeOut' }}
+                className={`min-h-[75vh] flex flex-col ${
+                  isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                } items-center gap-12 border-b border-zinc-900 pb-20`}
               >
-                {btn.label}
-              </button>
-            ))}
-          </div>
-        )}
+                {/* Visual Media Frame */}
+                <div className="w-full lg:w-1/2 group relative aspect-video lg:aspect-auto lg:h-[420px] rounded-3xl overflow-hidden border border-zinc-900 bg-zinc-950/40 shadow-2xl flex items-center justify-center cursor-pointer select-none"
+                     onClick={() => setSelectedProject(project)}>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent z-10 opacity-60 group-hover:opacity-20 transition-opacity duration-500" />
+                  
+                  {project.image && (
+                    <motion.img 
+                      src={project.image} 
+                      alt={project.title}
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.6 }}
+                      className="w-full h-full object-cover opacity-75"
+                    />
+                  )}
+                  
+                  {/* Visual Glow Spotlight */}
+                  <div className="absolute inset-0 bg-cyan-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-20 blur-xl" />
+                  
+                  <span className="absolute bottom-6 right-6 z-20 bg-black/80 border border-zinc-800 px-4 py-2 rounded-full text-[10px] font-mono tracking-widest uppercase text-zinc-400 group-hover:text-white group-hover:border-zinc-500 transition-all">
+                    Open File →
+                  </span>
+                </div>
 
-        {/* Dynamic Display Grid */}
-        <AnimatePresence mode="wait">
-          {activeSegment === 'projects' ? (
-            <motion.div
-              key="projects-grid"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.4 }}
-              className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-            >
-              {filteredProjects.map((project) => (
-                <motion.div
-                  key={project.id}
-                  layoutId={`project-card-${project.id}`}
-                  onClick={() => setSelectedProject(project)}
-                  style={{ transformStyle: 'preserve-3d' }}
-                  whileHover={{ y: -6, rotateX: 2, rotateY: -2 }}
-                  className="group relative bg-slate-900/40 border border-slate-800/80 rounded-3xl p-6 hover:border-slate-600 transition-all duration-300 cursor-pointer shadow-[0_15px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm overflow-hidden flex flex-col justify-between min-h-[220px]"
-                >
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center">
-                      <span className={`text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border ${
-                        project.category === 'brand' ? 'border-sky-500/30 text-sky-400 bg-sky-500/5' :
-                        project.category === 'marketing' ? 'border-violet-500/30 text-violet-400 bg-violet-500/5' :
-                        'border-emerald-500/30 text-emerald-400 bg-emerald-500/5'
-                      }`}>
-                        {project.category}
-                      </span>
-                      <span className="text-[10px] text-slate-600 font-bold uppercase tracking-widest font-mono">
-                        0{project.id}
-                      </span>
-                    </div>
-
-                    <h3 className="text-xl font-bold tracking-tight text-slate-100 group-hover:text-white transition-colors">
-                      {project.title}
-                    </h3>
-                    
-                    <p className="text-xs text-slate-400 leading-relaxed font-light line-clamp-3">
-                      {project.description}
-                    </p>
+                {/* Content Panel */}
+                <div className="w-full lg:w-1/2 flex flex-col justify-center space-y-6">
+                  <div className="flex items-center gap-3">
+                    <span className="text-[10px] font-mono tracking-widest text-zinc-500">
+                      [0{idx + 1} // {project.category.toUpperCase()}]
+                    </span>
+                    <span className="h-px w-8 bg-zinc-800" />
                   </div>
 
-                  <div className="flex flex-wrap gap-1.5 mt-6 border-t border-slate-800/40 pt-4">
-                    {project.tags.map((tag, idx) => (
-                      <span key={idx} className="text-[9px] font-semibold text-slate-500 uppercase tracking-wide">
+                  <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white font-display">
+                    {project.title}
+                  </h2>
+
+                  <p className="text-sm text-zinc-400 leading-relaxed font-light max-w-xl">
+                    {project.description}
+                  </p>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <span 
+                        key={tag} 
+                        className="px-3 py-1 bg-zinc-950 border border-zinc-900 rounded-lg text-[10px] font-mono text-zinc-500 tracking-wide"
+                      >
                         #{tag.replace(/\s+/g, '')}
                       </span>
                     ))}
                   </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          ) : (
-            <motion.div
-              key="careers-grid"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.4 }}
-              className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-            >
-              {portfolioData.careers.map((career) => (
-                <motion.div
-                  key={career.id}
-                  layoutId={`career-card-${career.id}`}
-                  onClick={() => setSelectedCareer(career)}
-                  whileHover={{ y: -6, rotateX: 2, rotateY: -2 }}
-                  className="group relative bg-slate-900/40 border border-slate-800/80 rounded-3xl p-6 hover:border-slate-600 transition-all duration-300 cursor-pointer shadow-[0_15px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm overflow-hidden flex flex-col justify-between min-h-[220px]"
-                >
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center">
-                      <span className="inline-flex items-center gap-1 text-[9px] font-bold text-emerald-400 uppercase tracking-widest">
-                        <Briefcase size={12} />
-                        Experience
-                      </span>
-                      <span className="text-[9px] text-slate-500 font-mono tracking-tight">
-                        {career.period.split(' ')[0]}
-                      </span>
-                    </div>
 
-                    <h3 className="text-xl font-bold tracking-tight text-slate-100 group-hover:text-white transition-colors">
-                      {career.title.split(' - ')[0]}
-                    </h3>
+                  {/* Action Link row */}
+                  <div className="flex items-center gap-6 pt-4">
+                    <button
+                      onClick={() => setSelectedProject(project)}
+                      className="px-6 py-3 bg-zinc-900 border border-zinc-800 hover:border-zinc-650 hover:bg-zinc-850 text-white text-xs font-bold font-mono tracking-widest uppercase rounded-full cursor-pointer transition-all shadow-md"
+                    >
+                      Read Case Study
+                    </button>
                     
-                    <p className="text-xs text-slate-400 leading-relaxed font-light line-clamp-3">
-                      {career.description}
-                    </p>
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 text-xs font-bold font-mono text-zinc-400 hover:text-white uppercase tracking-wider transition-colors"
+                      >
+                        Launch
+                        <ExternalLink size={13} />
+                      </a>
+                    )}
                   </div>
+                </div>
+              </motion.section>
+            );
+          })}
+        </div>
 
-                  <div className="mt-6 border-t border-slate-800/40 pt-4 flex items-center justify-between">
-                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-                      {career.title.split(' - ')[1]}
+        {/* 2. Open Source & Scripts Section */}
+        <div className="mt-32 border-t border-zinc-900 pt-20">
+          <div className="mb-12 text-center md:text-left">
+            <p className="text-[10px] font-mono tracking-[0.35em] text-zinc-500 uppercase">
+              [DEVELOPMENT RESOURCE & LIBRARIES]
+            </p>
+            <h2 className="text-2xl font-bold tracking-tight text-white font-display mt-2">
+              Open Source Toolkits
+            </h2>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            {openSourceTools.map((tool) => (
+              <motion.div
+                key={tool.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="group relative bg-zinc-950/40 border border-zinc-900 hover:border-zinc-800 rounded-2xl p-6 flex flex-col justify-between hover:bg-zinc-950/80 transition-all duration-300"
+              >
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center">
+                    <span className="text-[9px] font-mono tracking-widest text-cyan-500 uppercase">
+                      [{tool.category.toUpperCase()}]
                     </span>
-                    <span className="text-[10px] text-slate-400 font-bold group-hover:translate-x-0.5 transition-transform">
-                      View details →
+                    <span className="text-[9px] text-zinc-600 font-mono">
+                      SRC_0{tool.id}
                     </span>
                   </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
+                  <h3 className="text-lg font-bold text-zinc-200 group-hover:text-white font-display transition-colors">
+                    {tool.title}
+                  </h3>
+                  <p className="text-xs text-zinc-400 leading-relaxed font-light">
+                    {tool.description}
+                  </p>
+                </div>
+
+                <div className="flex justify-between items-center border-t border-zinc-900/60 pt-4 mt-6">
+                  <div className="flex gap-1.5">
+                    {tool.tags.map((tag) => (
+                      <span key={tag} className="text-[9px] font-semibold text-zinc-600 font-mono">
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                  {tool.github && (
+                    <a
+                      href={tool.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-400 hover:text-white hover:border-zinc-700 transition-colors"
+                    >
+                      <Code size={14} />
+                    </a>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
       </div>
 
-      {/* FLUID MORPH CASE STUDY OVERLAY: PROJECTS */}
+      {/* SLIDING Technical Drawer File Overlay ("정리된 파일") */}
       <AnimatePresence>
         {selectedProject && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md"
-          >
+          <>
+            {/* Dark Backdrop */}
             <motion.div
-              layoutId={`project-card-${selectedProject.id}`}
-              className="relative w-full max-w-5xl h-[85vh] bg-slate-900 border border-slate-800 rounded-[32px] shadow-2xl overflow-hidden flex flex-col md:flex-row"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.7 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedProject(null)}
+              className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm"
+            />
+
+            {/* Sliding Drawer Container */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', stiffness: 260, damping: 30 }}
+              className="fixed top-0 right-0 z-50 w-full sm:w-[540px] md:w-[600px] h-full bg-[#050505] border-l border-zinc-900 p-8 md:p-12 overflow-y-auto flex flex-col justify-between shadow-2xl"
             >
-              {/* Close Button */}
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="absolute top-6 right-6 z-20 p-2.5 rounded-full bg-slate-950/60 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-950 hover:scale-105 transition-all cursor-pointer"
-              >
-                <X size={20} />
-              </button>
-
-              {/* LEFT SIDE: Cinematic Media Frame */}
-              <div className="w-full md:w-1/2 h-48 md:h-full bg-slate-950 relative overflow-hidden flex items-center justify-center select-none border-b md:border-b-0 md:border-r border-slate-800">
-                <img 
-                  src={selectedProject.image || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop"} 
-                  alt={selectedProject.title}
-                  className="w-full h-full object-cover opacity-80"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-slate-900/60" />
-              </div>
-
-              {/* RIGHT SIDE: Rich Typography Case Study */}
-              <div className="w-full md:w-1/2 flex-1 flex flex-col justify-between overflow-hidden">
-                {/* Scrollable contents */}
-                <div className="flex-1 overflow-y-auto p-8 space-y-8">
-                  {/* Category capsule */}
+              <div className="space-y-10">
+                {/* Header Row */}
+                <div className="flex justify-between items-center border-b border-zinc-900 pb-6">
                   <div>
-                    <span className="text-[9px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full border border-slate-800 bg-slate-900 text-slate-400">
-                      {selectedProject.category} category
+                    <span className="text-[9px] font-mono tracking-widest text-cyan-400 uppercase">
+                      [FILE ARCHIVE // 0{selectedProject.id}]
                     </span>
-                  </div>
-
-                  {/* Header info */}
-                  <div className="space-y-3">
-                    <h3 className="text-3xl font-extrabold tracking-tight text-white">
+                    <h3 className="text-2xl font-bold tracking-tight text-white font-display mt-1">
                       {selectedProject.title}
                     </h3>
-                    <p className="text-slate-400 text-sm leading-relaxed font-light">
-                      {selectedProject.description}
+                  </div>
+                  <button
+                    onClick={() => setSelectedProject(null)}
+                    className="p-2 rounded-full border border-zinc-800 text-zinc-500 hover:text-white hover:bg-zinc-900 transition-all cursor-pointer"
+                  >
+                    <X size={18} />
+                  </button>
+                </div>
+
+                {/* Content details */}
+                <div className="space-y-8 font-light text-zinc-300">
+                  <div className="space-y-2">
+                    <span className="text-[9px] font-mono tracking-[0.2em] text-zinc-500 uppercase flex items-center gap-1.5">
+                      <Compass size={12} className="text-zinc-500" />
+                      Overview & Purpose
+                    </span>
+                    <p className="text-xs leading-relaxed text-zinc-400">
+                      {selectedProject.details?.background}
                     </p>
                   </div>
 
-                  {/* Case Study text blocks */}
-                  {selectedProject.details ? (
-                    <div className="space-y-6">
-                      <div className="space-y-2 border-t border-slate-800/60 pt-5">
-                        <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-1.5">
-                          <Compass className="w-3.5 h-3.5 text-slate-500" />
-                          Overview & Purpose
-                        </h4>
-                        <p className="text-xs leading-relaxed text-slate-300 font-light">
-                          {selectedProject.details.background}
-                        </p>
-                      </div>
+                  <div className="space-y-2">
+                    <span className="text-[9px] font-mono tracking-[0.2em] text-zinc-500 uppercase flex items-center gap-1.5">
+                      <Sparkles size={12} className="text-zinc-500" />
+                      Design & Architecture
+                    </span>
+                    <p className="text-xs leading-relaxed text-zinc-400">
+                      {selectedProject.details?.strategy}
+                    </p>
+                  </div>
 
-                      <div className="space-y-2 border-t border-slate-800/60 pt-5">
-                        <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-1.5">
-                          <Sparkles className="w-3.5 h-3.5 text-slate-500" />
-                          Execution & Design
-                        </h4>
-                        <p className="text-xs leading-relaxed text-slate-300 font-light">
-                          {selectedProject.details.strategy}
-                        </p>
-                      </div>
-
-                      <div className="bg-slate-950 p-5 rounded-2xl border border-slate-850 flex flex-col gap-2">
-                        <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
-                          <Award className="w-3.5 h-3.5 text-slate-400" />
-                          Key Metrics & Achievements
-                        </h4>
-                        <p className="text-sm font-semibold text-slate-200 leading-relaxed">
-                          {selectedProject.details.metrics}
-                        </p>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="text-xs text-slate-500 italic border-t border-slate-800/60 pt-5">
-                      코드와 구조에 대한 세부 사항은 프로젝트 깃허브 코드를 참조해주십시오.
+                  {selectedProject.details?.metrics && (
+                    <div className="bg-zinc-950 p-5 rounded-2xl border border-zinc-900/60 space-y-2">
+                      <span className="text-[9px] font-mono tracking-[0.2em] text-cyan-500 uppercase flex items-center gap-1.5">
+                        <Award size={12} className="text-cyan-500" />
+                        Key Metrics & Value
+                      </span>
+                      <p className="text-xs leading-relaxed text-zinc-300 font-medium">
+                        {selectedProject.details.metrics}
+                      </p>
                     </div>
                   )}
 
                   {/* Tags */}
-                  <div className="flex flex-wrap gap-1.5 border-t border-slate-800/60 pt-6">
-                    {selectedProject.tags.map((tag, idx) => (
-                      <span key={idx} className="px-2.5 py-1 text-[10px] font-semibold text-slate-400 border border-slate-800 bg-slate-900/30 rounded-lg">
+                  <div className="flex flex-wrap gap-1.5 pt-4">
+                    {selectedProject.tags.map((tag) => (
+                      <span key={tag} className="px-2.5 py-1 text-[9px] font-mono text-zinc-400 border border-zinc-900 bg-zinc-950/40 rounded-lg">
                         {tag}
                       </span>
                     ))}
                   </div>
                 </div>
+              </div>
 
-                {/* Footer buttons */}
-                <div className="px-8 py-5 border-t border-slate-800 bg-slate-950/40 flex items-center justify-between gap-4">
-                  {selectedProject.github ? (
-                    <a
-                      href={selectedProject.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-[10px] font-bold text-slate-400 hover:text-white transition-colors uppercase tracking-wider"
-                    >
-                      <Code size={14} />
-                      View Source
-                    </a>
-                  ) : (
-                    <div />
-                  )}
-
+              {/* Drawer footer link block */}
+              <div className="border-t border-zinc-900 pt-6 mt-12 flex gap-4">
+                {selectedProject.github && (
+                  <a
+                    href={selectedProject.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 py-3 px-5 border border-zinc-800 hover:border-zinc-650 hover:bg-zinc-900 rounded-xl text-xs font-mono font-bold tracking-widest text-center text-zinc-300 hover:text-white uppercase transition-all"
+                  >
+                    View Source Code
+                  </a>
+                )}
+                {selectedProject.link && (
                   <a
                     href={selectedProject.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4.5 py-2.5 rounded-full bg-white text-slate-950 text-[10px] font-bold uppercase tracking-wider hover:bg-slate-200 transition-all cursor-pointer shadow-md"
+                    className="flex-1 py-3 px-5 bg-white text-black hover:bg-zinc-200 rounded-xl text-xs font-mono font-bold tracking-widest text-center uppercase transition-all flex items-center justify-center gap-1.5"
                   >
-                    Launch Live
+                    Launch Link
                     <ExternalLink size={12} />
                   </a>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* FLUID MORPH CASE STUDY OVERLAY: CAREERS */}
-      <AnimatePresence>
-        {selectedCareer && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md"
-          >
-            <motion.div
-              layoutId={`career-card-${selectedCareer.id}`}
-              className="relative w-full max-w-3xl h-[75vh] bg-slate-900 border border-slate-800 rounded-[32px] shadow-2xl overflow-hidden flex flex-col"
-            >
-              {/* Close Button */}
-              <button
-                onClick={() => setSelectedCareer(null)}
-                className="absolute top-6 right-6 z-20 p-2.5 rounded-full bg-slate-950/60 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-950 hover:scale-105 transition-all cursor-pointer"
-              >
-                <X size={20} />
-              </button>
-
-              {/* Header Slogan Box */}
-              <div className="p-8 bg-slate-950 border-b border-slate-800 text-white flex flex-col justify-center min-h-[120px]">
-                <span className="text-slate-500 text-[9px] font-bold tracking-widest uppercase mb-2 block font-mono">Slogan</span>
-                <h4 className="text-lg md:text-xl font-bold tracking-wide text-slate-100">
-                  "{selectedCareer.slogan}"
-                </h4>
-              </div>
-
-              {/* Body */}
-              <div className="flex-1 overflow-y-auto p-8 space-y-6">
-                <div className="flex flex-col md:flex-row justify-between items-start gap-4 pb-4 border-b border-slate-800">
-                  <div>
-                    <h3 className="text-2xl font-bold tracking-tight text-white">
-                      {selectedCareer.title}
-                    </h3>
-                    <p className="text-slate-400 text-xs font-light mt-1.5">
-                      {selectedCareer.description}
-                    </p>
-                  </div>
-                  <span className="px-3.5 py-1.5 rounded-full border border-slate-800 bg-slate-950 text-slate-300 text-[10px] font-bold tracking-wider font-mono flex items-center gap-1.5 shrink-0">
-                    <Calendar size={12} className="text-slate-500" />
-                    {selectedCareer.period}
-                  </span>
-                </div>
-
-                {/* Achievements */}
-                <div className="space-y-4">
-                  <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-1.5">
-                    <Award className="w-3.5 h-3.5 text-slate-500" />
-                    Contributions & Milestones
-                  </h4>
-                  <ul className="space-y-3.5">
-                    {selectedCareer.achievements.map((ach, idx) => (
-                      <li key={idx} className="flex gap-3 text-xs text-slate-300 leading-relaxed font-light">
-                        <span className="text-emerald-400 font-bold mt-0.5">•</span>
-                        <span>{ach}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Skills */}
-                <div className="space-y-3 border-t border-slate-800 pt-5">
-                  <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-                    Capabilities
-                  </h4>
-                  <div className="flex flex-wrap gap-1.5">
-                    {selectedCareer.skills.map((skill, idx) => (
-                      <span key={idx} className="px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/10 text-[10px] font-bold">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Action Footer */}
-              <div className="px-8 py-5 border-t border-slate-800 bg-slate-950/40 flex justify-end gap-3">
-                {selectedCareer.link ? (
-                  <a
-                    href={selectedCareer.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4.5 py-2.5 rounded-full bg-white text-slate-950 text-[10px] font-bold uppercase tracking-wider hover:bg-slate-200 transition-all cursor-pointer shadow-md"
-                  >
-                    Go to Channel
-                    <ExternalLink size={12} />
-                  </a>
-                ) : (
-                  <button
-                    onClick={() => setSelectedCareer(null)}
-                    className="px-4.5 py-2.5 rounded-full bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 text-[10px] font-bold uppercase tracking-wider transition-all cursor-pointer"
-                  >
-                    Close Profile
-                  </button>
                 )}
               </div>
             </motion.div>
-          </motion.div>
+          </>
         )}
       </AnimatePresence>
-
     </div>
   );
 }

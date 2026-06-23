@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { useRouter } from './router';
+import { motion } from 'framer-motion';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,68 +27,82 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur-xl shadow-sm shadow-slate-900/5">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-3">
-            <img src="/assets/seoharo-logo-round.png" alt="SEOHARO Logo" className="w-12 h-12 object-cover rounded-full border border-slate-100 shadow-sm bg-white" />
-            <div className="flex flex-col gap-1">
-              <button
-                onClick={() => navigate('/about')}
-                className="text-left text-lg font-semibold tracking-[0.28em] uppercase text-slate-900 transition-colors cursor-pointer"
-              >
-                SEOHARO
-              </button>
-              <p className="text-[9px] uppercase tracking-[0.3em] text-slate-500 font-medium">
-                Brand Designer, Marketer, & CEO
-              </p>
-            </div>
-          </div>
-
-          <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => handleNavClick(item.path)}
-                className={`text-sm tracking-[0.18em] uppercase cursor-pointer transition-colors ${
-                  isLinkActive(item.path)
-                    ? 'text-slate-950 font-semibold'
-                    : 'text-slate-500 hover:text-slate-900'
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-
-          <div className="md:hidden flex items-center justify-between md:justify-end">
+    <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+      <div className="w-full max-w-4xl bg-black/60 backdrop-blur-2xl border border-zinc-900/80 rounded-full px-6 py-2.5 flex items-center justify-between shadow-[0_20px_50px_rgba(0,0,0,0.8)] pointer-events-auto">
+        
+        {/* Brand Logo & Name */}
+        <div className="flex items-center gap-3">
+          <img 
+            src="/assets/seoharo-logo-round.png" 
+            alt="SEOHARO" 
+            className="w-8 h-8 object-cover rounded-full border border-zinc-800 bg-black" 
+          />
+          <div className="flex flex-col">
             <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-slate-600 hover:text-slate-900"
+              onClick={() => navigate('/about')}
+              className="text-left text-sm font-bold tracking-[0.25em] uppercase text-white hover:text-zinc-200 transition-colors cursor-pointer"
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              SEOHARO
             </button>
+            <p className="text-[7.5px] uppercase tracking-[0.25em] text-zinc-500 font-mono">
+              Designer & Dev
+            </p>
           </div>
         </div>
 
-        {isOpen && (
-          <div className="md:hidden mt-4 pb-4 space-y-3 border-t border-slate-200 pt-4">
-            {navItems.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => handleNavClick(item.path)}
-                className={`block w-full text-left py-2 text-sm tracking-[0.16em] uppercase cursor-pointer transition-colors ${
-                  isLinkActive(item.path)
-                    ? 'text-slate-950 font-bold'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-        )}
-      </nav>
+        {/* Desktop Nav Items */}
+        <div className="hidden md:flex items-center gap-2">
+          {navItems.map((item) => (
+            <button
+              key={item.label}
+              onClick={() => handleNavClick(item.path)}
+              className={`relative px-4.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.2em] font-mono cursor-pointer transition-colors ${
+                isLinkActive(item.path)
+                  ? 'text-white'
+                  : 'text-zinc-500 hover:text-zinc-200'
+              }`}
+            >
+              {isLinkActive(item.path) && (
+                <motion.div
+                  layoutId="active-nav-capsule"
+                  className="absolute inset-0 bg-zinc-900 border border-zinc-800 rounded-full -z-10"
+                  transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+                />
+              )}
+              {item.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Mobile Toggle */}
+        <div className="md:hidden flex items-center">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="text-zinc-400 hover:text-white transition-colors cursor-pointer"
+          >
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Drawer */}
+      {isOpen && (
+        <div className="absolute top-16 left-4 right-4 bg-black/95 backdrop-blur-2xl border border-zinc-900 rounded-3xl p-5 flex flex-col gap-3 shadow-[0_30px_60px_rgba(0,0,0,0.9)] pointer-events-auto md:hidden">
+          {navItems.map((item) => (
+            <button
+              key={item.label}
+              onClick={() => handleNavClick(item.path)}
+              className={`w-full text-left py-2.5 px-4 rounded-xl text-xs font-bold font-mono tracking-[0.2em] uppercase cursor-pointer transition-colors ${
+                isLinkActive(item.path)
+                  ? 'bg-zinc-900 text-white border border-zinc-800'
+                  : 'text-zinc-500 hover:text-zinc-200'
+              }`}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+      )}
     </header>
   );
 }
