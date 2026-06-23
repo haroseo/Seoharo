@@ -27,8 +27,8 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
-      <div className="w-full max-w-4xl bg-black/60 backdrop-blur-2xl border border-zinc-900/80 rounded-full px-6 py-2.5 flex items-center justify-between shadow-[0_20px_50px_rgba(0,0,0,0.8)] pointer-events-auto">
+    <header className="fixed top-5 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+      <div className="w-full max-w-5xl bg-black/75 backdrop-blur-2xl border border-zinc-900 rounded-full px-8 py-3.5 flex items-center justify-between shadow-[0_20px_50px_rgba(0,0,0,0.9)] pointer-events-auto">
         
         {/* Brand Logo & Name */}
         <div className="flex items-center gap-3">

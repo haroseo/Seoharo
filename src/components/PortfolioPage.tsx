@@ -1,219 +1,369 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { portfolioData } from '../data/portfolioData';
-import type { Project } from '../data/portfolioData';
-import InteractiveParticles from './InteractiveParticles';
-import { X, ExternalLink, Code, Compass, Sparkles, Award } from 'lucide-react';
+import { X, ExternalLink, Compass, Sparkles, Award } from 'lucide-react';
+
+interface DisplayItem {
+  id: string;
+  type: 'discord' | 'site' | 'project';
+  title: string;
+  slogan?: string;
+  description: string;
+  tags: string[];
+  link?: string;
+  github?: string;
+  achievements?: string[];
+  details?: {
+    background: string;
+    strategy: string;
+    metrics?: string;
+  };
+}
 
 export default function PortfolioPage() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedItem, setSelectedItem] = useState<DisplayItem | null>(null);
 
-  // Separate main featured projects from open-source tools
-  const mainProjects = portfolioData.projects.filter(p => p.featured);
-  const openSourceTools = portfolioData.projects.filter(p => !p.featured);
+  // Map database data into clear categorizations: Discord, Site, Project
+  const displayItems: DisplayItem[] = [
+    // Discord Category
+    {
+      id: 'rofolder',
+      type: 'discord',
+      title: '로폴더 (RoFolder)',
+      slogan: '당신의 스토리를 성공의 데이터로, 로폴더',
+      description: '청소년 및 청년의 스타트업 창업을 독려하고 지원하는 디스코드 대표 커뮤니티입니다.',
+      tags: ['대표 // CEO', 'Branding', 'Community Operation'],
+      link: 'https://discord.com/users/seoharo',
+      achievements: [
+        '청소년 및 청년 창업 활성화를 장려하는 네트워킹 서버 운영',
+        '스타트업 아이디어 매칭 지원 및 커뮤니티 이벤트 기획',
+        '브랜드 아이덴티티 확립 및 공식 로고 디자인 리뉴얼 주도'
+      ]
+    },
+    {
+      id: 'limited',
+      type: 'discord',
+      title: 'Limited™',
+      slogan: '오직 나만을 위한 제품, Limited™',
+      description: '최상급 무료배포와 게임 창작 환경에 맞는 프리미엄 리소스를 제공하는 공간입니다.',
+      tags: ['설립자 // Founder', 'Asset Curation', 'Figma Design'],
+      achievements: [
+        '게임 개발에 즉시 사용 가능한 무료 에셋 및 유용한 리소스 배포',
+        '사용자 피드백 기반 리소스 구성 최적화 및 커뮤니티 채널 관리'
+      ]
+    },
+    // Site Category
+    {
+      id: 'designpick',
+      type: 'site',
+      title: 'Design Pick',
+      description: '감각적인 아트워크와 완성도 높은 비주얼을 큐레이션하는 크리에이티브 디자인 플랫폼입니다.',
+      tags: ['designs.kro.kr', 'UI/UX Design', 'Brand Identity'],
+      link: 'https://designs.kro.kr',
+      github: 'https://github.com/haroseo/Design-Pick',
+      details: {
+        background: '디자이너들의 영감을 자극하고 정돈된 비주얼을 제공하기 위해 기획된 큐레이션 허브입니다.',
+        strategy: '타이포그래피와 레이아웃 본질에 집중했으며, 카드 모션을 결합해 시각적 집중도를 올렸습니다.',
+        metrics: '디자인 리스트의 가독성 대폭 향상 및 시각 에셋 라이브러리 운영.'
+      }
+    },
+    {
+      id: 'planor',
+      type: 'site',
+      title: 'Planor',
+      description: '스마트하게 일정을 조율하고 효율적인 협업 캘린더 기능을 제안하는 통합 웹 스케줄러 서비스입니다.',
+      tags: ['planor.kro.kr', 'Product Design', 'Web Service'],
+      link: 'https://planor.kro.kr',
+      details: {
+        background: '직관적인 캘린더 뷰와 일정 조율 문제를 신속하게 조율하기 위한 플랫폼 프로젝트입니다.',
+        strategy: '사용자 분석 및 핵심 기능 중심의 론칭을 담당하여 온보딩 이탈률을 최소화했습니다.',
+        metrics: '사용자 온보딩 페이지 UX 개선을 통한 사용자 유지 지표 상승.'
+      }
+    },
+    // Project Category
+    {
+      id: 'naramarsami',
+      type: 'project',
+      title: '나랏말싸미',
+      description: '한글 창제 원리와 타이포그래피 요소를 녹여낸 인터랙티브 에듀테크 타자 연습 서비스입니다.',
+      tags: ['훈민정음.kro.kr', 'TypeScript', 'EdTech'],
+      link: 'https://훈민정음.kro.kr',
+      github: 'https://github.com/naramarsami/naramarsami',
+      details: {
+        background: '한글의 자모음 결합 원리를 타이핑 경험과 연계하여 흥미를 자아내기 위해 기획되었습니다.',
+        strategy: '훈민정음 용자례를 현대적 인터랙션 디자인으로 재해석하여 한글 고유의 비주얼을 이끌어냈습니다.',
+        metrics: '교육 플랫폼 내 바이럴 활성화 및 사용자 평균 연습 세션 시간 향상.'
+      }
+    },
+    {
+      id: 'luxeret',
+      type: 'project',
+      title: 'LUXERET',
+      slogan: '감각과 데이터를 연결하는 브랜드 마케팅',
+      description: 'LUXERET의 마케터로 참여하여 브랜드 마케팅 업무를 총괄 수행하고 있습니다.',
+      tags: ['마케터 // Marketer', 'Viral Campaign', 'Funnel Analysis'],
+      achievements: [
+        '마케팅 콘텐츠 디자인 기획 및 프로모션 소재 제작 지원',
+        '유입 통계 데이터 모니터링 및 마케팅 퍼널 최적화 지원'
+      ]
+    },
+    {
+      id: 'hannlabs',
+      type: 'project',
+      title: 'HANN LABS™',
+      slogan: '상상을 시각화하는 HANN LABS™ 디자인',
+      description: 'HANN LABS™ 팀 내의 스태프로 활동하며 디자인 전반을 총괄하고 있습니다.',
+      tags: ['스태프 디자이너 // Staff Designer', 'Figma', 'Visuals'],
+      achievements: [
+        '팀 브랜드 비주얼 가이드 설계 및 이미지 프로모션 디자인 리비전',
+        '아트워크 기획 및 커뮤니티 그래픽 요소 제작'
+      ]
+    },
+    {
+      id: 'simplx',
+      type: 'project',
+      title: 'SIMPLX',
+      slogan: '간결한 논리를 담은 시스템 개발',
+      description: 'SIMPLX의 개발자로 참여하여 TypeScript 및 Lua 시스템 개발을 수행하고 있습니다.',
+      tags: ['개발자 // Developer', 'TypeScript', 'Lua Scripting'],
+      achievements: [
+        'TypeScript 및 Lua 기반 자동화 모듈 코딩',
+        '동기화 관련 백엔드 제어 및 도구 최적화 스크립트 작성 지원'
+      ]
+    }
+  ];
+
+  const discords = displayItems.filter(item => item.type === 'discord');
+  const sites = displayItems.filter(item => item.type === 'site');
+  const projects = displayItems.filter(item => item.type === 'project');
 
   return (
-    <div className="relative min-h-screen bg-black text-white overflow-x-hidden pt-24 pb-20">
-      {/* Immersive Background Particles */}
-      <InteractiveParticles />
-
-      {/* Subtle Grid guides */}
-      <div 
-        className="absolute inset-0 opacity-20 pointer-events-none" 
-        style={{ 
-          backgroundImage: `
-            linear-gradient(rgba(24, 24, 27, 0.4) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(24, 24, 27, 0.4) 1px, transparent 1px)
-          `, 
-          backgroundSize: '80px 80px' 
-        }} 
-      />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8">
+    <div className="relative min-h-screen bg-black text-white pt-28 pb-20">
+      
+      <div className="max-w-6xl mx-auto px-6 sm:px-8 space-y-24">
         
         {/* Page Header */}
-        <div className="border-b border-zinc-900 pb-10 mb-20 text-center md:text-left">
-          <p className="text-[10px] font-mono tracking-[0.4em] text-zinc-500 uppercase">
-            [PROJECT CATALOG]
+        <div className="border-b border-zinc-900 pb-10 text-center md:text-left">
+          <p className="text-[10px] font-mono tracking-[0.35em] text-zinc-500 uppercase">
+            PORTFOLIO
           </p>
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight font-display bg-gradient-to-r from-white via-zinc-200 to-zinc-500 bg-clip-text text-transparent mt-3">
-            Creative Artifacts
+          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight font-display bg-gradient-to-r from-white to-zinc-500 bg-clip-text text-transparent mt-3">
+            포트폴리오
           </h1>
-          <p className="text-xs text-zinc-500 font-mono mt-2 uppercase tracking-widest">
-            Brand Design x Web Service x Automation Scripts
-          </p>
         </div>
 
-        {/* 1. Main Projects: Full-Screen Sequential Showcase */}
-        <div className="space-y-36">
-          {mainProjects.map((project, idx) => {
-            const isEven = idx % 2 === 0;
-
-            return (
-              <motion.section
-                key={project.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, ease: 'easeOut' }}
-                className={`min-h-[75vh] flex flex-col ${
-                  isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                } items-center gap-12 border-b border-zinc-900 pb-20`}
-              >
-                {/* Visual Media Frame */}
-                <div className="w-full lg:w-1/2 group relative aspect-video lg:aspect-auto lg:h-[420px] rounded-3xl overflow-hidden border border-zinc-900 bg-zinc-950/40 shadow-2xl flex items-center justify-center cursor-pointer select-none"
-                     onClick={() => setSelectedProject(project)}>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent z-10 opacity-60 group-hover:opacity-20 transition-opacity duration-500" />
-                  
-                  {project.image && (
-                    <motion.img 
-                      src={project.image} 
-                      alt={project.title}
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.6 }}
-                      className="w-full h-full object-cover opacity-75"
-                    />
-                  )}
-                  
-                  {/* Visual Glow Spotlight */}
-                  <div className="absolute inset-0 bg-cyan-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-20 blur-xl" />
-                  
-                  <span className="absolute bottom-6 right-6 z-20 bg-black/80 border border-zinc-800 px-4 py-2 rounded-full text-[10px] font-mono tracking-widest uppercase text-zinc-400 group-hover:text-white group-hover:border-zinc-500 transition-all">
-                    Open File →
-                  </span>
-                </div>
-
-                {/* Content Panel */}
-                <div className="w-full lg:w-1/2 flex flex-col justify-center space-y-6">
-                  <div className="flex items-center gap-3">
-                    <span className="text-[10px] font-mono tracking-widest text-zinc-500">
-                      [0{idx + 1} // {project.category.toUpperCase()}]
-                    </span>
-                    <span className="h-px w-8 bg-zinc-800" />
-                  </div>
-
-                  <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white font-display">
-                    {project.title}
-                  </h2>
-
-                  <p className="text-sm text-zinc-400 leading-relaxed font-light max-w-xl">
-                    {project.description}
-                  </p>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span 
-                        key={tag} 
-                        className="px-3 py-1 bg-zinc-950 border border-zinc-900 rounded-lg text-[10px] font-mono text-zinc-500 tracking-wide"
-                      >
-                        #{tag.replace(/\s+/g, '')}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Action Link row */}
-                  <div className="flex items-center gap-6 pt-4">
-                    <button
-                      onClick={() => setSelectedProject(project)}
-                      className="px-6 py-3 bg-zinc-900 border border-zinc-800 hover:border-zinc-650 hover:bg-zinc-850 text-white text-xs font-bold font-mono tracking-widest uppercase rounded-full cursor-pointer transition-all shadow-md"
-                    >
-                      Read Case Study
-                    </button>
-                    
-                    {project.link && (
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1.5 text-xs font-bold font-mono text-zinc-400 hover:text-white uppercase tracking-wider transition-colors"
-                      >
-                        Launch
-                        <ExternalLink size={13} />
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </motion.section>
-            );
-          })}
-        </div>
-
-        {/* 2. Open Source & Scripts Section */}
-        <div className="mt-32 border-t border-zinc-900 pt-20">
-          <div className="mb-12 text-center md:text-left">
-            <p className="text-[10px] font-mono tracking-[0.35em] text-zinc-500 uppercase">
-              [DEVELOPMENT RESOURCE & LIBRARIES]
-            </p>
-            <h2 className="text-2xl font-bold tracking-tight text-white font-display mt-2">
-              Open Source Toolkits
-            </h2>
+        {/* Discord Section */}
+        <section className="space-y-10">
+          <div className="flex items-center gap-3">
+            <h2 className="text-lg font-bold font-mono tracking-widest text-zinc-400">DISCORD</h2>
+            <span className="h-px flex-1 bg-zinc-900" />
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2">
-            {openSourceTools.map((tool) => (
+          <div className="grid gap-8 md:grid-cols-2">
+            {discords.map((item) => (
               <motion.div
-                key={tool.id}
-                initial={{ opacity: 0, y: 20 }}
+                key={item.id}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="group relative bg-zinc-950/40 border border-zinc-900 hover:border-zinc-800 rounded-2xl p-6 flex flex-col justify-between hover:bg-zinc-950/80 transition-all duration-300"
+                onClick={() => setSelectedItem(item)}
+                className="group bg-zinc-950/40 border border-zinc-900 hover:border-zinc-800 rounded-3xl p-6 transition-all duration-300 cursor-pointer flex flex-col justify-between min-h-[340px]"
               >
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-[9px] font-mono tracking-widest text-cyan-500 uppercase">
-                      [{tool.category.toUpperCase()}]
-                    </span>
-                    <span className="text-[9px] text-zinc-600 font-mono">
-                      SRC_0{tool.id}
-                    </span>
+                {/* CSS Wireframe */}
+                <div className="aspect-video w-full mb-6 rounded-2xl overflow-hidden border border-zinc-900/60 p-4 bg-black select-none">
+                  <div className="w-full h-full bg-zinc-950 flex flex-col p-4 border border-zinc-900 rounded-xl font-mono text-[9px] text-zinc-500">
+                    <div className="flex items-center gap-2 border-b border-zinc-900 pb-2 mb-3">
+                      <div className="w-2 h-2 rounded-full bg-zinc-800" />
+                      <span className="text-zinc-400">SERVER // DISCORD</span>
+                    </div>
+                    <div className="flex gap-3 flex-1 overflow-hidden">
+                      <div className="w-12 border-r border-zinc-900 pr-2 flex flex-col gap-1.5">
+                        <div className="h-2 w-full bg-zinc-900 rounded" />
+                        <div className="h-2 w-8 bg-zinc-900 rounded" />
+                        <div className="h-2 w-10 bg-zinc-900 rounded" />
+                      </div>
+                      <div className="flex-1 flex flex-col gap-2">
+                        <div className="flex items-center gap-1.5">
+                          <div className="w-3.5 h-3.5 rounded-full bg-zinc-900" />
+                          <div className="h-2 w-16 bg-zinc-800 rounded" />
+                        </div>
+                        <div className="h-7 w-full bg-zinc-900/50 rounded-xl p-2 flex items-center justify-between">
+                          <div className="h-1.5 w-[70%] bg-zinc-800 rounded" />
+                          <div className="w-1.5 h-1.5 rounded bg-zinc-700" />
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="text-lg font-bold text-zinc-200 group-hover:text-white font-display transition-colors">
-                    {tool.title}
-                  </h3>
-                  <p className="text-xs text-zinc-400 leading-relaxed font-light">
-                    {tool.description}
-                  </p>
                 </div>
 
-                <div className="flex justify-between items-center border-t border-zinc-900/60 pt-4 mt-6">
-                  <div className="flex gap-1.5">
-                    {tool.tags.map((tag) => (
-                      <span key={tag} className="text-[9px] font-semibold text-zinc-600 font-mono">
-                        #{tag}
+                <div className="space-y-3">
+                  <h3 className="text-lg font-bold text-white font-display group-hover:text-zinc-200 transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs text-zinc-400 font-light leading-relaxed">
+                    {item.description}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 pt-2">
+                    {item.tags.map(tag => (
+                      <span key={tag} className="px-2.5 py-0.5 bg-zinc-900 border border-zinc-850 rounded text-[9px] font-mono text-zinc-500">
+                        {tag}
                       </span>
                     ))}
                   </div>
-                  {tool.github && (
-                    <a
-                      href={tool.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-400 hover:text-white hover:border-zinc-700 transition-colors"
-                    >
-                      <Code size={14} />
-                    </a>
-                  )}
                 </div>
               </motion.div>
             ))}
           </div>
-        </div>
+        </section>
+
+        {/* Site Section */}
+        <section className="space-y-10">
+          <div className="flex items-center gap-3">
+            <h2 className="text-lg font-bold font-mono tracking-widest text-zinc-400">SITE</h2>
+            <span className="h-px flex-1 bg-zinc-900" />
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-2">
+            {sites.map((item) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                onClick={() => setSelectedItem(item)}
+                className="group bg-zinc-950/40 border border-zinc-900 hover:border-zinc-800 rounded-3xl p-6 transition-all duration-300 cursor-pointer flex flex-col justify-between min-h-[340px]"
+              >
+                {/* CSS Wireframe */}
+                <div className="aspect-video w-full mb-6 rounded-2xl overflow-hidden border border-zinc-900/60 p-4 bg-black select-none">
+                  <div className="w-full h-full bg-zinc-950 flex flex-col border border-zinc-900 rounded-xl font-mono text-[9px] text-zinc-500 overflow-hidden">
+                    <div className="flex items-center justify-between bg-zinc-900/50 px-3 py-1.5 border-b border-zinc-900">
+                      <div className="flex gap-1">
+                        <div className="w-1 h-1 rounded-full bg-zinc-850" />
+                        <div className="w-1 h-1 rounded-full bg-zinc-850" />
+                        <div className="w-1 h-1 rounded-full bg-zinc-850" />
+                      </div>
+                      <div className="h-3 w-28 bg-zinc-950 rounded border border-zinc-900 flex items-center px-2 text-[7.5px] text-zinc-650">
+                        https://domain.kro.kr
+                      </div>
+                      <div className="w-3" />
+                    </div>
+                    <div className="p-3 flex-1 grid grid-cols-3 gap-2.5">
+                      <div className="col-span-2 border border-zinc-900 rounded-lg p-2.5 flex flex-col justify-between">
+                        <div className="space-y-1.5">
+                          <div className="h-2.5 w-12 bg-zinc-900 rounded" />
+                          <div className="h-1 w-full bg-zinc-900/60 rounded" />
+                        </div>
+                        <div className="h-1.5 w-6 bg-zinc-900 rounded" />
+                      </div>
+                      <div className="border border-zinc-900 rounded-lg p-2.5 flex flex-col justify-between items-center">
+                        <div className="w-5 h-5 rounded-full border border-zinc-900 flex items-center justify-center text-zinc-700">
+                          +
+                        </div>
+                        <div className="h-1 w-6 bg-zinc-900 rounded" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <h3 className="text-lg font-bold text-white font-display group-hover:text-zinc-200 transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs text-zinc-400 font-light leading-relaxed">
+                    {item.description}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 pt-2">
+                    {item.tags.map(tag => (
+                      <span key={tag} className="px-2.5 py-0.5 bg-zinc-900 border border-zinc-850 rounded text-[9px] font-mono text-zinc-500">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* Project Section */}
+        <section className="space-y-10">
+          <div className="flex items-center gap-3">
+            <h2 className="text-lg font-bold font-mono tracking-widest text-zinc-400">PROJECT & ROLE</h2>
+            <span className="h-px flex-1 bg-zinc-900" />
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-2">
+            {projects.map((item) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                onClick={() => setSelectedItem(item)}
+                className="group bg-zinc-950/40 border border-zinc-900 hover:border-zinc-800 rounded-3xl p-6 transition-all duration-300 cursor-pointer flex flex-col justify-between min-h-[340px]"
+              >
+                {/* CSS Wireframe */}
+                <div className="aspect-video w-full mb-6 rounded-2xl overflow-hidden border border-zinc-900/60 p-4 bg-black select-none">
+                  <div className="w-full h-full bg-zinc-950 flex flex-col p-4 border border-zinc-900 rounded-xl font-mono text-[9px] text-zinc-500">
+                    <div className="flex items-center justify-between border-b border-zinc-900 pb-2 mb-3">
+                      <span className="text-zinc-400">SRC // CODE & DESIGN</span>
+                      <span className="text-zinc-700">{`</>`}</span>
+                    </div>
+                    <div className="flex-1 flex flex-col gap-2">
+                      <div className="flex gap-2 items-center">
+                        <div className="h-2.5 w-12 bg-zinc-900 rounded" />
+                        <div className="h-1.5 w-16 bg-zinc-900/60 rounded" />
+                      </div>
+                      <div className="border border-zinc-900/80 rounded-lg p-2 flex-1 flex flex-col gap-1.5">
+                        <div className="flex gap-1.5">
+                          <div className="h-1 w-2 bg-zinc-800 rounded" />
+                          <div className="h-1 w-20 bg-zinc-900 rounded" />
+                        </div>
+                        <div className="flex gap-1.5 pl-3">
+                          <div className="h-1 w-3 bg-zinc-800 rounded" />
+                          <div className="h-1 w-12 bg-zinc-900 rounded" />
+                        </div>
+                        <div className="flex gap-1.5 pl-3">
+                          <div className="h-1 w-2 bg-zinc-800 rounded" />
+                          <div className="h-1 w-16 bg-zinc-900 rounded" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <h3 className="text-lg font-bold text-white font-display group-hover:text-zinc-200 transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs text-zinc-400 font-light leading-relaxed">
+                    {item.description}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 pt-2">
+                    {item.tags.map(tag => (
+                      <span key={tag} className="px-2.5 py-0.5 bg-zinc-900 border border-zinc-850 rounded text-[9px] font-mono text-zinc-500">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
 
       </div>
 
-      {/* SLIDING Technical Drawer File Overlay ("정리된 파일") */}
+      {/* SLIDING Drawer File Overlay ("정리된 서류 서랍") */}
       <AnimatePresence>
-        {selectedProject && (
+        {selectedItem && (
           <>
             {/* Dark Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.7 }}
               exit={{ opacity: 0 }}
-              onClick={() => setSelectedProject(null)}
-              className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm"
+              onClick={() => setSelectedItem(null)}
+              className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm"
             />
 
             {/* Sliding Drawer Container */}
@@ -222,64 +372,91 @@ export default function PortfolioPage() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', stiffness: 260, damping: 30 }}
-              className="fixed top-0 right-0 z-50 w-full sm:w-[540px] md:w-[600px] h-full bg-[#050505] border-l border-zinc-900 p-8 md:p-12 overflow-y-auto flex flex-col justify-between shadow-2xl"
+              className="fixed top-0 right-0 z-50 w-full sm:w-[500px] md:w-[540px] h-full bg-[#050505] border-l border-zinc-900 p-8 md:p-12 overflow-y-auto flex flex-col justify-between shadow-2xl"
             >
               <div className="space-y-10">
-                {/* Header Row */}
+                {/* Header */}
                 <div className="flex justify-between items-center border-b border-zinc-900 pb-6">
                   <div>
-                    <span className="text-[9px] font-mono tracking-widest text-cyan-400 uppercase">
-                      [FILE ARCHIVE // 0{selectedProject.id}]
+                    <span className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase">
+                      [FILE ARCHIVE // {selectedItem.type.toUpperCase()}]
                     </span>
-                    <h3 className="text-2xl font-bold tracking-tight text-white font-display mt-1">
-                      {selectedProject.title}
+                    <h3 className="text-xl font-bold tracking-tight text-white font-display mt-1">
+                      {selectedItem.title}
                     </h3>
                   </div>
                   <button
-                    onClick={() => setSelectedProject(null)}
-                    className="p-2 rounded-full border border-zinc-800 text-zinc-500 hover:text-white hover:bg-zinc-900 transition-all cursor-pointer"
+                    onClick={() => setSelectedItem(null)}
+                    className="p-1.5 rounded-full border border-zinc-900 text-zinc-500 hover:text-white hover:bg-zinc-900 transition-all cursor-pointer"
                   >
-                    <X size={18} />
+                    <X size={16} />
                   </button>
                 </div>
 
                 {/* Content details */}
-                <div className="space-y-8 font-light text-zinc-300">
-                  <div className="space-y-2">
-                    <span className="text-[9px] font-mono tracking-[0.2em] text-zinc-500 uppercase flex items-center gap-1.5">
-                      <Compass size={12} className="text-zinc-500" />
-                      Overview & Purpose
-                    </span>
-                    <p className="text-xs leading-relaxed text-zinc-400">
-                      {selectedProject.details?.background}
-                    </p>
-                  </div>
+                <div className="space-y-8 font-light text-zinc-350 text-xs">
+                  {selectedItem.slogan && (
+                    <div className="border-l-2 border-zinc-800 pl-4 py-1 italic text-zinc-400 font-medium">
+                      "{selectedItem.slogan}"
+                    </div>
+                  )}
 
                   <div className="space-y-2">
                     <span className="text-[9px] font-mono tracking-[0.2em] text-zinc-500 uppercase flex items-center gap-1.5">
-                      <Sparkles size={12} className="text-zinc-500" />
-                      Design & Architecture
+                      <Compass size={11} className="text-zinc-500" />
+                      설명
                     </span>
-                    <p className="text-xs leading-relaxed text-zinc-400">
-                      {selectedProject.details?.strategy}
+                    <p className="leading-relaxed text-zinc-400 whitespace-pre-line">
+                      {selectedItem.description}
                     </p>
                   </div>
 
-                  {selectedProject.details?.metrics && (
-                    <div className="bg-zinc-950 p-5 rounded-2xl border border-zinc-900/60 space-y-2">
-                      <span className="text-[9px] font-mono tracking-[0.2em] text-cyan-500 uppercase flex items-center gap-1.5">
-                        <Award size={12} className="text-cyan-500" />
-                        Key Metrics & Value
+                  {/* Render project details if they exist */}
+                  {selectedItem.details && (
+                    <>
+                      <div className="space-y-2">
+                        <span className="text-[9px] font-mono tracking-[0.2em] text-zinc-500 uppercase flex items-center gap-1.5">
+                          <Sparkles size={11} className="text-zinc-500" />
+                          기획 및 디자인
+                        </span>
+                        <p className="leading-relaxed text-zinc-400">
+                          {selectedItem.details.strategy}
+                        </p>
+                      </div>
+
+                      <div className="bg-zinc-950 p-4.5 rounded-xl border border-zinc-900 space-y-2">
+                        <span className="text-[9px] font-mono tracking-[0.2em] text-zinc-400 uppercase flex items-center gap-1.5">
+                          <Award size={11} className="text-zinc-400" />
+                          역량 및 의의
+                        </span>
+                        <p className="leading-relaxed text-zinc-300 font-medium">
+                          {selectedItem.details.metrics}
+                        </p>
+                      </div>
+                    </>
+                  )}
+
+                  {/* Render achievements if they exist */}
+                  {selectedItem.achievements && (
+                    <div className="space-y-3.5">
+                      <span className="text-[9px] font-mono tracking-[0.2em] text-zinc-500 uppercase flex items-center gap-1.5">
+                        <Award size={11} className="text-zinc-500" />
+                        주요 활동 및 기여
                       </span>
-                      <p className="text-xs leading-relaxed text-zinc-300 font-medium">
-                        {selectedProject.details.metrics}
-                      </p>
+                      <ul className="space-y-2.5">
+                        {selectedItem.achievements.map((ach, index) => (
+                          <li key={index} className="flex gap-2.5 leading-relaxed text-zinc-400">
+                            <span className="text-white">•</span>
+                            <span>{ach}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   )}
 
                   {/* Tags */}
                   <div className="flex flex-wrap gap-1.5 pt-4">
-                    {selectedProject.tags.map((tag) => (
+                    {selectedItem.tags.map((tag) => (
                       <span key={tag} className="px-2.5 py-1 text-[9px] font-mono text-zinc-400 border border-zinc-900 bg-zinc-950/40 rounded-lg">
                         {tag}
                       </span>
@@ -290,25 +467,25 @@ export default function PortfolioPage() {
 
               {/* Drawer footer link block */}
               <div className="border-t border-zinc-900 pt-6 mt-12 flex gap-4">
-                {selectedProject.github && (
+                {selectedItem.github && (
                   <a
-                    href={selectedProject.github}
+                    href={selectedItem.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 py-3 px-5 border border-zinc-800 hover:border-zinc-650 hover:bg-zinc-900 rounded-xl text-xs font-mono font-bold tracking-widest text-center text-zinc-300 hover:text-white uppercase transition-all"
+                    className="flex-1 py-3 px-5 border border-zinc-900 hover:border-zinc-800 rounded-xl text-[10px] font-mono font-bold tracking-widest text-center text-zinc-400 hover:text-white uppercase transition-all"
                   >
-                    View Source Code
+                    Source Code
                   </a>
                 )}
-                {selectedProject.link && (
+                {selectedItem.link && (
                   <a
-                    href={selectedProject.link}
+                    href={selectedItem.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 py-3 px-5 bg-white text-black hover:bg-zinc-200 rounded-xl text-xs font-mono font-bold tracking-widest text-center uppercase transition-all flex items-center justify-center gap-1.5"
+                    className="flex-1 py-3 px-5 bg-white text-black hover:bg-zinc-200 rounded-xl text-[10px] font-mono font-bold tracking-widest text-center uppercase transition-all flex items-center justify-center gap-1.5"
                   >
-                    Launch Link
-                    <ExternalLink size={12} />
+                    Link
+                    <ExternalLink size={11} />
                   </a>
                 )}
               </div>

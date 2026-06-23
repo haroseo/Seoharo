@@ -202,9 +202,9 @@ export default function ContactPage() {
                     <span className="text-[10px] font-mono font-bold text-zinc-300 uppercase tracking-wider">{badge.label}</span>
                   </div>
                   {copiedText === badge.type ? (
-                    <Check className="w-4 h-4 text-cyan-400" />
+                    <Check className="w-4 h-4 text-zinc-300" />
                   ) : (
-                    <Copy className="w-4 h-4 text-zinc-655" />
+                    <Copy className="w-4 h-4 text-zinc-600" />
                   )}
                 </button>
               ))}

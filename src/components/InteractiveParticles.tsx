@@ -36,11 +36,11 @@ export default function InteractiveParticles() {
         this.vy = (Math.random() - 0.5) * 0.4;
         this.originalRadius = Math.random() * 1.5 + 1;
         this.radius = this.originalRadius;
-        // Slate / blue-gray soft glowing colors
+        // Slate / zinc soft glowing colors in monochrome
         const colors = [
-          'rgba(148, 163, 184, 0.4)', // slate-400
-          'rgba(56, 189, 248, 0.3)',   // sky-400
-          'rgba(139, 92, 246, 0.25)',  // violet-500
+          'rgba(161, 161, 170, 0.15)', // zinc-400
+          'rgba(212, 212, 216, 0.12)', // zinc-300
+          'rgba(63, 63, 70, 0.2)',    // zinc-700
         ];
         this.color = colors[Math.floor(Math.random() * colors.length)];
       }

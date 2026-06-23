@@ -16,39 +16,39 @@ export default function Timeline() {
   const timelineEvents = [
     {
       phase: 'Phase 01',
-      keywords: ['Roblox', 'Creation', 'Basics'],
-      title: 'Roblox Development',
-      description: '로블록스 플랫폼에서 처음 개발을 시작하며 창작의 기초를 다졌습니다.',
+      keywords: ['Roblox', '개발의 기초'],
+      title: '로블록스 개발 입문',
+      description: '가상 플랫폼 상에서 최초로 논리 구동 방식을 배우며 프로그래밍의 원리와 창작의 재미를 깨달았습니다.',
     },
     {
       phase: 'Phase 02',
-      keywords: ['Python', 'Programming', 'Basics'],
-      title: 'Python Journey Begins',
-      description: '파이썬을 배우며 프로그래밍에 본격적으로 관심을 갖고 기초를 다졌습니다.',
+      keywords: ['Python', '알고리즘'],
+      title: '파이썬 기반 프로그래밍 학습',
+      description: '파이썬 언어를 활용해 구조적인 코딩 방식과 알고리즘적 사고의 토대를 확립했습니다.',
     },
     {
       phase: 'Phase 03',
-      keywords: ['Collaboration', 'Skills', 'Projects'],
-      title: 'Project Participation',
-      description: '여러 프로젝트에 참여하며 협업의 경험과 다양한 기술을 습득했습니다.',
+      keywords: ['협업', '실무 경험'],
+      title: '다각적 프로젝트 기획 참여',
+      description: '팀 단위 창작에 참여하여 요구사항 정의, 커뮤니케이션, 다양한 실무 툴 사용법을 익혔습니다.',
     },
     {
       phase: 'Phase 04',
-      keywords: ['Leadership', 'Ownership', 'Launch'],
-      title: 'Leadership & Ownership',
-      description: '프로젝트를 직접 주도하며 리더십을 키우고 완성도 높은 결과물을 만들었습니다.',
+      keywords: ['주도적 기획', '리더십'],
+      title: '아이디어 구현과 운영 책임',
+      description: '직접 가상 자산 배포 및 서비스 레이아웃을 주도하며 주체적인 프로덕트 리더십을 형성했습니다.',
     },
     {
       phase: 'Phase 05',
-      keywords: ['Design', 'Security', 'Web'],
-      title: 'Multi-Domain Mastery',
-      description: '디자인, 개발, 보안 등 다양한 분야를 학습하며 전문성을 확장했습니다.',
+      keywords: ['디자인', '개발', '보안'],
+      title: '다중 영역 융합 시도',
+      description: '인터페이스 비주얼 설계, 정보 보호, 모던 웹 프론트엔드를 통합 학습하며 크리에이터로서의 역량을 다졌습니다.',
     },
     {
       phase: 'Phase 06',
-      keywords: ['Scale', 'Community', 'Operation'],
-      title: 'Scale & Community',
-      description: 'Rofolder 및 Limited™ 서버 운영으로 유저들과 소통하며 성장 가치를 만듭니다.',
+      keywords: ['커뮤니티 운영', '성장 데이터'],
+      title: '로폴더 및 Limited™ 본격 운영',
+      description: '1,200명 이상의 유저와 상호작용하는 대형 서버들을 직접 총괄 관리하며 비즈니스 데이터의 흐름을 조율하고 있습니다.',
     },
   ];
 
@@ -62,12 +62,12 @@ export default function Timeline() {
           viewport={{ once: true }}
           className="mb-24 text-center"
         >
-          <p className="text-xs uppercase tracking-[0.28em] text-zinc-500 font-mono">[02 // MILESTONES]</p>
-          <h2 className="section-title mt-4 mb-6 font-display bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
-            From Ideas to Impact
+          <p className="text-xs uppercase tracking-[0.25em] text-zinc-500 font-mono">JOURNEY</p>
+          <h2 className="section-title mt-4 mb-6 font-display bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent font-bold">
+            성장 여정
           </h2>
-          <p className="mx-auto max-w-2xl text-sm text-zinc-400 font-light leading-relaxed">
-            디지털 공간에서 가치를 창출하기 위한 점진적인 단계별 여정입니다.
+          <p className="mx-auto max-w-2xl text-xs text-zinc-500 font-mono uppercase tracking-widest leading-relaxed">
+            마일스톤을 통해 다져온 성장의 기록입니다.
           </p>
         </motion.div>
 
@@ -75,10 +75,10 @@ export default function Timeline() {
           {/* Background vertical line */}
           <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-zinc-900 transform md:-translate-x-1/2" />
           
-          {/* Scroll-driven active path */}
+          {/* Scroll-driven active path in monochrome white */}
           <motion.div 
             style={{ scaleY, transformOrigin: 'top' }}
-            className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-cyan-400/80 shadow-[0_0_8px_#22d3ee] transform md:-translate-x-1/2" 
+            className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-white shadow-[0_0_8px_rgba(255,255,255,0.3)] transform md:-translate-x-1/2" 
           />
 
           <div className="space-y-20">
@@ -99,20 +99,20 @@ export default function Timeline() {
                 <div className="hidden md:block w-[45%]" />
 
                 {/* Dot */}
-                <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-zinc-800 border-4 border-black transition-all duration-500 group-hover:bg-cyan-400 group-hover:shadow-[0_0_10px_#22d3ee] group-hover:scale-150 z-10 mt-1.5" />
+                <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-zinc-800 border-4 border-black transition-all duration-500 group-hover:bg-white group-hover:shadow-[0_0_10px_rgba(255,255,255,0.5)] group-hover:scale-155 z-10 mt-1.5" />
 
                 {/* Content */}
                 <div className={`w-full pl-20 md:pl-0 md:w-[45%] flex flex-col ${
                   index % 2 === 0 ? 'md:items-end md:text-right' : 'md:items-start md:text-left'
                 }`}>
                   <div className={`flex flex-wrap items-center gap-4 mb-3 ${index % 2 === 0 ? 'md:justify-end' : 'md:justify-start'}`}>
-                    <span className="text-2xl font-light tracking-tight text-zinc-600 group-hover:text-cyan-400 transition-colors duration-500 font-mono">
+                    <span className="text-xl font-light tracking-tight text-zinc-600 group-hover:text-white transition-colors duration-500 font-mono">
                       {event.phase}
                     </span>
-                    <div className="hidden md:block h-px w-8 bg-zinc-800 group-hover:bg-cyan-900 transition-colors duration-500" />
+                    <div className="hidden md:block h-px w-8 bg-zinc-850 group-hover:bg-zinc-700 transition-colors duration-500" />
                     <div className="flex flex-wrap gap-2">
                       {event.keywords.map(kw => (
-                        <span key={kw} className="px-2 py-0.5 bg-zinc-900 border border-zinc-800 text-[10px] font-medium uppercase tracking-widest text-zinc-500 rounded group-hover:text-zinc-300 transition-colors duration-500">
+                        <span key={kw} className="px-2.5 py-0.5 bg-zinc-950 border border-zinc-900 text-[10px] font-medium tracking-wide text-zinc-500 rounded-lg group-hover:text-zinc-300 transition-colors duration-500">
                           {kw}
                         </span>
                       ))}
@@ -120,17 +120,17 @@ export default function Timeline() {
                   </div>
                   
                   <div className="relative mt-2">
-                    <h3 className="text-xl font-bold text-zinc-300 group-hover:text-white transition-colors duration-500 font-display">
+                    <h3 className="text-lg font-bold text-zinc-350 group-hover:text-white transition-colors duration-500 font-display">
                       {event.title}
                     </h3>
                     
                     <AnimatePresence>
                       {hoveredIndex === index && (
                         <motion.div
-                          initial={{ opacity: 0, height: 0, y: -10 }}
-                          animate={{ opacity: 1, height: 'auto', y: 0 }}
-                          exit={{ opacity: 0, height: 0, y: -10 }}
-                          transition={{ duration: 0.3 }}
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.25 }}
                           className="overflow-hidden"
                         >
                           <div className={`mt-4 text-xs text-zinc-400 leading-relaxed max-w-sm rounded-2xl bg-zinc-950 border border-zinc-900 shadow-2xl p-5 ${index % 2 === 0 ? 'ml-auto' : 'mr-auto'}`}>
@@ -145,30 +145,6 @@ export default function Timeline() {
             ))}
           </div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mt-40 grid gap-6 grid-cols-2 md:grid-cols-3 max-w-3xl mx-auto"
-        >
-          {[
-            { label: 'Domains Covered', value: 'Design & Code' },
-            { label: 'Active Users Managed', value: '1,200+' },
-            { label: 'Core Communities', value: '2 Servers' },
-          ].map((stat, index) => (
-            <div
-              key={index}
-              className="group rounded-2xl border border-zinc-900 bg-zinc-950/60 p-8 text-center shadow-xl hover:border-zinc-800 transition-all duration-500"
-            >
-              <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-zinc-500 mb-4 group-hover:text-zinc-400 transition-colors">
-                {stat.label}
-              </p>
-              <p className="text-2xl md:text-3xl font-light tracking-tight text-white font-display">{stat.value}</p>
-            </div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );
