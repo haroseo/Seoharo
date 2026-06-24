@@ -87,11 +87,11 @@ export default function Communities() {
 
             {/* Modal Box */}
             <motion.div
-              initial={{ scale: 0.95, y: 30 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.95, y: 30 }}
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
               transition={{ type: 'spring', damping: 25, stiffness: 280 }}
-              className="fixed inset-4 md:inset-auto md:w-[680px] md:h-auto max-h-[85vh] z-50 bg-[#050505] border border-zinc-900 rounded-3xl shadow-2xl overflow-hidden flex flex-col self-center justify-self-center"
+              className="fixed inset-x-4 top-1/2 -translate-y-1/2 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-[680px] md:h-auto max-h-[85vh] z-50 bg-[#050505] border border-zinc-900 rounded-3xl shadow-2xl overflow-hidden flex flex-col"
             >
               {/* Modal Header */}
               <div className="flex items-center justify-between px-6 py-4 bg-zinc-950 border-b border-zinc-900">
