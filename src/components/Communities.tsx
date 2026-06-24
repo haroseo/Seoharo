@@ -21,15 +21,15 @@ export default function Communities() {
         >
           <p className="text-xs uppercase tracking-[0.3em] text-zinc-500 mb-4 font-mono">[03 // LEADERSHIP]</p>
           <h2 className="section-title mt-4 mb-6 font-display bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent font-bold">
-            Community Operations
+            Community Management
           </h2>
-          <p className="mx-auto max-w-2xl text-sm text-zinc-400 font-light leading-relaxed">
-            청소년 창업 생태계 지원 및 리소스 배포망 구축을 주도하며 유저와 긴밀히 호흡하는 커뮤니티 공간을 리드합니다.
+          <p className="mx-auto max-w-3xl text-sm text-zinc-400 font-light leading-relaxed">
+            총 2,000명 이상의 유저와 교감하며 서버를 성장시킨 경험을 바탕으로 더 나은 사용자 경험과 커뮤니티 문화를 설계합니다.
           </p>
         </motion.div>
 
         {/* Card Grid */}
-        <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
+        <div className="grid gap-8 md:grid-cols-3 max-w-6xl mx-auto">
           {portfolioData.communities.map((community, index) => (
             <motion.div
               key={index}
@@ -150,9 +150,14 @@ export default function Communities() {
                 {/* Core Achievements & Capabilities */}
                 {(() => {
                   const career = portfolioData.careers.find(c => 
-                    c.id === (selectedCommunity.name.includes("로폴더") ? "rofolder" : "limited")
+                    c.id === (selectedCommunity.name.includes("로폴더") ? "rofolder" : selectedCommunity.name.includes("Limited") ? "limited" : "")
                   );
-                  if (!career) return null;
+                  const achievements = career ? career.achievements : [
+                    "유저 친화적인 커뮤니티 규칙 정의 및 투명한 소통 구조 확립",
+                    "커뮤니티 내 활발한 유저 상호작용 및 이벤트 기획/진행",
+                    "자율적인 유저 참여형 서비스 피드백 채널 수립 및 운영"
+                  ];
+                  const skills = career ? career.skills : ["Community Management", "User Engagement", "Branding"];
                   return (
                     <div className="space-y-6 pt-4 border-t border-zinc-900">
                       <div className="space-y-3">
@@ -161,7 +166,7 @@ export default function Communities() {
                           Key Contributions
                         </h4>
                         <ul className="space-y-2.5">
-                          {career.achievements.map((ach, idx) => (
+                          {achievements.map((ach, idx) => (
                             <li key={idx} className="flex gap-2.5 text-xs text-zinc-400 leading-relaxed font-light">
                               <span className="text-zinc-300 font-bold">•</span>
                               <span>{ach}</span>
@@ -175,7 +180,7 @@ export default function Communities() {
                           Capabilities
                         </h4>
                         <div className="flex flex-wrap gap-1.5">
-                          {career.skills.map((skill, idx) => (
+                          {skills.map((skill, idx) => (
                             <span key={idx} className="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-zinc-300 text-[10px] font-mono">
                               {skill}
                             </span>

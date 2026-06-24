@@ -5,8 +5,7 @@ import {
   ExternalLink, 
   Compass, 
   Sparkles, 
-  Award, 
-  Play
+  Award
 } from 'lucide-react';
 
 interface DisplayItem {
@@ -546,43 +545,29 @@ function DesignPickVisual() {
   ];
 
   return (
-    <div className="w-full h-full max-w-sm bg-zinc-950 border border-zinc-900 rounded-2xl flex flex-col font-mono text-[9px] text-zinc-400 overflow-hidden shadow-2xl relative">
-      {/* Browser Header */}
-      <div className="px-3.5 py-2 border-b border-zinc-900 bg-zinc-950/60 flex items-center justify-between">
-        <div className="flex items-center gap-1.5">
-          <div className="w-1.5 h-1.5 rounded-full bg-zinc-800" />
-          <div className="w-1.5 h-1.5 rounded-full bg-zinc-850" />
-          <div className="w-1.5 h-1.5 rounded-full bg-zinc-900" />
-          <span className="text-[7.5px] text-zinc-550 ml-2 font-mono tracking-wider">designs.kro.kr</span>
+    <div className="w-full h-full max-w-sm rounded-2xl flex flex-col overflow-hidden shadow-2xl relative p-4.5 border border-zinc-900 bg-zinc-950 font-sans">
+      <div className="flex justify-between items-end border-b border-zinc-900/60 pb-3 mb-3">
+        <div>
+          <h4 className="text-white font-bold text-xs tracking-tight font-display">DESIGN PICK</h4>
+          <p className="text-[9px] text-zinc-500 font-light">Curated Creative Artwork & Web Layouts</p>
         </div>
+        <span className="text-[8px] font-mono border border-zinc-850 px-1.5 py-0.5 rounded text-zinc-400">ACTIVE</span>
       </div>
       
-      {/* Website Interface */}
-      <div className="flex-1 p-3.5 overflow-hidden flex flex-col gap-3">
-        <div className="flex justify-between items-end border-b border-zinc-900/60 pb-2">
-          <div>
-            <h4 className="text-white font-bold text-[10px] tracking-tight font-display">DESIGN PICK</h4>
-            <p className="text-[7px] text-zinc-500">Curated Creative Artwork & Web Layouts</p>
-          </div>
-          <span className="text-[7px] border border-zinc-800 px-1.5 py-0.5 rounded text-zinc-400">ACTIVE</span>
-        </div>
-        
-        {/* Curated Grid Items */}
-        <div className="grid grid-cols-2 gap-2.5 flex-1 overflow-hidden">
-          {cards.map((card, idx) => (
-            <motion.div
-              key={idx}
-              whileHover={{ y: -2, borderColor: '#3f3f46' }}
-              className="border border-zinc-900 bg-zinc-900/10 rounded-xl p-2.5 flex flex-col justify-between transition-colors duration-300"
-            >
-              <div className="space-y-1">
-                <span className="text-[6.5px] text-zinc-500 tracking-wider block font-bold">{card.category}</span>
-                <h5 className="text-[8px] font-bold text-zinc-300">{card.title}</h5>
-              </div>
-              <p className="text-[6px] text-zinc-500 mt-1 leading-normal">{card.desc}</p>
-            </motion.div>
-          ))}
-        </div>
+      <div className="grid grid-cols-2 gap-3 flex-1 overflow-hidden">
+        {cards.map((card, idx) => (
+          <motion.div
+            key={idx}
+            whileHover={{ y: -2, borderColor: '#3f3f46', backgroundColor: '#09090b' }}
+            className="border border-zinc-900 bg-zinc-900/5 rounded-xl p-3 flex flex-col justify-between transition-all duration-300"
+          >
+            <div className="space-y-1">
+              <span className="text-[7px] text-zinc-500 tracking-wider block font-mono font-bold">{card.category}</span>
+              <h5 className="text-[9.5px] font-bold text-zinc-300 font-display leading-tight">{card.title}</h5>
+            </div>
+            <p className="text-[7.5px] text-zinc-500 mt-1.5 leading-relaxed font-light">{card.desc}</p>
+          </motion.div>
+        ))}
       </div>
     </div>
   );
@@ -591,29 +576,18 @@ function DesignPickVisual() {
 // 4. Planor: Smart Scheduler Calendar & Workflow
 function PlanorVisual() {
   const events = [
-    { day: "MON", time: "10:00", title: "Brand Strategy Sync", color: "border-zinc-800 bg-zinc-900/30" },
-    { day: "TUE", time: "14:00", title: "Figma UI Revision", color: "border-zinc-700 bg-zinc-800/20" },
-    { day: "WED", time: "11:30", title: "Automator Compile", color: "border-zinc-800 bg-zinc-900/40" },
-    { day: "THU", time: "16:00", title: "Marketing Funnel Review", color: "border-zinc-700 bg-zinc-800/10" },
+    { day: "MON", time: "10:00", title: "Brand Strategy Sync", color: "border-zinc-900 bg-zinc-950" },
+    { day: "TUE", time: "14:00", title: "Figma UI Revision", color: "border-zinc-850 bg-zinc-900/10" },
+    { day: "WED", time: "11:30", title: "Automator Compile", color: "border-zinc-900 bg-zinc-950" },
+    { day: "THU", time: "16:00", title: "Marketing Funnel Review", color: "border-zinc-850 bg-zinc-900/10" },
   ];
 
   return (
-    <div className="w-full h-full max-w-sm bg-zinc-950 border border-zinc-900 rounded-2xl flex flex-col font-mono text-[9px] text-zinc-400 overflow-hidden shadow-2xl relative">
-      {/* Browser Header */}
-      <div className="px-3.5 py-2 border-b border-zinc-900 bg-zinc-950/60 flex items-center justify-between">
-        <div className="flex items-center gap-1.5">
-          <div className="w-1.5 h-1.5 rounded-full bg-zinc-800" />
-          <div className="w-1.5 h-1.5 rounded-full bg-zinc-855" />
-          <div className="w-1.5 h-1.5 rounded-full bg-zinc-900" />
-          <span className="text-[7.5px] text-zinc-500 ml-2 font-mono tracking-wider">planor.kro.kr</span>
-        </div>
-      </div>
-      
-      {/* Calendar Dashboard */}
-      <div className="flex-1 p-3.5 flex flex-col gap-3 overflow-hidden">
-        <div className="flex justify-between items-center border-b border-zinc-900/60 pb-2">
-          <span className="text-zinc-300 font-bold tracking-tight">PLANOR // WEEKLY SCHEDULER</span>
-          <span className="text-[7px] text-zinc-500 font-bold uppercase">JUNE 2026</span>
+    <div className="w-full h-full max-w-sm rounded-2xl flex flex-col overflow-hidden shadow-2xl relative p-4.5 border border-zinc-900 bg-zinc-950">
+      <div className="flex-1 flex flex-col gap-3 overflow-hidden font-sans">
+        <div className="flex justify-between items-center border-b border-zinc-900/60 pb-3 mb-3">
+          <span className="text-zinc-300 font-bold tracking-tight text-xs font-display">Planor Scheduler</span>
+          <span className="text-[8px] font-mono text-zinc-550 font-bold uppercase">JUNE 2026</span>
         </div>
         
         {/* Weekly schedule streams */}
@@ -625,15 +599,15 @@ function PlanorVisual() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className={`border rounded-xl p-2 flex items-center justify-between gap-3 ${ev.color}`}
+              className={`border rounded-xl p-2.5 flex items-center justify-between gap-3 ${ev.color} hover:border-zinc-700 transition-colors duration-300`}
             >
               <div className="flex items-center gap-2">
-                <span className="text-[7px] font-mono font-bold text-zinc-500 bg-zinc-950 px-1.5 py-0.5 rounded border border-zinc-900">
+                <span className="text-[8px] font-mono font-bold text-zinc-500 bg-black px-1.5 py-0.5 rounded border border-zinc-900">
                   {ev.day}
                 </span>
-                <span className="text-[8.5px] text-zinc-300 font-bold leading-normal">{ev.title}</span>
+                <span className="text-[9px] text-zinc-350 font-medium leading-normal">{ev.title}</span>
               </div>
-              <span className="text-[7px] font-mono text-zinc-500 font-bold">{ev.time}</span>
+              <span className="text-[8px] font-mono text-zinc-550 font-bold">{ev.time}</span>
             </motion.div>
           ))}
         </div>
@@ -652,29 +626,29 @@ function NaramarsamiVisual() {
     const interval = setInterval(() => {
       setTypedText(fullText.substring(0, idx));
       idx = (idx + 1) % (fullText.length + 1);
-    }, 180);
+    }, 150);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="w-full max-w-sm bg-zinc-950 border border-zinc-900 rounded-2xl p-5 flex flex-col justify-between min-h-[160px] font-mono text-[10px] text-zinc-450 shadow-inner">
-      <div className="flex items-center gap-2 border-b border-zinc-900 pb-2 mb-3">
-        <div className="w-1.5 h-1.5 rounded-full bg-zinc-800" />
-        <span className="text-zinc-300 font-bold uppercase tracking-widest text-[8px]">Hangeul // Typing Practice</span>
+    <div className="w-full max-w-sm rounded-2xl p-5 flex flex-col justify-between min-h-[160px] border border-zinc-900 bg-zinc-950 shadow-2xl relative">
+      <div className="flex items-center justify-between border-b border-zinc-900 pb-2 mb-3">
+        <span className="text-zinc-300 font-bold tracking-tight text-xs font-display">나랏말싸미</span>
+        <span className="text-[8px] font-mono text-zinc-500 border border-zinc-900 px-1 rounded">TYPOGRAPHY</span>
       </div>
       
-      <div className="flex-1 py-2 leading-relaxed whitespace-pre-wrap select-none min-h-[40px]">
+      <div className="flex-1 py-3 text-[11px] text-zinc-350 leading-relaxed font-serif whitespace-pre-wrap select-none min-h-[50px] tracking-wide">
         {typedText}
         <motion.span
           animate={{ opacity: [1, 0, 1] }}
           transition={{ duration: 0.8, repeat: Infinity }}
-          className="inline-block w-1.5 h-3 bg-white ml-0.5"
+          className="inline-block w-1.5 h-3.5 bg-white ml-0.5"
         />
       </div>
 
-      <div className="flex justify-between items-center border-t border-zinc-900/60 pt-2.5 text-[8px] text-zinc-550">
-        <span>SPEED // 350 WPM</span>
-        <span>ACCURACY // 98%</span>
+      <div className="flex justify-between items-center border-t border-zinc-900/60 pt-2.5 text-[8px] font-mono text-zinc-500">
+        <span>한글 타이포그래피 인터랙션</span>
+        <span>EDTECH WEB SERVICE</span>
       </div>
     </div>
   );
@@ -715,115 +689,64 @@ function LuxeretVisual() {
 // 7. HANN LABS™: Figma style vector anchor drawing canvas
 function HannLabsVisual() {
   return (
-    <div className="w-full h-full max-w-sm border border-zinc-900 bg-zinc-950 rounded-2xl overflow-hidden relative shadow-inner">
-      {/* Top Ruler */}
-      <div className="absolute top-0 left-5 right-0 h-5 border-b border-zinc-900 flex justify-between px-2 font-mono text-[6.5px] text-zinc-650 items-center">
-        <span>0</span>
-        <span>100</span>
-        <span>200</span>
-        <span>300</span>
-      </div>
-      {/* Left Ruler */}
-      <div className="absolute top-5 left-0 bottom-0 w-5 border-r border-zinc-900 flex flex-col justify-between py-2 font-mono text-[6.5px] text-zinc-650 items-center">
-        <span>0</span>
-        <span>100</span>
-        <span>200</span>
-      </div>
-
-      {/* Guide lines decoration */}
-      <div className="absolute top-[35%] left-5 right-0 h-px border-t border-dashed border-zinc-900/60" />
-      <div className="absolute left-[45%] top-5 bottom-0 w-px border-l border-dashed border-zinc-900/60" />
-
-      {/* Interactive Vector Curve */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ paddingLeft: '20px', paddingTop: '20px' }}>
+    <div className="w-full h-full max-w-sm border border-zinc-900 bg-zinc-950 rounded-2xl overflow-hidden relative shadow-2xl flex items-center justify-center p-6 min-h-[160px]">
+      <div className="absolute inset-0 bg-gradient-to-tr from-zinc-950 to-zinc-900/40 pointer-events-none" />
+      {/* Minimal Abstract Vector Line */}
+      <svg className="w-full h-24 pointer-events-none relative z-10" viewBox="0 0 200 100">
         <motion.path
-          d="M 40 100 C 90 40, 160 140, 220 70"
+          d="M 20 80 C 60 20, 140 100, 180 30"
           fill="none"
-          stroke="#4b5563"
-          strokeWidth="1.5"
+          stroke="#a1a1aa"
+          strokeWidth="2"
           initial={{ pathLength: 0 }}
           whileInView={{ pathLength: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 1.5, ease: "easeInOut" }}
+          transition={{ duration: 2, ease: "easeInOut" }}
         />
-        {/* Handles */}
-        <circle cx="40" cy="100" r="3" fill="#ffffff" stroke="#000000" strokeWidth="1" />
-        <circle cx="220" cy="70" r="3" fill="#ffffff" stroke="#000000" strokeWidth="1" />
-        
-        {/* Interactive Handle vector box */}
-        <line x1="90" y1="40" x2="40" y2="100" stroke="#71717a" strokeWidth="0.5" strokeDasharray="2 2" />
-        <circle cx="90" cy="40" r="2.5" fill="#ffffff" stroke="#4b5563" strokeWidth="1" />
+        {/* Minimal point anchors */}
+        <circle cx="20" cy="80" r="3.5" fill="#000000" stroke="#ffffff" strokeWidth="1.5" />
+        <circle cx="180" cy="30" r="3.5" fill="#000000" stroke="#ffffff" strokeWidth="1.5" />
+        <circle cx="100" cy="50" r="2.5" fill="#71717a" />
       </svg>
-
-      {/* Simulating cursor action */}
-      <motion.div 
-        animate={{ 
-          x: [20, 110, 20],
-          y: [20, 60, 20]
-        }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute w-2.5 h-2.5 border border-white bg-black rotate-12 flex items-center justify-center shadow-md"
-        style={{ top: 0, left: 0 }}
-      >
-        <div className="w-0.5 h-0.5 bg-white rounded-full" />
-      </motion.div>
+      <div className="absolute bottom-3 left-4 font-mono text-[8px] text-zinc-550 tracking-wider">
+        BRAND GRAPHIC ANCHOR STUDY
+      </div>
     </div>
   );
 }
 
 // 8. SIMPLX: Developer IDE syntax typing simulation
 function SimplxVisual() {
-  const codeLines = [
-    "import { System } from 'simplx';",
-    "const module = System.create('automator');",
-    "module.on('start', () => {",
-    "  console.log('SIMPLX RUNNING...');",
-    "});"
+  const blocks = [
+    { title: "Task Automator", desc: "Process and flow orchestration module", lang: "TypeScript" },
+    { title: "Entity Script", desc: "Object interaction and visual triggers", lang: "Lua" }
   ];
-  const [lineIdx, setLineIdx] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setLineIdx(prev => (prev < codeLines.length ? prev + 1 : 1));
-    }, 1500);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
-    <div className="w-full max-w-sm bg-zinc-950 border border-zinc-900 rounded-2xl p-4 flex flex-col font-mono text-[9px] text-zinc-400 overflow-hidden shadow-inner">
+    <div className="w-full max-w-sm rounded-2xl p-4 flex flex-col justify-between min-h-[160px] border border-zinc-900 bg-zinc-950 shadow-2xl relative font-sans">
       <div className="flex items-center justify-between border-b border-zinc-900 pb-2 mb-3">
-        <span className="text-zinc-300 font-bold uppercase tracking-widest text-[8px]">Simplx // Script automator</span>
-        <span className="text-[7.5px] text-zinc-650">main.ts</span>
+        <span className="text-zinc-300 font-bold tracking-tight text-xs font-display">SIMPLX // System Scripts</span>
+        <span className="text-[8px] font-mono text-zinc-550 border border-zinc-900 px-1 rounded">AUTOMATION</span>
       </div>
-
-      <div className="flex-1 space-y-1 bg-zinc-950/20 p-2 rounded-lg border border-zinc-900/60 leading-relaxed font-mono min-h-[90px]">
-        {codeLines.slice(0, lineIdx).map((line, i) => {
-          const isComment = line.includes("console.log");
-          const isImport = line.startsWith("import");
-          return (
-            <div key={i} className="flex gap-2">
-              <span className="text-zinc-700 select-none w-3">0{i+1}</span>
-              <span className={isComment ? "text-white font-bold" : isImport ? "text-zinc-300" : "text-zinc-550"}>
-                {line}
-              </span>
+      
+      <div className="flex-1 flex flex-col gap-2.5 justify-center py-1">
+        {blocks.map((block, idx) => (
+          <div key={idx} className="border border-zinc-900 bg-zinc-950 p-2.5 rounded-xl flex items-center justify-between">
+            <div>
+              <h5 className="text-[9px] font-bold text-zinc-350">{block.title}</h5>
+              <p className="text-[7.5px] text-zinc-550 font-light mt-0.5">{block.desc}</p>
             </div>
-          );
-        })}
+            <span className="text-[7.5px] font-mono text-zinc-400 bg-zinc-900 px-1.5 py-0.5 rounded border border-zinc-850">
+              {block.lang}
+            </span>
+          </div>
+        ))}
       </div>
 
-      <AnimatePresence>
-        {lineIdx === codeLines.length && (
-          <motion.div
-            initial={{ opacity: 0, y: 5 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            className="mt-3 bg-zinc-900/50 border border-zinc-850 p-2.5 rounded-lg text-white font-bold flex items-center justify-between"
-          >
-            <span>[SUCCESS] AUTOMATION MODULE COMPILED</span>
-            <Play size={10} className="text-white fill-white" />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div className="flex justify-between items-center border-t border-zinc-900/60 pt-2.5 text-[8px] font-mono text-zinc-500">
+        <span>스크립트 및 자동화 모듈 최적화</span>
+        <span>PRODUCTION READY</span>
+      </div>
     </div>
   );
 }

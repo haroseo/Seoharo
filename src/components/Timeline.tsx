@@ -40,9 +40,9 @@ export default function Timeline() {
     },
     {
       phase: 'Phase 05',
-      keywords: ['디자인', '개발', '보안'],
+      keywords: ['디자인', '개발', '마케팅'],
       title: '다중 영역 융합 시도',
-      description: '인터페이스 비주얼 설계, 정보 보호, 모던 웹 프론트엔드를 통합 학습하며 크리에이터로서의 역량을 다졌습니다.',
+      description: '인터페이스 비주얼 설계, 브랜드 마케팅, 모던 웹 프론트엔드를 통합 학습하며 크리에이터로서의 역량을 다졌습니다.',
     },
     {
       phase: 'Phase 06',
