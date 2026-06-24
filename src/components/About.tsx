@@ -59,24 +59,24 @@ export default function About() {
 
   const details = [
     {
-      title: '시각 디자인',
+      title: '시각 디자인 & 브랜딩',
       description:
-        '브랜드 아이덴티티와 규칙적인 타이포그래피 설계를 바탕으로 명확하고 균형 잡힌 인터페이스를 도출합니다.',
+        'HANN LABS™의 스태프 디자이너이자 Limited™의 설립자로서 피그마 기반의 비주얼 가이드라인과 브랜드 아이덴티티를 설계합니다.',
     },
     {
-      title: '브랜드 마케팅',
+      title: '브랜드 마케팅 & 성장 전략',
       description:
-        '소셜 채널 운영 및 타겟 타게팅 기획을 통해 유입 경로를 다지며, 커뮤니티 성장을 이끌어냅니다.',
+        'LUXERET의 마케터로서 마케팅 캠페인을 기획하고, 로폴더와 Limited™의 총합 1,200명 규모의 커뮤니티 성장 퍼널을 다졌습니다.',
     },
     {
-      title: '시스템 개발',
+      title: '시스템 개발 & 자동화',
       description:
-        'TypeScript와 Lua 등을 사용하여 가동성이 높고 신뢰할 수 있는 자동화 논리 및 웹 시스템을 구현합니다.',
+        'SIMPLX의 개발자로서 TypeScript와 Lua를 기반으로 웹 서비스(Design Pick, 나랏말싸미, Planor) 및 디스코드 봇 등 자동화 시스템을 구현합니다.',
     },
     {
-      title: '기획과 실행',
+      title: '비즈니스 기획 & 운영',
       description:
-        '상상하는 아이디어를 현실적인 구조로 정의하고 빠르게 검증하여 실질적으로 기능하는 산출물을 만듭니다.',
+        '로폴더(RoFolder)의 대표(CEO)로서 청년 창업 생태계 활성화를 위한 네트워킹과 아이디어 매칭을 이끌고 비즈니스 구조를 조율합니다.',
     },
   ];
 
@@ -84,17 +84,17 @@ export default function About() {
     {
       label: '경력 수',
       value: '5',
-      proof: '다양한 팀에서의 협업 경력은 주도적인 실행력과 프로덕트 완수의 신뢰도를 증명합니다.'
+      proof: '로폴더 대표, Limited™ 설립자, LUXERET 마케터, HANN LABS™ 디자이너, SIMPLX 개발자 등 5개 조직에서의 다양한 직무 경험은 어떠한 환경에서도 완수해내는 프로덕션 신뢰도를 증명합니다.'
     },
     {
       label: '소통 유저 수',
       value: '1,200+',
-      proof: '다양한 개성을 가진 많은 유저들과의 깊은 커뮤니케이션은 사용자 니즈 분석 능력을 증명합니다.'
+      proof: '총합 1,200명 이상의 로폴더 및 Limited™ 커뮤니티 유저들과 직접 소통하며 유저 피드백을 수집하고, 실질적인 비즈니스 요구사항을 도출하는 능력을 증명합니다.'
     },
     {
-      label: '운영 커뮤니티',
-      value: '2',
-      proof: '로폴더 및 Limited™ 등 두 대형 커뮤니티의 총괄 운영은 탄탄한 기획 및 리더십을 증명합니다.'
+      label: '누적 프로젝트',
+      value: '8+',
+      proof: '웹 서비스 기획·개발부터 디자인, 브랜딩, 데이터 분석까지 8개 이상의 다각적 프로젝트 실행 경험은 경계를 넘나드는 문제 해결력을 증명합니다.'
     }
   ];
 
@@ -168,7 +168,7 @@ export default function About() {
                   활동 분야
                 </p>
                 <p className="mt-2 text-xs font-bold text-white font-display">
-                  디자이너, 마케터 & 커뮤니티 대표
+                  CEO / Founder / Marketer / Designer / Developer
                 </p>
               </motion.div>
 
@@ -180,10 +180,10 @@ export default function About() {
                 className="rounded-2xl border border-zinc-900 bg-zinc-900/20 p-5 shadow-inner"
               >
                 <p className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase">
-                  핵심 지향점
+                  소속 및 역할
                 </p>
-                <p className="mt-2 text-xs font-bold text-white">
-                  간결한 직관성, 피드백 기반 최적화, 신속한 소통
+                <p className="mt-2 text-xs font-bold text-white font-sans leading-relaxed">
+                  로폴더 대표 · Limited™ 설립자 · LUXERET 마케터 · HANN LABS™ 디자이너 · SIMPLX 개발자
                 </p>
               </motion.div>
 
@@ -195,10 +195,25 @@ export default function About() {
                 className="rounded-2xl border border-zinc-900 bg-zinc-900/20 p-5 shadow-inner"
               >
                 <p className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase">
+                  핵심 지향점
+                </p>
+                <p className="mt-2 text-xs font-bold text-white font-sans leading-relaxed">
+                  스토리와 데이터의 유기적 결합, 피드백 기반 신속한 제품 개선
+                </p>
+              </motion.div>
+
+              <motion.div 
+                initial={{ opacity: 0, x: 25 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.3, type: 'spring', damping: 20 }}
+                viewport={{ once: true }}
+                className="rounded-2xl border border-zinc-900 bg-zinc-900/20 p-5 shadow-inner"
+              >
+                <p className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase">
                   주요 강점
                 </p>
-                <p className="mt-2 text-xs font-bold text-white">
-                  브랜드 아이덴티티 · 유저 인터랙션 · 자동화 로직 설계
+                <p className="mt-2 text-xs font-bold text-white font-sans leading-relaxed">
+                  브랜드 가이드라인 구축 · 유저 인터랙션 설계 · 자동화 시스템 최적화
                 </p>
               </motion.div>
             </div>

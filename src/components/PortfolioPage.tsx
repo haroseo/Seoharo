@@ -475,35 +475,13 @@ export default function PortfolioPage() {
 
 // 1. RoFolder: Discord Server & Chat simulation
 function RoFolderVisual() {
-  const [messages, setMessages] = useState<string[]>([]);
-
-  useEffect(() => {
-    const list = [
-      "창업 아이디어 매칭 신청합니다!",
-      "네트워킹 채널의 양식을 확인해주세요.",
-      "이번 모의피칭 일정이 어떻게 되나요?",
-      "다음주 토요일 저녁 8시에 진행됩니다."
-    ];
-    let idx = 0;
-    const interval = setInterval(() => {
-      setMessages(prev => {
-        const nextList = [...prev];
-        if (nextList.length >= 3) nextList.shift();
-        nextList.push(list[idx % list.length]);
-        return nextList;
-      });
-      idx++;
-    }, 2800);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <div className="w-full h-full max-w-sm bg-zinc-950 border border-zinc-900 rounded-2xl flex flex-col font-mono text-[9px] text-zinc-400 overflow-hidden shadow-inner">
+    <div className="w-full h-full max-w-sm bg-zinc-950 border border-zinc-900 rounded-2xl flex flex-col font-mono text-[9px] text-zinc-400 overflow-hidden shadow-2xl relative group">
       {/* Discord Header */}
-      <div className="px-3.5 py-2 border-b border-zinc-900 bg-zinc-950/60 flex items-center justify-between">
+      <div className="px-3.5 py-2 border-b border-zinc-900 bg-zinc-950/60 flex items-center justify-between z-10">
         <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-zinc-800" />
-          <span className="text-zinc-300 font-bold">로폴더 // DISCORD SERVER</span>
+          <div className="w-2 h-2 rounded-full bg-zinc-800" />
+          <span className="text-zinc-300 font-bold tracking-wider">로폴더 (RoFolder) // DISCORD SERVER</span>
         </div>
         <div className="flex items-center gap-1 opacity-50">
           <div className="w-1.5 h-1.5 rounded-full bg-zinc-700" />
@@ -511,49 +489,15 @@ function RoFolderVisual() {
         </div>
       </div>
       
-      {/* Discord Layout */}
-      <div className="flex-1 flex overflow-hidden">
-        {/* Channels Column */}
-        <div className="w-24 border-r border-zinc-900 p-2 space-y-2 select-none bg-zinc-950/20">
-          <div className="h-1.5 w-12 bg-zinc-900 rounded opacity-60" />
-          <div className="space-y-1.5">
-            <div className="flex items-center gap-1.5 text-zinc-300 font-bold">
-              <span>#</span><span className="scale-95">notice</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <span>#</span><span className="scale-95 text-zinc-550">networking</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <span>#</span><span className="scale-95 text-zinc-550">pitching</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <span>#</span><span className="scale-95 text-zinc-550">lounge</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Chat Stream Column */}
-        <div className="flex-1 p-3 flex flex-col justify-end space-y-2.5 overflow-hidden">
-          <AnimatePresence>
-            {messages.map((msg, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
-                className="flex items-start gap-2"
-              >
-                <div className="w-4 h-4 rounded-full bg-zinc-900 border border-zinc-800 shrink-0 flex items-center justify-center text-[7px] text-white">
-                  U
-                </div>
-                <div className="flex-1 bg-zinc-900/40 p-2 rounded-lg border border-zinc-900/60 leading-relaxed">
-                  {msg}
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
+      {/* Discord Layout / Screenshot */}
+      <div className="flex-1 w-full h-full overflow-hidden relative p-1 bg-zinc-950">
+        <img
+          src="/assets/server-detail-screenshot.png"
+          alt="RoFolder Discord Server Overview"
+          className="w-full h-full object-cover rounded-xl opacity-90 transition-transform duration-700 ease-out group-hover:scale-103 group-hover:opacity-100"
+        />
+        {/* Sleek dark gradient on bottom */}
+        <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
       </div>
     </div>
   );
@@ -592,93 +536,107 @@ function LimitedVisual() {
   );
 }
 
-// 3. Design Pick: Horizontal masonry sliding parallax visual
+// 3. Design Pick: Curated Typography & Branding Layout Platform
 function DesignPickVisual() {
-  return (
-    <div className="w-full h-full max-w-sm flex items-center justify-center overflow-hidden relative">
-      <div className="grid grid-cols-2 gap-3.5 w-full select-none rotate-6 scale-105">
-        {/* Column 1 sliding down */}
-        <motion.div 
-          animate={{ y: [0, -60, 0] }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          className="space-y-3.5"
-        >
-          {[0, 1, 2].map((x) => (
-            <div key={x} className="aspect-video w-full bg-zinc-950 border border-zinc-900 rounded-xl p-3 flex flex-col justify-between font-mono text-[7px] text-zinc-550">
-              <div className="flex justify-between border-b border-zinc-900 pb-1.5">
-                <span>LAYOUT // GRID</span>
-                <span>[0{x+1}]</span>
-              </div>
-              <div className="h-6 w-full border border-dashed border-zinc-900 rounded-md flex items-center justify-center">
-                REF_PREVIEW
-              </div>
-            </div>
-          ))}
-        </motion.div>
+  const cards = [
+    { category: "BRAND DESIGN", title: "Editorial Specimen", desc: "Typography-focused layout design" },
+    { category: "UX/UI DESIGN", title: "Minimal Commerce", desc: "Clean and structural user flow" },
+    { category: "CREATIVE ART", title: "Monochrome Canvas", desc: "Symmetry & geometric layout" },
+    { category: "INTERACTIVE", title: "Dynamic Flow", desc: "Micro-interactions and transitions" },
+  ];
 
-        {/* Column 2 sliding up */}
-        <motion.div 
-          animate={{ y: [-60, 0, -60] }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          className="space-y-3.5"
-        >
-          {[3, 4, 5].map((x) => (
-            <div key={x} className="aspect-video w-full bg-zinc-950 border border-zinc-900 rounded-xl p-3 flex flex-col justify-between font-mono text-[7px] text-zinc-550">
-              <div className="flex justify-between border-b border-zinc-900 pb-1.5">
-                <span>LAYOUT // ART</span>
-                <span>[0{x+1}]</span>
+  return (
+    <div className="w-full h-full max-w-sm bg-zinc-950 border border-zinc-900 rounded-2xl flex flex-col font-mono text-[9px] text-zinc-400 overflow-hidden shadow-2xl relative">
+      {/* Browser Header */}
+      <div className="px-3.5 py-2 border-b border-zinc-900 bg-zinc-950/60 flex items-center justify-between">
+        <div className="flex items-center gap-1.5">
+          <div className="w-1.5 h-1.5 rounded-full bg-zinc-800" />
+          <div className="w-1.5 h-1.5 rounded-full bg-zinc-850" />
+          <div className="w-1.5 h-1.5 rounded-full bg-zinc-900" />
+          <span className="text-[7.5px] text-zinc-550 ml-2 font-mono tracking-wider">designs.kro.kr</span>
+        </div>
+      </div>
+      
+      {/* Website Interface */}
+      <div className="flex-1 p-3.5 overflow-hidden flex flex-col gap-3">
+        <div className="flex justify-between items-end border-b border-zinc-900/60 pb-2">
+          <div>
+            <h4 className="text-white font-bold text-[10px] tracking-tight font-display">DESIGN PICK</h4>
+            <p className="text-[7px] text-zinc-500">Curated Creative Artwork & Web Layouts</p>
+          </div>
+          <span className="text-[7px] border border-zinc-800 px-1.5 py-0.5 rounded text-zinc-400">ACTIVE</span>
+        </div>
+        
+        {/* Curated Grid Items */}
+        <div className="grid grid-cols-2 gap-2.5 flex-1 overflow-hidden">
+          {cards.map((card, idx) => (
+            <motion.div
+              key={idx}
+              whileHover={{ y: -2, borderColor: '#3f3f46' }}
+              className="border border-zinc-900 bg-zinc-900/10 rounded-xl p-2.5 flex flex-col justify-between transition-colors duration-300"
+            >
+              <div className="space-y-1">
+                <span className="text-[6.5px] text-zinc-500 tracking-wider block font-bold">{card.category}</span>
+                <h5 className="text-[8px] font-bold text-zinc-300">{card.title}</h5>
               </div>
-              <div className="h-6 w-full border border-dashed border-zinc-900 rounded-md flex items-center justify-center">
-                REF_PREVIEW
-              </div>
-            </div>
+              <p className="text-[6px] text-zinc-500 mt-1 leading-normal">{card.desc}</p>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </div>
   );
 }
 
-// 4. Planor: Smart Scheduler Grid drawing
+// 4. Planor: Smart Scheduler Calendar & Workflow
 function PlanorVisual() {
+  const events = [
+    { day: "MON", time: "10:00", title: "Brand Strategy Sync", color: "border-zinc-800 bg-zinc-900/30" },
+    { day: "TUE", time: "14:00", title: "Figma UI Revision", color: "border-zinc-700 bg-zinc-800/20" },
+    { day: "WED", time: "11:30", title: "Automator Compile", color: "border-zinc-800 bg-zinc-900/40" },
+    { day: "THU", time: "16:00", title: "Marketing Funnel Review", color: "border-zinc-700 bg-zinc-800/10" },
+  ];
+
   return (
-    <div className="w-full max-w-sm bg-zinc-950 border border-zinc-900 rounded-2xl p-4 flex flex-col font-mono text-[9px] text-zinc-400 overflow-hidden shadow-inner">
-      <div className="flex justify-between items-center border-b border-zinc-900 pb-2.5 mb-3">
-        <span className="text-zinc-300 font-bold">PLANOR // CALENDAR VIEW</span>
-        <div className="flex gap-1.5 text-[8px] text-zinc-550">
-          <span>MON</span>
-          <span>TUE</span>
-          <span>WED</span>
+    <div className="w-full h-full max-w-sm bg-zinc-950 border border-zinc-900 rounded-2xl flex flex-col font-mono text-[9px] text-zinc-400 overflow-hidden shadow-2xl relative">
+      {/* Browser Header */}
+      <div className="px-3.5 py-2 border-b border-zinc-900 bg-zinc-950/60 flex items-center justify-between">
+        <div className="flex items-center gap-1.5">
+          <div className="w-1.5 h-1.5 rounded-full bg-zinc-800" />
+          <div className="w-1.5 h-1.5 rounded-full bg-zinc-855" />
+          <div className="w-1.5 h-1.5 rounded-full bg-zinc-900" />
+          <span className="text-[7.5px] text-zinc-500 ml-2 font-mono tracking-wider">planor.kro.kr</span>
         </div>
       </div>
-
-      {/* Grid Lines drawing */}
-      <div className="grid grid-cols-4 gap-2 flex-1 items-stretch">
-        {[0, 1, 2, 3, 4, 5, 6, 7].map((day) => {
-          const hasEvent = day === 2 || day === 5;
-          return (
+      
+      {/* Calendar Dashboard */}
+      <div className="flex-1 p-3.5 flex flex-col gap-3 overflow-hidden">
+        <div className="flex justify-between items-center border-b border-zinc-900/60 pb-2">
+          <span className="text-zinc-300 font-bold tracking-tight">PLANOR // WEEKLY SCHEDULER</span>
+          <span className="text-[7px] text-zinc-500 font-bold uppercase">JUNE 2026</span>
+        </div>
+        
+        {/* Weekly schedule streams */}
+        <div className="flex-1 flex flex-col gap-2 overflow-hidden justify-center font-sans">
+          {events.map((ev, idx) => (
             <motion.div
-              key={day}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              key={idx}
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: day * 0.08 }}
-              className="border border-zinc-900/80 rounded-xl p-2 bg-zinc-950/20 flex flex-col justify-between min-h-[50px] relative"
+              transition={{ delay: idx * 0.1 }}
+              className={`border rounded-xl p-2 flex items-center justify-between gap-3 ${ev.color}`}
             >
-              <span className="text-zinc-650 text-[7px]">{`0${day + 1}`}</span>
-              {hasEvent && (
-                <motion.div 
-                  initial={{ width: 0 }}
-                  whileInView={{ width: '105%' }}
-                  transition={{ delay: 0.8 }}
-                  className="h-2.5 bg-zinc-900 rounded-md border border-zinc-800/80 text-[6.5px] px-1 flex items-center text-zinc-400 truncate"
-                >
-                  Sync Meet
-                </motion.div>
-              )}
+              <div className="flex items-center gap-2">
+                <span className="text-[7px] font-mono font-bold text-zinc-500 bg-zinc-950 px-1.5 py-0.5 rounded border border-zinc-900">
+                  {ev.day}
+                </span>
+                <span className="text-[8.5px] text-zinc-300 font-bold leading-normal">{ev.title}</span>
+              </div>
+              <span className="text-[7px] font-mono text-zinc-500 font-bold">{ev.time}</span>
             </motion.div>
-          );
-        })}
+          ))}
+        </div>
       </div>
     </div>
   );

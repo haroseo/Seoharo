@@ -128,7 +128,7 @@ export default function Hero() {
               {/* Minimal Project Links */}
               <div className="pt-6 border-t border-zinc-900 text-[9px] font-mono tracking-widest text-zinc-500 grid gap-1.5 uppercase">
                 <span>ROLES & POSITION</span>
-                <span className="text-xs text-white font-sans font-bold">ROFOLDER CEO / LIMITED FOUNDER / CREATIVE DEVS</span>
+                <span className="text-xs text-white font-sans font-bold leading-normal">ROFOLDER CEO / LIMITED FOUNDER / LUXERET MARKETER / HANN LABS DESIGNER / SIMPLX DEVELOPER</span>
               </div>
             </div>
           </motion.div>
