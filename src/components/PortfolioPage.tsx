@@ -6,10 +6,6 @@ import {
   Compass, 
   Sparkles, 
   Award, 
-  Code, 
-  Layout, 
-  Layers, 
-  Grid, 
   Play
 } from 'lucide-react';
 
@@ -563,33 +559,36 @@ function RoFolderVisual() {
   );
 }
 
-// 2. Limited™: Interactive 3D asset matrix
+// 2. Limited™: Brand Banner Visual
 function LimitedVisual() {
   return (
-    <div className="w-full max-w-xs grid grid-cols-2 gap-4">
-      {[
-        { icon: <Layers size={14} />, label: "3D MESH" },
-        { icon: <Code size={14} />, label: "SCRIPT UTILS" },
-        { icon: <Layout size={14} />, label: "UI KIT" },
-        { icon: <Grid size={14} />, label: "DEV PRESETS" }
-      ].map((asset, i) => (
-        <motion.div
-          key={i}
-          whileHover={{ scale: 1.03, borderColor: '#ffffff' }}
-          className="aspect-square bg-zinc-950 border border-zinc-900 rounded-2xl p-4 flex flex-col justify-between transition-colors duration-300 relative group cursor-pointer"
-        >
-          <div className="w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-850 flex items-center justify-center text-zinc-400 group-hover:text-white transition-colors">
-            {asset.icon}
-          </div>
-          <div className="space-y-1">
-            <span className="text-[7px] font-mono text-zinc-650 block">LIMIT_0{i+1}</span>
-            <span className="text-[9px] font-mono font-bold text-zinc-350 group-hover:text-white transition-colors uppercase tracking-wider">{asset.label}</span>
-          </div>
-          {/* Tech dots decoration */}
-          <div className="absolute top-2 right-2 w-1 h-1 rounded-full bg-zinc-800" />
-        </motion.div>
-      ))}
-    </div>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      whileHover={{ 
+        scale: 1.025, 
+        borderColor: '#ffffff', 
+        boxShadow: '0 20px 45px rgba(255, 255, 255, 0.03)' 
+      }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      className="relative w-full max-w-sm aspect-[16/9] rounded-2xl overflow-hidden border border-zinc-900 bg-zinc-950 shadow-2xl group cursor-pointer"
+    >
+      <img
+        src="/assets/limited-banner.png"
+        alt="Limited™ Banner"
+        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-103"
+      />
+      {/* Sleek overlay gradient */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+      {/* Light sheen animation on hover */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent pointer-events-none"
+        initial={{ x: '-100%' }}
+        whileHover={{ x: '100%' }}
+        transition={{ duration: 0.8, ease: 'easeInOut' }}
+      />
+    </motion.div>
   );
 }
 

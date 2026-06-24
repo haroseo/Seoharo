@@ -73,7 +73,7 @@ export default function Timeline() {
 
         <div ref={containerRef} className="relative mt-16">
           {/* Background vertical line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-zinc-900 transform md:-translate-x-1/2" />
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-zinc-800/80 transform md:-translate-x-1/2" />
           
           {/* Scroll-driven active path in monochrome white */}
           <motion.div 
@@ -99,7 +99,7 @@ export default function Timeline() {
                 <div className="hidden md:block w-[45%]" />
 
                 {/* Dot */}
-                <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-zinc-800 border-4 border-black transition-all duration-500 group-hover:bg-white group-hover:shadow-[0_0_10px_rgba(255,255,255,0.5)] group-hover:scale-155 z-10 mt-1.5" />
+                <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-black border-2 border-zinc-700 transition-all duration-500 group-hover:bg-white group-hover:border-white group-hover:shadow-[0_0_10px_rgba(255,255,255,0.5)] group-hover:scale-130 z-10 mt-1.5" />
 
                 {/* Content */}
                 <div className={`w-full pl-20 md:pl-0 md:w-[45%] flex flex-col ${
