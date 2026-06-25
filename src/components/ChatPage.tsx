@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, User } from 'lucide-react';
+import { useLanguage } from './LanguageContext';
 
 interface Message {
   id: string;
@@ -16,13 +17,23 @@ interface QuestionOption {
 }
 
 export default function ChatPage() {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: 'welcome',
-      sender: 'bot',
-      text: '안녕하세요. 아래 질문 카드 중 궁금하신 사항을 선택하시면 바로 답변해 드리겠습니다.'
-    }
-  ]);
+  const { language, t } = useLanguage();
+
+  const [messages, setMessages] = useState<Message[]>([]);
+
+  useEffect(() => {
+    setMessages([
+      {
+        id: 'welcome',
+        sender: 'bot',
+        text: t(
+          '안녕하세요. 아래 질문 카드 중 궁금하신 사항을 선택하시면 바로 답변해 드리겠습니다.',
+          'Hello! I am Seoharo\'s portfolio assistant. Select one of the questions below and I will answer you right away.'
+        )
+      }
+    ]);
+  }, [language]);
+
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -37,26 +48,38 @@ export default function ChatPage() {
   const presetQuestions: Record<string, QuestionOption> = {
     who: {
       id: 'who',
-      text: '서하루는 어떤 크리에이터인가요?',
-      response: '저는 디자인, 마케팅, 개발을 융합하는 크리에이터입니다. 디자인 감각과 개발 지식을 결합하여 단순히 보기 좋은 화면을 넘어, 사용자가 반응하고 오래 머무를 수 있는 유기적인 경험을 기획하고 설계합니다.',
+      text: t('서하루는 어떤 크리에이터인가요?', 'What kind of creator is Seoharo?'),
+      response: t(
+        '저는 디자인, 마케팅, 프로그래밍을 하는 크리에이터입니다. 디자인 감각과 개발 지식을 결합하여 단순히 보기 좋은 화면을 넘어, 사용자가 반응하고 오래 머무를 수 있는 조화롭고 멋진 경험을 기획하고 설계합니다.',
+        'I am a creator specializing in design, marketing, and programming. Combining design aesthetics with development skills, I plan and design balanced and engaging experiences that go beyond mere visual looks.'
+      ),
       followUps: ['projects', 'communities']
     },
     communities: {
       id: 'communities',
-      text: '운영 중인 커뮤니티는 어떤 곳인가요?',
-      response: '현재 누적 1,200명 이상의 유저와 소통하며 두 개의 대표적인 커뮤니티를 총괄하고 있습니다.\n\n• 로폴더 (RoFolder): 청소년 및 청년의 스타트업 창업을 독려하고 지원하는 네트워킹 서버\n• Limited™: 개발 및 가상 환경에 필요한 맞춤형 에셋과 무료 창작 리소스를 공급하는 채널',
+      text: t('운영 중인 커뮤니티는 어떤 곳인가요?', 'What communities do you operate?'),
+      response: t(
+        '현재 누적 1,200명 이상의 유저와 소통하며 대표적인 커뮤니티를 기획하고 운영 중입니다.\n\n• 로폴더 (RoFolder): 청소년 및 청년의 스타트업 창업을 독려하고 지원하는 네트워킹 서버\n• Limited™: 실무 경험과 다양한 시도를 진행하는 그래픽 및 에셋 창작 공간\n• 로블갤러리 (ROGLLAERY): 유저들이 자유롭게 모여 소통하는 투명한 커뮤니티 공간',
+        'I currently communicate with over 1,200 users, operating the following communities:\n\n• RoFolder: A Discord server supporting youth startup entrepreneurship\n• Limited™: A graphic & code asset creation space for gaining practical experience and making attempts\n• ROGLLAERY: A transparent community space where users freely gather and communicate'
+      ),
       followUps: ['projects', 'contact']
     },
     projects: {
       id: 'projects',
-      text: '주요 프로젝트 성과가 궁금해요.',
-      response: '대표적인 론칭 및 참여 서비스는 다음과 같습니다.\n\n• Design Pick: 비주얼 영감을 제공하는 디자인 큐레이션 웹 플랫폼 (designs.kro.kr)\n• Planor: 일정 조율 효율성을 제공하는 스마트 협업 캘린더 (planor.kro.kr)\n• 나랏말싸미: 한글 창제 결합 원리를 타이핑 연습에 녹인 에듀테크 서비스 (훈민정음.kro.kr)',
+      text: t('주요 프로젝트 성과가 궁금해요.', 'What are your main project achievements?'),
+      response: t(
+        '대표적인 론칭 및 참여 서비스는 다음과 같습니다.\n\n• Design Pick: 비주얼 영감을 제공하는 디자인 큐레이션 웹 플랫폼 (designs.kro.kr)\n• Planor: 일정 조율 효율성을 제공하는 스마트 협업 캘린더 (planor.kro.kr)\n• 나랏말싸미: 한글 창제 결합 원리를 타이핑 연습에 녹인 에듀테크 서비스 (훈민정음.kro.kr)',
+        'My representative launches and projects are:\n\n• Design Pick: A visual design curation web platform (designs.kro.kr)\n• Planor: A smart collaboration calendar optimizing scheduling (planor.kro.kr)\n• Naramarsami: An interactive EdTech typing practice based on Hangeul principles (훈민정음.kro.kr)'
+      ),
       followUps: ['who', 'contact']
     },
     contact: {
       id: 'contact',
-      text: '협업이나 연락은 어떻게 하나요?',
-      response: '언제나 생산적이고 가치 있는 협업을 환영합니다. 가장 빠른 연락망은 다음과 같습니다.\n\n• 이메일: seoharo0111@gmail.com\n• 디스코드: seoharo\n• 인스타그램: tooday.zip\n\n편하게 이메일이나 메시지를 주시면 신속하게 확인 후 답장해 드리겠습니다.',
+      text: t('협업이나 연락은 어떻게 하나요?', 'How do I contact you or collaborate?'),
+      response: t(
+        '언제나 생산적이고 가치 있는 협업을 환영합니다. 가장 빠른 연락망은 다음과 같습니다.\n\n• 이메일: seoharo0111@gmail.com\n• 디스코드: seoharo\n• 인스타그램: tooday.zip\n\n편하게 연락 주시면 신속하게 확인 후 답변해 드리겠습니다.',
+        'I welcome valuable collaborations. The fastest ways to reach me are:\n\n• Email: seoharo0111@gmail.com\n• Discord: seoharo\n• Instagram: tooday.zip\n\nFeel free to write and I will get back to you shortly.'
+      ),
       followUps: ['who', 'communities']
     }
   };
@@ -87,16 +110,16 @@ export default function ChatPage() {
   return (
     <div className="relative min-h-screen bg-black flex items-center justify-center pt-36 sm:pt-40 pb-12 px-4 sm:px-6 overflow-hidden">
       
-      {/* Sleek, KakaoTalk/Telegram-style dark messenger frame */}
+      {/* Messenger frame */}
       <div className="w-full max-w-xl bg-zinc-950/80 border border-zinc-900 rounded-[28px] shadow-[0_24px_60px_rgba(0,0,0,0.9)] flex flex-col h-[68vh] sm:h-[72vh] relative overflow-hidden backdrop-blur-2xl">
         
         {/* Chat Room Header */}
         <div className="px-6 py-4.5 border-b border-zinc-900/80 flex items-center bg-zinc-950/90 backdrop-blur-md sticky top-0 z-10">
-          <div className="w-9 h-9 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-white font-bold text-sm font-display select-none">
+          <div className="w-9 h-9 rounded-full bg-zinc-900 border border-zinc-850 flex items-center justify-center text-white font-bold text-sm font-display select-none">
             S
           </div>
           <div className="ml-3">
-            <h3 className="text-xs font-bold text-white font-mono">서하루</h3>
+            <h3 className="text-xs font-bold text-white font-mono">{t('서하루', 'SEOHARO')}</h3>
           </div>
         </div>
 
@@ -118,10 +141,10 @@ export default function ChatPage() {
                 )}
                 
                 <div
-                  className={`max-w-[75%] px-4.5 py-3 rounded-2xl text-[11px] sm:text-xs leading-relaxed whitespace-pre-line shadow-md font-light ${
+                  className={`max-w-[75%] px-4.5 py-3 rounded-2xl text-[11px] sm:text-xs leading-relaxed whitespace-pre-line shadow-md ${
                     msg.sender === 'user'
                       ? 'bg-white text-black rounded-tr-none font-semibold'
-                      : 'bg-zinc-900 text-zinc-200 border border-zinc-800/80 rounded-tl-none'
+                      : 'bg-zinc-900 text-zinc-200 border border-zinc-800/80 rounded-tl-none font-normal'
                   }`}
                 >
                   {msg.text}
@@ -164,8 +187,8 @@ export default function ChatPage() {
 
         {/* Preset Question Buttons Footer */}
         <div className="p-4 border-t border-zinc-900/80 bg-zinc-950/90 backdrop-blur-sm sticky bottom-0 z-10">
-          <span className="block text-[8px] font-bold text-zinc-550 uppercase tracking-widest mb-3 select-none text-center font-mono">
-            질문을 선택하세요
+          <span className="block text-[8.5px] font-bold text-zinc-500 uppercase tracking-widest mb-3 select-none text-center font-mono">
+            {t('질문을 선택하세요', 'CHOOSE A QUESTION')}
           </span>
 
           <div className="flex flex-col gap-2">

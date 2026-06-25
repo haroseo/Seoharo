@@ -3,9 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
 import type { Community } from '../data/portfolioData';
 import { X, Users, Compass, Shield, ArrowUpRight } from 'lucide-react';
+import { useLanguage } from './LanguageContext';
 
 export default function Communities() {
   const [selectedCommunity, setSelectedCommunity] = useState<Community | null>(null);
+  const { language, t } = useLanguage();
+  const data = portfolioData[language];
 
   return (
     <section id="communities" className="py-32 px-4 sm:px-6 lg:px-8 bg-black border-b border-zinc-900 relative overflow-hidden">
@@ -19,18 +22,23 @@ export default function Communities() {
           viewport={{ once: true }}
           className="mb-24 text-center"
         >
-          <p className="text-xs uppercase tracking-[0.3em] text-zinc-500 mb-4 font-mono">[03 // LEADERSHIP]</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-zinc-550 mb-4 font-mono">
+            {t('커뮤니티 리더십', 'COMMUNITY LEADERSHIP')}
+          </p>
           <h2 className="section-title mt-4 mb-6 font-display bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent font-bold">
-            Community Management
+            {t('커뮤니티 운영', 'Community Management')}
           </h2>
-          <p className="mx-auto max-w-3xl text-sm text-zinc-400 font-light leading-relaxed">
-            총 2,000명 이상의 유저와 교감하며 서버를 성장시킨 경험을 바탕으로 더 나은 사용자 경험과 커뮤니티 문화를 설계합니다.
+          <p className="mx-auto max-w-3xl text-sm sm:text-base text-zinc-200 font-normal leading-relaxed">
+            {t(
+              '총 2,000명 이상의 유저와 소통하며 커뮤니티를 성장시킨 경험을 바탕으로 더 나은 소통과 긍정적인 커뮤니티 문화를 설계합니다.',
+              'Based on the experience of growing servers and communicating with over 2,000 users, I design a better user experience and positive community culture.'
+            )}
           </p>
         </motion.div>
 
         {/* Card Grid */}
         <div className="grid gap-8 md:grid-cols-3 max-w-6xl mx-auto">
-          {portfolioData.communities.map((community, index) => (
+          {data.communities.map((community, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
@@ -45,7 +53,7 @@ export default function Communities() {
                   <img 
                     src={community.logo} 
                     alt={community.name} 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover" 
                   />
                 </div>
                 
@@ -58,12 +66,12 @@ export default function Communities() {
                   {community.members} Members
                 </div>
                 
-                <p className="text-zinc-400 text-xs leading-relaxed font-light whitespace-pre-line mb-6">
+                <p className="text-zinc-300 text-xs sm:text-sm leading-relaxed font-normal whitespace-pre-line mb-6">
                   {community.description}
                 </p>
 
                 <span className="inline-flex items-center gap-1 text-[10px] font-bold font-mono text-zinc-300 group-hover:text-white transition-colors uppercase tracking-wider">
-                  View Detail
+                  {t('프로필 확인', 'View Profile')}
                   <ArrowUpRight size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </span>
               </div>
@@ -99,7 +107,7 @@ export default function Communities() {
                   <div className="w-8 h-8 rounded-lg overflow-hidden border border-zinc-800 bg-black">
                     <img src={selectedCommunity.logo} alt={selectedCommunity.name} className="w-full h-full object-cover" />
                   </div>
-                  <span className="text-xs font-mono font-bold text-zinc-300 uppercase">[{selectedCommunity.name} Profile]</span>
+                  <span className="text-xs font-mono font-bold text-zinc-350 uppercase">[{selectedCommunity.name} Profile]</span>
                 </div>
                 <button
                   onClick={() => setSelectedCommunity(null)}
@@ -110,7 +118,7 @@ export default function Communities() {
               </div>
 
               {/* Modal Body */}
-              <div className="flex-1 overflow-y-auto p-6 md:p-8 space-y-6 text-zinc-350">
+              <div className="flex-1 overflow-y-auto p-6 md:p-8 space-y-6 text-zinc-300">
                 
                 {/* Intro Card */}
                 <div className="grid gap-6 md:grid-cols-[1.5fr_1fr] items-center bg-zinc-950/60 rounded-2xl border border-zinc-900 p-6">
@@ -130,7 +138,7 @@ export default function Communities() {
                       {selectedCommunity.name}
                     </h3>
                     
-                    <p className="text-zinc-400 font-light text-xs leading-relaxed whitespace-pre-line">
+                    <p className="text-zinc-300 font-normal text-xs sm:text-sm leading-relaxed whitespace-pre-line">
                       {selectedCommunity.detailsText}
                     </p>
                   </div>
@@ -149,13 +157,13 @@ export default function Communities() {
 
                 {/* Core Achievements & Capabilities */}
                 {(() => {
-                  const career = portfolioData.careers.find(c => 
-                    c.id === (selectedCommunity.name.includes("로폴더") ? "rofolder" : selectedCommunity.name.includes("Limited") ? "limited" : "")
+                  const career = data.careers.find(c => 
+                    c.id === (selectedCommunity.name.toLowerCase().includes("로폴더") || selectedCommunity.name.toLowerCase().includes("rofolder") ? "rofolder" : selectedCommunity.name.toLowerCase().includes("limited") ? "limited" : "")
                   );
                   const achievements = career ? career.achievements : [
-                    "유저 친화적인 커뮤니티 규칙 정의 및 투명한 소통 구조 확립",
-                    "커뮤니티 내 활발한 유저 상호작용 및 이벤트 기획/진행",
-                    "자율적인 유저 참여형 서비스 피드백 채널 수립 및 운영"
+                    t("유저 친화적인 커뮤니티 규칙 정의 및 소통 구조 확립", "Establishing user-friendly communication rules and transparent structures"),
+                    t("커뮤니티 내 활발한 유저 상호작용 및 이벤트 기획/진행", "Planning and executing active user interactions and events"),
+                    t("자율적인 유저 참여형 서비스 피드백 채널 수립 및 운영", "Operating voluntary user feedback channels")
                   ];
                   const skills = career ? career.skills : ["Community Management", "User Engagement", "Branding"];
                   return (
@@ -163,12 +171,12 @@ export default function Communities() {
                       <div className="space-y-3">
                         <h4 className="text-[9px] font-mono font-bold text-zinc-500 uppercase tracking-widest flex items-center gap-1.5">
                           <Compass className="w-3.5 h-3.5 text-zinc-500" />
-                          Key Contributions
+                          {t('핵심 기여 및 성과', 'Key Contributions')}
                         </h4>
                         <ul className="space-y-2.5">
                           {achievements.map((ach, idx) => (
-                            <li key={idx} className="flex gap-2.5 text-xs text-zinc-400 leading-relaxed font-light">
-                              <span className="text-zinc-300 font-bold">•</span>
+                            <li key={idx} className="flex gap-2.5 text-xs text-zinc-300 leading-relaxed font-normal">
+                              <span className="text-zinc-400 font-bold">•</span>
                               <span>{ach}</span>
                             </li>
                           ))}
@@ -177,7 +185,7 @@ export default function Communities() {
 
                       <div className="space-y-3 border-t border-zinc-900 pt-4">
                         <h4 className="text-[9px] font-mono font-bold text-zinc-500 uppercase tracking-widest">
-                          Capabilities
+                          {t('보유 역량', 'Capabilities')}
                         </h4>
                         <div className="flex flex-wrap gap-1.5">
                           {skills.map((skill, idx) => (
@@ -198,7 +206,7 @@ export default function Communities() {
                   onClick={() => setSelectedCommunity(null)}
                   className="px-5 py-2.5 rounded-full bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 text-[10px] font-mono font-bold uppercase tracking-wider transition-all cursor-pointer"
                 >
-                  Close Profile
+                  {t('닫기', 'Close')}
                 </button>
               </div>
             </motion.div>

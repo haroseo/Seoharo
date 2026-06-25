@@ -2,9 +2,12 @@ import { portfolioData } from '../data/portfolioData';
 import { ArrowDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useRouter } from './router';
+import { useLanguage } from './LanguageContext';
 
 export default function Hero() {
   const { navigate } = useRouter();
+  const { language, t } = useLanguage();
+  const data = portfolioData[language];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -47,17 +50,17 @@ export default function Hero() {
           <motion.div variants={itemVariants} className="space-y-8 text-center lg:text-left">
             <div className="flex items-center justify-center lg:justify-start gap-3">
               <span className="text-[10px] font-mono tracking-[0.4em] text-zinc-500 uppercase">
-                INTRO // SEOHARO
+                INTRO // {data.name}
               </span>
               <span className="h-px w-6 bg-zinc-850" />
             </div>
 
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold uppercase tracking-tight text-white leading-tight">
-              {portfolioData.name}
+              {data.name}
             </h1>
 
-            <p className="max-w-xl text-sm md:text-base leading-relaxed text-zinc-400 mx-auto lg:mx-0 font-light">
-              {portfolioData.description}
+            <p className="max-w-xl text-sm md:text-base leading-relaxed text-zinc-200 mx-auto lg:mx-0 font-normal">
+              {data.description}
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
@@ -65,13 +68,13 @@ export default function Hero() {
                 onClick={() => navigate('/portfolio')}
                 className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-xs font-bold font-mono tracking-[0.2em] text-black hover:bg-zinc-200 shadow-xl transition-all cursor-pointer"
               >
-                PROJECT CATALOG
+                {t('프로젝트 목록', 'PROJECT CATALOG')}
               </button>
               <button
                 onClick={() => navigate('/contact')}
                 className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-zinc-800 bg-zinc-950/60 px-8 py-3.5 text-xs font-bold font-mono tracking-[0.2em] text-zinc-300 hover:text-white hover:border-zinc-700 transition-all cursor-pointer"
               >
-                COLLABORATE
+                {t('협업 문의', 'COLLABORATE')}
               </button>
             </div>
           </motion.div>
@@ -82,53 +85,58 @@ export default function Hero() {
             className="rounded-3xl border border-zinc-900 bg-zinc-950/40 p-8 md:p-10 shadow-2xl backdrop-blur-md"
           >
             <p className="text-[9px] uppercase tracking-[0.35em] text-zinc-500 font-mono">
-              PROFILE // OVERVIEW
+              {t('프로필 // 개요', 'PROFILE // OVERVIEW')}
             </p>
             <div className="mt-8 space-y-6">
               <div className="flex items-end justify-between gap-4">
                 <div>
                   <p className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase">
-                    Developer Node
+                    {t('프로필 노드', 'PROFILE NODE')}
                   </p>
                   <h2 className="text-xl font-bold text-white mt-1 font-display">
-                    {portfolioData.name}
+                    {data.name}
                   </h2>
                 </div>
                 <div className="rounded-full border border-zinc-850 bg-zinc-900/40 px-3 py-1 text-[9px] font-mono font-bold uppercase tracking-wider text-zinc-300">
-                  ACTIVE
+                  {t('활동 중', 'ACTIVE')}
                 </div>
               </div>
 
               <p className="text-xs leading-relaxed text-zinc-300 font-medium">
-                {portfolioData.title}
+                {data.title}
               </p>
 
-              <div className="grid gap-4 text-xs text-zinc-400 font-light">
+              <div className="grid gap-4 text-xs text-zinc-300 font-normal">
                 <div className="flex justify-between border-b border-zinc-900 pb-3">
-                  <span className="text-zinc-500 font-mono">EMAIL</span>
-                  <span className="font-semibold text-zinc-300">{portfolioData.contact.email}</span>
+                  <span className="text-zinc-500 font-mono">{t('이메일', 'EMAIL')}</span>
+                  <span className="font-semibold text-zinc-200">{data.contact.email}</span>
                 </div>
                 <div className="flex justify-between border-b border-zinc-900 pb-3">
-                  <span className="text-zinc-500 font-mono">GITHUB</span>
+                  <span className="text-zinc-500 font-mono">{t('깃허브', 'GITHUB')}</span>
                   <a
-                    href={portfolioData.contact.github}
+                    href={data.contact.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-semibold text-zinc-300 hover:text-white transition-colors"
+                    className="font-semibold text-zinc-200 hover:text-white transition-colors"
                   >
                     github.com/haroseo
                   </a>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-zinc-500 font-mono">LOCATION</span>
-                  <span className="font-semibold text-zinc-300">South Korea</span>
+                  <span className="text-zinc-500 font-mono">{t('활동 지역', 'LOCATION')}</span>
+                  <span className="font-semibold text-zinc-200">{t('대한민국', 'South Korea')}</span>
                 </div>
               </div>
 
               {/* Minimal Project Links */}
               <div className="pt-6 border-t border-zinc-900 text-[9px] font-mono tracking-widest text-zinc-500 grid gap-1.5 uppercase">
-                <span>ROLES & POSITION</span>
-                <span className="text-xs text-white font-sans font-bold leading-normal">ROFOLDER CEO / LIMITED FOUNDER / LUXERET MARKETER / HANN LABS DESIGNER / SIMPLX DEVELOPER</span>
+                <span>{t('역할 및 소속', 'ROLES & POSITION')}</span>
+                <span className="text-xs text-white font-sans font-bold leading-normal">
+                  {t(
+                    '로폴더 대표 / Limited™ 설립자 / LUXERET 마케터 / HANN LABS 스태프 디자이너 / SIMPLX 개발자',
+                    'ROFOLDER CEO / LIMITED FOUNDER / LUXERET MARKETER / HANN LABS STAFF DESIGNER / SIMPLX DEVELOPER'
+                  )}
+                </span>
               </div>
             </div>
           </motion.div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
 import { Mail, MessageSquare, MapPin, Copy, Check, Send } from 'lucide-react';
+import { useLanguage } from './LanguageContext';
 
 function GithubIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -21,6 +22,9 @@ function GithubIcon(props: React.SVGProps<SVGSVGElement>) {
 }
 
 export default function ContactPage() {
+  const { language, t } = useLanguage();
+  const data = portfolioData[language];
+
   // 3D Business Card Mouse Spring variables
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -61,7 +65,7 @@ export default function ContactPage() {
 
   const handleCopy = (type: 'email' | 'discord' | 'github', text: string) => {
     navigator.clipboard.writeText(text);
-    setCopiedText(type);
+    copiedText === null && setCopiedText(type);
     setTimeout(() => setCopiedText(null), 2000);
   };
 
@@ -87,12 +91,12 @@ export default function ContactPage() {
           {/* Card Showcase Side */}
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-10">
             <div className="space-y-4">
-              <p className="section-overline">[03 // CONNECTION]</p>
+              <p className="section-overline">{t('연락처', 'CONTACT')}</p>
               <h2 className="section-title font-display bg-gradient-to-r from-white via-zinc-200 to-zinc-500 bg-clip-text text-transparent font-bold">
-                Let’s shape your next story.
+                {t('생산적인 아이디어를 함께 실현합니다', 'Let’s shape your next story.')}
               </h2>
               <p className="max-w-xl text-sm leading-relaxed text-zinc-400 font-light">
-                명확한 비주얼 기획, 논리적인 개발 설계, 그리고 빠른 소통을 지향합니다. 카드를 클릭해 명함을 뒤집어보세요.
+                {t('디자인, 마케팅, 프로그래밍을 통해 문제를 해결하며, 사용자 중심의 결과물을 만듭니다. 명함을 클릭해 뒤집어보세요.', 'Solving problems through design, marketing, and programming, delivering user-centered outcomes. Click the card to flip.')}
               </p>
             </div>
 
@@ -129,9 +133,9 @@ export default function ContactPage() {
                 >
                   <div className="flex justify-between items-start">
                     <div>
-                      <h3 className="text-3xl font-extrabold tracking-tight text-white font-display" style={{ transform: "translateZ(20px)" }}>SEOHARO</h3>
+                      <h3 className="text-3xl font-extrabold tracking-tight text-white font-display" style={{ transform: "translateZ(20px)" }}>{data.name}</h3>
                       <p className="text-[9px] font-mono tracking-widest text-zinc-500 mt-2 uppercase" style={{ transform: "translateZ(15px)" }}>
-                        Brand Designer, Marketer, & CEO
+                        {t('디자이너 · 마케터 · 개발자', 'Brand Designer, Marketer, & Developer')}
                       </p>
                     </div>
                     <div 
@@ -144,7 +148,7 @@ export default function ContactPage() {
                   
                   <div className="flex items-center gap-2 text-zinc-500 text-[10px] font-mono uppercase tracking-wider" style={{ transform: "translateZ(25px)" }}>
                     <MapPin size={12} className="text-zinc-650" />
-                    {portfolioData.contact.location}
+                    {data.contact.location}
                   </div>
                 </div>
 
@@ -157,26 +161,26 @@ export default function ContactPage() {
                   }}
                 >
                   <div className="space-y-4">
-                    <span className="text-[8.5px] font-mono uppercase tracking-widest text-zinc-500">Contact Node</span>
+                    <span className="text-[8.5px] font-mono uppercase tracking-widest text-zinc-500">{t('연락망', 'Contact Node')}</span>
                     <div className="space-y-2">
                       <div className="flex items-center gap-3">
                         <Mail className="w-4 h-4 text-zinc-500" />
-                        <span className="text-xs font-mono text-zinc-350">{portfolioData.contact.email}</span>
+                        <span className="text-xs font-mono text-zinc-350">{data.contact.email}</span>
                       </div>
                       <div className="flex items-center gap-3">
                         <GithubIcon className="w-4 h-4 text-zinc-500" />
-                        <span className="text-xs font-mono text-zinc-350">github.com/haroseo</span>
+                        <span className="text-xs font-mono text-zinc-350">{data.contact.github.replace('https://', '')}</span>
                       </div>
                       <div className="flex items-center gap-3">
                         <MessageSquare className="w-4 h-4 text-zinc-500" />
-                        <span className="text-xs font-mono text-zinc-350">{portfolioData.contact.discord}</span>
+                        <span className="text-xs font-mono text-zinc-350">{data.contact.discord}</span>
                       </div>
                     </div>
                   </div>
 
                   <div className="text-[8.5px] text-zinc-500 font-mono tracking-wider uppercase flex justify-between items-center border-t border-zinc-900 pt-4">
                     <span>seoharo.kro.kr</span>
-                    <span className="text-zinc-400 font-bold">Flip back</span>
+                    <span className="text-zinc-400 font-bold">{t('돌아가기', 'Flip back')}</span>
                   </div>
                 </div>
               </motion.div>
@@ -188,13 +192,16 @@ export default function ContactPage() {
             {/* Copy Badges */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
-                { type: 'email', label: 'Copy Email', value: portfolioData.contact.email, icon: Mail },
-                { type: 'discord', label: 'Copy Discord', value: portfolioData.contact.discord, icon: MessageSquare },
-                { type: 'github', label: 'Copy GitHub', value: portfolioData.contact.github, icon: GithubIcon }
+                { type: 'email', label: t('이메일 복사', 'Copy Email'), value: data.contact.email, icon: Mail },
+                { type: 'discord', label: t('디스코드 복사', 'Copy Discord'), value: data.contact.discord, icon: MessageSquare },
+                { type: 'github', label: t('깃허브 복사', 'Copy GitHub'), value: data.contact.github, icon: GithubIcon }
               ].map(badge => (
                 <motion.button
                   key={badge.type}
-                  onClick={() => handleCopy(badge.type as any, badge.value)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleCopy(badge.type as any, badge.value);
+                  }}
                   whileHover={{ scale: 1.025, borderColor: '#ffffff', boxShadow: '0 0 12px rgba(255, 255, 255, 0.05)' }}
                   whileTap={{ scale: 0.96 }}
                   className="flex items-center justify-between p-4 bg-[#0a0a0c] border border-zinc-900 rounded-2xl cursor-pointer hover:bg-zinc-900/40 transition-all select-none"
@@ -219,22 +226,22 @@ export default function ContactPage() {
               transition={{ duration: 0.8 }}
               className="rounded-3xl border border-zinc-900 bg-zinc-950/40 p-8 md:p-10 shadow-2xl backdrop-blur-md"
             >
-              <h3 className="text-lg font-bold tracking-tight text-white mb-6 font-display">Send a Quick Message</h3>
+              <h3 className="text-lg font-bold tracking-tight text-white mb-6 font-display">{t('빠른 메시지 전송', 'Send a Quick Message')}</h3>
               <form onSubmit={handleFormSubmit} className="space-y-5">
                 <div>
-                  <label htmlFor="name" className="block text-[8px] font-mono font-bold text-zinc-500 uppercase tracking-widest mb-2">Name</label>
+                  <label htmlFor="name" className="block text-[8px] font-mono font-bold text-zinc-500 uppercase tracking-widest mb-2">{t('이름', 'Name')}</label>
                   <input
                     id="name"
                     type="text"
                     required
                     value={formState.name}
                     onChange={(e) => setFormState(prev => ({ ...prev, name: e.target.value }))}
-                    placeholder="홍길동"
+                    placeholder={t('이름을 입력해 주세요.', 'Enter your name.')}
                     className="w-full px-4 py-3 rounded-xl border border-zinc-900 focus:border-white focus:ring-0 text-white text-xs outline-none bg-zinc-950/20 font-light transition-all duration-300 hover:border-zinc-800"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-[8px] font-mono font-bold text-zinc-500 uppercase tracking-widest mb-2">Email Address</label>
+                  <label htmlFor="email" className="block text-[8px] font-mono font-bold text-zinc-500 uppercase tracking-widest mb-2">{t('이메일 주소', 'Email Address')}</label>
                   <input
                     id="email"
                     type="email"
@@ -246,14 +253,14 @@ export default function ContactPage() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-[8px] font-mono font-bold text-zinc-500 uppercase tracking-widest mb-2">Message</label>
+                  <label htmlFor="message" className="block text-[8px] font-mono font-bold text-zinc-500 uppercase tracking-widest mb-2">{t('내용', 'Message')}</label>
                   <textarea
                     id="message"
                     required
                     rows={4}
                     value={formState.message}
                     onChange={(e) => setFormState(prev => ({ ...prev, message: e.target.value }))}
-                    placeholder="프로젝트 의뢰 내용 및 협업 아이디어를 공유해 주세요."
+                    placeholder={t('프로젝트 의뢰 내용이나 협업 아이디어를 자유롭게 공유해 주세요.', 'Please share your project details or collaboration ideas.')}
                     className="w-full px-4 py-3 rounded-xl border border-zinc-900 focus:border-white focus:ring-0 text-white text-xs outline-none bg-zinc-950/20 font-light resize-none transition-all duration-300 hover:border-zinc-800"
                   />
                 </div>
@@ -267,12 +274,12 @@ export default function ContactPage() {
                 >
                   {formStatus === 'idle' && (
                     <>
-                      Send Message
+                      {t('메시지 보내기', 'Send Message')}
                       <Send size={12} />
                     </>
                   )}
-                  {formStatus === 'sending' && 'Sending...'}
-                  {formStatus === 'success' && 'Message Sent Successfully!'}
+                  {formStatus === 'sending' && t('보내는 중...', 'Sending...')}
+                  {formStatus === 'success' && t('메시지가 성공적으로 전송되었습니다!', 'Message Sent Successfully!')}
                 </motion.button>
               </form>
             </motion.div>

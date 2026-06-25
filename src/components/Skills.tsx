@@ -1,7 +1,11 @@
 import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
+import { useLanguage } from './LanguageContext';
 
 export default function Skills() {
+  const { language, t } = useLanguage();
+  const data = portfolioData[language];
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -31,17 +35,19 @@ export default function Skills() {
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <p className="text-xs uppercase tracking-[0.3em] text-zinc-500 mb-4 font-mono">[04 // CAPABILITIES]</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-zinc-550 mb-4 font-mono">
+            {t('기술 역량', 'CAPABILITIES')}
+          </p>
           <h2 className="section-title mt-4 mb-6 font-display bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent font-bold">
-            Skills & Stack
+            {t('기술 스택', 'Skills & Stack')}
           </h2>
-          <p className="mx-auto max-w-2xl text-sm leading-relaxed text-zinc-400 font-light">
-            디자인과 개발의 경계에서 시너지를 극대화하는 핵심 기술 스택입니다.
+          <p className="mx-auto max-w-2xl text-sm sm:text-base leading-relaxed text-zinc-200 font-normal">
+            {t('디자인, 마케팅, 개발 전반의 역량을 나타내는 핵심 기술 스택입니다.', 'Key skill stack representing capabilities across design, marketing, and programming.')}
           </p>
         </motion.div>
 
         <div className="grid gap-8 lg:grid-cols-3">
-          {portfolioData.skills.map((skillGroup, groupIndex) => (
+          {data.skills.map((skillGroup, groupIndex) => (
             <motion.div
               key={groupIndex}
               variants={containerVariants}
