@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Pretendard', 'Outfit', 'system-ui', 'sans-serif'],
+        sans: ['Outfit', 'Pretendard', 'system-ui', 'sans-serif'],
       },
     },
   },

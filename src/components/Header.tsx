@@ -29,24 +29,24 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-5 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
-      <div className="w-full max-w-5xl bg-black/75 backdrop-blur-2xl border border-zinc-900 rounded-full px-12 py-5.5 flex items-center justify-between shadow-[0_20px_50px_rgba(0,0,0,0.9)] pointer-events-auto">
+    <header className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+      <div className="w-full max-w-4xl bg-black/75 backdrop-blur-2xl border border-zinc-900 rounded-full px-6 py-3 flex items-center justify-between shadow-[0_20px_50px_rgba(0,0,0,0.9)] pointer-events-auto">
         
         {/* Brand Logo & Name */}
         <div className="flex items-center gap-3">
           <img 
             src="/assets/seoharo-logo-round.png" 
             alt="SEOHARO" 
-            className="w-11 h-11 object-cover rounded-full border border-zinc-850 bg-black" 
+            className="w-8 h-8 object-cover rounded-full border border-zinc-850 bg-black" 
           />
           <div className="flex flex-col">
             <button
               onClick={() => navigate('/about')}
-              className="text-left text-sm sm:text-base font-bold tracking-[0.25em] uppercase text-white hover:text-zinc-200 transition-colors cursor-pointer"
+              className="text-left text-xs sm:text-sm font-bold tracking-[0.2em] uppercase text-white hover:text-zinc-200 transition-colors cursor-pointer"
             >
               SEOHARO
             </button>
-            <p className="text-[8.5px] uppercase tracking-[0.25em] text-zinc-500 font-mono">
+            <p className="text-[7px] uppercase tracking-[0.2em] text-zinc-500 font-mono">
               DESIGN & DEV
             </p>
           </div>
@@ -59,7 +59,7 @@ export default function Header() {
               <button
                 key={item.label}
                 onClick={() => handleNavClick(item.path)}
-                className={`relative px-4.5 py-1.5 text-[12.5px] font-bold uppercase tracking-[0.2em] font-mono cursor-pointer transition-colors ${
+                className={`relative px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.15em] font-mono cursor-pointer transition-colors ${
                   isLinkActive(item.path)
                     ? 'text-white'
                     : 'text-zinc-500 hover:text-zinc-200'
@@ -79,7 +79,7 @@ export default function Header() {
           <div className="h-4 w-px bg-zinc-800" />
           <button
             onClick={() => setLanguage(language === 'ko' ? 'en' : 'ko')}
-            className="px-4 py-1.5 border border-zinc-800 bg-zinc-950 hover:bg-zinc-900 text-zinc-400 hover:text-white rounded-full text-[9px] font-mono font-bold tracking-widest cursor-pointer transition-all uppercase"
+            className="px-3 py-1 border border-zinc-800 bg-zinc-950 hover:bg-zinc-900 text-zinc-400 hover:text-white rounded-full text-[8px] font-mono font-bold tracking-widest cursor-pointer transition-all uppercase"
           >
             {language === 'ko' ? 'English' : '한국어'}
           </button>

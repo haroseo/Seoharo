@@ -122,13 +122,13 @@ export default function About() {
     <section 
       ref={containerRef}
       id="about" 
-      className="relative py-28 px-4 sm:px-6 lg:px-8 bg-black overflow-hidden border-b border-zinc-900"
+      className="relative py-20 px-4 sm:px-6 lg:px-8 bg-black overflow-hidden border-b border-zinc-900"
       style={{ perspective: 1200 }}
     >
       <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-zinc-950 to-transparent pointer-events-none" />
       
       <div className="relative z-10 mx-auto max-w-7xl space-y-24">
-        <div className="grid gap-16 lg:grid-cols-[1.2fr_0.8fr] items-start">
+        <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] items-start">
           
           {/* Main Info Side */}
           <div className="space-y-12">

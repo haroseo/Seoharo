@@ -54,14 +54,14 @@ export default function Timeline() {
   ];
 
   return (
-    <section id="journey" className="py-32 px-4 sm:px-6 lg:px-8 bg-black border-b border-zinc-900 relative overflow-hidden">
+    <section id="journey" className="py-20 px-4 sm:px-6 lg:px-8 bg-black border-b border-zinc-900 relative overflow-hidden">
       <div className="relative z-10 mx-auto max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mb-24 text-center"
+          className="mb-16 text-center"
         >
           <p className="text-xs uppercase tracking-[0.25em] text-zinc-550 font-mono">JOURNEY</p>
           <h2 className="section-title mt-4 mb-6 font-display bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent font-bold">

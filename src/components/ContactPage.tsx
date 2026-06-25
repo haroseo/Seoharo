@@ -81,7 +81,7 @@ export default function ContactPage() {
   };
 
   return (
-    <section className="relative py-28 px-4 sm:px-6 lg:px-8 bg-black text-white min-h-screen flex flex-col justify-center overflow-hidden">
+    <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-black text-white min-h-screen flex flex-col justify-center overflow-hidden">
       {/* Decorative grids */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at center, #ffffff 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
 

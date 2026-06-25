@@ -234,10 +234,10 @@ export default function PortfolioPage() {
           <div
             key={item.id}
             ref={(el) => { sectionRefs.current[idx] = el; }}
-            className="min-h-screen w-full flex items-center justify-center relative border-b border-zinc-950 px-6 sm:px-12 md:px-20 py-24"
+            className="min-h-screen w-full flex items-center justify-center relative border-b border-zinc-950 px-6 sm:px-12 md:px-20 py-16"
           >
             {/* Section grid layout */}
-            <div className="max-w-6xl w-full grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
+            <div className="max-w-6xl w-full grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
               
               {/* Left Column: Text Panels */}
               <motion.div

@@ -11,7 +11,7 @@ export default function Communities() {
   const data = portfolioData[language];
 
   return (
-    <section id="communities" className="py-32 px-4 sm:px-6 lg:px-8 bg-black border-b border-zinc-900 relative overflow-hidden">
+    <section id="communities" className="py-20 px-4 sm:px-6 lg:px-8 bg-black border-b border-zinc-900 relative overflow-hidden">
       <div className="relative mx-auto max-w-7xl z-10">
         
         {/* Title */}
@@ -20,7 +20,7 @@ export default function Communities() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mb-24 text-center"
+          className="mb-16 text-center"
         >
           <p className="text-xs uppercase tracking-[0.3em] text-zinc-550 mb-4 font-mono">
             {t('커뮤니티 리더십', 'COMMUNITY LEADERSHIP')}
