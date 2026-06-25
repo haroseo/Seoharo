@@ -37,10 +37,10 @@ export default function PortfolioPage() {
     {
       id: 'rofolder',
       type: 'discord',
-      title: t('로폴더 (RoFolder)', 'RoFolder'),
+      title: 'RoFolder',
       slogan: t('당신의 스토리를 성공의 데이터로', 'Everything you need to search RoShop and raise your value'),
       description: t('청소년 및 청년의 스타트업 창업을 독려하고 지원하는 디스코드 대표 커뮤니티입니다.', 'A leading Discord community that encourages youth startup entrepreneurship.'),
-      tags: [t('대표 // CEO', 'Representative // CEO'), 'Branding', 'Community Operation'],
+      tags: ['CEO', 'Branding', 'Community Operations'],
       link: 'https://discord.gg/ABz6SQ74Yv',
       achievements: [
         t('청소년 및 청년 창업 활성화를 장려하는 네트워킹 서버 운영', 'Operating networking channels that promote youth startup business'),
@@ -54,7 +54,7 @@ export default function PortfolioPage() {
       title: 'Limited™',
       slogan: t('오직 나만을 위한 제품', 'Products made exclusively for you'),
       description: t('실무 경험을 쌓고 다양한 그래픽 및 코드 관련 시도를 진행하는 시발점이 되는 채널입니다.', 'A channel serving as the starting point of practical experience and various creative attempts.'),
-      tags: [t('설립자 // Founder', 'Founder'), 'Asset Curation', 'Creative Studio'],
+      tags: ['Founder', 'Asset Curation', 'Creative Studio'],
       link: 'https://discord.gg/utGzjE6r8J',
       achievements: [
         t('게임 개발에 사용 가능한 무료 에셋 및 리소스 배포', 'Distributing free game assets and design resources for developers'),
@@ -97,7 +97,7 @@ export default function PortfolioPage() {
       title: t('나랏말싸미', 'Naramarsami'),
       slogan: t('훈민정음 자모결합 원리를 담아낸 인터랙티브 타자 연습', 'Interactive Hangeul typing practice based on Hunminjeongeum principles'),
       description: t('한글 창제 원리와 타이포그래피 요소를 녹여낸 인터랙티브 에듀테크 타자 연습 서비스입니다.', 'An interactive typing practice service presenting Hangeul\'s letters and typography elements.'),
-      tags: ['훈민정음.kro.kr', t('인터랙션', 'Interaction'), 'EdTech'],
+      tags: ['훈민정음.kro.kr', 'Interaction', 'EdTech'],
       link: 'https://훈민정음.kro.kr',
       github: 'https://github.com/naramarsami/naramarsami',
       details: {
@@ -113,7 +113,7 @@ export default function PortfolioPage() {
       title: 'LUXERET',
       slogan: t('감각과 데이터를 연결하는 브랜드 마케팅', 'Connecting senses and data via brand marketing'),
       description: t('브랜드 가치관과 성과 지표를 연결하는 것을 목표로 마케팅 전반을 총괄하고 있습니다.', 'Working as a brand marketer, aiming to connect brand values with performance metrics.'),
-      tags: [t('마케터 // Marketer', 'Marketer'), 'Viral Campaign', 'Funnel Analysis'],
+      tags: ['Marketer', 'Viral Campaign', 'Funnel Analysis'],
       link: 'https://luxeret.com/',
       achievements: [
         t('마케팅 콘텐츠 디자인 기획 및 프로모션 소재 제작 지원', 'Planning marketing campaigns and managing brand channels'),
@@ -126,7 +126,7 @@ export default function PortfolioPage() {
       title: 'HANN LABS™',
       slogan: t('상상을 시각화하는 브랜드 디자인', 'Visualizing imagination via brand design'),
       description: t('HANN LABS™에서 디자인을 배우며 어시스턴트(보조) 및 스태프로 시각 작업 전반에 참여하고 있습니다.', 'Learning design and participating as assistant staff at HANN LABS™.'),
-      tags: [t('스태프 디자이너 // Staff Designer', 'Staff Designer'), 'Graphic', 'Visuals'],
+      tags: ['Staff Designer', 'Graphic Design', 'Visuals'],
       achievements: [
         t('브랜드 비주얼 디자인 보조 및 이미지 프로모션 디자인 지원', 'Assisting team brand visual design and image promotions'),
         t('아트워크 기획 보조 및 커뮤니티 그래픽 요소 제작 지원', 'Supporting artwork planning and community graphic production')
@@ -138,7 +138,7 @@ export default function PortfolioPage() {
       title: 'SIMPLX',
       slogan: t('간결한 논리를 담은 시스템 개발', 'System development with simple logic'),
       description: t('필요한 시스템 스크립트와 프로그램을 제작하고 제어 코드를 작성합니다.', 'Developing system scripts and utility programs.'),
-      tags: [t('개발자 // Developer', 'Developer'), 'System Scripts', 'Utility Tool'],
+      tags: ['Developer', 'System Scripts', 'Utility Tool'],
       achievements: [
         t('스크립트 및 프로그램 구현', 'Implementing scripts and programs'),
         t('시스템 도구 최적화 스크립트 작성 지원', 'Supporting system tools optimization and scripting')

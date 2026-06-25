@@ -47,7 +47,7 @@ export default function Header() {
               SEOHARO
             </button>
             <p className="text-[8.5px] uppercase tracking-[0.25em] text-zinc-500 font-mono">
-              {t('디자이너 & 개발자', 'DESIGN & DEV')}
+              DESIGN & DEV
             </p>
           </div>
         </div>

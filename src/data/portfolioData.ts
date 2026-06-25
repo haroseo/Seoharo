@@ -122,7 +122,7 @@ const portfolioDataKo: PortfolioDataType = {
   careers: [
     {
       id: "rofolder",
-      title: "로폴더 (RoFolder) - 대표",
+      title: "RoFolder - CEO",
       slogan: "당신의 가치를 높이는, 로샵 탐색의 모든 것",
       description: "청소년 및 청년의 스타트업 창업을 독려하고 이끄는 디스코드 대표 커뮤니티입니다.",
       achievements: [
@@ -135,7 +135,7 @@ const portfolioDataKo: PortfolioDataType = {
     },
     {
       id: "limited",
-      title: "Limited™ - 설립자",
+      title: "Limited™ - Founder",
       slogan: "오직 나만을 위한 제품, Limited™",
       description: "실무 경험을 쌓고 다양한 그래픽 및 코드 관련 시도를 진행하는 시발점이 되는 채널입니다.",
       achievements: [
@@ -147,7 +147,7 @@ const portfolioDataKo: PortfolioDataType = {
     },
     {
       id: "luxeret",
-      title: "LUXERET - 마케터",
+      title: "LUXERET - Marketer",
       slogan: "브랜드 마케팅",
       description: "마케터로 활동하고 있습니다.",
       achievements: [
@@ -159,7 +159,7 @@ const portfolioDataKo: PortfolioDataType = {
     },
     {
       id: "hannlabs",
-      title: "HANN LABS™ - 스태프 디자이너",
+      title: "HANN LABS™ - Staff Designer",
       slogan: "브랜드 디자인",
       description: "HANN LABS™에서 디자인을 배우며 어시스턴트(보조) 및 스태프로 참여하고 있습니다.",
       achievements: [
@@ -170,7 +170,7 @@ const portfolioDataKo: PortfolioDataType = {
     },
     {
       id: "simplx",
-      title: "SIMPLX - 개발자",
+      title: "SIMPLX - Developer",
       slogan: "시스템 개발",
       description: "필요한 시스템 스크립트와 프로그램을 제작하고 제어 코드를 작성합니다.",
       achievements: [
@@ -201,7 +201,7 @@ const portfolioDataKo: PortfolioDataType = {
       name: "로블갤러리 (ROGLLAERY)",
       members: "800+",
       logo: "/assets/rogllaery.png",
-      role: "설립자 및 총괄",
+      role: "Founder & General Manager",
       slogan: "유저가 만들어 나가는 투명한 커뮤니티, 로블갤러리",
       description: "유저가 만들어 나가는 투명한 커뮤니티, 로블갤러리",
       detailsText: "로블갤러리는 유저들이 스스로 교류하고 성장하는 소통 커뮤니티입니다. 유저들의 자발적인 참여와 투명한 문화를 지향하며 건전하고 투명한 커뮤니티 환경을 제공하고 지속 가능한 소통의 장을 만듭니다."
@@ -210,7 +210,7 @@ const portfolioDataKo: PortfolioDataType = {
       name: "Limited™",
       members: "500+",
       logo: "/assets/limited.png",
-      role: "설립자",
+      role: "Founder",
       slogan: "오직 나만을 위한 제품, Limited™",
       description: "최상급 무료 에셋 배포와 가상 공간에 최적화된 게임 리소스 라이브러리 채널",
       detailsText: "Limited™는 최상급 무료배포와 게임 환경에 특화된 맞춤형 그래픽/코드 에셋을 제공합니다. 개발자들의 시간 비용을 획기적으로 줄여줄 프리미엄 창작 리소스를 지속 연구하고 유통합니다."
@@ -219,7 +219,7 @@ const portfolioDataKo: PortfolioDataType = {
       name: "로폴더 (RoFolder)",
       members: "700+",
       logo: "/assets/rofolder-logo-new.png",
-      role: "대표",
+      role: "CEO",
       slogan: "당신의 가치를 높이는, 로샵 탐색의 모든 것",
       description: "청소년 및 청년의 스타트업 창업을 독려하고 이끄는 디스코드 대표 커뮤니티",
       detailsText: "로폴더는 청소년 및 청년의 스타트업 창업을 독려하고 이끄는 디스코드 대표 커뮤니티입니다. 브랜드 가치 구축, 모의 피칭 피드백, 네트워킹 리소스를 결합하여 비즈니스의 첫 데이터를 생성할 수 있도록 스타트업 생태계를 활성화합니다."

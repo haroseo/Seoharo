@@ -119,7 +119,7 @@ export default function ChatPage() {
             S
           </div>
           <div className="ml-3">
-            <h3 className="text-xs font-bold text-white font-mono">{t('서하루', 'SEOHARO')}</h3>
+            <h3 className="text-xs font-bold text-white font-mono">SEOHARO</h3>
           </div>
         </div>
 

@@ -204,10 +204,7 @@ export default function About() {
                   {t('소속 및 역할', 'Affiliation & Role')}
                 </p>
                 <p className="mt-2 text-xs sm:text-sm font-bold text-white font-sans leading-relaxed">
-                  {t(
-                    '로폴더 대표 · Limited™ 설립자 · LUXERET 마케터 · HANN LABS™ 스태프 디자이너 · SIMPLX 개발자',
-                    'RoFolder CEO · Limited™ Founder · LUXERET Marketer · HANN LABS Staff Designer · SIMPLX Developer'
-                  )}
+                  RoFolder CEO · Limited™ Founder · LUXERET Marketer · HANN LABS™ Staff Designer · SIMPLX Developer
                 </p>
               </motion.div>
 

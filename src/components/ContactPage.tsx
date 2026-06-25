@@ -133,9 +133,9 @@ export default function ContactPage() {
                 >
                   <div className="flex justify-between items-start">
                     <div>
-                      <h3 className="text-3xl font-extrabold tracking-tight text-white font-display" style={{ transform: "translateZ(20px)" }}>{data.name}</h3>
+                      <h3 className="text-3xl font-extrabold tracking-tight text-white font-display" style={{ transform: "translateZ(20px)" }}>SEOHARO</h3>
                       <p className="text-[9px] font-mono tracking-widest text-zinc-500 mt-2 uppercase" style={{ transform: "translateZ(15px)" }}>
-                        {t('디자이너 · 마케터 · 개발자', 'Brand Designer, Marketer, & Developer')}
+                        Brand Designer, Marketer, & Developer
                       </p>
                     </div>
                     <div 

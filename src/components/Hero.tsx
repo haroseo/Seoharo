@@ -49,14 +49,14 @@ export default function Hero() {
           {/* Main Title / Slogan block */}
           <motion.div variants={itemVariants} className="space-y-8 text-center lg:text-left">
             <div className="flex items-center justify-center lg:justify-start gap-3">
-              <span className="text-[10px] font-mono tracking-[0.4em] text-zinc-500 uppercase">
-                INTRO // {data.name}
+              <span className="text-[10px] font-mono tracking-[0.4em] text-zinc-550 uppercase">
+                INTRO // SEOHARO
               </span>
               <span className="h-px w-6 bg-zinc-850" />
             </div>
 
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold uppercase tracking-tight text-white leading-tight">
-              {data.name}
+              SEOHARO
             </h1>
 
             <p className="max-w-xl text-sm md:text-base leading-relaxed text-zinc-200 mx-auto lg:mx-0 font-normal">
@@ -91,10 +91,10 @@ export default function Hero() {
               <div className="flex items-end justify-between gap-4">
                 <div>
                   <p className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase">
-                    {t('프로필 노드', 'PROFILE NODE')}
+                    PROFILE NODE
                   </p>
                   <h2 className="text-xl font-bold text-white mt-1 font-display">
-                    {data.name}
+                    SEOHARO
                   </h2>
                 </div>
                 <div className="rounded-full border border-zinc-850 bg-zinc-900/40 px-3 py-1 text-[9px] font-mono font-bold uppercase tracking-wider text-zinc-300">
@@ -132,10 +132,7 @@ export default function Hero() {
               <div className="pt-6 border-t border-zinc-900 text-[9px] font-mono tracking-widest text-zinc-500 grid gap-1.5 uppercase">
                 <span>{t('역할 및 소속', 'ROLES & POSITION')}</span>
                 <span className="text-xs text-white font-sans font-bold leading-normal">
-                  {t(
-                    '로폴더 대표 / Limited™ 설립자 / LUXERET 마케터 / HANN LABS 스태프 디자이너 / SIMPLX 개발자',
-                    'ROFOLDER CEO / LIMITED FOUNDER / LUXERET MARKETER / HANN LABS STAFF DESIGNER / SIMPLX DEVELOPER'
-                  )}
+                  ROFOLDER CEO / LIMITED™ FOUNDER / LUXERET MARKETER / HANN LABS™ STAFF DESIGNER / SIMPLX DEVELOPER
                 </span>
               </div>
             </div>
