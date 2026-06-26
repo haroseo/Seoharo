@@ -113,7 +113,7 @@ const portfolioDataKo: PortfolioDataType = {
       category: "marketing",
       details: {
         background: "직관적인 캘린더 뷰와 일정 조율 문제를 신속하게 조율하기 위한 플랫폼 프로젝트입니다.",
-        strategy: "사용자 분석 및 핵심 기능 중심의 론칭을 담당하여 온보딩 이탈률을 최소화했습니다.",
+        strategy: "사용자 분석 및 핵심 기능 중심의 제작을 담당하여 온보딩 이탈률을 최소화했습니다.",
         metrics: "사용자 친화적 캘린더 인터페이스 설계"
       }
     }
@@ -137,7 +137,7 @@ const portfolioDataKo: PortfolioDataType = {
       id: "limited",
       title: "Limited™ - Founder",
       slogan: "오직 나만을 위한 제품, Limited™",
-      description: "Limited™는 오직 나만을 위한 제품, Limited™로 실무경험과 다양한 시도의 시발점이 되는 채널입니다.",
+      description: "Limited™는 오직 나만을 위한 제품, Limited™ 브랜드로 가상 공간에 최적화된 게임 리소스와 에셋 라이브러리를 공유하고 소통하는 채널입니다.",
       achievements: [
         "게임 개발에 사용 가능한 무료 에셋 및 리소스 배포",
         "사용자 피드백 기반 리소스 구성 및 커뮤니티 채널 관리"
@@ -192,8 +192,8 @@ const portfolioDataKo: PortfolioDataType = {
       logo: "/assets/limited.png",
       role: "Founder",
       slogan: "오직 나만을 위한 제품, Limited™",
-      description: "Limited™는 오직 나만을 위한 제품, Limited™로 실무경험과 다양한 시도의 시발점이 되는 채널입니다.",
-      detailsText: "Limited™는 오직 나만을 위한 제품, Limited™로 실무경험과 다양한 시도의 시발점이 되는 채널입니다."
+      description: "Limited™는 오직 나만을 위한 제품, Limited™ 브랜드로 가상 공간에 최적화된 게임 리소스와 에셋 라이브러리를 공유하고 소통하는 채널입니다.",
+      detailsText: "Limited™는 오직 나만을 위한 제품, Limited™ 브랜드로 가상 공간에 최적화된 게임 리소스와 에셋 라이브러리를 공유하고 소통하는 채널입니다."
     },
     {
       name: "로폴더 (RoFolder)",
@@ -273,7 +273,7 @@ const portfolioDataEn: PortfolioDataType = {
       category: "marketing",
       details: {
         background: "A platform project built to solve schedule coordination issues with a calendar view.",
-        strategy: "Conducted user analysis and key features launch to minimize onboarding drop-off.",
+        strategy: "Conducted user analysis and produced key features to minimize onboarding drop-off.",
         metrics: "Increased user retention metrics by improving the onboarding page UX."
       }
     }
@@ -297,7 +297,7 @@ const portfolioDataEn: PortfolioDataType = {
       id: "limited",
       title: "Limited™ - Founder",
       slogan: "Products made exclusively for you, Limited™",
-      description: "Limited™ serves as the starting point of practical experience and various attempts, with the slogan 'Products made exclusively for you, Limited™'.",
+      description: "Limited™ is a channel exclusively for me — sharing and communicating game resources and assets optimized for virtual spaces under the Limited™ brand.",
       achievements: [
         "Distributing free game assets and design resources for developers",
         "Structuring resource categories and managing channels based on feedback"
@@ -352,8 +352,8 @@ const portfolioDataEn: PortfolioDataType = {
       logo: "/assets/limited.png",
       role: "Founder",
       slogan: "Products made exclusively for you, Limited™",
-      description: "Limited™ serves as the starting point of practical experience and various attempts, with the slogan 'Products made exclusively for you, Limited™'.",
-      detailsText: "Limited™ serves as the starting point of practical experience and various attempts, with the slogan 'Products made exclusively for you, Limited™'."
+      description: "Limited™ is a channel exclusively for me — sharing and communicating game resources and assets optimized for virtual spaces under the Limited™ brand.",
+      detailsText: "Limited™ is a channel exclusively for me — sharing and communicating game resources and assets optimized for virtual spaces under the Limited™ brand."
     },
     {
       name: "RoFolder",

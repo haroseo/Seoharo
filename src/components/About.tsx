@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+﻿import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { useLanguage } from './LanguageContext';
 
@@ -94,10 +94,10 @@ export default function About() {
   const stats = [
     {
       label: t('경력 수', 'Organizations'),
-      value: '4',
+      value: '30+',
       proof: t(
-        '로폴더 CEO, Limited™ Founder, LUXERET 마케터, HANN LABS™ 스태프 디자이너 등 4개 조직에서 다양한 역할을 경험하며 실무 역량을 길렀습니다.',
-        'Various role experiences across 4 organizations - RoFolder CEO, Limited™ Founder, LUXERET Marketer, and HANN LABS™ Staff Designer - proving cross-disciplinary experience.'
+        '로폴더 CEO, Limited™ Founder, LUXERET 마케터, HANN LABS™ 스태프 디자이너 등 30개 이상의 조직에서 다양한 역할을 경험하며 실무 역량을 길렀습니다.',
+        'Having worked with 30+ organizations, covering roles from CEO and Founder to Marketer and Designer - proving wide cross-disciplinary experience.'
       )
     },
     {
@@ -113,7 +113,7 @@ export default function About() {
       value: '3+',
       proof: t(
         'Design Pick, Planor, 나랏말싸미 등 실제 기획하고 론칭한 웹 서비스 경험을 바탕으로 실전 문제 해결력을 기르고 있습니다.',
-        'Planning and launching functional web services like Design Pick, Planor, and Naramarsami, building practical problem-solving capabilities.'
+        'Planning and producing functional web services like Design Pick, Planor, and Naramarsami, building practical problem-solving capabilities.'
       )
     }
   ];
@@ -312,3 +312,4 @@ export default function About() {
     </section>
   );
 }
+
