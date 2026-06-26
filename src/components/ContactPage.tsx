@@ -69,15 +69,72 @@ export default function ContactPage() {
     setTimeout(() => setCopiedText(null), 2000);
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formState.name || !formState.email || !formState.message) return;
     setFormStatus('sending');
-    setTimeout(() => {
-      setFormStatus('success');
-      setFormState({ name: '', email: '', message: '' });
-      setTimeout(() => setFormStatus('idle'), 4000);
-    }, 1500);
+
+    const webhookUrl = import.meta.env.VITE_DISCORD_WEBHOOK_URL;
+    if (!webhookUrl) {
+      console.warn("VITE_DISCORD_WEBHOOK_URL is not defined in environment variables. Simulating success.");
+      setTimeout(() => {
+        setFormStatus('success');
+        setFormState({ name: '', email: '', message: '' });
+        setTimeout(() => setFormStatus('idle'), 4000);
+      }, 1000);
+      return;
+    }
+
+    try {
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          embeds: [
+            {
+              title: '📬 포트폴리오 사이트 새로운 문의 접수',
+              color: 0x000000,
+              fields: [
+                {
+                  name: '👤 이름 / 닉네임',
+                  value: formState.name,
+                  inline: true,
+                },
+                {
+                  name: '📧 이메일 주소',
+                  value: formState.email,
+                  inline: true,
+                },
+                {
+                  name: '💬 문의 내용',
+                  value: formState.message,
+                },
+              ],
+              timestamp: new Date().toISOString(),
+            },
+          ],
+        }),
+      });
+
+      if (response.ok) {
+        setFormStatus('success');
+        setFormState({ name: '', email: '', message: '' });
+        setTimeout(() => setFormStatus('idle'), 4000);
+      } else {
+        throw new Error('Webhook transmission failed');
+      }
+    } catch (error) {
+      console.error('Error sending webhook:', error);
+      setFormStatus('idle');
+      alert(
+        t(
+          '메시지 전송에 실패했습니다. 상단의 이메일이나 디스코드를 통해 연락 부탁드립니다.',
+          'Failed to send message. Please contact me directly via Email or Discord.'
+        )
+      );
+    }
   };
 
   return (
