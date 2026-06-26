@@ -64,29 +64,29 @@ export default function About() {
     {
       title: t('시각 디자인 & 브랜딩', 'Visual Design & Branding'),
       description: t(
-        'HANN LABS™에서 디자인을 배우며 보조 스태프로 참여하고, 실무 경험과 다양한 크리에이티브 시도의 시발점이 된 Limited™의 브랜드 비주얼을 기획합니다.',
-        'Learning design and participating as assistant staff at HANN LABS™, and planning brand visuals for Limited™ which serves as the starting point of practical experience and various attempts.'
+        'HANN LABS™에서 디자인을 배우며 보조 스태프로 참여하고, 브랜드 비주얼 기획 경험을 기반으로 Limited™의 비주얼 정체성을 구상해 나갑니다.',
+        'Learning design and participating as assistant staff at HANN LABS™, and conceptualizing the visual identity of Limited™ based on brand design experience.'
       ),
     },
     {
-      title: t('브랜드 마케팅 & 성장 전략', 'Brand Marketing & Growth'),
+      title: t('브랜드 마케팅', 'Brand Marketing'),
       description: t(
-        'LUXERET의 마케터로서 마케팅 캠페인을 기획하고, 로폴더와 Limited™의 커뮤니티 성장을 위해 활발히 소통하며 도움을 주었습니다.',
-        'Participating as a marketer at LUXERET, planning marketing campaigns and communicating for the growth of the RoFolder and Limited™ communities.'
+        'LUXERET의 마케터로서 마케팅 활동에 참여하고 있으며, 로폴더와 Limited™ 채널을 통해 다양한 유저 소통과 채널 활성화를 경험했습니다.',
+        'Participating as a marketer at LUXERET, planning marketing campaigns and gaining experience in user communication and channel growth through RoFolder and Limited™.'
       ),
     },
     {
-      title: t('웹 및 소프트웨어 개발', 'Web & Software Development'),
+      title: t('웹 서비스 기획 & 개발', 'Web Service Development'),
       description: t(
-        'SIMPLX의 개발자로서 웹 서비스(Design Pick, 나랏말싸미, Planor) 및 디스코드 봇 등 실무에 필요한 시스템 프로그램과 도구를 직접 구현합니다.',
-        'Implementing necessary web services (Design Pick, Naramarsami, Planor), Discord bots, and software tools as a developer at SIMPLX.'
+        'Design Pick, 나랏말싸미, Planor 등 실제 작동하는 웹 서비스들을 직접 기획하고 구현합니다.',
+        'Directly planning and implementing functional web services like Design Pick, Naramarsami, and Planor.'
       ),
     },
     {
-      title: t('비즈니스 기획 & 운영', 'Business & Operations'),
+      title: t('비즈니스 운영', 'Business Operations'),
       description: t(
-        '로폴더(RoFolder)의 대표(CEO)로서 청년 창업 생태계 활성화를 위해 네트워킹을 이끌고 비즈니스 구조를 조율합니다.',
-        'Leading networking and structuring youth startup ecosystem operations as the representative (CEO) of RoFolder.'
+        '로폴더(RoFolder)의 CEO로서 청소년 및 청년 창업 활성화를 장려하는 네트워킹 커뮤니티를 총괄하고 운영을 이끕니다.',
+        'Leading and managing networking communities that support and encourage youth startups as the CEO of RoFolder.'
       ),
     },
   ];
@@ -94,26 +94,26 @@ export default function About() {
   const stats = [
     {
       label: t('경력 수', 'Organizations'),
-      value: '5',
+      value: '4',
       proof: t(
-        '로폴더 대표, Limited™ 설립자, LUXERET 마케터, HANN LABS™ 스태프 디자이너, SIMPLX 개발자 등 5개 조직에서의 다양한 직무 경험은 어떠한 환경에서도 완수해내는 프로덕션 신뢰도를 증명합니다.',
-        'Various role experiences across 5 organizations - RoFolder CEO, Limited™ Founder, LUXERET Marketer, HANN LABS™ Staff, and SIMPLX Developer - prove my production reliability.'
+        '로폴더 CEO, Limited™ Founder, LUXERET 마케터, HANN LABS™ 스태프 디자이너 등 4개 조직에서 다양한 역할을 경험하며 실무 역량을 길렀습니다.',
+        'Various role experiences across 4 organizations - RoFolder CEO, Limited™ Founder, LUXERET Marketer, and HANN LABS™ Staff Designer - proving cross-disciplinary experience.'
       )
     },
     {
       label: t('소통 유저 수', 'Users Reached'),
       value: '1,200+',
       proof: t(
-        '총합 1,200명 이상의 로폴더 및 Limited™ 커뮤니티 유저들과 직접 소통하며 유저 피드백을 수집하고, 실질적인 비즈니스 요구사항을 도출하는 능력을 증명합니다.',
-        'Communicating directly with over 1,200 users in RoFolder and Limited™ communities to gather feedback and extract practical business requirements.'
+        '총합 1,200명 이상의 로폴더 및 Limited™ 커뮤니티 유저들과 직접 소통하며 채널을 관리하고 피드백을 모았습니다.',
+        'Communicating with over 1,200 users in RoFolder and Limited™ communities, managing channels and gathering feedback.'
       )
     },
     {
       label: t('누적 프로젝트', 'Projects Done'),
-      value: '8+',
+      value: '3+',
       proof: t(
-        '웹 서비스 기획·개발부터 디자인, 브랜딩, 데이터 분석까지 8개 이상의 다각적 프로젝트 실행 경험은 경계를 넘나드는 문제 해결력을 증명합니다.',
-        'Executing over 8 projects ranging from web service planning & development to design, branding, and data analysis proves my problem-solving ability across disciplines.'
+        'Design Pick, Planor, 나랏말싸미 등 실제 기획하고 론칭한 웹 서비스 경험을 바탕으로 실전 문제 해결력을 기르고 있습니다.',
+        'Planning and launching functional web services like Design Pick, Planor, and Naramarsami, building practical problem-solving capabilities.'
       )
     }
   ];
@@ -133,7 +133,7 @@ export default function About() {
           {/* Main Info Side */}
           <div className="space-y-12">
             <div className="space-y-4">
-              <p className="text-xs uppercase tracking-[0.25em] text-zinc-550 font-mono">ABOUT</p>
+              <p className="section-overline">ABOUT</p>
               <h2 className="section-title mt-2 font-display bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent font-bold">
                 {t('디자인, 마케팅, 프로그래밍.', 'Design, Marketing, Programming.')}
               </h2>
@@ -175,8 +175,8 @@ export default function About() {
           </div>
 
           {/* Profile Card Side */}
-          <GlowCard className="glass-card p-8 sm:p-10 border border-zinc-900 bg-zinc-950/50 shadow-2xl sticky top-28">
-            <p className="text-xs uppercase tracking-[0.25em] text-zinc-550 font-mono">PROFILE</p>
+          <GlowCard className="glass-card p-8 sm:p-10 border border-zinc-900 bg-zinc-950/50 shadow-2xl lg:sticky lg:top-28">
+            <p className="section-overline">PROFILE</p>
             <div className="mt-8 space-y-6 text-zinc-300">
               <motion.div 
                 initial={{ opacity: 0, x: 25 }}
@@ -185,11 +185,11 @@ export default function About() {
                 viewport={{ once: true }}
                 className="rounded-2xl border border-zinc-900 bg-zinc-900/20 p-5 shadow-inner"
               >
-                <p className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase">
+                <p className="text-[11px] font-bold text-zinc-400 tracking-wide uppercase">
                   {t('활동 분야', 'Areas of Activity')}
                 </p>
                 <p className="mt-2 text-xs sm:text-sm font-bold text-white font-display">
-                  CEO / Founder / Marketer / Designer / Developer
+                  CEO / Founder / Marketer / Designer
                 </p>
               </motion.div>
 
@@ -200,11 +200,11 @@ export default function About() {
                 viewport={{ once: true }}
                 className="rounded-2xl border border-zinc-900 bg-zinc-900/20 p-5 shadow-inner"
               >
-                <p className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase">
+                <p className="text-[11px] font-bold text-zinc-400 tracking-wide uppercase">
                   {t('소속 및 역할', 'Affiliation & Role')}
                 </p>
                 <p className="mt-2 text-xs sm:text-sm font-bold text-white font-sans leading-relaxed">
-                  RoFolder CEO · Limited™ Founder · LUXERET Marketer · HANN LABS™ Staff Designer · SIMPLX Developer
+                  RoFolder CEO · Limited™ Founder · LUXERET Marketer · HANN LABS™ Staff Designer
                 </p>
               </motion.div>
 
@@ -215,13 +215,13 @@ export default function About() {
                 viewport={{ once: true }}
                 className="rounded-2xl border border-zinc-900 bg-zinc-900/20 p-5 shadow-inner"
               >
-                <p className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase">
+                <p className="text-[11px] font-bold text-zinc-400 tracking-wide uppercase">
                   {t('핵심 지향점', 'Core Approach')}
                 </p>
                 <p className="mt-2 text-xs sm:text-sm font-bold text-white font-sans leading-relaxed">
                   {t(
-                    '스토리텔링과 데이터를 활용한 사용자 중심 설계, 피드백 기반 신속한 제품 개선',
-                    'User-centric design using storytelling & data, rapid feedback-driven product improvement'
+                    '사용자 피드백 중심 설계, 스토리텔링 및 주도적 서비스 빌딩',
+                    'User feedback-centric design, storytelling, and proactive service building'
                   )}
                 </p>
               </motion.div>
@@ -233,13 +233,13 @@ export default function About() {
                 viewport={{ once: true }}
                 className="rounded-2xl border border-zinc-900 bg-zinc-900/20 p-5 shadow-inner"
               >
-                <p className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase">
+                <p className="text-[11px] font-bold text-zinc-400 tracking-wide uppercase">
                   {t('주요 강점', 'Key Strengths')}
                 </p>
                 <p className="mt-2 text-xs sm:text-sm font-bold text-white font-sans leading-relaxed">
                   {t(
-                    '비주얼 아이덴티티 디자인 · 인터랙션 설계 · 서비스 시스템 최적화',
-                    'Visual Identity Design · Interaction Design · System Optimization'
+                    '비주얼 디렉션 · 유저 인터랙션 기획 · 커뮤니티 매니지먼트',
+                    'Visual Direction · Interaction Planning · Community Management'
                   )}
                 </p>
               </motion.div>
@@ -250,12 +250,12 @@ export default function About() {
         {/* Interactive Stats Grid (What it Proves) */}
         <div className="pt-16 border-t border-zinc-900/80">
           <div className="text-center mb-10">
-            <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-zinc-550">{t('지표 & 증명', 'METRICS & EVIDENCE')}</p>
+            <p className="section-overline">METRICS & EVIDENCE</p>
             <h3 className="text-2xl font-bold tracking-tight text-white font-display mt-2">{t('지표와 증명', 'Metrics & Proof')}</h3>
-            <p className="text-xs text-zinc-500 font-mono mt-1 uppercase tracking-widest">{t('각 지표를 클릭하여 증명하는 역량을 확인해보세요', 'Click each metric to verify capabilities')}</p>
+            <p className="text-xs text-zinc-500 mt-1 uppercase tracking-wider">{t('각 지표를 클릭하여 증명하는 역량을 확인해보세요', 'Click each metric to verify capabilities')}</p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3 max-w-4xl mx-auto">
+          <div className="grid gap-6 grid-cols-1 sm:grid-cols-3 max-w-4xl mx-auto">
             {stats.map((stat, idx) => {
               const isActive = activeStat === idx;
               return (
@@ -295,7 +295,7 @@ export default function About() {
                           animate={{ opacity: 0.5 }}
                           exit={{ opacity: 0 }}
                           transition={{ duration: 0.15 }}
-                          className="text-[10px] text-zinc-550 font-mono tracking-widest"
+                          className="text-[11px] text-zinc-450 font-bold tracking-wide"
                         >
                           CLICK TO EXPLAIN
                         </motion.p>

@@ -131,18 +131,6 @@ export default function PortfolioPage() {
         t('브랜드 비주얼 디자인 보조 및 이미지 프로모션 디자인 지원', 'Assisting team brand visual design and image promotions'),
         t('아트워크 기획 보조 및 커뮤니티 그래픽 요소 제작 지원', 'Supporting artwork planning and community graphic production')
       ]
-    },
-    {
-      id: 'simplx',
-      type: 'workplace',
-      title: 'SIMPLX',
-      slogan: t('간결한 논리를 담은 시스템 개발', 'System development with simple logic'),
-      description: t('필요한 시스템 스크립트와 프로그램을 제작하고 제어 코드를 작성합니다.', 'Developing system scripts and utility programs.'),
-      tags: ['Developer', 'System Scripts', 'Utility Tool'],
-      achievements: [
-        t('스크립트 및 프로그램 구현', 'Implementing scripts and programs'),
-        t('시스템 도구 최적화 스크립트 작성 지원', 'Supporting system tools optimization and scripting')
-      ]
     }
   ];
 
@@ -199,7 +187,7 @@ export default function PortfolioPage() {
           const catItems = displayItems.filter(item => item.type === cat.id);
           return (
             <div key={cat.id} className="flex flex-col items-end gap-2.5">
-              <span className="text-[7.5px] font-mono text-zinc-500 uppercase tracking-[0.2em] font-bold mb-1">{cat.label}</span>
+              <span className="text-[9px] font-sans text-zinc-500 uppercase tracking-[0.1em] font-semibold mb-1">{cat.label}</span>
               {catItems.map(item => {
                 const itemIdx = displayItems.findIndex(d => d.id === item.id);
                 const isActive = activeCut === itemIdx;
@@ -249,7 +237,7 @@ export default function PortfolioPage() {
               >
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
-                    <span className="text-[10px] font-mono tracking-[0.25em] text-zinc-500 uppercase font-bold">
+                    <span className="text-[11px] font-sans tracking-wide text-zinc-400 uppercase font-semibold">
                       {item.type === 'discord' ? 'Discord' : item.type === 'site' ? 'Site' : 'Workplace'}
                     </span>
                     <div className="h-px w-8 bg-zinc-900" />
@@ -271,7 +259,7 @@ export default function PortfolioPage() {
                 {/* Sub-tags */}
                 <div className="flex flex-wrap gap-1.5">
                   {item.tags.map(tag => (
-                    <span key={tag} className="px-2.5 py-0.5 bg-zinc-950 border border-zinc-900 rounded text-[9px] font-mono text-zinc-500 uppercase tracking-wide">
+                    <span key={tag} className="px-2.5 py-0.5 bg-zinc-950 border border-zinc-900 rounded text-[10px] font-sans font-semibold text-zinc-450 uppercase tracking-wide">
                       {tag}
                     </span>
                   ))}
@@ -281,7 +269,7 @@ export default function PortfolioPage() {
                 <div className="flex flex-wrap items-center gap-4 pt-2">
                   <button
                     onClick={() => setSelectedItem(item)}
-                    className="px-6 py-2.5 bg-zinc-900 border border-zinc-850 hover:border-white hover:bg-zinc-950 text-white text-[10px] font-bold font-mono tracking-widest uppercase rounded-full cursor-pointer transition-all shadow-md"
+                    className="px-6 py-2.5 bg-zinc-900 border border-zinc-850 hover:border-white hover:bg-zinc-950 text-white text-[11px] font-bold font-sans tracking-wider uppercase rounded-full cursor-pointer transition-all shadow-md"
                   >
                     {t('상세 보기', 'Read Case Study')}
                   </button>
@@ -291,7 +279,7 @@ export default function PortfolioPage() {
                       href={item.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-[10px] font-bold font-mono text-zinc-500 hover:text-white uppercase tracking-widest transition-colors"
+                      className="flex items-center gap-1.5 text-[11px] font-bold font-sans text-zinc-450 hover:text-white uppercase tracking-wider transition-colors"
                     >
                       {t('방문하기', 'Launch')}
                       <ExternalLink size={11} />
@@ -316,8 +304,7 @@ export default function PortfolioPage() {
                     item.id === 'planor' ? '/assets/planor.png' :
                     item.id === 'naramarsami' ? '/assets/naramarsami.png' :
                     item.id === 'luxeret' ? '/assets/luxeret.png' :
-                    item.id === 'hannlabs' ? '/assets/hannlabs.png' :
-                    '/assets/simplx.png'
+                    '/assets/hannlabs.png'
                   }
                   alt={item.title}
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-103"
@@ -356,7 +343,7 @@ export default function PortfolioPage() {
                 {/* Header */}
                 <div className="flex justify-between items-center border-b border-zinc-900 pb-6">
                   <div>
-                    <span className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase font-bold">
+                    <span className="text-[11px] font-sans tracking-wide text-zinc-450 uppercase font-semibold">
                       {t(`아카이브 // ${selectedItem.type.toUpperCase()}`, `ARCHIVE // ${selectedItem.type.toUpperCase()}`)}
                     </span>
                     <h3 className="text-xl font-bold tracking-tight text-white font-display mt-1">
@@ -380,8 +367,8 @@ export default function PortfolioPage() {
                   )}
 
                   <div className="space-y-2">
-                    <span className="text-[9px] font-mono tracking-[0.2em] text-zinc-500 uppercase flex items-center gap-1.5 font-bold">
-                      <Compass size={11} className="text-zinc-500" />
+                    <span className="text-[11px] font-sans tracking-wide text-zinc-400 uppercase flex items-center gap-1.5 font-semibold">
+                      <Compass size={11} className="text-zinc-400" />
                       {t('개요 및 역할', 'Overview & Role')}
                     </span>
                     <p className="leading-relaxed whitespace-pre-line text-zinc-300">
@@ -392,8 +379,8 @@ export default function PortfolioPage() {
                   {selectedItem.details && (
                     <>
                       <div className="space-y-2">
-                        <span className="text-[9px] font-mono tracking-[0.2em] text-zinc-500 uppercase flex items-center gap-1.5 font-bold">
-                          <Sparkles size={11} className="text-zinc-500" />
+                        <span className="text-[11px] font-sans tracking-wide text-zinc-400 uppercase flex items-center gap-1.5 font-semibold">
+                          <Sparkles size={11} className="text-zinc-400" />
                           {t('기획 및 디자인 전략', 'Planning & Design Strategy')}
                         </span>
                         <p className="leading-relaxed text-zinc-300">
@@ -405,7 +392,7 @@ export default function PortfolioPage() {
                       </div>
 
                       <div className="bg-zinc-950 p-4.5 rounded-xl border border-zinc-900 space-y-2">
-                        <span className="text-[9px] font-mono tracking-[0.2em] text-zinc-350 uppercase flex items-center gap-1.5 font-bold">
+                        <span className="text-[11px] font-sans tracking-wide text-zinc-350 uppercase flex items-center gap-1.5 font-semibold">
                           <Award size={11} className="text-zinc-450" />
                           {t('역량 증명 및 가치', 'Proven Metrics & Value')}
                         </span>
@@ -418,8 +405,8 @@ export default function PortfolioPage() {
 
                   {selectedItem.achievements && (
                     <div className="space-y-3.5">
-                      <span className="text-[9px] font-mono tracking-[0.2em] text-zinc-500 uppercase flex items-center gap-1.5 font-bold">
-                        <Award size={11} className="text-zinc-500" />
+                      <span className="text-[11px] font-sans tracking-wide text-zinc-400 uppercase flex items-center gap-1.5 font-semibold">
+                        <Award size={11} className="text-zinc-450" />
                         {t('주요 활동 및 성과', 'Key Activities & Achievements')}
                       </span>
                       <ul className="space-y-2.5">
@@ -440,7 +427,7 @@ export default function PortfolioPage() {
               <div className="border-t border-zinc-900 pt-6 mt-8 flex justify-end">
                 <button
                   onClick={() => setSelectedItem(null)}
-                  className="px-6 py-2.5 bg-zinc-900 border border-zinc-850 hover:border-white hover:bg-zinc-950 text-white text-[10px] font-bold font-mono tracking-widest uppercase rounded-full cursor-pointer transition-colors shadow-md"
+                  className="px-6 py-2.5 bg-zinc-900 border border-zinc-850 hover:border-white hover:bg-zinc-950 text-white text-[11px] font-bold font-sans tracking-wider uppercase rounded-full cursor-pointer transition-colors shadow-md"
                 >
                   {t('닫기', 'Close')}
                 </button>

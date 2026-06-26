@@ -35,8 +35,8 @@ export default function Skills() {
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <p className="text-xs uppercase tracking-[0.3em] text-zinc-550 mb-4 font-mono">
-            {t('기술 역량', 'CAPABILITIES')}
+          <p className="section-overline">
+            CAPABILITIES
           </p>
           <h2 className="section-title mt-4 mb-6 font-display bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent font-bold">
             {t('기술 스택', 'Skills & Stack')}
@@ -45,7 +45,7 @@ export default function Skills() {
             {t('디자인, 마케팅, 개발 전반의 역량을 나타내는 핵심 기술 스택입니다.', 'Key skill stack representing capabilities across design, marketing, and programming.')}
           </p>
         </motion.div>
-
+ 
         <div className="grid gap-8 lg:grid-cols-3">
           {data.skills.map((skillGroup, groupIndex) => (
             <motion.div
@@ -60,7 +60,7 @@ export default function Skills() {
                 <h3 className="text-lg font-bold text-white mb-2 font-display tracking-tight">
                   {skillGroup.category}
                 </h3>
-                <p className="text-[10px] font-mono text-zinc-550 uppercase tracking-widest mb-6">
+                <p className="text-[10px] font-sans font-bold text-zinc-450 uppercase tracking-widest mb-6">
                   {skillGroup.category === 'Design' && 'Creative Interface'}
                   {skillGroup.category === 'Marketing' && 'Growth Strategy'}
                   {skillGroup.category === 'Programming' && 'Systems & Logic'}
@@ -76,7 +76,7 @@ export default function Skills() {
                         color: '#ffffff',
                         boxShadow: '0 0 10px rgba(255, 255, 255, 0.05)'
                       }}
-                      className="rounded-lg border border-zinc-900 bg-zinc-900/60 px-3.5 py-1.5 text-xs font-mono text-zinc-400 transition-all select-none cursor-pointer"
+                      className="rounded-lg border border-zinc-900 bg-zinc-900/60 px-3.5 py-1.5 text-xs font-sans font-semibold text-zinc-400 transition-all select-none cursor-pointer"
                     >
                       {skill}
                     </motion.span>

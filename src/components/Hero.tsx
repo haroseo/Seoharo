@@ -49,7 +49,7 @@ export default function Hero() {
           {/* Main Title / Slogan block */}
           <motion.div variants={itemVariants} className="space-y-8 text-center lg:text-left">
             <div className="flex items-center justify-center lg:justify-start gap-3">
-              <span className="text-[10px] font-mono tracking-[0.4em] text-zinc-550 uppercase">
+              <span className="text-[11px] font-bold tracking-wide text-zinc-400 uppercase">
                 INTRO // SEOHARO
               </span>
               <span className="h-px w-6 bg-zinc-850" />
@@ -66,13 +66,13 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <button
                 onClick={() => navigate('/portfolio')}
-                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-xs font-bold font-mono tracking-[0.2em] text-black hover:bg-zinc-200 shadow-xl transition-all cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-xs sm:text-sm font-bold text-black hover:bg-zinc-200 shadow-xl transition-all cursor-pointer"
               >
                 {t('프로젝트 목록', 'PROJECT CATALOG')}
               </button>
               <button
                 onClick={() => navigate('/contact')}
-                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-zinc-800 bg-zinc-950/60 px-8 py-3.5 text-xs font-bold font-mono tracking-[0.2em] text-zinc-300 hover:text-white hover:border-zinc-700 transition-all cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-zinc-800 bg-zinc-950/60 px-8 py-3.5 text-xs sm:text-sm font-bold text-zinc-300 hover:text-white hover:border-zinc-700 transition-all cursor-pointer"
               >
                 {t('협업 문의', 'COLLABORATE')}
               </button>
@@ -84,20 +84,20 @@ export default function Hero() {
             variants={itemVariants}
             className="rounded-3xl border border-zinc-900 bg-zinc-950/40 p-8 md:p-10 shadow-2xl backdrop-blur-md"
           >
-            <p className="text-[9px] uppercase tracking-[0.35em] text-zinc-500 font-mono">
-              {t('프로필 // 개요', 'PROFILE // OVERVIEW')}
+            <p className="text-[11px] font-bold tracking-wide text-zinc-400 uppercase">
+              PROFILE // OVERVIEW
             </p>
             <div className="mt-8 space-y-6">
               <div className="flex items-end justify-between gap-4">
                 <div>
-                  <p className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase">
+                  <p className="text-[11px] font-bold tracking-wide text-zinc-400 uppercase">
                     PROFILE NODE
                   </p>
                   <h2 className="text-xl font-bold text-white mt-1 font-display">
                     SEOHARO
                   </h2>
                 </div>
-                <div className="rounded-full border border-zinc-850 bg-zinc-900/40 px-3 py-1 text-[9px] font-mono font-bold uppercase tracking-wider text-zinc-300">
+                <div className="rounded-full border border-zinc-850 bg-zinc-900/40 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-zinc-300">
                   {t('활동 중', 'ACTIVE')}
                 </div>
               </div>
@@ -108,11 +108,11 @@ export default function Hero() {
 
               <div className="grid gap-4 text-xs text-zinc-300 font-normal">
                 <div className="flex justify-between border-b border-zinc-900 pb-3">
-                  <span className="text-zinc-500 font-mono">{t('이메일', 'EMAIL')}</span>
+                  <span className="text-zinc-400 font-bold">EMAIL</span>
                   <span className="font-semibold text-zinc-200">{data.contact.email}</span>
                 </div>
                 <div className="flex justify-between border-b border-zinc-900 pb-3">
-                  <span className="text-zinc-500 font-mono">{t('깃허브', 'GITHUB')}</span>
+                  <span className="text-zinc-400 font-bold">GITHUB</span>
                   <a
                     href={data.contact.github}
                     target="_blank"
@@ -123,16 +123,16 @@ export default function Hero() {
                   </a>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-zinc-500 font-mono">{t('활동 지역', 'LOCATION')}</span>
+                  <span className="text-zinc-400 font-bold">LOCATION</span>
                   <span className="font-semibold text-zinc-200">{t('대한민국', 'South Korea')}</span>
                 </div>
               </div>
 
               {/* Minimal Project Links */}
-              <div className="pt-6 border-t border-zinc-900 text-[9px] font-mono tracking-widest text-zinc-500 grid gap-1.5 uppercase">
-                <span>{t('역할 및 소속', 'ROLES & POSITION')}</span>
+              <div className="pt-6 border-t border-zinc-900 text-[11px] font-bold tracking-wide text-zinc-400 grid gap-1.5 uppercase">
+                <span>ROLES & POSITION</span>
                 <span className="text-xs text-white font-sans font-bold leading-normal">
-                  ROFOLDER CEO / LIMITED™ FOUNDER / LUXERET MARKETER / HANN LABS™ STAFF DESIGNER / SIMPLX DEVELOPER
+                  ROFOLDER CEO / LIMITED™ FOUNDER / LUXERET MARKETER / HANN LABS™ STAFF DESIGNER
                 </span>
               </div>
             </div>

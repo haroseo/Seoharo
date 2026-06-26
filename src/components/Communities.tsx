@@ -22,8 +22,8 @@ export default function Communities() {
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <p className="text-xs uppercase tracking-[0.3em] text-zinc-550 mb-4 font-mono">
-            {t('커뮤니티 리더십', 'COMMUNITY LEADERSHIP')}
+          <p className="section-overline">
+            COMMUNITY LEADERSHIP
           </p>
           <h2 className="section-title mt-4 mb-6 font-display bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent font-bold">
             {t('커뮤니티 운영', 'Community Management')}

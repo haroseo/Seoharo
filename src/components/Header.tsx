@@ -10,10 +10,10 @@ export default function Header() {
   const { language, setLanguage, t } = useLanguage();
 
   const navItems = [
-    { label: t('소개', 'About'), path: '/about' },
-    { label: t('포트폴리오', 'Portfolio'), path: '/portfolio' },
-    { label: t('챗봇', 'Chat'), path: '/chat' },
-    { label: t('연락처', 'Contact'), path: '/contact' },
+    { label: 'ABOUT', path: '/about' },
+    { label: 'PORTFOLIO', path: '/portfolio' },
+    { label: 'CHAT', path: '/chat' },
+    { label: 'CONTACT', path: '/contact' },
   ];
 
   const handleNavClick = (path: string) => {
@@ -29,37 +29,37 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
-      <div className="w-full max-w-4xl bg-black/75 backdrop-blur-2xl border border-zinc-900 rounded-full px-6 py-3 flex items-center justify-between shadow-[0_20px_50px_rgba(0,0,0,0.9)] pointer-events-auto">
+    <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+      <div className="w-full max-w-xl bg-black/75 backdrop-blur-2xl border border-zinc-900 rounded-full px-4 py-2 flex items-center justify-between shadow-[0_20px_50px_rgba(0,0,0,0.9)] pointer-events-auto">
         
         {/* Brand Logo & Name */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <img 
             src="/assets/seoharo-logo-round.png" 
             alt="SEOHARO" 
-            className="w-8 h-8 object-cover rounded-full border border-zinc-850 bg-black" 
+            className="w-7 h-7 object-cover rounded-full border border-zinc-850 bg-black" 
           />
           <div className="flex flex-col">
             <button
               onClick={() => navigate('/about')}
-              className="text-left text-xs sm:text-sm font-bold tracking-[0.2em] uppercase text-white hover:text-zinc-200 transition-colors cursor-pointer"
+              className="text-left text-xs font-bold tracking-[0.2em] uppercase text-white hover:text-zinc-200 transition-colors cursor-pointer"
             >
               SEOHARO
             </button>
-            <p className="text-[7px] uppercase tracking-[0.2em] text-zinc-500 font-mono">
+            <p className="text-[7px] uppercase tracking-[0.1em] text-zinc-400 font-semibold">
               DESIGN & DEV
             </p>
           </div>
         </div>
 
         {/* Desktop Nav Items & Language Toggle */}
-        <div className="hidden md:flex items-center gap-6">
-          <div className="flex items-center gap-2">
+        <div className="hidden md:flex items-center gap-4">
+          <div className="flex items-center gap-1">
             {navItems.map((item) => (
               <button
                 key={item.label}
                 onClick={() => handleNavClick(item.path)}
-                className={`relative px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.15em] font-mono cursor-pointer transition-colors ${
+                className={`relative px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide cursor-pointer transition-colors ${
                   isLinkActive(item.path)
                     ? 'text-white'
                     : 'text-zinc-500 hover:text-zinc-200'
@@ -76,10 +76,10 @@ export default function Header() {
               </button>
             ))}
           </div>
-          <div className="h-4 w-px bg-zinc-800" />
+          <div className="h-3.5 w-px bg-zinc-850" />
           <button
             onClick={() => setLanguage(language === 'ko' ? 'en' : 'ko')}
-            className="px-3 py-1 border border-zinc-800 bg-zinc-950 hover:bg-zinc-900 text-zinc-400 hover:text-white rounded-full text-[8px] font-mono font-bold tracking-widest cursor-pointer transition-all uppercase"
+            className="px-2 py-0.5 border border-zinc-800 bg-zinc-950 hover:bg-zinc-900 text-zinc-450 hover:text-white rounded-full text-[8px] font-bold tracking-wide cursor-pointer transition-all uppercase"
           >
             {language === 'ko' ? 'English' : '한국어'}
           </button>
@@ -104,13 +104,13 @@ export default function Header() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="absolute top-18 left-4 right-4 bg-black/95 backdrop-blur-3xl border border-zinc-900 rounded-3xl p-5 flex flex-col gap-3 shadow-[0_30px_60px_rgba(0,0,0,0.9)] pointer-events-auto md:hidden"
+            className="absolute top-16 left-4 right-4 bg-black/95 backdrop-blur-3xl border border-zinc-900 rounded-3xl p-5 flex flex-col gap-3 shadow-[0_30px_60px_rgba(0,0,0,0.9)] pointer-events-auto md:hidden"
           >
             {navItems.map((item) => (
               <button
                 key={item.label}
                 onClick={() => handleNavClick(item.path)}
-                className={`w-full text-left py-2.5 px-4 rounded-xl text-xs font-bold font-mono tracking-[0.2em] uppercase cursor-pointer transition-colors ${
+                className={`w-full text-left py-2.5 px-4 rounded-xl text-[13px] font-bold tracking-wide uppercase cursor-pointer transition-colors ${
                   isLinkActive(item.path)
                     ? 'bg-zinc-900 text-white border border-zinc-800'
                     : 'text-zinc-500 hover:text-zinc-200'
@@ -120,13 +120,13 @@ export default function Header() {
               </button>
             ))}
             <div className="pt-3 border-t border-zinc-900 mt-2 flex justify-between items-center px-4">
-              <span className="text-[10px] font-mono font-bold text-zinc-500 uppercase">{t('언어 설정', 'LANGUAGE')}</span>
+              <span className="text-[11px] font-bold text-zinc-450 uppercase">{t('언어 설정', 'LANGUAGE')}</span>
               <button
                 onClick={() => {
                   setLanguage(language === 'ko' ? 'en' : 'ko');
                   setIsOpen(false);
                 }}
-                className="px-3.5 py-1 bg-zinc-900 border border-zinc-800 rounded-lg text-[10px] font-mono font-bold text-zinc-300 transition-colors cursor-pointer"
+                className="px-3.5 py-1 bg-zinc-900 border border-zinc-800 rounded-lg text-[11px] font-bold text-zinc-300 transition-colors cursor-pointer"
               >
                 {language === 'ko' ? 'English' : '한국어'}
               </button>

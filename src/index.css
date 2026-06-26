@@ -74,11 +74,12 @@
   }
 
   .section-overline {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
+    font-family: 'Outfit', 'Pretendard', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.4em;
-    color: #71717a;
+    letter-spacing: 0.15em;
+    color: #a1a1aa;
   }
 
   /* Dark Futuristic Glass Card */
