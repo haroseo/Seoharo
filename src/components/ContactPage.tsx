@@ -138,7 +138,7 @@ export default function ContactPage() {
   };
 
   return (
-    <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-black text-white min-h-screen flex flex-col justify-center overflow-hidden">
+    <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-black text-white min-h-screen flex flex-col justify-center overflow-hidden">
       {/* Decorative grids */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at center, #ffffff 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
 
@@ -259,9 +259,9 @@ export default function ContactPage() {
                     e.stopPropagation();
                     handleCopy(badge.type as any, badge.value);
                   }}
-                  whileHover={{ scale: 1.025, borderColor: '#ffffff', boxShadow: '0 0 12px rgba(255, 255, 255, 0.05)' }}
+                  whileHover={{ scale: 1.025, borderColor: 'rgba(255, 255, 255, 0.15)', boxShadow: '0 0 12px rgba(255, 255, 255, 0.05)' }}
                   whileTap={{ scale: 0.96 }}
-                  className="flex items-center justify-between p-4 bg-[#0a0a0c] border border-zinc-900 rounded-2xl cursor-pointer hover:bg-zinc-900/40 transition-all select-none"
+                  className="flex items-center justify-between p-4 bg-white/5 border border-white/5 rounded-2xl cursor-pointer hover:bg-white/10 hover:border-white/10 transition-all select-none"
                 >
                   <div className="flex items-center gap-2">
                     <badge.icon className="w-4 h-4 text-zinc-450" />
@@ -281,12 +281,12 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="rounded-3xl border border-zinc-900 bg-zinc-950/40 p-8 md:p-10 shadow-2xl backdrop-blur-md"
+              className="apple-widget p-8 md:p-10"
             >
               <h3 className="text-lg font-bold tracking-tight text-white mb-6 font-display">{t('빠른 메시지 전송', 'Send a Quick Message')}</h3>
-              <form onSubmit={handleFormSubmit} className="space-y-5">
-                <div>
-                  <label htmlFor="name" className="block text-[8px] font-mono font-bold text-zinc-500 uppercase tracking-widest mb-2">{t('이름', 'Name')}</label>
+              <form onSubmit={handleFormSubmit} className="space-y-6">
+                <div className="toss-input-group">
+                  <label htmlFor="name" className="block text-[8px] font-mono font-bold text-zinc-550 uppercase tracking-widest mb-1">{t('이름', 'Name')}</label>
                   <input
                     id="name"
                     type="text"
@@ -294,11 +294,14 @@ export default function ContactPage() {
                     value={formState.name}
                     onChange={(e) => setFormState(prev => ({ ...prev, name: e.target.value }))}
                     placeholder={t('이름을 입력해 주세요.', 'Enter your name.')}
-                    className="w-full px-4 py-3 rounded-xl border border-zinc-900 focus:border-white focus:ring-0 text-white text-xs outline-none bg-zinc-950/20 font-light transition-all duration-300 hover:border-zinc-800"
+                    className="w-full py-2.5 text-white text-xs outline-none bg-transparent font-light transition-all placeholder:text-zinc-600"
                   />
+                  <div className="toss-input-line" />
+                  <div className="toss-input-focus-line" />
                 </div>
-                <div>
-                  <label htmlFor="email" className="block text-[8px] font-mono font-bold text-zinc-500 uppercase tracking-widest mb-2">{t('이메일 주소', 'Email Address')}</label>
+
+                <div className="toss-input-group">
+                  <label htmlFor="email" className="block text-[8px] font-mono font-bold text-zinc-550 uppercase tracking-widest mb-1">{t('이메일 주소', 'Email Address')}</label>
                   <input
                     id="email"
                     type="email"
@@ -306,11 +309,14 @@ export default function ContactPage() {
                     value={formState.email}
                     onChange={(e) => setFormState(prev => ({ ...prev, email: e.target.value }))}
                     placeholder="example@email.com"
-                    className="w-full px-4 py-3 rounded-xl border border-zinc-900 focus:border-white focus:ring-0 text-white text-xs outline-none bg-zinc-950/20 font-light transition-all duration-300 hover:border-zinc-800"
+                    className="w-full py-2.5 text-white text-xs outline-none bg-transparent font-light transition-all placeholder:text-zinc-600"
                   />
+                  <div className="toss-input-line" />
+                  <div className="toss-input-focus-line" />
                 </div>
-                <div>
-                  <label htmlFor="message" className="block text-[8px] font-mono font-bold text-zinc-500 uppercase tracking-widest mb-2">{t('내용', 'Message')}</label>
+
+                <div className="toss-input-group">
+                  <label htmlFor="message" className="block text-[8px] font-mono font-bold text-zinc-550 uppercase tracking-widest mb-1">{t('내용', 'Message')}</label>
                   <textarea
                     id="message"
                     required
@@ -318,8 +324,10 @@ export default function ContactPage() {
                     value={formState.message}
                     onChange={(e) => setFormState(prev => ({ ...prev, message: e.target.value }))}
                     placeholder={t('프로젝트 의뢰 내용이나 협업 아이디어를 자유롭게 공유해 주세요.', 'Please share your project details or collaboration ideas.')}
-                    className="w-full px-4 py-3 rounded-xl border border-zinc-900 focus:border-white focus:ring-0 text-white text-xs outline-none bg-zinc-950/20 font-light resize-none transition-all duration-300 hover:border-zinc-800"
+                    className="w-full py-2.5 text-white text-xs outline-none bg-transparent font-light resize-none transition-all placeholder:text-zinc-600"
                   />
+                  <div className="toss-input-line" />
+                  <div className="toss-input-focus-line" />
                 </div>
 
                 <motion.button
@@ -327,7 +335,7 @@ export default function ContactPage() {
                   disabled={formStatus !== 'idle'}
                   whileHover={{ scale: 1.012 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full py-4 px-6 rounded-xl bg-white hover:bg-zinc-200 text-black font-bold text-xs uppercase tracking-widest shadow-xl flex items-center justify-center gap-2 cursor-pointer transition-all disabled:bg-zinc-800 disabled:text-zinc-650 disabled:cursor-not-allowed"
+                  className="w-full py-4 px-6 rounded-xl bg-[var(--toss-blue)] hover:bg-[var(--toss-blue-hover)] text-white font-bold text-xs uppercase tracking-widest shadow-xl flex items-center justify-center gap-2 cursor-pointer transition-all disabled:bg-zinc-800 disabled:text-zinc-650 disabled:cursor-not-allowed"
                 >
                   {formStatus === 'idle' && (
                     <>

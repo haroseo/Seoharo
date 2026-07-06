@@ -98,20 +98,20 @@ export default function Timeline() {
                 <div className="hidden md:block w-[45%]" />
 
                 {/* Dot */}
-                <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-black border-2 border-zinc-700 transition-all duration-500 group-hover:bg-white group-hover:border-white group-hover:shadow-[0_0_10px_rgba(255,255,255,0.5)] group-hover:scale-130 z-10 mt-1.5" />
+                <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-black border-2 border-white/40 transition-all duration-500 group-hover:bg-white group-hover:border-white group-hover:shadow-[0_0_10px_rgba(255,255,255,0.5)] group-hover:scale-130 z-10 mt-1.5" />
 
                 {/* Content */}
                 <div className={`w-full pl-20 md:pl-0 md:w-[45%] flex flex-col ${
                   index % 2 === 0 ? 'md:items-end md:text-right' : 'md:items-start md:text-left'
                 }`}>
                   <div className={`flex flex-wrap items-center gap-4 mb-3 ${index % 2 === 0 ? 'md:justify-end' : 'md:justify-start'}`}>
-                    <span className="text-xl font-semibold tracking-tight text-zinc-650 group-hover:text-white transition-colors duration-500 font-sans">
+                    <span className="text-xl font-semibold tracking-tight text-zinc-450 group-hover:text-white transition-colors duration-500 font-sans">
                       {event.phase}
                     </span>
-                    <div className="hidden md:block h-px w-8 bg-zinc-850 group-hover:bg-zinc-700 transition-colors duration-500" />
+                    <div className="hidden md:block h-px w-8 bg-white/5 group-hover:bg-white/10 transition-colors duration-500" />
                     <div className="flex flex-wrap gap-2">
                       {event.keywords.map(kw => (
-                        <span key={kw} className="px-2.5 py-0.5 bg-zinc-950 border border-zinc-900 text-[10px] font-medium tracking-wide text-zinc-400 rounded-lg group-hover:text-zinc-200 transition-colors duration-500">
+                        <span key={kw} className="px-2.5 py-0.5 bg-white/5 border border-white/5 text-[10px] font-bold tracking-wide text-zinc-400 rounded-lg group-hover:text-zinc-200 group-hover:border-white/10 transition-all duration-500">
                           {kw}
                         </span>
                       ))}
@@ -127,7 +127,7 @@ export default function Timeline() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: "-60px" }}
                       transition={{ duration: 1.2, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                      className={`mt-4 text-xs sm:text-sm text-zinc-300 group-hover:text-zinc-100 transition-colors duration-500 leading-relaxed max-w-sm rounded-2xl bg-zinc-950 border border-zinc-900 shadow-2xl p-5 ${index % 2 === 0 ? 'ml-auto text-left md:text-right' : 'mr-auto text-left'}`}
+                      className={`mt-4 text-xs sm:text-sm text-zinc-300 group-hover:text-zinc-100 transition-colors duration-500 leading-relaxed max-w-sm apple-widget p-5 ${index % 2 === 0 ? 'ml-auto text-left md:text-right' : 'mr-auto text-left'}`}
                     >
                       {event.description}
                     </motion.div>

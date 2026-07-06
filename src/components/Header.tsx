@@ -25,19 +25,22 @@ export default function Header() {
     if (path === '/about') {
       return currentPath === '/' || currentPath === '/about';
     }
+    if (path === '/portfolio') {
+      return ['/portfolio', '/design', '/marketing', '/development'].includes(currentPath);
+    }
     return currentPath === path;
   };
 
   return (
-    <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
-      <div className="w-full max-w-xl bg-black/75 backdrop-blur-2xl border border-zinc-900 rounded-full px-4 py-2 flex items-center justify-between shadow-[0_20px_50px_rgba(0,0,0,0.9)] pointer-events-auto">
+    <header className="fixed top-0 left-0 right-0 z-50 w-full bg-black/60 backdrop-blur-md border-b border-white/5 py-3 px-6 sm:px-8 shadow-sm">
+      <div className="mx-auto max-w-7xl w-full flex items-center justify-between">
         
         {/* Brand Logo & Name */}
         <div className="flex items-center gap-2">
           <img 
             src="/assets/seoharo-logo-round.png" 
             alt="SEOHARO" 
-            className="w-7 h-7 object-cover rounded-full border border-zinc-850 bg-black" 
+            className="w-7 h-7 object-cover rounded-full border border-white/10 bg-black" 
           />
           <div className="flex flex-col">
             <button
@@ -53,13 +56,13 @@ export default function Header() {
         </div>
 
         {/* Desktop Nav Items & Language Toggle */}
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-6">
           <div className="flex items-center gap-1">
             {navItems.map((item) => (
               <button
                 key={item.label}
                 onClick={() => handleNavClick(item.path)}
-                className={`relative px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide cursor-pointer transition-colors ${
+                className={`relative px-3 py-1 text-[11px] font-bold uppercase tracking-wide cursor-pointer transition-colors ${
                   isLinkActive(item.path)
                     ? 'text-white'
                     : 'text-zinc-500 hover:text-zinc-200'
@@ -67,8 +70,8 @@ export default function Header() {
               >
                 {isLinkActive(item.path) && (
                   <motion.div
-                    layoutId="active-nav-capsule"
-                    className="absolute inset-0 bg-zinc-900 border border-zinc-800 rounded-full -z-10"
+                    layoutId="active-nav-underline"
+                    className="absolute left-3 right-3 -bottom-1 h-0.5 bg-white rounded-full"
                     transition={{ type: 'spring', stiffness: 380, damping: 22 }}
                   />
                 )}
@@ -76,10 +79,10 @@ export default function Header() {
               </button>
             ))}
           </div>
-          <div className="h-3.5 w-px bg-zinc-850" />
+          <div className="h-3 w-px bg-white/10" />
           <button
             onClick={() => setLanguage(language === 'ko' ? 'en' : 'ko')}
-            className="px-2 py-0.5 border border-zinc-800 bg-zinc-950 hover:bg-zinc-900 text-zinc-450 hover:text-white rounded-full text-[8px] font-bold tracking-wide cursor-pointer transition-all uppercase"
+            className="px-2.5 py-1 border border-white/10 bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white rounded-lg text-[8px] font-bold tracking-wide cursor-pointer transition-all uppercase"
           >
             {language === 'ko' ? 'English' : '한국어'}
           </button>
@@ -89,7 +92,7 @@ export default function Header() {
         <div className="md:hidden flex items-center gap-4">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="text-zinc-400 hover:text-white transition-colors cursor-pointer"
+            className="text-zinc-450 hover:text-white transition-colors cursor-pointer"
           >
             {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -100,11 +103,11 @@ export default function Header() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+            initial={{ opacity: 0, y: -10, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+            exit={{ opacity: 0, y: -10, scale: 0.98 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="absolute top-16 left-4 right-4 bg-black/95 backdrop-blur-3xl border border-zinc-900 rounded-3xl p-5 flex flex-col gap-3 shadow-[0_30px_60px_rgba(0,0,0,0.9)] pointer-events-auto md:hidden"
+            className="absolute top-14 left-4 right-4 bg-zinc-950/95 border border-white/5 rounded-2xl p-5 flex flex-col gap-3 shadow-[0_30px_60px_rgba(0,0,0,0.5)] pointer-events-auto md:hidden"
           >
             {navItems.map((item) => (
               <button
@@ -112,21 +115,21 @@ export default function Header() {
                 onClick={() => handleNavClick(item.path)}
                 className={`w-full text-left py-2.5 px-4 rounded-xl text-[13px] font-bold tracking-wide uppercase cursor-pointer transition-colors ${
                   isLinkActive(item.path)
-                    ? 'bg-zinc-900 text-white border border-zinc-800'
+                    ? 'bg-white/5 text-white border border-white/10'
                     : 'text-zinc-500 hover:text-zinc-200'
                 }`}
               >
                 {item.label}
               </button>
             ))}
-            <div className="pt-3 border-t border-zinc-900 mt-2 flex justify-between items-center px-4">
+            <div className="pt-3 border-t border-white/5 mt-2 flex justify-between items-center px-4">
               <span className="text-[11px] font-bold text-zinc-450 uppercase">{t('언어 설정', 'LANGUAGE')}</span>
               <button
                 onClick={() => {
                   setLanguage(language === 'ko' ? 'en' : 'ko');
                   setIsOpen(false);
                 }}
-                className="px-3.5 py-1 bg-zinc-900 border border-zinc-800 rounded-lg text-[11px] font-bold text-zinc-300 transition-colors cursor-pointer"
+                className="px-3.5 py-1 bg-white/5 border border-white/10 rounded-lg text-[11px] font-bold text-zinc-300 transition-colors cursor-pointer"
               >
                 {language === 'ko' ? 'English' : '한국어'}
               </button>

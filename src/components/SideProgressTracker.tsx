@@ -28,29 +28,14 @@ export default function SideProgressTracker() {
   useEffect(() => {
     if (!shouldRender) return;
 
-    // Scroll listener to catch the bottom page limit (guarantees STACK highlights)
-    const handleScroll = () => {
-      if (isScrollingRef.current) return;
-      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100;
-      if (isAtBottom) {
-        setActiveSection('skills');
-      }
-    };
-
     const observerOptions = {
       root: null,
-      rootMargin: '-25% 0px -45% 0px',
-      threshold: 0
+      rootMargin: '-20% 0px -40% 0px',
+      threshold: 0.1
     };
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       if (isScrollingRef.current) return;
-
-      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100;
-      if (isAtBottom) {
-        setActiveSection('skills');
-        return;
-      }
 
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -66,14 +51,11 @@ export default function SideProgressTracker() {
       if (el) observer.observe(el);
     });
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
     return () => {
       SECTIONS.forEach((section) => {
         const el = document.getElementById(section.id);
         if (el) observer.unobserve(el);
       });
-      window.removeEventListener('scroll', handleScroll);
       if (scrollTimeoutRef.current) {
         window.clearTimeout(scrollTimeoutRef.current);
       }

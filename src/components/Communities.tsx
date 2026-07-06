@@ -107,7 +107,7 @@ export default function Communities() {
                   <div className="w-8 h-8 rounded-lg overflow-hidden border border-zinc-800 bg-black">
                     <img src={selectedCommunity.logo} alt={selectedCommunity.name} className="w-full h-full object-cover" />
                   </div>
-                  <span className="text-xs font-mono font-bold text-zinc-350 uppercase">[{selectedCommunity.name} Profile]</span>
+                  <span className="text-xs font-mono font-bold text-zinc-300 uppercase">{selectedCommunity.name}</span>
                 </div>
                 <button
                   onClick={() => setSelectedCommunity(null)}
@@ -157,15 +157,28 @@ export default function Communities() {
 
                 {/* Core Achievements & Capabilities */}
                 {(() => {
-                  const career = data.careers.find(c => 
-                    c.id === (selectedCommunity.name.toLowerCase().includes("로폴더") || selectedCommunity.name.toLowerCase().includes("rofolder") ? "rofolder" : selectedCommunity.name.toLowerCase().includes("limited") ? "limited" : "")
+                  const career = data.careers.find(c => {
+                    const nameLower = selectedCommunity.name.toLowerCase();
+                    if (nameLower.includes("로폴더") || nameLower.includes("rofolder")) return c.id === "rofolder";
+                    if (nameLower.includes("limited")) return c.id === "limited";
+                    return false;
+                  });
+                  const achievements = career ? career.achievements : (
+                    selectedCommunity.name.toLowerCase().includes("rogllaery") || selectedCommunity.name.toLowerCase().includes("로블갤러리") ? [
+                      t("유저들이 스스로 교류하고 성장할 수 있는 소통 채널 구축", "Building channels where users communicate and grow together"),
+                      t("자발적 피드백과 투명한 운영 체계 확립", "Establishing voluntary feedback and transparent operation systems"),
+                      t("지속 가능한 소통의 장을 통한 유저 리텐션 증대", "Increasing user retention through a sustainable communication playground")
+                    ] : [
+                      t("유저 친화적인 커뮤니티 규칙 정의 및 소통 구조 확립", "Establishing user-friendly communication rules and transparent structures"),
+                      t("커뮤니티 내 활발한 유저 상호작용 및 이벤트 기획/진행", "Planning and executing active user interactions and events"),
+                      t("자율적인 유저 참여형 서비스 피드백 채널 수립 및 운영", "Operating voluntary user feedback channels")
+                    ]
                   );
-                  const achievements = career ? career.achievements : [
-                    t("유저 친화적인 커뮤니티 규칙 정의 및 소통 구조 확립", "Establishing user-friendly communication rules and transparent structures"),
-                    t("커뮤니티 내 활발한 유저 상호작용 및 이벤트 기획/진행", "Planning and executing active user interactions and events"),
-                    t("자율적인 유저 참여형 서비스 피드백 채널 수립 및 운영", "Operating voluntary user feedback channels")
-                  ];
-                  const skills = career ? career.skills : ["Community Management", "User Engagement", "Branding"];
+                  const skills = career ? career.skills : (
+                    selectedCommunity.name.toLowerCase().includes("rogllaery") || selectedCommunity.name.toLowerCase().includes("로블갤러리") ? [
+                      "Community Operations", "User Retention", "Communication Design"
+                    ] : ["Community Management", "User Engagement", "Branding"]
+                  );
                   return (
                     <div className="space-y-6 pt-4 border-t border-zinc-900">
                       <div className="space-y-3">

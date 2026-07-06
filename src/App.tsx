@@ -38,7 +38,7 @@ function AppContent() {
         <main>
           <AnimatePresence mode="wait">
             <motion.div
-              key={currentPath === '/' ? '/about' : currentPath}
+              key={(currentPath === '/' || currentPath === '/about') ? '/about' : (['/portfolio', '/design', '/marketing', '/development'].includes(currentPath) ? '/portfolio' : currentPath)}
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
@@ -53,7 +53,7 @@ function AppContent() {
                   <Skills />
                 </>
               )}
-              {currentPath === '/portfolio' && <PortfolioPage />}
+              {(currentPath === '/portfolio' || currentPath === '/design' || currentPath === '/marketing' || currentPath === '/development') && <PortfolioPage />}
               {currentPath === '/chat' && <ChatPage />}
               {currentPath === '/contact' && <ContactPage />}
             </motion.div>

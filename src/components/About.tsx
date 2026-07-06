@@ -1,5 +1,5 @@
-﻿import { useRef, useState } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from './LanguageContext';
 
 function GlowCard({ children, className = "", style = {}, onClick, layout }: { children: React.ReactNode, className?: string, style?: any, onClick?: () => void, layout?: boolean }) {
@@ -43,20 +43,7 @@ function GlowCard({ children, className = "", style = {}, onClick, layout }: { c
 }
 
 export default function About() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
   const { t } = useLanguage();
-
-  // 3D Perspective Transformations based on scroll
-  const rotateX = useTransform(scrollYProgress, [0.1, 0.5], [20, 0]);
-  const rotateY = useTransform(scrollYProgress, [0.1, 0.5], [-10, 0]);
-  const translateZ = useTransform(scrollYProgress, [0.1, 0.5], [-100, 0]);
-  const opacity = useTransform(scrollYProgress, [0.1, 0.4], [0.3, 1]);
-  const scale = useTransform(scrollYProgress, [0.1, 0.5], [0.95, 1]);
 
   const [activeStat, setActiveStat] = useState<number | null>(null);
 
@@ -96,8 +83,8 @@ export default function About() {
       label: t('경력 수', 'Organizations'),
       value: '30+',
       proof: t(
-        '로폴더 CEO, Limited™ Founder, LUXERET 마케터, HANN LABS™ 스태프 디자이너 등 30개 이상의 조직에서 다양한 역할을 경험하며 실무 역량을 길렀습니다.',
-        'Having worked with 30+ organizations, covering roles from CEO and Founder to Marketer and Designer - proving wide cross-disciplinary experience.'
+        '로폴더 대표, Limited™ 설립자, LUXERET 마케터, HANN LABS™ 디자이너, SIMPLX 개발자 등 30개 이상의 조직에서 다양한 역할을 경험하며 실무 역량을 길렀습니다.',
+        'Having worked with 30+ organizations, covering roles from CEO and Founder to Marketer, Designer, and Developer - proving wide cross-disciplinary experience.'
       )
     },
     {
@@ -110,20 +97,18 @@ export default function About() {
     },
     {
       label: t('누적 프로젝트', 'Projects Done'),
-      value: '3+',
+      value: '8+',
       proof: t(
-        'Design Pick, Planor, 나랏말싸미 등 실제 기획하고 론칭한 웹 서비스 경험을 바탕으로 실전 문제 해결력을 기르고 있습니다.',
-        'Planning and producing functional web services like Design Pick, Planor, and Naramarsami, building practical problem-solving capabilities.'
+        '웹 서비스 기획·개발부터 디자인, 브랜딩, 데이터 분석까지 8개 이상의 다각적 프로젝트 실행 경험은 경계를 넘나드는 문제 해결력을 증명합니다.',
+        'With experience executing over 8 diverse projects ranging from planning, design, and branding to web development and data analysis, proving cross-boundary problem-solving capabilities.'
       )
     }
   ];
 
   return (
     <section 
-      ref={containerRef}
       id="about" 
       className="relative py-20 px-4 sm:px-6 lg:px-8 bg-black overflow-hidden border-b border-zinc-900"
-      style={{ perspective: 1200 }}
     >
       <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-zinc-950 to-transparent pointer-events-none" />
       
@@ -145,23 +130,18 @@ export default function About() {
               </p>
             </div>
 
-            {/* 3D Animated Card Grid */}
+            {/* Smooth Animated Card Grid */}
             <motion.div 
-              style={{
-                rotateX,
-                rotateY,
-                translateZ,
-                opacity,
-                scale,
-                transformStyle: "preserve-3d"
-              }}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
               className="grid gap-6 sm:grid-cols-2"
             >
               {details.map((item, index) => (
                 <GlowCard
                   key={index}
-                  className="glass-card p-8 border border-zinc-900 bg-zinc-950/40 shadow-2xl transition-all duration-300"
-                  style={{ transform: "translateZ(30px)" }}
+                  className="apple-widget p-8 transition-all duration-300"
                 >
                   <h3 className="text-sm sm:text-base font-bold text-white mb-3 font-display">
                     {item.title}
@@ -174,8 +154,8 @@ export default function About() {
             </motion.div>
           </div>
 
-          {/* Profile Card Side */}
-          <GlowCard className="glass-card p-8 sm:p-10 border border-zinc-900 bg-zinc-950/50 shadow-2xl lg:sticky lg:top-28">
+          {/* Profile Card Side - Apple Dark Widget style */}
+          <GlowCard className="apple-widget p-8 sm:p-10 lg:sticky lg:top-28">
             <p className="section-overline">PROFILE</p>
             <div className="mt-8 space-y-6 text-zinc-300">
               <motion.div 
@@ -183,13 +163,13 @@ export default function About() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, type: 'spring', damping: 20 }}
                 viewport={{ once: true }}
-                className="rounded-2xl border border-zinc-900 bg-zinc-900/20 p-5 shadow-inner"
+                className="rounded-2xl border border-white/5 bg-white/5 p-5 shadow-inner"
               >
-                <p className="text-[11px] font-bold text-zinc-400 tracking-wide uppercase">
+                <p className="text-[11px] font-bold text-zinc-455 tracking-wide uppercase">
                   {t('활동 분야', 'Areas of Activity')}
                 </p>
                 <p className="mt-2 text-xs sm:text-sm font-bold text-white font-display">
-                  CEO / Founder / Marketer / Designer
+                  CEO / Founder / Marketer / Designer / Developer
                 </p>
               </motion.div>
 
@@ -198,9 +178,9 @@ export default function About() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.1, type: 'spring', damping: 20 }}
                 viewport={{ once: true }}
-                className="rounded-2xl border border-zinc-900 bg-zinc-900/20 p-5 shadow-inner"
+                className="rounded-2xl border border-white/5 bg-white/5 p-5 shadow-inner"
               >
-                <p className="text-[11px] font-bold text-zinc-400 tracking-wide uppercase">
+                <p className="text-[11px] font-bold text-zinc-455 tracking-wide uppercase">
                   {t('소속 및 역할', 'Affiliation & Role')}
                 </p>
                 <p className="mt-2 text-xs sm:text-sm font-bold text-white font-sans leading-relaxed">
@@ -213,9 +193,9 @@ export default function About() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.2, type: 'spring', damping: 20 }}
                 viewport={{ once: true }}
-                className="rounded-2xl border border-zinc-900 bg-zinc-900/20 p-5 shadow-inner"
+                className="rounded-2xl border border-white/5 bg-white/5 p-5 shadow-inner"
               >
-                <p className="text-[11px] font-bold text-zinc-400 tracking-wide uppercase">
+                <p className="text-[11px] font-bold text-zinc-455 tracking-wide uppercase">
                   {t('핵심 지향점', 'Core Approach')}
                 </p>
                 <p className="mt-2 text-xs sm:text-sm font-bold text-white font-sans leading-relaxed">
@@ -231,9 +211,9 @@ export default function About() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.3, type: 'spring', damping: 20 }}
                 viewport={{ once: true }}
-                className="rounded-2xl border border-zinc-900 bg-zinc-900/20 p-5 shadow-inner"
+                className="rounded-2xl border border-white/5 bg-white/5 p-5 shadow-inner"
               >
-                <p className="text-[11px] font-bold text-zinc-400 tracking-wide uppercase">
+                <p className="text-[11px] font-bold text-zinc-455 tracking-wide uppercase">
                   {t('주요 강점', 'Key Strengths')}
                 </p>
                 <p className="mt-2 text-xs sm:text-sm font-bold text-white font-sans leading-relaxed">
@@ -258,24 +238,54 @@ export default function About() {
           <div className="grid gap-6 grid-cols-1 sm:grid-cols-3 max-w-4xl mx-auto">
             {stats.map((stat, idx) => {
               const isActive = activeStat === idx;
+              // Determine ring color based on Apple Health activity style
+              const ringColor = idx === 0 ? 'text-[#ff2d55]' : idx === 1 ? 'text-[#4cd964]' : 'text-[#5ac8fa]';
               return (
                 <GlowCard
                   key={idx}
                   layout
                   onClick={() => setActiveStat(isActive ? null : idx)}
-                  className={`glass-card p-6 text-center border transition-all duration-300 cursor-pointer ${
-                    isActive ? 'border-white bg-zinc-950/80' : 'border-zinc-900 bg-zinc-950/20'
+                  className={`apple-widget p-6 text-left relative overflow-hidden transition-all duration-300 cursor-pointer group ${
+                    isActive ? 'border-white/20 bg-white/10' : 'border-white/5 bg-white/5 hover:border-white/10'
                   }`}
                 >
-                  <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-zinc-500 mb-2">
+                  {/* Decorative Apple Activity Ring */}
+                  <div className="absolute right-5 top-5 w-10 h-10">
+                    <svg viewBox="0 0 36 36" className={`w-full h-full ${ringColor}`}>
+                      <circle
+                        className="opacity-10"
+                        strokeWidth="3.5"
+                        stroke="currentColor"
+                        fill="none"
+                        cx="18"
+                        cy="18"
+                        r="15.915"
+                      />
+                      <circle
+                        strokeWidth="3.5"
+                        strokeDasharray={`${idx === 0 ? '80' : idx === 1 ? '90' : '75'}, 100`}
+                        strokeLinecap="round"
+                        stroke="currentColor"
+                        fill="none"
+                        cx="18"
+                        cy="18"
+                        r="15.915"
+                        transform="rotate(-90 18 18)"
+                      />
+                    </svg>
+                  </div>
+
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 pr-12">
                     {stat.label}
                   </p>
-                  <p className="text-4xl font-extrabold tracking-tight text-white font-display mb-3">
+                  
+                  <p className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mt-4 mb-2 font-display">
                     {stat.value}
                   </p>
-                  <div className="h-px w-8 bg-zinc-800 mx-auto mb-3" />
                   
-                  <div className="relative overflow-hidden min-h-[40px] flex items-center justify-center">
+                  <div className="h-px bg-white/5 w-full my-4" />
+                  
+                  <div className="relative overflow-hidden min-h-[40px] flex items-center">
                     <AnimatePresence mode="wait">
                       {isActive ? (
                         <motion.p
@@ -284,7 +294,7 @@ export default function About() {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: -8, scale: 0.96 }}
                           transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-                          className="text-[11px] leading-relaxed text-zinc-200 font-normal"
+                          className="text-[11px] leading-relaxed text-zinc-200 font-medium"
                         >
                           {stat.proof}
                         </motion.p>
@@ -292,12 +302,12 @@ export default function About() {
                         <motion.p
                           key="click-me"
                           initial={{ opacity: 0 }}
-                          animate={{ opacity: 0.5 }}
+                          animate={{ opacity: 0.6 }}
                           exit={{ opacity: 0 }}
                           transition={{ duration: 0.15 }}
-                          className="text-[11px] text-zinc-450 font-bold tracking-wide"
+                          className="text-[10px] text-zinc-455 font-bold tracking-wide uppercase hover:text-white transition-colors"
                         >
-                          CLICK TO EXPLAIN
+                          {t('자세히 보기', 'CLICK TO READ')} →
                         </motion.p>
                       )}
                     </AnimatePresence>

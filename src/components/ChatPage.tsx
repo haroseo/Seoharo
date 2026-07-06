@@ -108,14 +108,14 @@ export default function ChatPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-black flex items-center justify-center pt-36 sm:pt-40 pb-12 px-4 sm:px-6 overflow-hidden">
+    <div className="relative min-h-screen bg-[#0f151c] flex items-center justify-center pt-36 sm:pt-40 pb-12 px-4 sm:px-6 overflow-hidden">
       
       {/* Messenger frame */}
-      <div className="w-full max-w-xl bg-zinc-950/80 border border-zinc-900 rounded-[28px] shadow-[0_24px_60px_rgba(0,0,0,0.9)] flex flex-col h-[68vh] sm:h-[72vh] relative overflow-hidden backdrop-blur-2xl">
+      <div className="w-full max-w-xl bg-[var(--toss-bg-card)] border border-[var(--toss-border)] rounded-[24px] shadow-[0_24px_60px_rgba(0,0,0,0.5)] flex flex-col h-[68vh] sm:h-[72vh] relative overflow-hidden">
         
         {/* Chat Room Header */}
-        <div className="px-6 py-4.5 border-b border-zinc-900/80 flex items-center bg-zinc-950/90 backdrop-blur-md sticky top-0 z-10">
-          <div className="w-9 h-9 rounded-full bg-zinc-900 border border-zinc-850 flex items-center justify-center text-white font-bold text-sm font-display select-none">
+        <div className="px-6 py-4.5 border-b border-[var(--toss-border)] flex items-center bg-[var(--toss-bg-card)] sticky top-0 z-10">
+          <div className="w-8 h-8 rounded-xl bg-[var(--toss-blue)] flex items-center justify-center text-white font-bold text-xs font-display select-none">
             S
           </div>
           <div className="ml-3">
@@ -135,23 +135,23 @@ export default function ChatPage() {
                 className={`flex items-start gap-3 ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 {msg.sender === 'bot' && (
-                  <div className="w-7 h-7 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 font-bold text-[10px] font-display shrink-0 select-none">
+                  <div className="w-6.5 h-6.5 rounded-lg bg-[var(--toss-blue)] flex items-center justify-center text-white font-bold text-[9px] font-display shrink-0 select-none">
                     S
                   </div>
                 )}
                 
                 <div
-                  className={`max-w-[75%] px-4.5 py-3 rounded-2xl text-[11px] sm:text-xs leading-relaxed whitespace-pre-line shadow-md ${
+                  className={`max-w-[75%] px-4.5 py-3 rounded-2xl text-[11px] sm:text-xs leading-relaxed whitespace-pre-line shadow-sm ${
                     msg.sender === 'user'
-                      ? 'bg-white text-black rounded-tr-none font-semibold'
-                      : 'bg-zinc-900 text-zinc-200 border border-zinc-800/80 rounded-tl-none font-normal'
+                      ? 'bg-[var(--toss-blue)] text-white rounded-tr-none font-semibold'
+                      : 'bg-[#222a35] text-[#f4f4f5] rounded-tl-none font-normal'
                   }`}
                 >
                   {msg.text}
                 </div>
 
                 {msg.sender === 'user' && (
-                  <div className="w-7 h-7 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-400 shrink-0 select-none">
+                  <div className="w-6.5 h-6.5 rounded-lg bg-[#2c3542] flex items-center justify-center text-zinc-400 shrink-0 select-none">
                     <User size={11} />
                   </div>
                 )}
@@ -166,16 +166,16 @@ export default function ChatPage() {
                 exit={{ opacity: 0 }}
                 className="flex items-start gap-3"
               >
-                <div className="w-7 h-7 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 font-bold text-[10px] font-display shrink-0 select-none">
+                <div className="w-6.5 h-6.5 rounded-lg bg-[var(--toss-blue)] flex items-center justify-center text-white font-bold text-[9px] font-display shrink-0 select-none">
                   S
                 </div>
-                <div className="bg-zinc-900 border border-zinc-850 rounded-2xl rounded-tl-none px-4 py-3 flex items-center gap-1">
+                <div className="bg-[#222a35] rounded-2xl rounded-tl-none px-4 py-3 flex items-center gap-1">
                   {[0, 1, 2].map((i) => (
                     <motion.span
                       key={i}
                       animate={{ y: [0, -4, 0] }}
                       transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.15 }}
-                      className="w-1.5 h-1.5 bg-zinc-500 rounded-full inline-block"
+                      className="w-1.5 h-1.5 bg-zinc-550 rounded-full inline-block"
                     />
                   ))}
                 </div>
@@ -186,8 +186,8 @@ export default function ChatPage() {
         </div>
 
         {/* Preset Question Buttons Footer */}
-        <div className="p-4 border-t border-zinc-900/80 bg-zinc-950/90 backdrop-blur-sm sticky bottom-0 z-10">
-          <span className="block text-[8.5px] font-bold text-zinc-500 uppercase tracking-widest mb-3 select-none text-center font-mono">
+        <div className="p-4 border-t border-[var(--toss-border)] bg-[var(--toss-bg-card)] sticky bottom-0 z-10">
+          <span className="block text-[8.5px] font-bold text-zinc-550 uppercase tracking-widest mb-3 select-none text-center font-mono">
             {t('질문을 선택하세요', 'CHOOSE A QUESTION')}
           </span>
 
@@ -206,29 +206,32 @@ export default function ChatPage() {
                     whileHover="hover"
                     variants={{
                       hover: {
-                        scale: 1.015,
-                        borderColor: '#ffffff',
-                        backgroundColor: '#121214',
-                        boxShadow: '0 0 12px rgba(255, 255, 255, 0.08)'
+                        scale: 1.01,
+                        backgroundColor: '#222a35',
                       }
                     }}
                     transition={{ type: 'spring', stiffness: 350, damping: 28 }}
                     onClick={() => handleOptionClick(optId)}
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#0a0a0c]/80 border border-zinc-900 text-zinc-300 hover:text-white text-xs font-semibold text-left flex items-center justify-between group shadow-sm transition-all select-none cursor-pointer relative overflow-hidden"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#1f262e] text-zinc-300 hover:text-white text-xs font-semibold text-left flex items-center justify-between group shadow-sm transition-all select-none cursor-pointer relative overflow-hidden"
                   >
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent pointer-events-none"
-                      variants={{
-                        hover: { x: ['-100%', '100%'] }
-                      }}
-                      transition={{ duration: 0.8, ease: 'easeInOut' }}
-                    />
                     <span className="relative z-10">{opt.text}</span>
                     <ArrowRight size={12} className="text-zinc-550 group-hover:text-white group-hover:translate-x-0.5 transition-all relative z-10" />
                   </motion.button>
                 );
               })}
             </AnimatePresence>
+          </div>
+
+          {/* Simulated Input Area */}
+          <div className="mt-4 pt-3.5 border-t border-white/5 flex items-center gap-3">
+            <div className="flex-1 bg-[#1f262e] rounded-full px-4.5 py-2.5 flex items-center justify-between text-zinc-500 text-[11px] font-medium select-none">
+              <span>{t('서하루에게 질문 입력하기...', 'Ask Seoharo a question...')}</span>
+            </div>
+            <div className="w-8 h-8 rounded-full bg-[var(--toss-blue)] flex items-center justify-center text-white shrink-0 select-none opacity-80 hover:opacity-100 transition-opacity">
+              <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current transform -rotate-45 translate-x-0.5">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+              </svg>
+            </div>
           </div>
         </div>
 

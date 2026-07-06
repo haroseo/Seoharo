@@ -1,10 +1,27 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
+@import "@toss/tds-colors/colors.css";
 
 @layer base {
   :root {
     color-scheme: dark;
+
+    /* Apple HIG Tokens */
+    --apple-system-blue: #007aff;
+    --apple-system-blue-dark: #0a84ff;
+    --apple-glass-bg: rgba(22, 22, 23, 0.75);
+    --apple-glass-border: rgba(255, 255, 255, 0.08);
+    --apple-squircle-radius: 24px;
+    
+    /* Toss Design System (TDS) UI Tokens */
+    --toss-blue: var(--blue500); /* #3182f6 */
+    --toss-blue-hover: var(--blue600); /* #2272eb */
+    --toss-bg-card: var(--grey900); /* #191f28 */
+    --toss-bg-page: #0f151c;
+    --toss-border: var(--grey800); /* #333d4b */
+    --toss-text-primary: #ffffff;
+    --toss-text-secondary: var(--grey400); /* #b0b8c1 */
   }
 
   html {
@@ -15,43 +32,14 @@
   body {
     min-height: 100vh;
     margin: 0;
-    font-family: 'Pretendard', 'Outfit', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Pretendard", "Outfit", sans-serif;
     background-color: #000000;
     color: #f4f4f5;
     position: relative;
     overflow-x: hidden;
   }
 
-  /* Tech Micro-Grid Background in dark monochrome */
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-      linear-gradient(rgba(39, 39, 42, 0.3) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(39, 39, 42, 0.3) 1px, transparent 1px);
-    background-size: 50px 50px;
-    opacity: 0.5;
-    pointer-events: none;
-    z-index: -10;
-  }
 
-  /* Tech dots texture in monochrome */
-  body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: radial-gradient(circle, rgba(63, 63, 70, 0.08) 1px, transparent 1px);
-    background-size: 25px 25px;
-    pointer-events: none;
-    z-index: -9;
-  }
 
   ::selection {
     background: #27272a;
@@ -89,6 +77,66 @@
     background-color: rgba(9, 9, 11, 0.7);
     backdrop-filter: blur(24px);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Apple Glass Material Widget */
+  .apple-widget {
+    border-radius: var(--apple-squircle-radius);
+    border: 1px solid var(--apple-glass-border);
+    background-color: var(--apple-glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Toss Design System Card Container */
+  .toss-card {
+    border-radius: 20px;
+    background-color: var(--toss-bg-card);
+    border: 1px solid var(--toss-border);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Toss Blue Action Button */
+  .toss-blue-btn {
+    background-color: var(--toss-blue);
+    color: #ffffff;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+  }
+  .toss-blue-btn:hover {
+    background-color: var(--toss-blue-hover);
+  }
+
+  /* Toss Interactive Input styles */
+  .toss-input-group {
+    position: relative;
+    width: 100%;
+  }
+
+  .toss-input-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #27272a;
+    transition: background-color 0.2s ease;
+  }
+
+  .toss-input-focus-line {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--toss-blue);
+    transition: width 0.3s ease, left 0.3s ease;
+  }
+
+  .toss-input-group:focus-within .toss-input-focus-line {
+    width: 100%;
+    left: 0;
   }
 
   .notion-card {

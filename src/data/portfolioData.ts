@@ -167,6 +167,17 @@ const portfolioDataKo: PortfolioDataType = {
         "아트워크 기획 보조 및 커뮤니티 그래픽 요소 제작 지원"
       ],
       skills: ["Graphic Design", "Brand Design", "Figma"],
+    },
+    {
+      id: "simplx",
+      title: "SIMPLX - Developer",
+      slogan: "시스템 최적화 및 도구 개발",
+      description: "SIMPLX에서 개발자로 활동하며 시스템 최적화 및 소프트웨어 툴 개발을 진행하고 있습니다.",
+      achievements: [
+        "효율적인 스크립팅 모듈 구축 및 성능 최적화",
+        "디스코드 봇 및 개발 도구 설계/구축"
+      ],
+      skills: ["Software Development", "System Optimization", "Discord Tools"],
     }
   ],
 
@@ -187,22 +198,31 @@ const portfolioDataKo: PortfolioDataType = {
 
   communities: [
     {
+      name: "로블갤러리 (ROGLLAERY)",
+      members: "800+",
+      logo: "/assets/rogllaery.png",
+      role: "설립자 및 총괄 (Founder)",
+      slogan: "유저가 만들어 나가는 투명한 커뮤니티, 로블갤러리",
+      description: "유저가 만들어 나가는 투명한 커뮤니티, 로블갤러리",
+      detailsText: "로블갤러리는 유저들이 스스로 교류하고 성장하는 소통 커뮤니티입니다. 유저들의 자발적인 참여와 투명한 문화를 지향하며 건전하고 투명한 커뮤니티 환경을 제공하고 지속 가능한 소통의 장을 만듭니다."
+    },
+    {
       name: "Limited™",
       members: "500+",
       logo: "/assets/limited.png",
       role: "Founder",
       slogan: "오직 나만을 위한 제품, Limited™",
-      description: "Limited™는 오직 나만을 위한 제품, Limited™ 브랜드로 가상 공간에 최적화된 게임 리소스와 에셋 라이브러리를 공유하고 소통하는 채널입니다.",
-      detailsText: "Limited™는 오직 나만을 위한 제품, Limited™ 브랜드로 가상 공간에 최적화된 게임 리소스와 에셋 라이브러리를 공유하고 소통하는 채널입니다."
+      description: "최상급 무료 에셋 배포와 가상 공간에 최적화된 게임 리소스 라이브러리 채널",
+      detailsText: "Limited™는 최상급 무료배포와 게임 환경에 특화된 맞춤형 그래픽/코드 에셋을 제공합니다. 개발자들의 시간 비용을 획기적으로 줄여줄 프리미엄 창작 리소스를 지속 연구하고 유통합니다."
     },
     {
       name: "로폴더 (RoFolder)",
       members: "700+",
       logo: "/assets/rofolder-logo-new.png",
-      role: "CEO",
-      slogan: "당신의 스토리를 성공의 데이터로, 로폴더",
-      description: "청소년 및 청년의 스타트업 창업을 독려하고 지원하는 디스코드 대표 커뮤니티입니다.",
-      detailsText: "로폴더는 청소년 및 청년의 스타트업 창업을 독려하고 이끄는 디스코드 대표 커뮤니티입니다. 네트워킹 및 모의 피칭 지원을 통해 스타트업 생태계를 활성화합니다."
+      role: "대표 (CEO)",
+      slogan: "당신의 가치를 높이는, 로샵 탐색의 모든 것",
+      description: "청소년 및 청년의 스타트업 창업을 독려하고 이끄는 디스코드 대표 커뮤니티",
+      detailsText: "로폴더는 청소년 및 청년의 스타트업 창업을 독려하고 이끄는 디스코드 대표 커뮤니티입니다. 브랜드 가치 구축, 모의 피칭 피드백, 네트워킹 리소스를 결합하여 비즈니스의 첫 데이터를 생성할 수 있도록 스타트업 생태계를 활성화합니다."
     }
   ],
 };
@@ -327,6 +347,17 @@ const portfolioDataEn: PortfolioDataType = {
         "Supporting artwork planning and community graphic production"
       ],
       skills: ["Graphic Design", "Brand Design", "Figma"],
+    },
+    {
+      id: "simplx",
+      title: "SIMPLX - Developer",
+      slogan: "System Optimization & Tool Development",
+      description: "Working as a developer at SIMPLX, focusing on system optimization and software tool development.",
+      achievements: [
+        "Building efficient scripting modules and optimizing performance",
+        "Designing and building Discord bots and development tools"
+      ],
+      skills: ["Software Development", "System Optimization", "Discord Tools"],
     }
   ],
 
@@ -347,22 +378,31 @@ const portfolioDataEn: PortfolioDataType = {
 
   communities: [
     {
+      name: "ROGLLAERY",
+      members: "800+",
+      logo: "/assets/rogllaery.png",
+      role: "Founder & General Manager",
+      slogan: "A transparent community built by users, ROGLLAERY",
+      description: "A transparent community built by users, ROGLLAERY",
+      detailsText: "ROGLLAERY is a communication community where users interact and grow together. We aim for voluntary user participation and transparent culture, providing a healthy and transparent environment."
+    },
+    {
       name: "Limited™",
       members: "500+",
       logo: "/assets/limited.png",
       role: "Founder",
       slogan: "Products made exclusively for you, Limited™",
-      description: "Limited™ is a channel exclusively for me — sharing and communicating game resources and assets optimized for virtual spaces under the Limited™ brand.",
-      detailsText: "Limited™ is a channel exclusively for me — sharing and communicating game resources and assets optimized for virtual spaces under the Limited™ brand."
+      description: "A channel distributing top-tier free assets and hosting a game resource library optimized for virtual spaces",
+      detailsText: "Limited™ provides custom graphic and code assets tailored for game environments along with top-tier free distribution. We continuously research and distribute premium creative resources to drastically save development time and costs."
     },
     {
       name: "RoFolder",
       members: "700+",
       logo: "/assets/rofolder-logo-new.png",
       role: "CEO",
-      slogan: "Turn your story into data for success, RoFolder",
+      slogan: "Everything about RoShop searches that raises your value",
       description: "A leading Discord community that encourages youth startup entrepreneurship",
-      detailsText: "RoFolder is a community encouraging youth startups. We connect brand design, pitching feedback, and networking resources to help startups generate their first business data."
+      detailsText: "RoFolder is a leading Discord community that encourages and guides youth startup entrepreneurship. We activate the startup ecosystem by combining brand value establishment, mock pitch feedback, and networking resources so businesses can generate their first data."
     }
   ],
 };
