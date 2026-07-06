@@ -7,7 +7,7 @@ export function useSmoothScroll() {
 
     let targetY = window.scrollY;
     let currentY = window.scrollY;
-    const damping = 0.08; // Damping constant between 0.05 (slower) and 0.1 (faster)
+    const damping = 0.14; // Tuned for instant start and high-end deceleration curves
     let isScrolling = false;
 
     // Track scroll position changes from keys, page reloads, browser actions, etc.
@@ -25,7 +25,7 @@ export function useSmoothScroll() {
       e.preventDefault();
       
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      targetY = Math.max(0, Math.min(maxScroll, targetY + e.deltaY * 0.85));
+      targetY = Math.max(0, Math.min(maxScroll, targetY + e.deltaY * 1.35));
 
       if (!isScrolling) {
         isScrolling = true;
@@ -37,7 +37,7 @@ export function useSmoothScroll() {
       const diff = targetY - currentY;
       currentY += diff * damping;
 
-      if (Math.abs(diff) > 0.4) {
+      if (Math.abs(diff) > 0.1) {
         window.scrollTo(0, currentY);
         requestAnimationFrame(updateScroll);
       } else {
