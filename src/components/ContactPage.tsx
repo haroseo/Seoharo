@@ -218,7 +218,7 @@ export default function ContactPage() {
                   }}
                 >
                   <div className="space-y-4">
-                    <span className="text-[8.5px] font-mono uppercase tracking-widest text-zinc-500">{t('연락망', 'Contact Node')}</span>
+                    <span className="text-[8.5px] font-mono uppercase tracking-widest text-zinc-500">{t('연락처', 'CONTACT INFO')}</span>
                     <div className="space-y-2">
                       <div className="flex items-center gap-3">
                         <Mail className="w-4 h-4 text-zinc-500" />

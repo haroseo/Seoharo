@@ -154,51 +154,52 @@ export default function About() {
             </motion.div>
           </div>
 
-          {/* Profile Card Side - Apple Dark Widget style */}
+          {/* Profile Card Side - 2x2 Modern Dashboard Grid */}
           <GlowCard className="apple-widget p-8 sm:p-10 lg:sticky lg:top-28">
             <p className="section-overline">PROFILE</p>
-            <div className="mt-8 space-y-6 text-zinc-300">
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 text-zinc-300">
+              
               <motion.div 
-                initial={{ opacity: 0, x: 25 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, type: 'spring', damping: 20 }}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
                 viewport={{ once: true }}
-                className="rounded-2xl border border-white/5 bg-white/5 p-5 shadow-inner"
+                className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-300 flex flex-col justify-between"
               >
-                <p className="text-[11px] font-bold text-zinc-455 tracking-wide uppercase">
+                <p className="text-[10px] font-bold text-zinc-500 tracking-wider uppercase">
                   {t('활동 분야', 'Areas of Activity')}
                 </p>
-                <p className="mt-2 text-xs sm:text-sm font-bold text-white font-display">
-                  CEO / Founder / Marketer / Designer / Developer
+                <p className="mt-4 text-xs sm:text-sm font-bold text-white font-display leading-relaxed">
+                  CEO · Founder · Marketer · Designer · Developer
                 </p>
               </motion.div>
 
               <motion.div 
-                initial={{ opacity: 0, x: 25 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.1, type: 'spring', damping: 20 }}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.05, ease: 'easeOut' }}
                 viewport={{ once: true }}
-                className="rounded-2xl border border-white/5 bg-white/5 p-5 shadow-inner"
+                className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-300 flex flex-col justify-between"
               >
-                <p className="text-[11px] font-bold text-zinc-455 tracking-wide uppercase">
+                <p className="text-[10px] font-bold text-zinc-500 tracking-wider uppercase">
                   {t('소속 및 역할', 'Affiliation & Role')}
                 </p>
-                <p className="mt-2 text-xs sm:text-sm font-bold text-white font-sans leading-relaxed">
-                  RoFolder CEO · Limited™ Founder · LUXERET Marketer · HANN LABS™ Staff Designer
+                <p className="mt-4 text-xs sm:text-sm font-bold text-white font-sans leading-relaxed">
+                  RoFolder CEO · Limited™ Founder · LUXERET Marketer · HANN LABS™ Staff Designer · SIMPLX Developer
                 </p>
               </motion.div>
 
               <motion.div 
-                initial={{ opacity: 0, x: 25 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2, type: 'spring', damping: 20 }}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
                 viewport={{ once: true }}
-                className="rounded-2xl border border-white/5 bg-white/5 p-5 shadow-inner"
+                className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-300 flex flex-col justify-between"
               >
-                <p className="text-[11px] font-bold text-zinc-455 tracking-wide uppercase">
+                <p className="text-[10px] font-bold text-zinc-500 tracking-wider uppercase">
                   {t('핵심 지향점', 'Core Approach')}
                 </p>
-                <p className="mt-2 text-xs sm:text-sm font-bold text-white font-sans leading-relaxed">
+                <p className="mt-4 text-xs sm:text-sm font-bold text-zinc-200 font-sans leading-relaxed">
                   {t(
                     '사용자 피드백 중심 설계, 스토리텔링 및 주도적 서비스 빌딩',
                     'User feedback-centric design, storytelling, and proactive service building'
@@ -207,16 +208,16 @@ export default function About() {
               </motion.div>
 
               <motion.div 
-                initial={{ opacity: 0, x: 25 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.3, type: 'spring', damping: 20 }}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.15, ease: 'easeOut' }}
                 viewport={{ once: true }}
-                className="rounded-2xl border border-white/5 bg-white/5 p-5 shadow-inner"
+                className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-300 flex flex-col justify-between"
               >
-                <p className="text-[11px] font-bold text-zinc-455 tracking-wide uppercase">
+                <p className="text-[10px] font-bold text-zinc-500 tracking-wider uppercase">
                   {t('주요 강점', 'Key Strengths')}
                 </p>
-                <p className="mt-2 text-xs sm:text-sm font-bold text-white font-sans leading-relaxed">
+                <p className="mt-4 text-xs sm:text-sm font-bold text-zinc-200 font-sans leading-relaxed">
                   {t(
                     '비주얼 디렉션 · 유저 인터랙션 기획 · 커뮤니티 매니지먼트',
                     'Visual Direction · Interaction Planning · Community Management'

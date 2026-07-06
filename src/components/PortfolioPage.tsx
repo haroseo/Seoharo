@@ -389,7 +389,7 @@ export default function PortfolioPage() {
                 <div className="flex justify-between items-center border-b border-white/5 pb-6">
                   <div>
                     <span className="text-[11px] font-sans tracking-wide text-zinc-400 uppercase font-semibold">
-                      {t(`아카이브 / ${selectedItem.type.toUpperCase()}`, `ARCHIVE / ${selectedItem.type.toUpperCase()}`)}
+                      {t(`아카이브 — ${selectedItem.type.toUpperCase()}`, `ARCHIVE — ${selectedItem.type.toUpperCase()}`)}
                     </span>
                     <h3 className="text-xl font-bold tracking-tight text-white font-display mt-1">
                       {selectedItem.title}

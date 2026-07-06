@@ -84,20 +84,20 @@ export default function Hero() {
             variants={itemVariants}
             className="apple-widget p-8 md:p-10"
           >
-            <p className="text-[11px] font-bold tracking-wide text-zinc-400 uppercase">
+            <p className="text-[10px] font-bold tracking-widest text-zinc-450 uppercase">
               {t('프로필 개요', 'PROFILE OVERVIEW')}
             </p>
             <div className="mt-8 space-y-6">
               <div className="flex items-end justify-between gap-4">
                 <div>
-                  <p className="text-[11px] font-bold tracking-wide text-zinc-450 uppercase">
+                  <p className="text-[9px] font-bold tracking-wider text-zinc-550 uppercase">
                     {t('성명', 'CREATOR NAME')}
                   </p>
-                  <h2 className="text-xl font-bold text-white mt-1 font-display">
+                  <h2 className="text-2xl font-bold text-white mt-1.5 font-display tracking-tight">
                     SEOHARO
                   </h2>
                 </div>
-                <div className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
+                <div className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[9px] font-bold uppercase tracking-wider text-zinc-200">
                   {t('활동 중', 'ACTIVE')}
                 </div>
               </div>
@@ -106,34 +106,49 @@ export default function Hero() {
                 {data.title}
               </p>
 
-              <div className="grid gap-4 text-xs text-zinc-300 font-normal">
-                <div className="flex justify-between border-b border-white/5 pb-3">
-                  <span className="text-zinc-400 font-bold">EMAIL</span>
-                  <span className="font-semibold text-zinc-200">{data.contact.email}</span>
+              {/* Grid-based Metadata Tiles */}
+              <div className="grid grid-cols-2 gap-3 text-xs text-zinc-300 font-normal">
+                <div className="bg-white/[0.02] border border-white/5 p-3.5 rounded-xl flex flex-col justify-between">
+                  <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider">EMAIL</span>
+                  <span className="mt-1 font-semibold text-zinc-200 truncate select-all">{data.contact.email}</span>
                 </div>
-                <div className="flex justify-between border-b border-white/5 pb-3">
-                  <span className="text-zinc-400 font-bold">GITHUB</span>
-                  <a
-                    href={data.contact.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-semibold text-zinc-200 hover:text-white transition-colors"
-                  >
-                    github.com/haroseo
-                  </a>
+                <div className="bg-white/[0.02] border border-white/5 p-3.5 rounded-xl flex flex-col justify-between">
+                  <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider">LOCATION</span>
+                  <span className="mt-1 font-semibold text-zinc-200">{t('대한민국', 'South Korea')}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-zinc-400 font-bold">LOCATION</span>
-                  <span className="font-semibold text-zinc-200">{t('대한민국', 'South Korea')}</span>
-                </div>
+                <a
+                  href={data.contact.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white/[0.02] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] p-3.5 rounded-xl flex flex-col justify-between col-span-2 transition-all duration-300 group"
+                >
+                  <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider flex justify-between items-center">
+                    GITHUB
+                    <span className="text-[8px] text-zinc-600 group-hover:text-white transition-colors">LAUNCH ↗</span>
+                  </span>
+                  <span className="mt-1 font-semibold text-zinc-200">github.com/haroseo</span>
+                </a>
               </div>
 
-              {/* Minimal Project Links */}
-              <div className="pt-6 border-t border-white/5 text-[11px] font-bold tracking-wide text-zinc-400 grid gap-1.5 uppercase">
-                <span>ROLES & POSITION</span>
-                <span className="text-xs text-white font-sans font-bold leading-normal">
-                  ROFOLDER CEO / LIMITED™ FOUNDER / LUXERET MARKETER / HANN LABS™ STAFF DESIGNER / SIMPLX DEVELOPER
-                </span>
+              {/* Tag-based Micro Chips (No slashes) */}
+              <div className="pt-6 border-t border-white/5 space-y-3">
+                <span className="text-[9px] font-bold tracking-wider text-zinc-500 uppercase block">ROLES & POSITION</span>
+                <div className="flex flex-wrap gap-1.5">
+                  {[
+                    'RoFolder CEO',
+                    'Limited™ Founder',
+                    'LUXERET Marketer',
+                    'HANN LABS™ Staff Designer',
+                    'SIMPLX Developer'
+                  ].map((role) => (
+                    <span 
+                      key={role} 
+                      className="inline-flex items-center px-2.5 py-1.5 rounded-lg bg-white/[0.03] border border-white/5 text-[9.5px] font-medium text-zinc-300 font-sans tracking-tight hover:border-white/10 transition-colors"
+                    >
+                      {role}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </motion.div>
