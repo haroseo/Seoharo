@@ -254,7 +254,7 @@ export default function PortfolioPage() {
                 <img
                   src={
                     item.id === 'rofolder' ? '/assets/rofolder-new.jpg' :
-                    item.id === 'limited' ? '/assets/limited-banner.png' :
+                    item.id === 'limited' ? '/assets/limited.png' :
                     item.id === 'designpick' ? '/assets/designpick.png' :
                     item.id === 'planor' ? '/assets/planor.png' :
                     item.id === 'naramarsami' ? '/assets/naramarsami.png' :
