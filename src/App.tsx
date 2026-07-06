@@ -15,10 +15,12 @@ import Footer from './components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ThemeProvider } from './components/ThemeContext';
 import Background from './components/Background';
+import { useSmoothScroll } from './hooks/useSmoothScroll';
 import './index.css';
 
 function AppContent() {
   const { currentPath } = useRouter();
+  useSmoothScroll();
 
   // Block middle-click auto-scroll globally
   useEffect(() => {

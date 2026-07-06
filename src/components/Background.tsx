@@ -1,28 +1,74 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect } from 'react';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { useTheme } from './ThemeContext';
 
 export default function Background() {
   const { bgTheme } = useTheme();
 
+  // Mouse movement tracking for 3D Perspective Grid Horizon
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Dampen coordinates to rotation angles (e.g. pitch from 62 to 68 deg, roll from -8 to 8 deg)
+  const rotateX = useSpring(useTransform(mouseY, [-600, 600], [67, 61]), { stiffness: 45, damping: 22 });
+  const rotateY = useSpring(useTransform(mouseX, [-600, 600], [-8, 8]), { stiffness: 45, damping: 22 });
+
+  useEffect(() => {
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const halfWidth = window.innerWidth / 2;
+      const halfHeight = window.innerHeight / 2;
+      mouseX.set(e.clientX - halfWidth);
+      mouseY.set(e.clientY - halfHeight);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [mouseX, mouseY]);
+
   return (
     <div className="fixed inset-0 -z-50 w-full h-full bg-[#000000] overflow-hidden select-none pointer-events-none">
       
+      {/* 3D Perspective Grid Horizon (shown in Grid, Dots, and Aurora backgrounds) */}
+      <AnimatePresence>
+        {['grid', 'dots', 'aurora'].includes(bgTheme) && (
+          <div 
+            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[240vw] h-[70vh] origin-bottom opacity-15 pointer-events-none overflow-hidden"
+            style={{ perspective: '800px' }}
+          >
+            <motion.div
+              style={{
+                rotateX,
+                rotateY,
+                backgroundImage: `
+                  linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                  linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
+                `,
+                backgroundSize: '60px 60px',
+              }}
+              className="w-full h-full transform-gpu"
+            />
+          </div>
+        )}
+      </AnimatePresence>
+
       {/* Dynamic Background Transitions */}
       <AnimatePresence mode="wait">
         
-        {/* 1. Grid Background */}
+        {/* 1. Grid Background (ambient) */}
         {bgTheme === 'grid' && (
           <motion.div
             key="grid"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0.15 }}
+            animate={{ opacity: 0.1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6 }}
             className="absolute inset-0 w-full h-full"
             style={{
               backgroundImage: `
-                linear-gradient(to right, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 1px, transparent 1px)
+                linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px)
               `,
               backgroundSize: '48px 48px',
             }}
@@ -34,12 +80,12 @@ export default function Background() {
           <motion.div
             key="dots"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0.25 }}
+            animate={{ opacity: 0.2 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6 }}
             className="absolute inset-0 w-full h-full"
             style={{
-              backgroundImage: 'radial-gradient(rgba(255, 255, 255, 0.15) 1.5px, transparent 1.5px)',
+              backgroundImage: 'radial-gradient(rgba(255, 255, 255, 0.1) 1.5px, transparent 1.5px)',
               backgroundSize: '28px 28px',
             }}
           />
@@ -65,7 +111,7 @@ export default function Background() {
           <motion.div
             key="aurora"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0.4 }}
+            animate={{ opacity: 0.35 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}
             className="absolute inset-0 w-full h-full"
@@ -115,7 +161,7 @@ export default function Background() {
       </AnimatePresence>
 
       {/* Static very soft ambient light that works on all styles */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#000000]/10 to-[#000000]/90 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#000000]/10 to-[#000000]/95 pointer-events-none" />
     </div>
   );
 }

@@ -266,80 +266,13 @@ export default function PortfolioPage() {
           <div
             key={item.id}
             ref={(el) => { sectionRefs.current[idx] = el; }}
-            className="min-h-screen w-full flex items-center justify-center relative border-b border-zinc-950 px-6 sm:px-12 md:px-20 py-16"
+            className="min-h-screen w-full flex items-center justify-center relative border-b border-zinc-950 px-4 sm:px-8 md:px-12 py-20"
           >
-            {/* Section grid layout */}
-            <div className="max-w-6xl w-full grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
+            {/* Full-width Wide Banner Card */}
+            <div className="max-w-5xl w-full aspect-[1.1/1] sm:aspect-[2.1/1] md:aspect-[2.4/1] relative rounded-2xl overflow-hidden border border-white/5 bg-zinc-950 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.7)] group">
               
-              {/* Left Column: Text Panels */}
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
-                className="space-y-8"
-              >
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <span className="text-[11px] font-sans tracking-wide text-zinc-400 uppercase font-semibold">
-                      {item.type === 'discord' ? 'Discord' : item.type === 'site' ? 'Site' : 'Workplace'}
-                    </span>
-                    <div className="h-px w-8 bg-zinc-900" />
-                  </div>
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-display bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
-                    {item.title}
-                  </h2>
-                  {item.slogan && (
-                    <p className="text-xs sm:text-sm text-zinc-400 font-medium italic border-l border-zinc-800 pl-3">
-                      "{item.slogan}"
-                    </p>
-                  )}
-                </div>
-
-                <p className="text-xs sm:text-sm text-zinc-200 leading-relaxed font-normal max-w-lg">
-                  {item.description}
-                </p>
-
-                {/* Sub-tags */}
-                <div className="flex flex-wrap gap-1.5">
-                  {item.tags.map(tag => (
-                    <span key={tag} className="px-2.5 py-0.5 bg-white/5 border border-white/5 rounded-lg text-[10px] font-sans font-bold text-zinc-450 uppercase tracking-wide">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Action Rows */}
-                <div className="flex flex-wrap items-center gap-4 pt-2">
-                  <button
-                    onClick={() => setSelectedItem(item)}
-                    className="px-6 py-2.5 bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 text-white text-[11px] font-bold font-sans tracking-wider uppercase rounded-full cursor-pointer transition-all shadow-sm"
-                  >
-                    {t('상세 보기', 'Read Case Study')}
-                  </button>
-                  
-                  {item.link && (
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-[11px] font-bold font-sans text-zinc-450 hover:text-[var(--toss-blue)] uppercase tracking-wider transition-colors"
-                    >
-                      {t('방문하기', 'Launch')}
-                      <ExternalLink size={11} />
-                    </a>
-                  )}
-                </div>
-              </motion.div>
-
-              {/* Right Column: Premium Flat Mockup Image */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.96 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-                className="w-full aspect-video md:aspect-[4/3] lg:aspect-auto lg:h-[460px] apple-widget overflow-hidden relative group cursor-pointer border border-white/5 bg-white/5 hover:border-white/10"
-              >
+              {/* Background artwork image overlayed with dark gradient */}
+              <div className="absolute inset-0 z-0 overflow-hidden">
                 <img
                   src={
                     item.id === 'rofolder' ? '/assets/rofolder-new.jpg' :
@@ -352,10 +285,72 @@ export default function PortfolioPage() {
                     '/assets/hannlabs.png'
                   }
                   alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-103"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
-              </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-black/95 via-black/80 sm:via-black/60 to-black/30 sm:to-transparent pointer-events-none" />
+              </div>
+
+              {/* Foreground content panel */}
+              <div className="relative z-10 w-full h-full p-8 sm:p-12 flex flex-col justify-end sm:justify-center items-start">
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.6, ease: 'easeOut' }}
+                  className="max-w-md space-y-4 text-left"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[9px] font-sans tracking-[0.15em] text-zinc-450 uppercase font-bold">
+                        {item.type === 'discord' ? 'Discord' : item.type === 'site' ? 'Site' : 'Workplace'}
+                      </span>
+                    </div>
+                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight font-display text-white">
+                      {item.title}
+                    </h2>
+                    {item.slogan && (
+                      <p className="text-[11px] sm:text-xs text-zinc-400 font-medium italic border-l border-zinc-800 pl-2.5">
+                        "{item.slogan}"
+                      </p>
+                    )}
+                  </div>
+
+                  <p className="text-[11.5px] sm:text-xs text-zinc-300 leading-relaxed font-normal max-w-sm">
+                    {item.description}
+                  </p>
+
+                  {/* Sub-tags */}
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {item.tags.map(tag => (
+                      <span key={tag} className="px-2 py-0.5 bg-white/5 border border-white/5 rounded-lg text-[9px] font-bold text-zinc-400 uppercase tracking-wide">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Actions */}
+                  <div className="flex flex-wrap items-center gap-3.5 pt-2">
+                    <button
+                      onClick={() => setSelectedItem(item)}
+                      className="px-5 py-2 bg-white/5 border border-white/10 hover:border-zinc-300/30 hover:bg-white/[0.04] text-white text-[10px] font-bold uppercase tracking-wider rounded-full cursor-pointer transition-all shadow-sm"
+                    >
+                      {t('상세 보기', 'Read Case Study')}
+                    </button>
+                    
+                    {item.link && (
+                      <a
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 text-[10px] font-bold text-zinc-400 hover:text-white uppercase tracking-wider transition-colors"
+                      >
+                        {t('방문하기', 'Launch')}
+                        <ExternalLink size={10} />
+                      </a>
+                    )}
+                  </div>
+                </motion.div>
+              </div>
 
             </div>
           </div>
