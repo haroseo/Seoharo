@@ -251,8 +251,8 @@ export default function About() {
                   }`}
                 >
                   {/* Subtle expand/close CTA indicator for UX affordance */}
-                  <div className="absolute right-5 bottom-4 text-[7.5px] font-mono tracking-wider text-zinc-600 group-hover:text-zinc-400 transition-colors uppercase">
-                    {isActive ? 'CLOSE -' : 'EXPAND +'}
+                  <div className="absolute right-5 bottom-4 text-[9px] font-sans font-bold tracking-tight text-zinc-500 group-hover:text-zinc-300 transition-colors">
+                    {isActive ? '접기 -' : '자세히 +'}
                   </div>
 
                   {/* Decorative Apple Activity Ring */}

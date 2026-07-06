@@ -6,7 +6,8 @@ import {
   Sparkles, 
   Award,
   Heart,
-  Eye
+  Eye,
+  ExternalLink
 } from 'lucide-react';
 import { useLanguage } from './LanguageContext';
 import { useRouter } from './router';
@@ -67,7 +68,7 @@ export default function PortfolioPage() {
       link: 'https://discord.gg/H92F7jQ2aA',
       achievements: [
         t('커스텀 디자인 에셋 배포 및 크리에이티브 피드 관리', 'Distributed custom visual design files and maintained creative design feeds'),
-        t('가상 환경에 맞춰 최적화된 3D/2D 그래픽 템플릿 제작', 'Created streamlined 3D/2D visual mockup kits for virtual creators'),
+        t('가상 환경에 맞춰 최적화된 3D/2D graphic 템플릿 제작', 'Created streamlined 3D/2D visual mockup kits for virtual creators'),
         t('창작자들이 자유롭게 소통할 수 있는 피어 리뷰 허브 활성화', 'Fostered dynamic peer design review hubs for asset library sharing')
       ],
       details: {
@@ -88,7 +89,7 @@ export default function PortfolioPage() {
       link: 'https://designs.kro.kr',
       details: {
         background: t('디자이너와 개발자들이 실무에서 영감을 얻을 수 있는 구조적 폰트 스펙트럼과 그리드 가이드를 제시하기 위해 설계되었습니다.', 'Created to provide clean grid hierarchies and structural font rules for product layouts.'),
-        strategy: t('명품 레이아웃과 모노톤의 대비를 활용해 시각적 피로를 줄하고 직관성을 높이는 그리드를 고안했습니다.', 'Utilized monochrome contrasts and strict margins to minimize UI friction and maximize readability.'),
+        strategy: t('명품 레이아웃과 모노톤의 대비를 활용해 시각적 피로를 줄이고 직관성을 높이는 그리드를 고안했습니다.', 'Utilized monochrome contrasts and strict margins to minimize UI friction and maximize readability.'),
         metrics: t('비주얼 아카이브 조회수 향상 및 유수 디자인 커뮤니티 인지도 기여.', 'Improved visual archive metrics and gained recognized indexing in local design forums.')
       }
     },
@@ -192,11 +193,18 @@ export default function PortfolioPage() {
   });
 
   const filterTabs = [
-    { label: t('전체', 'ALL'), path: '/portfolio' },
-    { label: t('디자인', 'DESIGN'), path: '/design' },
-    { label: t('마케팅', 'MARKETING'), path: '/marketing' },
-    { label: t('개발', 'DEVELOPMENT'), path: '/development' }
+    { label: t('전체', '전체'), path: '/portfolio' },
+    { label: t('디자인', '디자인'), path: '/design' },
+    { label: t('마케팅', '마케팅'), path: '/marketing' },
+    { label: t('개발', '개발'), path: '/development' }
   ];
+
+  // Helper for localized asset types
+  const getLocalizedType = (type: string) => {
+    if (type === 'discord') return t('디스코드', '디스코드');
+    if (type === 'site') return t('웹사이트', '웹사이트');
+    return t('경력 소속', '경력 소속');
+  };
 
   return (
     <div className="relative min-h-screen bg-black text-white select-none">
@@ -259,7 +267,7 @@ export default function PortfolioPage() {
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]"
                 />
                 <div className="absolute top-3 left-3 px-2 py-0.5 rounded-md bg-black/60 backdrop-blur-md border border-white/10 text-[8px] font-bold text-zinc-300 uppercase tracking-wider">
-                  {item.type === 'discord' ? 'Discord' : item.type === 'site' ? 'Site' : 'Workplace'}
+                  {getLocalizedType(item.type)}
                 </div>
               </div>
 
@@ -354,7 +362,7 @@ export default function PortfolioPage() {
                 <div className="flex justify-between items-center border-b border-white/5 pb-6">
                   <div>
                     <span className="text-[11px] font-sans tracking-wide text-zinc-400 uppercase font-semibold">
-                      {t(`아카이브 — ${selectedItem.type.toUpperCase()}`, `ARCHIVE — ${selectedItem.type.toUpperCase()}`)}
+                      {t(`아카이브 — ${getLocalizedType(selectedItem.type).toUpperCase()}`, `ARCHIVE — ${getLocalizedType(selectedItem.type).toUpperCase()}`)}
                     </span>
                     <h3 className="text-xl font-bold tracking-tight text-white font-display mt-1">
                       {selectedItem.title}
@@ -377,36 +385,34 @@ export default function PortfolioPage() {
                   )}
 
                   <div className="space-y-2">
-                    <span className="text-[11px] font-sans tracking-wide text-zinc-400 uppercase flex items-center gap-1.5 font-semibold">
-                      <Compass size={11} className="text-zinc-400" />
+                    <span className="text-[10px] sm:text-[11px] font-sans tracking-wider text-zinc-400 uppercase flex items-center gap-1.5 font-bold border-b border-white/5 pb-1 w-full">
+                      <Compass size={11} className="text-zinc-450" />
                       {t('개요 및 역할', 'Overview & Role')}
                     </span>
-                    <p className="leading-relaxed whitespace-pre-line text-zinc-300">
+                    <p className="leading-relaxed whitespace-pre-line text-zinc-300 pt-1 text-xs sm:text-[13px]">
                       {selectedItem.description}
                     </p>
                   </div>
 
                   {selectedItem.details && (
                     <>
-                      <div className="space-y-2">
-                        <span className="text-[11px] font-sans tracking-wide text-zinc-400 uppercase flex items-center gap-1.5 font-semibold">
-                          <Sparkles size={11} className="text-zinc-400" />
+                      <div className="space-y-3">
+                        <span className="text-[10px] sm:text-[11px] font-sans tracking-wider text-zinc-400 uppercase flex items-center gap-1.5 font-bold border-b border-white/5 pb-1 w-full">
+                          <Sparkles size={11} className="text-zinc-450" />
                           {t('기획 및 디자인 전략', 'Planning & Design Strategy')}
                         </span>
-                        <p className="leading-relaxed text-zinc-300">
-                          {selectedItem.details.background}
-                        </p>
-                        <p className="leading-relaxed text-zinc-300">
-                          {selectedItem.details.strategy}
-                        </p>
+                        <div className="space-y-2 pt-1 text-xs sm:text-[13px] leading-relaxed text-zinc-300">
+                          <p>{selectedItem.details.background}</p>
+                          <p>{selectedItem.details.strategy}</p>
+                        </div>
                       </div>
 
-                      <div className="bg-white/5 p-5 rounded-2xl border border-white/5 space-y-2">
-                        <span className="text-[11px] font-sans tracking-wide text-zinc-350 uppercase flex items-center gap-1.5 font-semibold">
-                          <Award size={11} className="text-zinc-450" />
+                      <div className="bg-white/[0.02] p-5 rounded-2xl border border-white/5 space-y-2.5">
+                        <span className="text-[10px] sm:text-[11px] font-sans tracking-wider text-zinc-400 uppercase flex items-center gap-1.5 font-bold border-b border-white/5 pb-1 w-full">
+                          <Award size={11} className="text-zinc-500" />
                           {t('역량 증명 및 가치', 'Proven Metrics & Value')}
                         </span>
-                        <p className="leading-relaxed text-[#5ac8fa] font-bold">
+                        <p className="leading-relaxed text-[#5ac8fa] font-bold pt-1 text-xs sm:text-[13.5px]">
                           {selectedItem.details.metrics}
                         </p>
                       </div>
@@ -414,14 +420,14 @@ export default function PortfolioPage() {
                   )}
 
                   {selectedItem.achievements && (
-                    <div className="space-y-3.5">
-                      <span className="text-[11px] font-sans tracking-wide text-zinc-400 uppercase flex items-center gap-1.5 font-semibold">
+                    <div className="space-y-3">
+                      <span className="text-[10px] sm:text-[11px] font-sans tracking-wider text-zinc-400 uppercase flex items-center gap-1.5 font-bold border-b border-white/5 pb-1 w-full">
                         <Award size={11} className="text-zinc-450" />
                         {t('주요 활동 및 성과', 'Key Activities & Achievements')}
                       </span>
-                      <ul className="space-y-2.5">
+                      <ul className="space-y-2.5 pt-1">
                         {selectedItem.achievements.map((ach, index) => (
-                          <li key={index} className="flex gap-2.5 leading-relaxed text-zinc-300">
+                          <li key={index} className="flex gap-2.5 leading-relaxed text-zinc-300 text-xs sm:text-[13px]">
                             <span className="text-white font-bold">•</span>
                             <span>{ach}</span>
                           </li>
@@ -435,15 +441,28 @@ export default function PortfolioPage() {
 
               {/* Footer */}
               <div className="border-t border-white/5 pt-6 mt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-                <p className="text-[7.5px] leading-relaxed text-zinc-600 tracking-wider font-mono uppercase text-center sm:text-left max-w-xs">
+                <p className="text-[7.5px] leading-relaxed text-zinc-650 tracking-wider font-mono uppercase text-center sm:text-left max-w-xs">
                   Trademarks (RoFolder, Limited™, HANN LABS™, LUXERET, SIMPLX) are properties of their respective owners.
                 </p>
-                <button
-                  onClick={() => setSelectedItem(null)}
-                  className="px-6 py-2.5 toss-blue-btn rounded-full cursor-pointer shadow-md"
-                >
-                  {t('닫기', 'Close')}
-                </button>
+                <div className="flex items-center gap-3">
+                  {selectedItem.link && (
+                    <a
+                      href={selectedItem.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-2.5 bg-white/5 border border-white/10 hover:border-zinc-300/30 hover:bg-white/[0.04] text-white text-[10px] font-bold uppercase tracking-wider rounded-full cursor-pointer transition-all shadow-sm flex items-center gap-1.5"
+                    >
+                      {t('사이트 방문', 'Visit')}
+                      <ExternalLink size={10} className="inline" />
+                    </a>
+                  )}
+                  <button
+                    onClick={() => setSelectedItem(null)}
+                    className="px-6 py-2.5 toss-blue-btn rounded-full cursor-pointer shadow-md text-[10px] font-bold"
+                  >
+                    {t('닫기', 'Close')}
+                  </button>
+                </div>
               </div>
             </motion.div>
           </>
