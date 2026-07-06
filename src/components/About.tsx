@@ -80,7 +80,7 @@ export default function About() {
 
   const stats = [
     {
-      label: t('경력 수', 'Organizations'),
+      label: t('경력 수', 'Experience'),
       value: '30+',
       proof: t(
         '로폴더 대표, Limited™ 설립자, LUXERET 마케터, HANN LABS™ 디자이너, SIMPLX 개발자 등 30개 이상의 조직에서 다양한 역할을 경험하며 실무 역량을 길렀습니다.',
@@ -88,7 +88,7 @@ export default function About() {
       )
     },
     {
-      label: t('소통 유저 수', 'Users Reached'),
+      label: t('소통 유저 수', 'Communities'),
       value: '1,200+',
       proof: t(
         '총합 1,200명 이상의 로폴더 및 Limited™ 커뮤니티 유저들과 직접 소통하며 채널을 관리하고 피드백을 모았습니다.',
@@ -96,7 +96,7 @@ export default function About() {
       )
     },
     {
-      label: t('누적 프로젝트', 'Projects Done'),
+      label: t('누적 프로젝트', 'Projects'),
       value: '8+',
       proof: t(
         '웹 서비스 기획·개발부터 디자인, 브랜딩, 데이터 분석까지 8개 이상의 다각적 프로젝트 실행 경험은 경계를 넘나드는 문제 해결력을 증명합니다.',
@@ -231,8 +231,8 @@ export default function About() {
         {/* Interactive Stats Grid (What it Proves) */}
         <div className="pt-16 border-t border-zinc-900/80">
           <div className="text-center mb-10">
-            <p className="section-overline">METRICS & EVIDENCE</p>
-            <h3 className="text-2xl font-bold tracking-tight text-white font-display mt-2">{t('지표와 증명', 'Metrics & Proof')}</h3>
+            <p className="section-overline">METRICS</p>
+            <h3 className="text-2xl font-bold tracking-tight text-white font-display mt-2">{t('지표', 'Metrics')}</h3>
             <p className="text-xs text-zinc-500 mt-1 uppercase tracking-wider">{t('각 지표를 클릭하여 증명하는 역량을 확인해보세요', 'Click each metric to verify capabilities')}</p>
           </div>
 

@@ -84,16 +84,13 @@ export default function Hero() {
             variants={itemVariants}
             className="apple-widget p-8 md:p-10"
           >
-            <p className="text-[10px] font-bold tracking-widest text-zinc-450 uppercase">
-              {t('프로필 개요', 'PROFILE OVERVIEW')}
+            <p className="text-[9px] font-bold tracking-[0.2em] text-zinc-500 uppercase">
+              {t('프로필', 'PROFILE')}
             </p>
             <div className="mt-8 space-y-6">
               <div className="flex items-end justify-between gap-4">
                 <div>
-                  <p className="text-[9px] font-bold tracking-wider text-zinc-550 uppercase">
-                    {t('성명', 'CREATOR NAME')}
-                  </p>
-                  <h2 className="text-2xl font-bold text-white mt-1.5 font-display tracking-tight">
+                  <h2 className="text-2xl font-bold text-white font-display tracking-tight">
                     SEOHARO
                   </h2>
                 </div>
@@ -132,17 +129,17 @@ export default function Hero() {
                   href={data.contact.figma}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white/[0.02] border border-white/5 hover:border-[#7b61ff]/30 hover:bg-[#7b61ff]/5 p-3.5 rounded-xl flex flex-col justify-between transition-all duration-300 group"
+                  className="bg-white/[0.02] border border-white/5 hover:border-zinc-300/30 hover:bg-white/[0.04] p-3.5 rounded-xl flex flex-col justify-between transition-all duration-300 group"
                 >
                   <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider flex justify-between items-center">
                     FIGMA
-                    <span className="text-[8px] text-zinc-600 group-hover:text-[#a78bfa] transition-colors">PROFILE ↗</span>
+                    <span className="text-[8px] text-zinc-600 group-hover:text-white transition-colors">PROFILE ↗</span>
                   </span>
                   <span className="mt-1 font-semibold text-zinc-200">figma.com/@seoharo</span>
                 </a>
               </div>
 
-              {/* Tag-based Micro Chips (Figma Component style) */}
+              {/* Tag-based Micro Chips (Monochrome minimal design) */}
               <div className="pt-6 border-t border-white/5 space-y-3">
                 <span className="text-[9px] font-bold tracking-wider text-zinc-500 uppercase block">ROLES & POSITION</span>
                 <div className="flex flex-wrap gap-1.5">
@@ -155,9 +152,8 @@ export default function Hero() {
                   ].map((role) => (
                     <span 
                       key={role} 
-                      className="inline-flex items-center px-2.5 py-1.5 rounded-lg bg-[#7b61ff]/5 border border-[#7b61ff]/15 text-[9.5px] font-bold text-[#a78bfa] font-sans tracking-tight hover:bg-[#7b61ff]/10 hover:border-[#7b61ff]/30 transition-all duration-300 cursor-default"
+                      className="inline-flex items-center px-2.5 py-1 text-[9.5px] font-bold text-zinc-300 font-sans tracking-tight bg-white/[0.02] border border-white/5 rounded-lg hover:border-white/20 hover:bg-white/[0.04] transition-all duration-300 cursor-default"
                     >
-                      <span className="mr-1.5 text-[8px] text-[#a78bfa]">❖</span>
                       {role}
                     </span>
                   ))}

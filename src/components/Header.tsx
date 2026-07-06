@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Menu, X, Palette } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useRouter } from './router';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from './LanguageContext';
@@ -7,7 +7,6 @@ import { useTheme } from './ThemeContext';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [showBgMenu, setShowBgMenu] = useState(false);
   const { currentPath, navigate } = useRouter();
   const { language, setLanguage, t } = useLanguage();
   const { bgTheme, setBgTheme } = useTheme();
@@ -84,52 +83,27 @@ export default function Header() {
           </div>
           <div className="h-3 w-px bg-white/10" />
           
-          {/* Background switcher popover */}
-          <div className="relative flex items-center">
-            <button
-              onClick={() => setShowBgMenu(!showBgMenu)}
-              className="p-1.5 border border-white/10 bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white rounded-lg cursor-pointer transition-all flex items-center justify-center"
-              aria-label="Change Background"
-            >
-              <Palette size={12} />
-            </button>
-            <AnimatePresence>
-              {showBgMenu && (
-                <>
-                  <div className="fixed inset-0 z-40" onClick={() => setShowBgMenu(false)} />
-                  <motion.div
-                    initial={{ opacity: 0, y: 8, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 8, scale: 0.95 }}
-                    transition={{ duration: 0.15 }}
-                    className="absolute right-0 top-7 w-28 bg-[#0a0a0a]/90 backdrop-blur-xl border border-white/5 rounded-xl p-1.5 shadow-2xl z-50 flex flex-col gap-0.5 font-sans"
-                  >
-                    {[
-                      { id: 'solid', label: t('솔리드', 'SOLID') },
-                      { id: 'grid', label: t('그리드', 'GRID') },
-                      { id: 'dots', label: t('도트', 'DOTS') },
-                      { id: 'noise', label: t('노이즈', 'NOISE') },
-                      { id: 'aurora', label: t('오로라', 'AURORA') }
-                    ].map((themeOption) => (
-                      <button
-                        key={themeOption.id}
-                        onClick={() => {
-                          setBgTheme(themeOption.id as any);
-                          setShowBgMenu(false);
-                        }}
-                        className={`w-full text-left px-2.5 py-1.5 rounded-lg text-[9px] font-bold uppercase transition-colors cursor-pointer ${
-                          bgTheme === themeOption.id
-                            ? 'bg-white/10 text-white'
-                            : 'text-zinc-550 hover:text-zinc-200 hover:bg-white/5'
-                        }`}
-                      >
-                        {themeOption.label}
-                      </button>
-                    ))}
-                  </motion.div>
-                </>
-              )}
-            </AnimatePresence>
+          {/* Minimalist Background Theme Switcher Dots */}
+          <div className="flex items-center gap-1.5 px-1">
+            {[
+              { id: 'solid', label: t('솔리드', 'Solid') },
+              { id: 'grid', label: t('그리드', 'Grid') },
+              { id: 'dots', label: t('도트', 'Dots') },
+              { id: 'noise', label: t('노이즈', 'Noise') },
+              { id: 'aurora', label: t('오로라', 'Aurora') }
+            ].map((themeOption) => (
+              <button
+                key={themeOption.id}
+                onClick={() => setBgTheme(themeOption.id as any)}
+                title={themeOption.label}
+                className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                  bgTheme === themeOption.id
+                    ? 'bg-white scale-110 shadow-[0_0_6px_rgba(255,255,255,0.4)]'
+                    : 'bg-white/15 hover:bg-white/40'
+                }`}
+                aria-label={`Switch to ${themeOption.label} background`}
+              />
+            ))}
           </div>
 
           <div className="h-3 w-px bg-white/10" />
@@ -176,27 +150,27 @@ export default function Header() {
               </button>
             ))}
             {/* Mobile Background Theme Picker */}
-            <div className="pt-3.5 border-t border-white/5 mt-1 flex flex-col gap-2 px-4">
+            <div className="pt-3.5 border-t border-white/5 mt-1 flex justify-between items-center px-4">
               <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-wider">{t('배경 테마', 'BACKGROUND')}</span>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex items-center gap-2">
                 {[
-                  { id: 'solid', label: t('솔리드', 'SOLID') },
-                  { id: 'grid', label: t('그리드', 'GRID') },
-                  { id: 'dots', label: t('도트', 'DOTS') },
-                  { id: 'noise', label: t('노이즈', 'NOISE') },
-                  { id: 'aurora', label: t('오로라', 'AURORA') }
+                  { id: 'solid', label: t('솔리드', 'Solid') },
+                  { id: 'grid', label: t('그리드', 'Grid') },
+                  { id: 'dots', label: t('도트', 'Dots') },
+                  { id: 'noise', label: t('노이즈', 'Noise') },
+                  { id: 'aurora', label: t('오로라', 'Aurora') }
                 ].map((themeOption) => (
                   <button
                     key={themeOption.id}
                     onClick={() => setBgTheme(themeOption.id as any)}
-                    className={`px-3 py-1 border rounded-lg text-[9px] font-bold uppercase cursor-pointer transition-all ${
+                    title={themeOption.label}
+                    className={`w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${
                       bgTheme === themeOption.id
-                        ? 'border-white/20 bg-white/10 text-white'
-                        : 'border-white/5 bg-white/5 text-zinc-500'
+                        ? 'bg-white scale-110'
+                        : 'bg-white/20'
                     }`}
-                  >
-                    {themeOption.label}
-                  </button>
+                    aria-label={`Switch to ${themeOption.label} background`}
+                  />
                 ))}
               </div>
             </div>
