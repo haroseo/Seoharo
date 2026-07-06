@@ -106,7 +106,7 @@ export default function Hero() {
                 {data.title}
               </p>
 
-              {/* Grid-based Metadata Tiles */}
+              {/* Grid-based Metadata Tiles (Figma & GitHub) */}
               <div className="grid grid-cols-2 gap-3 text-xs text-zinc-300 font-normal">
                 <div className="bg-white/[0.02] border border-white/5 p-3.5 rounded-xl flex flex-col justify-between">
                   <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider">EMAIL</span>
@@ -120,7 +120,7 @@ export default function Hero() {
                   href={data.contact.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white/[0.02] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] p-3.5 rounded-xl flex flex-col justify-between col-span-2 transition-all duration-300 group"
+                  className="bg-white/[0.02] border border-white/5 hover:border-zinc-300/30 hover:bg-white/[0.04] p-3.5 rounded-xl flex flex-col justify-between transition-all duration-300 group"
                 >
                   <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider flex justify-between items-center">
                     GITHUB
@@ -128,9 +128,21 @@ export default function Hero() {
                   </span>
                   <span className="mt-1 font-semibold text-zinc-200">github.com/haroseo</span>
                 </a>
+                <a
+                  href={data.contact.figma}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white/[0.02] border border-white/5 hover:border-[#7b61ff]/30 hover:bg-[#7b61ff]/5 p-3.5 rounded-xl flex flex-col justify-between transition-all duration-300 group"
+                >
+                  <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider flex justify-between items-center">
+                    FIGMA
+                    <span className="text-[8px] text-zinc-600 group-hover:text-[#a78bfa] transition-colors">PROFILE ↗</span>
+                  </span>
+                  <span className="mt-1 font-semibold text-zinc-200">figma.com/@seoharo</span>
+                </a>
               </div>
 
-              {/* Tag-based Micro Chips (No slashes) */}
+              {/* Tag-based Micro Chips (Figma Component style) */}
               <div className="pt-6 border-t border-white/5 space-y-3">
                 <span className="text-[9px] font-bold tracking-wider text-zinc-500 uppercase block">ROLES & POSITION</span>
                 <div className="flex flex-wrap gap-1.5">
@@ -143,8 +155,9 @@ export default function Hero() {
                   ].map((role) => (
                     <span 
                       key={role} 
-                      className="inline-flex items-center px-2.5 py-1.5 rounded-lg bg-white/[0.03] border border-white/5 text-[9.5px] font-medium text-zinc-300 font-sans tracking-tight hover:border-white/10 transition-colors"
+                      className="inline-flex items-center px-2.5 py-1.5 rounded-lg bg-[#7b61ff]/5 border border-[#7b61ff]/15 text-[9.5px] font-bold text-[#a78bfa] font-sans tracking-tight hover:bg-[#7b61ff]/10 hover:border-[#7b61ff]/30 transition-all duration-300 cursor-default"
                     >
+                      <span className="mr-1.5 text-[8px] text-[#a78bfa]">❖</span>
                       {role}
                     </span>
                   ))}

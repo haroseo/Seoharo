@@ -21,6 +21,26 @@ function GithubIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+function FigmaIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z" />
+      <path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z" />
+      <path d="M12 9h3.5a3.5 3.5 0 1 1-3.5 3.5V9z" />
+      <path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v3.5A3.5 3.5 0 0 1 8.5 16H8.5A3.5 3.5 0 0 1 5 12.5z" />
+      <path d="M8.5 16H12v3.5a3.5 3.5 0 1 1-3.5-3.5z" />
+    </svg>
+  );
+}
+
 export default function ContactPage() {
   const { language, t } = useLanguage();
   const data = portfolioData[language];
@@ -227,6 +247,10 @@ export default function ContactPage() {
                       <div className="flex items-center gap-3">
                         <GithubIcon className="w-4 h-4 text-zinc-500" />
                         <span className="text-xs font-mono text-zinc-350">{data.contact.github.replace('https://', '')}</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <FigmaIcon className="w-4 h-4 text-zinc-500" />
+                        <span className="text-xs font-mono text-zinc-350">{data.contact.figma ? data.contact.figma.replace('https://', '') : ''}</span>
                       </div>
                       <div className="flex items-center gap-3">
                         <MessageSquare className="w-4 h-4 text-zinc-500" />

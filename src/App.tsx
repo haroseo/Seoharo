@@ -13,6 +13,8 @@ import ChatPage from './components/ChatPage';
 import ContactPage from './components/ContactPage';
 import Footer from './components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ThemeProvider } from './components/ThemeContext';
+import Background from './components/Background';
 import './index.css';
 
 function AppContent() {
@@ -30,7 +32,7 @@ function AppContent() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black flex flex-col justify-between transition-colors duration-300">
+    <div className="min-h-screen bg-transparent flex flex-col justify-between transition-colors duration-300">
       <div>
         <ProgressBar />
         <Header />
@@ -70,9 +72,12 @@ import { LanguageProvider } from './components/LanguageContext';
 function App() {
   return (
     <LanguageProvider>
-      <RouterProvider>
-        <AppContent />
-      </RouterProvider>
+      <ThemeProvider>
+        <RouterProvider>
+          <Background />
+          <AppContent />
+        </RouterProvider>
+      </ThemeProvider>
     </LanguageProvider>
   );
 }

@@ -1,13 +1,16 @@
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Palette } from 'lucide-react';
 import { useRouter } from './router';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from './LanguageContext';
+import { useTheme } from './ThemeContext';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [showBgMenu, setShowBgMenu] = useState(false);
   const { currentPath, navigate } = useRouter();
   const { language, setLanguage, t } = useLanguage();
+  const { bgTheme, setBgTheme } = useTheme();
 
   const navItems = [
     { label: 'ABOUT', path: '/about' },
@@ -80,6 +83,56 @@ export default function Header() {
             ))}
           </div>
           <div className="h-3 w-px bg-white/10" />
+          
+          {/* Background switcher popover */}
+          <div className="relative flex items-center">
+            <button
+              onClick={() => setShowBgMenu(!showBgMenu)}
+              className="p-1.5 border border-white/10 bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white rounded-lg cursor-pointer transition-all flex items-center justify-center"
+              aria-label="Change Background"
+            >
+              <Palette size={12} />
+            </button>
+            <AnimatePresence>
+              {showBgMenu && (
+                <>
+                  <div className="fixed inset-0 z-40" onClick={() => setShowBgMenu(false)} />
+                  <motion.div
+                    initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.95 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute right-0 top-7 w-28 bg-[#0a0a0a]/90 backdrop-blur-xl border border-white/5 rounded-xl p-1.5 shadow-2xl z-50 flex flex-col gap-0.5 font-sans"
+                  >
+                    {[
+                      { id: 'solid', label: t('솔리드', 'SOLID') },
+                      { id: 'grid', label: t('그리드', 'GRID') },
+                      { id: 'dots', label: t('도트', 'DOTS') },
+                      { id: 'noise', label: t('노이즈', 'NOISE') },
+                      { id: 'aurora', label: t('오로라', 'AURORA') }
+                    ].map((themeOption) => (
+                      <button
+                        key={themeOption.id}
+                        onClick={() => {
+                          setBgTheme(themeOption.id as any);
+                          setShowBgMenu(false);
+                        }}
+                        className={`w-full text-left px-2.5 py-1.5 rounded-lg text-[9px] font-bold uppercase transition-colors cursor-pointer ${
+                          bgTheme === themeOption.id
+                            ? 'bg-white/10 text-white'
+                            : 'text-zinc-550 hover:text-zinc-200 hover:bg-white/5'
+                        }`}
+                      >
+                        {themeOption.label}
+                      </button>
+                    ))}
+                  </motion.div>
+                </>
+              )}
+            </AnimatePresence>
+          </div>
+
+          <div className="h-3 w-px bg-white/10" />
           <button
             onClick={() => setLanguage(language === 'ko' ? 'en' : 'ko')}
             className="px-2.5 py-1 border border-white/10 bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white rounded-lg text-[8px] font-bold tracking-wide cursor-pointer transition-all uppercase"
@@ -122,14 +175,40 @@ export default function Header() {
                 {item.label}
               </button>
             ))}
-            <div className="pt-3 border-t border-white/5 mt-2 flex justify-between items-center px-4">
-              <span className="text-[11px] font-bold text-zinc-450 uppercase">{t('언어 설정', 'LANGUAGE')}</span>
+            {/* Mobile Background Theme Picker */}
+            <div className="pt-3.5 border-t border-white/5 mt-1 flex flex-col gap-2 px-4">
+              <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-wider">{t('배경 테마', 'BACKGROUND')}</span>
+              <div className="flex flex-wrap gap-1.5">
+                {[
+                  { id: 'solid', label: t('솔리드', 'SOLID') },
+                  { id: 'grid', label: t('그리드', 'GRID') },
+                  { id: 'dots', label: t('도트', 'DOTS') },
+                  { id: 'noise', label: t('노이즈', 'NOISE') },
+                  { id: 'aurora', label: t('오로라', 'AURORA') }
+                ].map((themeOption) => (
+                  <button
+                    key={themeOption.id}
+                    onClick={() => setBgTheme(themeOption.id as any)}
+                    className={`px-3 py-1 border rounded-lg text-[9px] font-bold uppercase cursor-pointer transition-all ${
+                      bgTheme === themeOption.id
+                        ? 'border-white/20 bg-white/10 text-white'
+                        : 'border-white/5 bg-white/5 text-zinc-500'
+                    }`}
+                  >
+                    {themeOption.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="pt-3 border-t border-white/5 mt-1 flex justify-between items-center px-4">
+              <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">{t('언어 설정', 'LANGUAGE')}</span>
               <button
                 onClick={() => {
                   setLanguage(language === 'ko' ? 'en' : 'ko');
                   setIsOpen(false);
                 }}
-                className="px-3.5 py-1 bg-white/5 border border-white/10 rounded-lg text-[11px] font-bold text-zinc-300 transition-colors cursor-pointer"
+                className="px-3.5 py-1 bg-white/5 border border-white/10 rounded-lg text-[10px] font-bold text-zinc-300 transition-colors cursor-pointer"
               >
                 {language === 'ko' ? 'English' : '한국어'}
               </button>
