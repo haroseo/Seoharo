@@ -246,10 +246,15 @@ export default function About() {
                   key={idx}
                   layout
                   onClick={() => setActiveStat(isActive ? null : idx)}
-                  className={`apple-widget p-6 text-left relative overflow-hidden transition-all duration-300 cursor-pointer group ${
-                    isActive ? 'border-white/20 bg-white/10' : 'border-white/5 bg-white/5 hover:border-white/10'
+                  className={`apple-widget p-6 text-left relative overflow-hidden transition-all duration-300 cursor-pointer group hover:scale-[1.015] active:scale-[0.985] ${
+                    isActive ? 'border-white/20 bg-white/10 shadow-[0_0_20px_rgba(255,255,255,0.05)]' : 'border-white/5 bg-white/5 hover:border-white/12 hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)]'
                   }`}
                 >
+                  {/* Subtle expand/close CTA indicator for UX affordance */}
+                  <div className="absolute right-5 bottom-4 text-[7.5px] font-mono tracking-wider text-zinc-600 group-hover:text-zinc-400 transition-colors uppercase">
+                    {isActive ? 'CLOSE -' : 'EXPAND +'}
+                  </div>
+
                   {/* Decorative Apple Activity Ring */}
                   <div className="absolute right-5 top-5 w-10 h-10">
                     <svg viewBox="0 0 36 36" className={`w-full h-full ${ringColor}`}>

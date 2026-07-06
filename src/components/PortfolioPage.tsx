@@ -33,7 +33,7 @@ export default function PortfolioPage() {
   const [activeCut, setActiveCut] = useState<number>(0);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
   const { t } = useLanguage();
-  const { currentPath } = useRouter();
+  const { currentPath, navigate } = useRouter();
 
   const displayItems: DisplayItem[] = [
     // Discord
@@ -221,8 +221,38 @@ export default function PortfolioPage() {
     { id: 'workplace', label: 'Workplace' }
   ];
 
+  const filterTabs = [
+    { label: t('전체', 'ALL'), path: '/portfolio' },
+    { label: t('디자인', 'DESIGN'), path: '/design' },
+    { label: t('마케팅', 'MARKETING'), path: '/marketing' },
+    { label: t('개발', 'DEVELOPMENT'), path: '/development' }
+  ];
+
   return (
     <div className="relative min-h-screen bg-black text-white select-none">
+      
+      {/* Sticky Category Filter Pills */}
+      <div className="sticky top-12 sm:top-[53px] z-30 w-full bg-black/60 backdrop-blur-md border-b border-white/5 py-4 px-6 flex justify-center gap-1.5 overflow-x-auto whitespace-nowrap scrollbar-hide">
+        {filterTabs.map(tab => {
+          const isActive = currentPath === tab.path || (tab.path === '/portfolio' && !['/design', '/marketing', '/development'].includes(currentPath));
+          return (
+            <button
+              key={tab.path}
+              onClick={() => {
+                navigate(tab.path);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className={`px-4.5 py-1.5 rounded-full text-[9px] font-bold tracking-wider uppercase border transition-all duration-300 cursor-pointer ${
+                isActive
+                  ? 'bg-white text-black border-white shadow-[0_0_12px_rgba(255,255,255,0.2)]'
+                  : 'bg-white/5 border-white/5 text-zinc-450 hover:text-white hover:bg-white/10 hover:border-white/10'
+              }`}
+            >
+              {tab.label}
+            </button>
+          );
+        })}
+      </div>
       
       {/* Grouped Float-right Micro Navigator */}
       <div className="fixed right-8 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-end gap-6 border-r border-zinc-900/60 pr-4">

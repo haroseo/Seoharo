@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { useRouter } from './router';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -10,6 +10,18 @@ export default function Header() {
   const { currentPath, navigate } = useRouter();
   const { language, setLanguage, t } = useLanguage();
   const { bgTheme, setBgTheme } = useTheme();
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
 
   const navItems = [
     { label: 'ABOUT', path: '/about' },
