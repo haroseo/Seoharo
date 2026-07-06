@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { RouterProvider, useRouter } from './components/router';
 import Header from './components/Header';
 import ProgressBar from './components/ProgressBar';
-import SideProgressTracker from './components/SideProgressTracker';
+
 import Hero from './components/Hero';
 import About from './components/About';
 import Timeline from './components/Timeline';
@@ -38,7 +38,7 @@ function AppContent() {
       <div>
         <ProgressBar />
         <Header />
-        <SideProgressTracker />
+
         <main>
           <AnimatePresence mode="wait">
             <motion.div
