@@ -114,6 +114,21 @@ export default function PortfolioPage() {
         metrics: t('교육 플랫폼 내 바이럴 활성화 및 사용자 평균 연습 세션 시간 향상.', 'Activated viral sharing and increased user practice session duration.')
       }
     },
+    {
+      id: 'figmalibrary',
+      type: 'site',
+      category: 'brand',
+      title: 'Figma Asset Library',
+      slogan: t('디자인 생산성을 개선하는 오픈소스 UI 라이브러리', 'Distributing open-source Figma libraries to boost workflow speed'),
+      description: t('피그마 커뮤니티 프로필(@seoharo)을 통해 디자이너와 개발자를 위한 고품질 UI/UX 템플릿과 디자인 리소스 라이브러리를 공유합니다.', 'Sharing high-quality UI/UX templates and design resource libraries for designers and developers via Figma Community.'),
+      tags: ['Figma Creator', 'UI/UX Library', 'Open Source Asset'],
+      link: 'https://www.figma.com/@seoharo',
+      details: {
+        background: t('사용자의 작업 속도를 단축하고 디자인 완성도를 높일 수 있도록 설계된 디자인 키트입니다.', 'A design kit conceptualized to reduce layout overhead and optimize overall visual alignment.'),
+        strategy: t('피그마의 최신 오토 레이아웃과 배리언트 시스템을 엄격히 적용하여 실무에 즉시 사용할 수 있도록 배포했습니다.', 'Applied Figma Auto Layout and Variants strictly, creating drop-in component blocks for mockups.'),
+        metrics: t('피그마 커뮤니티 배포 및 오픈소스 디자인 리소스 기여.', 'Published to Figma Community and contributed to open-source design resources.')
+      }
+    },
     // Workplace
     {
       id: 'luxeret',
@@ -310,6 +325,7 @@ export default function PortfolioPage() {
                     item.id === 'designpick' ? '/assets/designpick.png' :
                     item.id === 'planor' ? '/assets/planor.png' :
                     item.id === 'naramarsami' ? '/assets/naramarsami.png' :
+                    item.id === 'figmalibrary' ? '/assets/limited-banner.png' :
                     item.id === 'luxeret' ? '/assets/luxeret.png' :
                     item.id === 'simplx' ? '/assets/simplx.png' :
                     '/assets/hannlabs.png'
@@ -494,7 +510,10 @@ export default function PortfolioPage() {
               </div>
 
               {/* Footer */}
-              <div className="border-t border-white/5 pt-6 mt-8 flex justify-end">
+              <div className="border-t border-white/5 pt-6 mt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <p className="text-[7.5px] leading-relaxed text-zinc-600 tracking-wider font-mono uppercase text-center sm:text-left max-w-xs">
+                  Trademarks (RoFolder, Limited™, HANN LABS™, LUXERET, SIMPLX) are properties of their respective owners.
+                </p>
                 <button
                   onClick={() => setSelectedItem(null)}
                   className="px-6 py-2.5 toss-blue-btn rounded-full cursor-pointer shadow-md"
