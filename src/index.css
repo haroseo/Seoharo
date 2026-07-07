@@ -27,19 +27,16 @@
   html {
     scroll-behavior: smooth;
     background-color: #000000;
-    transition: background-color 0.5s ease;
   }
 
   body {
     min-height: 100vh;
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Pretendard", "Outfit", sans-serif;
-    background-color: transparent;
+    background-color: #000000;
     color: #f4f4f5;
     position: relative;
     overflow-x: hidden;
-    letter-spacing: -0.015em;
-    -webkit-font-smoothing: antialiased;
   }
 
 
@@ -51,7 +48,6 @@
 
   .font-display {
     font-family: 'Outfit', 'Pretendard', sans-serif;
-    letter-spacing: -0.03em;
   }
 
   .font-mono {
@@ -60,19 +56,18 @@
 
   .section-title {
     font-size: clamp(2.25rem, 5vw, 3.5rem);
-    font-weight: 750;
-    letter-spacing: -0.04em;
-    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: -0.03em;
     color: #ffffff;
   }
 
   .section-overline {
     font-family: 'Outfit', 'Pretendard', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 750;
+    font-size: 0.75rem;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.25em;
-    color: #71717a;
+    letter-spacing: 0.15em;
+    color: #a1a1aa;
   }
 
   /* Dark Futuristic Glass Card */

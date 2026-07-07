@@ -59,8 +59,8 @@ export default function ChatPage() {
       id: 'communities',
       text: t('운영 중인 커뮤니티는 어떤 곳인가요?', 'What communities do you operate?'),
       response: t(
-        '현재 누적 1,200명 이상의 유저와 소통하며 대표적인 커뮤니티를 기획하고 운영 중입니다.\n\n• 로폴더 (RoFolder): 청소년 및 청년의 스타트업 창업을 독려하고 지원하는 네트워킹 서버\n• Limited™: 실무 경험과 다양한 시도를 진행하는 그래픽 및 에셋 창작 공간\n• 로블갤러리 (RoGALLERY): 유저들이 자유롭게 모여 소통하는 투명한 커뮤니티 공간',
-        'I currently communicate with over 1,200 users, operating the following communities:\n\n• RoFolder: A Discord server supporting youth startup entrepreneurship\n• Limited™: A graphic & code asset creation space for gaining practical experience and making attempts\n• RoGALLERY: A transparent community space where users freely gather and communicate'
+        '현재 누적 1,200명 이상의 유저와 소통하며 대표적인 커뮤니티를 기획하고 운영 중입니다.\n\n• 로폴더 (RoFolder): 청소년 및 청년의 스타트업 창업을 독려하고 지원하는 네트워킹 서버\n• Limited™: 실무 경험과 다양한 시도를 진행하는 그래픽 및 에셋 창작 공간\n• 로블갤러리 (ROGLLAERY): 유저들이 자유롭게 모여 소통하는 투명한 커뮤니티 공간',
+        'I currently communicate with over 1,200 users, operating the following communities:\n\n• RoFolder: A Discord server supporting youth startup entrepreneurship\n• Limited™: A graphic & code asset creation space for gaining practical experience and making attempts\n• ROGLLAERY: A transparent community space where users freely gather and communicate'
       ),
       followUps: ['projects', 'contact']
     },

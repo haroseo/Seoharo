@@ -43,7 +43,7 @@ export interface PortfolioDataType {
   projects: Project[];
   careers: Career[];
   socialLinks: { icon: string; label: string; url: string }[];
-  contact: { email: string; github: string; figma?: string; discord: string; instagram: string; location: string };
+  contact: { email: string; github: string; discord: string; instagram: string; location: string };
   communities: Community[];
 }
 
@@ -52,7 +52,7 @@ const portfolioDataKo: PortfolioDataType = {
   title: "Brand Design · Marketing · Programming",
   tagline: "당신의 스토리를 성공의 데이터로",
   description:
-    "디자인, 마케팅, 프로그래밍을 통해 비즈니스와 유저를 연결하는 크리에이터 서하루입니다. 청소년 창업 커뮤니티 로폴더(RoFolder), 에셋 공유 공간 Limited™, 그리고 로블갤러리(RoGALLERY)를 운영하고 있습니다.",
+    "디자인, 마케팅, 프로그래밍을 통해 비즈니스와 유저를 연결하는 크리에이터 서하루입니다. 청소년 창업 서버 로폴더(RoFolder)와 리소스 배포 공간 Limited™를 운영하고 있습니다.",
 
   skills: [
     {
@@ -161,9 +161,9 @@ const portfolioDataKo: PortfolioDataType = {
       id: "hannlabs",
       title: "HANN LABS™ - Staff Designer",
       slogan: "브랜드 디자인",
-      description: "HANN LABS™에서 보조 스태프로 활동하며 팀 브랜드 비주얼 기획 및 이미지 그래픽 제작을 지원하고 있습니다.",
+      description: "HANN LABS™에서 디자인을 배우며 어시스턴트(보조) 및 스태프로 참여하고 있습니다.",
       achievements: [
-        "브랜드 비주얼 디자인 보조 및 이미지 프로모션 디자인 지원",
+        "팀 브랜드 비주얼 디자인 보조 및 이미지 프로모션 디자인 지원",
         "아트워크 기획 보조 및 커뮤니티 그래픽 요소 제작 지원"
       ],
       skills: ["Graphic Design", "Brand Design", "Figma"],
@@ -172,7 +172,7 @@ const portfolioDataKo: PortfolioDataType = {
       id: "simplx",
       title: "SIMPLX - Developer",
       slogan: "시스템 최적화 및 도구 개발",
-      description: "SIMPLX에서 개발자로 활동하며 시스템 최적화 및 디스코드 소프트웨어 툴 설계를 진행하고 있습니다.",
+      description: "SIMPLX에서 개발자로 활동하며 시스템 최적화 및 소프트웨어 툴 개발을 진행하고 있습니다.",
       achievements: [
         "효율적인 스크립팅 모듈 구축 및 성능 최적화",
         "디스코드 봇 및 개발 도구 설계/구축"
@@ -183,7 +183,6 @@ const portfolioDataKo: PortfolioDataType = {
 
   socialLinks: [
     { icon: "github", label: "GitHub", url: "https://github.com/haroseo" },
-    { icon: "figma", label: "Figma", url: "https://www.figma.com/@seoharo" },
     { icon: "instagram", label: "Instagram", url: "https://www.instagram.com/tooday.zip/" },
     { icon: "discord", label: "Discord", url: "https://discord.com/users/seoharo" },
     { icon: "mail", label: "Email", url: "mailto:seoharo0111@gmail.com" },
@@ -192,7 +191,6 @@ const portfolioDataKo: PortfolioDataType = {
   contact: {
     email: "seoharo0111@gmail.com",
     github: "https://github.com/haroseo",
-    figma: "https://www.figma.com/@seoharo",
     discord: "seoharo",
     instagram: "tooday.zip",
     location: "대한민국",
@@ -200,7 +198,7 @@ const portfolioDataKo: PortfolioDataType = {
 
   communities: [
     {
-      name: "로블갤러리 (RoGALLERY)",
+      name: "로블갤러리 (ROGLLAERY)",
       members: "800+",
       logo: "/assets/rogllaery.png",
       role: "설립자 및 총괄 (Founder)",
@@ -234,7 +232,7 @@ const portfolioDataEn: PortfolioDataType = {
   title: "Brand Design · Marketing · Programming",
   tagline: "Turn your story into data for success",
   description:
-    "A creator connecting businesses and users through design, marketing, and programming. I manage the youth startup community RoFolder, the asset sharing channel Limited™, and RoGALLERY.",
+    "A creator who connects businesses and users through design, marketing, and programming. I operate the youth startup community RoFolder and the asset distribution channel Limited™.",
 
   skills: [
     {
@@ -343,7 +341,7 @@ const portfolioDataEn: PortfolioDataType = {
       id: "hannlabs",
       title: "HANN LABS™ - Staff Designer",
       slogan: "Brand Design",
-      description: "Participating as assistant staff at HANN LABS™, supporting team brand visuals and promotion graphics.",
+      description: "Learning design and participating as assistant staff at HANN LABS™.",
       achievements: [
         "Assisting team brand visual design and image promotions",
         "Supporting artwork planning and community graphic production"
@@ -354,7 +352,7 @@ const portfolioDataEn: PortfolioDataType = {
       id: "simplx",
       title: "SIMPLX - Developer",
       slogan: "System Optimization & Tool Development",
-      description: "Working as a developer at SIMPLX, focusing on system optimization and software tool design.",
+      description: "Working as a developer at SIMPLX, focusing on system optimization and software tool development.",
       achievements: [
         "Building efficient scripting modules and optimizing performance",
         "Designing and building Discord bots and development tools"
@@ -365,7 +363,6 @@ const portfolioDataEn: PortfolioDataType = {
 
   socialLinks: [
     { icon: "github", label: "GitHub", url: "https://github.com/haroseo" },
-    { icon: "figma", label: "Figma", url: "https://www.figma.com/@seoharo" },
     { icon: "instagram", label: "Instagram", url: "https://www.instagram.com/tooday.zip/" },
     { icon: "discord", label: "Discord", url: "https://discord.com/users/seoharo" },
     { icon: "mail", label: "Email", url: "mailto:seoharo0111@gmail.com" },
@@ -374,7 +371,6 @@ const portfolioDataEn: PortfolioDataType = {
   contact: {
     email: "seoharo0111@gmail.com",
     github: "https://github.com/haroseo",
-    figma: "https://www.figma.com/@seoharo",
     discord: "seoharo",
     instagram: "tooday.zip",
     location: "Republic of Korea",
@@ -382,13 +378,13 @@ const portfolioDataEn: PortfolioDataType = {
 
   communities: [
     {
-      name: "RoGALLERY",
+      name: "ROGLLAERY",
       members: "800+",
       logo: "/assets/rogllaery.png",
       role: "Founder & General Manager",
-      slogan: "A transparent community built by users, RoGALLERY",
-      description: "A transparent community built by users, RoGALLERY",
-      detailsText: "RoGALLERY is a communication community where users interact and grow together. We aim for voluntary user participation and transparent culture, providing a healthy and transparent environment."
+      slogan: "A transparent community built by users, ROGLLAERY",
+      description: "A transparent community built by users, ROGLLAERY",
+      detailsText: "ROGLLAERY is a communication community where users interact and grow together. We aim for voluntary user participation and transparent culture, providing a healthy and transparent environment."
     },
     {
       name: "Limited™",

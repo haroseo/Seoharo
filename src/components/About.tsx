@@ -80,15 +80,15 @@ export default function About() {
 
   const stats = [
     {
-      label: t('경력 수', 'Experience'),
-      value: '5',
+      label: t('경력 수', 'Organizations'),
+      value: '30+',
       proof: t(
-        '로폴더 대표, Limited™ 설립자, LUXERET 마케터, HANN LABS™ 디자이너, SIMPLX 개발자 등 5개의 팀과 조직에서 리더, 마케터, 디자이너, 개발자 역할을 두루 경험했습니다.',
-        'Having worked with 5 core organizations, covering roles from CEO and Founder to Marketer, Designer, and Developer - proving wide cross-disciplinary experience.'
+        '로폴더 대표, Limited™ 설립자, LUXERET 마케터, HANN LABS™ 디자이너, SIMPLX 개발자 등 30개 이상의 조직에서 다양한 역할을 경험하며 실무 역량을 길렀습니다.',
+        'Having worked with 30+ organizations, covering roles from CEO and Founder to Marketer, Designer, and Developer - proving wide cross-disciplinary experience.'
       )
     },
     {
-      label: t('소통 유저 수', 'Communities'),
+      label: t('소통 유저 수', 'Users Reached'),
       value: '1,200+',
       proof: t(
         '총합 1,200명 이상의 로폴더 및 Limited™ 커뮤니티 유저들과 직접 소통하며 채널을 관리하고 피드백을 모았습니다.',
@@ -96,7 +96,7 @@ export default function About() {
       )
     },
     {
-      label: t('누적 프로젝트', 'Projects'),
+      label: t('누적 프로젝트', 'Projects Done'),
       value: '8+',
       proof: t(
         '웹 서비스 기획·개발부터 디자인, 브랜딩, 데이터 분석까지 8개 이상의 다각적 프로젝트 실행 경험은 경계를 넘나드는 문제 해결력을 증명합니다.',
@@ -122,7 +122,7 @@ export default function About() {
               <h2 className="section-title mt-2 font-display bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent font-bold">
                 {t('디자인, 마케팅, 프로그래밍.', 'Design, Marketing, Programming.')}
               </h2>
-              <p className="max-w-3xl text-sm sm:text-base leading-relaxed text-zinc-200 font-normal tracking-tight">
+              <p className="max-w-3xl text-sm sm:text-base leading-relaxed text-zinc-200 font-normal">
                 {t(
                   '시각적인 균형을 디자인하고, 효과적인 마케팅 전략을 고민하며, 논리적인 구조와 깨끗한 코드로 웹 서비스를 구현합니다. 단순히 단일 업무에 머무르지 않고, 아이디어를 직접 실현해내는 구조적 크리에이터를 지향합니다.',
                   'Designing visual balance, planning effective marketing strategies, and implementing web services with logical structure and clean code. I aim to be a structural creator who directly realizes ideas rather than staying within a single task.'
@@ -146,7 +146,7 @@ export default function About() {
                   <h3 className="text-sm sm:text-base font-bold text-white mb-3 font-display">
                     {item.title}
                   </h3>
-                  <p className="text-xs sm:text-sm leading-relaxed text-zinc-300 font-normal tracking-tight">
+                  <p className="text-xs sm:text-sm leading-relaxed text-zinc-300 font-normal">
                     {item.description}
                   </p>
                 </GlowCard>
@@ -169,7 +169,7 @@ export default function About() {
                 <p className="text-[10px] font-bold text-zinc-500 tracking-wider uppercase">
                   {t('활동 분야', 'Areas of Activity')}
                 </p>
-                <p className="mt-4 text-xs sm:text-sm font-bold text-white font-display leading-relaxed tracking-tight">
+                <p className="mt-4 text-xs sm:text-sm font-bold text-white font-display leading-relaxed">
                   CEO · Founder · Marketer · Designer · Developer
                 </p>
               </motion.div>
@@ -184,7 +184,7 @@ export default function About() {
                 <p className="text-[10px] font-bold text-zinc-500 tracking-wider uppercase">
                   {t('소속 및 역할', 'Affiliation & Role')}
                 </p>
-                <p className="mt-4 text-xs sm:text-sm font-bold text-white font-sans leading-relaxed tracking-tight">
+                <p className="mt-4 text-xs sm:text-sm font-bold text-white font-sans leading-relaxed">
                   RoFolder CEO · Limited™ Founder · LUXERET Marketer · HANN LABS™ Staff Designer · SIMPLX Developer
                 </p>
               </motion.div>
@@ -199,7 +199,7 @@ export default function About() {
                 <p className="text-[10px] font-bold text-zinc-500 tracking-wider uppercase">
                   {t('핵심 지향점', 'Core Approach')}
                 </p>
-                <p className="mt-4 text-xs sm:text-sm font-bold text-zinc-200 font-sans leading-relaxed tracking-tight">
+                <p className="mt-4 text-xs sm:text-sm font-bold text-zinc-200 font-sans leading-relaxed">
                   {t(
                     '사용자 피드백 중심 설계, 스토리텔링 및 주도적 서비스 빌딩',
                     'User feedback-centric design, storytelling, and proactive service building'
@@ -217,7 +217,7 @@ export default function About() {
                 <p className="text-[10px] font-bold text-zinc-500 tracking-wider uppercase">
                   {t('주요 강점', 'Key Strengths')}
                 </p>
-                <p className="mt-4 text-xs sm:text-sm font-bold text-zinc-200 font-sans leading-relaxed tracking-tight">
+                <p className="mt-4 text-xs sm:text-sm font-bold text-zinc-200 font-sans leading-relaxed">
                   {t(
                     '비주얼 디렉션 · 유저 인터랙션 기획 · 커뮤니티 매니지먼트',
                     'Visual Direction · Interaction Planning · Community Management'
@@ -231,8 +231,8 @@ export default function About() {
         {/* Interactive Stats Grid (What it Proves) */}
         <div className="pt-16 border-t border-zinc-900/80">
           <div className="text-center mb-10">
-            <p className="section-overline">METRICS</p>
-            <h3 className="text-2xl font-bold tracking-tight text-white font-display mt-2">{t('지표', 'Metrics')}</h3>
+            <p className="section-overline">METRICS & EVIDENCE</p>
+            <h3 className="text-2xl font-bold tracking-tight text-white font-display mt-2">{t('지표와 증명', 'Metrics & Proof')}</h3>
             <p className="text-xs text-zinc-500 mt-1 uppercase tracking-wider">{t('각 지표를 클릭하여 증명하는 역량을 확인해보세요', 'Click each metric to verify capabilities')}</p>
           </div>
 
@@ -246,15 +246,10 @@ export default function About() {
                   key={idx}
                   layout
                   onClick={() => setActiveStat(isActive ? null : idx)}
-                  className={`apple-widget p-6 text-left relative overflow-hidden transition-all duration-300 cursor-pointer group hover:scale-[1.015] active:scale-[0.985] ${
-                    isActive ? 'border-white/20 bg-white/10 shadow-[0_0_20px_rgba(255,255,255,0.05)]' : 'border-white/5 bg-white/5 hover:border-white/12 hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)]'
+                  className={`apple-widget p-6 text-left relative overflow-hidden transition-all duration-300 cursor-pointer group ${
+                    isActive ? 'border-white/20 bg-white/10' : 'border-white/5 bg-white/5 hover:border-white/10'
                   }`}
                 >
-                  {/* Subtle expand/close CTA indicator for UX affordance */}
-                  <div className="absolute right-5 bottom-4 text-[9px] font-sans font-bold tracking-tight text-zinc-500 group-hover:text-zinc-300 transition-colors">
-                    {isActive ? '접기 -' : '자세히 +'}
-                  </div>
-
                   {/* Decorative Apple Activity Ring */}
                   <div className="absolute right-5 top-5 w-10 h-10">
                     <svg viewBox="0 0 36 36" className={`w-full h-full ${ringColor}`}>
@@ -300,7 +295,7 @@ export default function About() {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: -8, scale: 0.96 }}
                           transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-                          className="text-[11px] leading-relaxed text-zinc-200 font-medium tracking-tight"
+                          className="text-[11px] leading-relaxed text-zinc-200 font-medium"
                         >
                           {stat.proof}
                         </motion.p>

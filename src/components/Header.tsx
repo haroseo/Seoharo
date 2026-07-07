@@ -1,27 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { useRouter } from './router';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from './LanguageContext';
-import { useTheme } from './ThemeContext';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const { currentPath, navigate } = useRouter();
   const { language, setLanguage, t } = useLanguage();
-  const { bgTheme, setBgTheme } = useTheme();
-
-  // Lock body scroll when mobile menu is open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isOpen]);
 
   const navItems = [
     { label: 'ABOUT', path: '/about' },
@@ -94,31 +80,6 @@ export default function Header() {
             ))}
           </div>
           <div className="h-3 w-px bg-white/10" />
-          
-          {/* Minimalist Background Theme Switcher Dots */}
-          <div className="flex items-center gap-1.5 px-1">
-            {[
-              { id: 'solid', label: t('솔리드', 'Solid') },
-              { id: 'grid', label: t('그리드', 'Grid') },
-              { id: 'dots', label: t('도트', 'Dots') },
-              { id: 'noise', label: t('노이즈', 'Noise') },
-              { id: 'aurora', label: t('오로라', 'Aurora') }
-            ].map((themeOption) => (
-              <button
-                key={themeOption.id}
-                onClick={() => setBgTheme(themeOption.id as any)}
-                title={themeOption.label}
-                className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  bgTheme === themeOption.id
-                    ? 'bg-white scale-110 shadow-[0_0_6px_rgba(255,255,255,0.4)]'
-                    : 'bg-white/15 hover:bg-white/40'
-                }`}
-                aria-label={`Switch to ${themeOption.label} background`}
-              />
-            ))}
-          </div>
-
-          <div className="h-3 w-px bg-white/10" />
           <button
             onClick={() => setLanguage(language === 'ko' ? 'en' : 'ko')}
             className="px-2.5 py-1 border border-white/10 bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white rounded-lg text-[8px] font-bold tracking-wide cursor-pointer transition-all uppercase"
@@ -161,40 +122,14 @@ export default function Header() {
                 {item.label}
               </button>
             ))}
-            {/* Mobile Background Theme Picker */}
-            <div className="pt-3.5 border-t border-white/5 mt-1 flex justify-between items-center px-4">
-              <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-wider">{t('배경 테마', 'BACKGROUND')}</span>
-              <div className="flex items-center gap-2">
-                {[
-                  { id: 'solid', label: t('솔리드', 'Solid') },
-                  { id: 'grid', label: t('그리드', 'Grid') },
-                  { id: 'dots', label: t('도트', 'Dots') },
-                  { id: 'noise', label: t('노이즈', 'Noise') },
-                  { id: 'aurora', label: t('오로라', 'Aurora') }
-                ].map((themeOption) => (
-                  <button
-                    key={themeOption.id}
-                    onClick={() => setBgTheme(themeOption.id as any)}
-                    title={themeOption.label}
-                    className={`w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${
-                      bgTheme === themeOption.id
-                        ? 'bg-white scale-110'
-                        : 'bg-white/20'
-                    }`}
-                    aria-label={`Switch to ${themeOption.label} background`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            <div className="pt-3 border-t border-white/5 mt-1 flex justify-between items-center px-4">
-              <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">{t('언어 설정', 'LANGUAGE')}</span>
+            <div className="pt-3 border-t border-white/5 mt-2 flex justify-between items-center px-4">
+              <span className="text-[11px] font-bold text-zinc-450 uppercase">{t('언어 설정', 'LANGUAGE')}</span>
               <button
                 onClick={() => {
                   setLanguage(language === 'ko' ? 'en' : 'ko');
                   setIsOpen(false);
                 }}
-                className="px-3.5 py-1 bg-white/5 border border-white/10 rounded-lg text-[10px] font-bold text-zinc-300 transition-colors cursor-pointer"
+                className="px-3.5 py-1 bg-white/5 border border-white/10 rounded-lg text-[11px] font-bold text-zinc-300 transition-colors cursor-pointer"
               >
                 {language === 'ko' ? 'English' : '한국어'}
               </button>
