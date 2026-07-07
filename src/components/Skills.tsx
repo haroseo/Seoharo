@@ -26,8 +26,20 @@ export default function Skills() {
   };
 
   return (
-    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-black relative overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-black relative overflow-hidden border-b border-[#373737]">
+      {/* Figma Selection Boundary Box */}
+      <div className="absolute inset-4 sm:inset-6 border border-[#18a0fb]/20 rounded-2xl pointer-events-none z-10">
+        <div className="absolute -top-2.5 left-4 px-1.5 py-0.5 bg-[#18a0fb] text-white text-[8px] font-bold font-mono rounded">
+          # Skill Sets Frame
+        </div>
+        {/* Handles */}
+        <div className="absolute -top-1 -left-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
+        <div className="absolute -top-1 -right-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
+        <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
+        <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
+      </div>
+
+      <div className="max-w-7xl mx-auto z-10 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -35,13 +47,11 @@ export default function Skills() {
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <p className="section-overline">
-            CAPABILITIES
-          </p>
+          <p className="section-overline">ASSETS / LIBRARIES</p>
           <h2 className="section-title mt-4 mb-6 font-display bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent font-bold">
             {t('기술 스택', 'Skills & Stack')}
           </h2>
-          <p className="mx-auto max-w-2xl text-sm sm:text-base leading-relaxed text-zinc-200 font-normal">
+          <p className="mx-auto max-w-2xl text-sm sm:text-base leading-relaxed text-zinc-200 font-normal tracking-tight">
             {t('디자인, 마케팅, 개발 전반의 역량을 나타내는 핵심 기술 스택입니다.', 'Key skill stack representing capabilities across design, marketing, and programming.')}
           </p>
         </motion.div>
@@ -54,16 +64,16 @@ export default function Skills() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="glass-card p-8 border border-zinc-900 bg-zinc-950/40 shadow-2xl flex flex-col justify-between"
+              className="bg-[#2b2b2b]/95 border border-[#373737] p-8 rounded-2xl shadow-2xl flex flex-col justify-between"
             >
               <div>
-                <h3 className="text-lg font-bold text-white mb-2 font-display tracking-tight">
+                <h3 className="text-sm font-bold text-white mb-1 font-display tracking-tight">
                   {skillGroup.category}
                 </h3>
-                <p className="text-[10px] font-sans font-bold text-zinc-450 uppercase tracking-widest mb-6">
-                  {skillGroup.category === 'Design' && 'Creative Interface'}
-                  {skillGroup.category === 'Marketing' && 'Growth Strategy'}
-                  {skillGroup.category === 'Programming' && 'Systems & Logic'}
+                <p className="text-[8px] font-mono font-bold text-zinc-500 uppercase tracking-widest mb-6">
+                  {skillGroup.category === 'Design' && 'Library / Visual Asset'}
+                  {skillGroup.category === 'Marketing' && 'Strategy / Funnel Asset'}
+                  {skillGroup.category === 'Programming' && 'Code / Script Module'}
                 </p>
                 <motion.div variants={containerVariants} className="flex flex-wrap gap-2.5">
                   {skillGroup.items.map((skill, itemIndex) => (
@@ -72,12 +82,14 @@ export default function Skills() {
                       variants={itemVariants}
                       whileHover={{ 
                         scale: 1.04, 
-                        borderColor: '#ffffff', 
-                        color: '#ffffff',
-                        boxShadow: '0 0 10px rgba(255, 255, 255, 0.05)'
+                        borderColor: '#a259ff', 
+                        color: '#d3b4ff',
+                        backgroundColor: 'rgba(162, 89, 255, 0.08)'
                       }}
-                      className="rounded-lg border border-zinc-900 bg-zinc-900/60 px-3.5 py-1.5 text-xs font-sans font-semibold text-zinc-400 transition-all select-none cursor-pointer"
+                      className="rounded-lg border border-[#373737] bg-[#1e1e1e] px-3.5 py-1.5 text-xs font-mono font-semibold text-zinc-400 transition-all select-none cursor-pointer flex items-center gap-1.5 hover:shadow-[0_0_10px_rgba(162,89,255,0.15)] group"
                     >
+                      <span className="text-[#a259ff] group-hover:hidden">◇</span>
+                      <span className="text-[#a259ff] hidden group-hover:inline">❖</span>
                       {skill}
                     </motion.span>
                   ))}

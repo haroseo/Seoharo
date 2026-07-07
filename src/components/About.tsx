@@ -81,10 +81,10 @@ export default function About() {
   const stats = [
     {
       label: t('경력 수', 'Experience'),
-      value: '5',
+      value: '30+',
       proof: t(
-        '로폴더 대표, Limited™ 설립자, LUXERET 마케터, HANN LABS™ 디자이너, SIMPLX 개발자 등 5개의 팀과 조직에서 리더, 마케터, 디자이너, 개발자 역할을 두루 경험했습니다.',
-        'Having worked with 5 core organizations, covering roles from CEO and Founder to Marketer, Designer, and Developer - proving wide cross-disciplinary experience.'
+        '로폴더 대표, Limited™ 설립자, LUXERET 마케터, HANN LABS™ 디자이너, SIMPLX 개발자 등 30개 이상의 조직에서 다양한 역할을 경험하며 실무 역량을 길렀습니다.',
+        'Having worked with 30+ organizations, covering roles from CEO and Founder to Marketer, Designer, and Developer - proving wide cross-disciplinary experience.'
       )
     },
     {
@@ -108,17 +108,29 @@ export default function About() {
   return (
     <section 
       id="about" 
-      className="relative py-20 px-4 sm:px-6 lg:px-8 bg-black overflow-hidden border-b border-zinc-900"
+      className="relative py-20 px-4 sm:px-6 lg:px-8 bg-black overflow-hidden border-b border-[#373737]"
     >
       <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-zinc-950 to-transparent pointer-events-none" />
       
+      {/* Figma Selection Boundary Box */}
+      <div className="absolute inset-4 sm:inset-6 border border-[#18a0fb]/20 rounded-2xl pointer-events-none z-10">
+        <div className="absolute -top-2.5 left-4 px-1.5 py-0.5 bg-[#18a0fb] text-white text-[8px] font-bold font-mono rounded">
+          # About Metrics Frame
+        </div>
+        {/* Handles */}
+        <div className="absolute -top-1 -left-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
+        <div className="absolute -top-1 -right-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
+        <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
+        <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
+      </div>
+
       <div className="relative z-10 mx-auto max-w-7xl space-y-24">
         <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] items-start">
           
           {/* Main Info Side */}
           <div className="space-y-12">
             <div className="space-y-4">
-              <p className="section-overline">ABOUT</p>
+              <p className="section-overline">ABOUT / CAPABILITIES</p>
               <h2 className="section-title mt-2 font-display bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent font-bold">
                 {t('디자인, 마케팅, 프로그래밍.', 'Design, Marketing, Programming.')}
               </h2>
@@ -130,7 +142,7 @@ export default function About() {
               </p>
             </div>
 
-            {/* Smooth Animated Card Grid */}
+            {/* Figma Auto-Layout Control Panels style */}
             <motion.div 
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -141,12 +153,19 @@ export default function About() {
               {details.map((item, index) => (
                 <GlowCard
                   key={index}
-                  className="apple-widget p-8 transition-all duration-300"
+                  className="bg-[#181818]/60 border border-[#373737] p-6 rounded-xl transition-all duration-300 relative"
                 >
-                  <h3 className="text-sm sm:text-base font-bold text-white mb-3 font-display">
+                  {/* Fake Figma Auto Layout Header */}
+                  <div className="absolute top-2 right-3 text-[7.5px] font-mono text-zinc-600 flex items-center gap-1.5 select-none">
+                    <span>↓ Auto Layout</span>
+                    <span>Gap: 12px</span>
+                  </div>
+                  
+                  <h3 className="text-sm font-bold text-white mb-3 font-display flex items-center gap-2">
+                    <span className="text-[#18a0fb] font-mono text-[9px] bg-[#18a0fb]/10 px-1 py-0.5 rounded">Frame {index+1}</span>
                     {item.title}
                   </h3>
-                  <p className="text-xs sm:text-sm leading-relaxed text-zinc-300 font-normal tracking-tight">
+                  <p className="text-xs leading-relaxed text-zinc-300 font-normal tracking-tight">
                     {item.description}
                   </p>
                 </GlowCard>
@@ -154,153 +173,99 @@ export default function About() {
             </motion.div>
           </div>
 
-          {/* Profile Card Side - 2x2 Modern Dashboard Grid */}
-          <GlowCard className="apple-widget p-8 sm:p-10 lg:sticky lg:top-28">
-            <p className="section-overline">PROFILE</p>
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 text-zinc-300">
+          {/* Profile Card Side - Figma Properties Inspector style */}
+          <GlowCard className="bg-[#2b2b2b]/90 border border-[#373737] p-8 rounded-2xl lg:sticky lg:top-28 text-[11px] font-mono shadow-2xl">
+            <div className="flex justify-between items-center border-b border-[#373737] pb-3 mb-6 select-none">
+              <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">❖ Active Inspector</span>
+              <span className="text-[8px] bg-white/5 px-1 py-0.5 rounded text-[#a259ff]">Component</span>
+            </div>
+
+            <div className="space-y-5">
               
-              <motion.div 
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-                viewport={{ once: true }}
-                className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-300 flex flex-col justify-between"
-              >
-                <p className="text-[10px] font-bold text-zinc-500 tracking-wider uppercase">
-                  {t('활동 분야', 'Areas of Activity')}
-                </p>
-                <p className="mt-4 text-xs sm:text-sm font-bold text-white font-display leading-relaxed tracking-tight">
+              <div className="space-y-1.5">
+                <label className="text-zinc-500 text-[9px] uppercase tracking-wider block">Areas of Activity</label>
+                <div className="bg-[#1e1e1e] border border-[#373737] p-3 rounded-lg text-zinc-200 text-xs font-semibold leading-relaxed font-sans">
                   CEO · Founder · Marketer · Designer · Developer
-                </p>
-              </motion.div>
+                </div>
+              </div>
 
-              <motion.div 
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.05, ease: 'easeOut' }}
-                viewport={{ once: true }}
-                className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-300 flex flex-col justify-between"
-              >
-                <p className="text-[10px] font-bold text-zinc-500 tracking-wider uppercase">
-                  {t('소속 및 역할', 'Affiliation & Role')}
-                </p>
-                <p className="mt-4 text-xs sm:text-sm font-bold text-white font-sans leading-relaxed tracking-tight">
+              <div className="space-y-1.5">
+                <label className="text-zinc-500 text-[9px] uppercase tracking-wider block">Affiliation & Role</label>
+                <div className="bg-[#1e1e1e] border border-[#373737] p-3 rounded-lg text-zinc-200 text-xs font-medium leading-relaxed font-sans">
                   RoFolder CEO · Limited™ Founder · LUXERET Marketer · HANN LABS™ Staff Designer · SIMPLX Developer
-                </p>
-              </motion.div>
+                </div>
+              </div>
 
-              <motion.div 
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
-                viewport={{ once: true }}
-                className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-300 flex flex-col justify-between"
-              >
-                <p className="text-[10px] font-bold text-zinc-500 tracking-wider uppercase">
-                  {t('핵심 지향점', 'Core Approach')}
-                </p>
-                <p className="mt-4 text-xs sm:text-sm font-bold text-zinc-200 font-sans leading-relaxed tracking-tight">
+              <div className="space-y-1.5">
+                <label className="text-zinc-500 text-[9px] uppercase tracking-wider block">Core Approach</label>
+                <div className="bg-[#1e1e1e] border border-[#373737] p-3 rounded-lg text-zinc-200 text-xs leading-relaxed font-sans">
                   {t(
                     '사용자 피드백 중심 설계, 스토리텔링 및 주도적 서비스 빌딩',
                     'User feedback-centric design, storytelling, and proactive service building'
                   )}
-                </p>
-              </motion.div>
+                </div>
+              </div>
 
-              <motion.div 
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.15, ease: 'easeOut' }}
-                viewport={{ once: true }}
-                className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-300 flex flex-col justify-between"
-              >
-                <p className="text-[10px] font-bold text-zinc-500 tracking-wider uppercase">
-                  {t('주요 강점', 'Key Strengths')}
-                </p>
-                <p className="mt-4 text-xs sm:text-sm font-bold text-zinc-200 font-sans leading-relaxed tracking-tight">
+              <div className="space-y-1.5">
+                <label className="text-zinc-500 text-[9px] uppercase tracking-wider block">Key Strengths</label>
+                <div className="bg-[#1e1e1e] border border-[#373737] p-3 rounded-lg text-zinc-200 text-xs leading-relaxed font-sans">
                   {t(
                     '비주얼 디렉션 · 유저 인터랙션 기획 · 커뮤니티 매니지먼트',
                     'Visual Direction · Interaction Planning · Community Management'
                   )}
-                </p>
-              </motion.div>
+                </div>
+              </div>
+
             </div>
           </GlowCard>
         </div>
 
-        {/* Interactive Stats Grid (What it Proves) */}
-        <div className="pt-16 border-t border-zinc-900/80">
-          <div className="text-center mb-10">
-            <p className="section-overline">METRICS</p>
-            <h3 className="text-2xl font-bold tracking-tight text-white font-display mt-2">{t('지표', 'Metrics')}</h3>
-            <p className="text-xs text-zinc-500 mt-1 uppercase tracking-wider">{t('각 지표를 클릭하여 증명하는 역량을 확인해보세요', 'Click each metric to verify capabilities')}</p>
+        {/* Interactive Stats Grid (Figma Local Variables style) */}
+        <div className="pt-16 border-t border-[#373737]">
+          <div className="text-center mb-10 select-none">
+            <p className="section-overline">LOCAL VARIABLES</p>
+            <h3 className="text-2xl font-bold tracking-tight text-white font-display mt-2">{t('핵심 지표', 'Core Metrics')}</h3>
+            <p className="text-xs text-zinc-500 mt-1 uppercase tracking-wider">{t('각 변수 행을 클릭하여 증명하는 역량을 확인해보세요', 'Click each variable to verify key capabilities')}</p>
           </div>
 
           <div className="grid gap-6 grid-cols-1 sm:grid-cols-3 max-w-4xl mx-auto">
             {stats.map((stat, idx) => {
               const isActive = activeStat === idx;
-              // Determine ring color based on Apple Health activity style
-              const ringColor = idx === 0 ? 'text-[#ff2d55]' : idx === 1 ? 'text-[#4cd964]' : 'text-[#5ac8fa]';
+              // Border left color based on Figma Variable Types (String = orange, Number = purple, Boolean = green)
+              const typeColor = idx === 0 ? 'border-l-4 border-l-[#ff7262]' : idx === 1 ? 'border-l-4 border-l-[#a259ff]' : 'border-l-4 border-l-[#0acf83]';
               return (
                 <GlowCard
                   key={idx}
                   layout
                   onClick={() => setActiveStat(isActive ? null : idx)}
-                  className={`apple-widget p-6 text-left relative overflow-hidden transition-all duration-300 cursor-pointer group hover:scale-[1.015] active:scale-[0.985] ${
-                    isActive ? 'border-white/20 bg-white/10 shadow-[0_0_20px_rgba(255,255,255,0.05)]' : 'border-white/5 bg-white/5 hover:border-white/12 hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)]'
+                  className={`bg-[#2b2b2b] border border-[#373737] p-5 text-left relative overflow-hidden transition-all duration-300 cursor-pointer group hover:scale-[1.015] active:scale-[0.985] ${typeColor} ${
+                    isActive ? 'shadow-[0_0_15px_rgba(24,160,251,0.15)] border-[#18a0fb]' : ''
                   }`}
                 >
-                  {/* Subtle expand/close CTA indicator for UX affordance */}
-                  <div className="absolute right-5 bottom-4 text-[9px] font-sans font-bold tracking-tight text-zinc-500 group-hover:text-zinc-300 transition-colors">
-                    {isActive ? '접기 -' : '자세히 +'}
+                  {/* Type Badge */}
+                  <div className="absolute right-4 top-4 text-[7px] font-mono text-zinc-500 bg-white/5 px-1.5 py-0.5 rounded uppercase tracking-wider">
+                    {idx === 0 ? 'Collection' : idx === 1 ? 'Number' : 'Boolean'}
                   </div>
 
-                  {/* Decorative Apple Activity Ring */}
-                  <div className="absolute right-5 top-5 w-10 h-10">
-                    <svg viewBox="0 0 36 36" className={`w-full h-full ${ringColor}`}>
-                      <circle
-                        className="opacity-10"
-                        strokeWidth="3.5"
-                        stroke="currentColor"
-                        fill="none"
-                        cx="18"
-                        cy="18"
-                        r="15.915"
-                      />
-                      <circle
-                        strokeWidth="3.5"
-                        strokeDasharray={`${idx === 0 ? '80' : idx === 1 ? '90' : '75'}, 100`}
-                        strokeLinecap="round"
-                        stroke="currentColor"
-                        fill="none"
-                        cx="18"
-                        cy="18"
-                        r="15.915"
-                        transform="rotate(-90 18 18)"
-                      />
-                    </svg>
-                  </div>
-
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 pr-12">
+                  <p className="text-[10px] font-bold text-zinc-500 pr-12 font-mono">
                     {stat.label}
                   </p>
                   
-                  <p className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mt-4 mb-2 font-display">
+                  <p className="text-3xl font-extrabold tracking-tight text-white mt-3 mb-2 font-display">
                     {stat.value}
                   </p>
                   
-                  <div className="h-px bg-white/5 w-full my-4" />
+                  <div className="h-px bg-[#373737] w-full my-3" />
                   
                   <div className="relative overflow-hidden min-h-[40px] flex items-center">
                     <AnimatePresence mode="wait">
                       {isActive ? (
                         <motion.p
                           key="proof"
-                          initial={{ opacity: 0, y: 8, scale: 0.96 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: -8, scale: 0.96 }}
-                          transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-                          className="text-[11px] leading-relaxed text-zinc-200 font-medium tracking-tight"
+                          initial={{ opacity: 0, y: 5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -5 }}
+                          className="text-[11px] leading-relaxed text-zinc-200 font-medium tracking-tight font-sans"
                         >
                           {stat.proof}
                         </motion.p>
@@ -310,10 +275,9 @@ export default function About() {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 0.6 }}
                           exit={{ opacity: 0 }}
-                          transition={{ duration: 0.15 }}
-                          className="text-[10px] text-zinc-455 font-bold tracking-wide uppercase hover:text-white transition-colors"
+                          className="text-[9px] text-[#18a0fb] font-bold tracking-wide uppercase hover:text-[#0c8ce9] transition-colors font-mono"
                         >
-                          {t('자세히 보기', 'CLICK TO READ')} →
+                          {t('자세히 보기', 'CLICK TO READ')} ➔
                         </motion.p>
                       )}
                     </AnimatePresence>
@@ -328,4 +292,3 @@ export default function About() {
     </section>
   );
 }
-

@@ -11,7 +11,19 @@ export default function Communities() {
   const data = portfolioData[language];
 
   return (
-    <section id="communities" className="py-20 px-4 sm:px-6 lg:px-8 bg-black border-b border-zinc-900 relative overflow-hidden">
+    <section id="communities" className="py-20 px-4 sm:px-6 lg:px-8 bg-black border-b border-[#373737] relative overflow-hidden">
+      {/* Figma Selection Boundary Box */}
+      <div className="absolute inset-4 sm:inset-6 border border-[#18a0fb]/20 rounded-2xl pointer-events-none z-10">
+        <div className="absolute -top-2.5 left-4 px-1.5 py-0.5 bg-[#18a0fb] text-white text-[8px] font-bold font-mono rounded">
+          # Communities Section Frame
+        </div>
+        {/* Handles */}
+        <div className="absolute -top-1 -left-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
+        <div className="absolute -top-1 -right-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
+        <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
+        <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
+      </div>
+
       <div className="relative mx-auto max-w-7xl z-10">
         
         {/* Title */}
@@ -22,9 +34,7 @@ export default function Communities() {
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <p className="section-overline">
-            COMMUNITY LEADERSHIP
-          </p>
+          <p className="section-overline">COMMUNITY MANAGEMENT</p>
           <h2 className="section-title mt-4 mb-6 font-display bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent font-bold">
             {t('커뮤니티 운영', 'Community Management')}
           </h2>
@@ -36,20 +46,27 @@ export default function Communities() {
           </p>
         </motion.div>
 
-        {/* Card Grid */}
-        <div className="grid gap-8 md:grid-cols-3 max-w-6xl mx-auto">
+        {/* Figma Plugins Market layout (List form instead of cards) */}
+        <div className="max-w-4xl mx-auto bg-[#2b2b2b]/95 border border-[#373737] rounded-2xl overflow-hidden shadow-2xl divide-y divide-[#373737] font-sans">
+          {/* Header of marketplace window */}
+          <div className="px-6 py-3 bg-[#1e1e1e] flex justify-between items-center text-[10px] text-zinc-400 font-mono select-none border-b border-[#373737]">
+            <span>Figma Community Plugins</span>
+            <span>Sort: Popular</span>
+          </div>
+
           {data.communities.map((community, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
+              initial={{ opacity: 0, x: -15 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
               onClick={() => setSelectedCommunity(community)}
-              className="group relative bg-zinc-950/40 rounded-3xl p-8 md:p-10 border border-zinc-900 shadow-2xl hover:border-zinc-700 hover:-translate-y-1 transition-all duration-300 cursor-pointer select-none"
+              className="group p-5 md:p-6 flex items-center justify-between hover:bg-white/[0.02] transition-colors cursor-pointer select-none"
             >
-              <div className="flex flex-col items-center text-center">
-                <div className="w-20 h-20 mb-6 rounded-2xl overflow-hidden border border-zinc-800 group-hover:scale-105 transition-transform duration-500 bg-black flex items-center justify-center">
+              <div className="flex items-center gap-5 min-w-0">
+                {/* Plugin Icon/Logo */}
+                <div className="w-14 h-14 rounded-xl overflow-hidden border border-[#373737] bg-black flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
                   <img 
                     src={community.logo} 
                     alt={community.name} 
@@ -57,30 +74,34 @@ export default function Communities() {
                   />
                 </div>
                 
-                <h3 className="text-xl font-bold text-white mb-3 tracking-tight font-display">
-                  {community.name}
-                </h3>
-                
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-5 rounded-full bg-zinc-900 text-zinc-300 text-[10px] font-mono border border-zinc-800">
-                  <Users size={10} className="text-zinc-500" />
-                  {community.members}{t('명', ' Members')}
+                {/* Description texts */}
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-sm font-bold text-white tracking-tight truncate">
+                      {community.name}
+                    </h3>
+                    <span className="text-[8px] bg-white/5 text-zinc-400 border border-white/5 px-1.5 py-0.5 rounded font-mono">
+                      {community.members}{t('명', ' Members')}
+                    </span>
+                  </div>
+                  <p className="text-[10.5px] text-zinc-400 font-mono mt-0.5">by @seoharo</p>
+                  <p className="text-zinc-300 text-xs mt-2 line-clamp-1 tracking-tight leading-relaxed">
+                    {community.description}
+                  </p>
                 </div>
-                
-                <p className="text-zinc-300 text-xs sm:text-sm leading-relaxed font-normal whitespace-pre-line mb-6 tracking-tight">
-                  {community.description}
-                </p>
-
-                <span className="inline-flex items-center gap-1 text-[10px] font-bold font-mono text-zinc-300 group-hover:text-white transition-colors uppercase tracking-wider">
-                  {t('프로필 확인', 'View Profile')}
-                  <ArrowUpRight size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </span>
               </div>
+
+              {/* Install / Run Action Button */}
+              <button className="flex-shrink-0 ml-4 px-4 py-2 bg-[#18a0fb] hover:bg-[#0c8ce9] text-white text-[10.5px] font-bold rounded-lg cursor-pointer transition-all shadow-sm flex items-center gap-1">
+                {t('열기', 'Run')}
+                <ArrowUpRight size={11} />
+              </button>
             </motion.div>
           ))}
         </div>
       </div>
 
-      {/* DETAILED COMMUNITY MODAL */}
+      {/* DETAILED COMMUNITY MODAL - Figma Plugin Details Style */}
       <AnimatePresence>
         {selectedCommunity && (
           <>
@@ -93,25 +114,28 @@ export default function Communities() {
               className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm"
             />
 
-            {/* Modal Box */}
+            {/* Modal Box: Figma Plugin Details View */}
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               transition={{ type: 'spring', damping: 25, stiffness: 280 }}
-              className="fixed inset-x-4 top-1/2 -translate-y-1/2 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-[680px] md:h-auto max-h-[85vh] z-50 bg-[#050505] border border-zinc-900 rounded-3xl shadow-2xl overflow-hidden flex flex-col"
+              className="fixed inset-x-4 top-1/2 -translate-y-1/2 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-[600px] md:h-auto max-h-[85vh] z-50 bg-[#1e1e1e] border border-[#373737] rounded-2xl shadow-2xl overflow-hidden flex flex-col font-sans"
             >
               {/* Modal Header */}
-              <div className="flex items-center justify-between px-6 py-4 bg-zinc-950 border-b border-zinc-900">
+              <div className="flex items-center justify-between px-6 py-4 bg-[#2b2b2b] border-b border-[#373737]">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg overflow-hidden border border-zinc-800 bg-black">
+                  <div className="w-8 h-8 rounded-lg overflow-hidden border border-[#373737] bg-black">
                     <img src={selectedCommunity.logo} alt={selectedCommunity.name} className="w-full h-full object-cover" />
                   </div>
-                  <span className="text-xs font-mono font-bold text-zinc-300 uppercase">{selectedCommunity.name}</span>
+                  <div>
+                    <h3 className="text-xs font-bold text-white">{selectedCommunity.name}</h3>
+                    <p className="text-[8px] text-zinc-500 font-mono">Plugin Details & Documentation</p>
+                  </div>
                 </div>
                 <button
                   onClick={() => setSelectedCommunity(null)}
-                  className="p-1.5 rounded-full hover:bg-zinc-900 text-zinc-500 hover:text-white transition-colors cursor-pointer"
+                  className="p-1.5 rounded-full hover:bg-white/5 text-zinc-500 hover:text-white transition-colors cursor-pointer"
                 >
                   <X size={16} />
                 </button>
@@ -121,35 +145,29 @@ export default function Communities() {
               <div className="flex-1 overflow-y-auto p-6 md:p-8 space-y-6 text-zinc-300">
                 
                 {/* Intro Card */}
-                <div className="grid gap-6 md:grid-cols-[1.5fr_1fr] items-center bg-zinc-950/60 rounded-2xl border border-zinc-900 p-6">
-                  <div className="space-y-4">
-                    <div className="flex flex-wrap gap-2 items-center">
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 text-[9px] font-mono uppercase tracking-wider">
-                        <Shield size={10} className="text-zinc-400" />
-                        {selectedCommunity.role}
-                      </span>
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 text-[9px] font-mono uppercase tracking-wider">
-                        <Users size={10} className="text-zinc-400" />
-                        {selectedCommunity.members}{t('명', ' Members')}
-                      </span>
-                    </div>
-                    
-                    <h3 className="text-xl font-bold text-white font-display tracking-tight">
-                      {selectedCommunity.name}
-                    </h3>
-                    
-                    <p className="text-zinc-300 font-normal text-xs sm:text-sm leading-relaxed whitespace-pre-line tracking-tight">
-                      {selectedCommunity.detailsText}
-                    </p>
+                <div className="space-y-4">
+                  <div className="flex flex-wrap gap-2 items-center">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-white/5 border border-white/5 text-zinc-300 text-[9px] font-mono uppercase tracking-wider">
+                      <Shield size={9} className="text-zinc-500" />
+                      {selectedCommunity.role}
+                    </span>
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-white/5 border border-white/5 text-zinc-300 text-[9px] font-mono uppercase tracking-wider">
+                      <Users size={9} className="text-zinc-500" />
+                      {selectedCommunity.members}{t('명', ' Members')}
+                    </span>
                   </div>
                   
+                  <p className="text-zinc-300 font-normal text-xs sm:text-[13px] leading-relaxed whitespace-pre-line tracking-tight">
+                    {selectedCommunity.detailsText}
+                  </p>
+                  
                   {/* Slogan block */}
-                  <div className="border-t md:border-t-0 md:border-l border-zinc-900 pt-6 md:pt-0 md:pl-6 flex flex-col justify-center">
-                    <span className="text-[8.5px] font-mono font-bold text-zinc-500 uppercase tracking-widest mb-2 flex items-center gap-1">
-                      <Compass size={11} />
+                  <div className="bg-[#2b2b2b] border border-[#373737] p-4 rounded-xl flex flex-col justify-center">
+                    <span className="text-[8px] font-mono font-bold text-zinc-500 uppercase tracking-widest mb-1.5 flex items-center gap-1">
+                      <Compass size={10} />
                       {t('슬로건', 'SLOGAN')}
                     </span>
-                    <p className="text-xs font-semibold text-zinc-300 italic leading-relaxed">
+                    <p className="text-xs font-semibold text-zinc-200 italic leading-relaxed">
                       "{selectedCommunity.slogan}"
                     </p>
                   </div>
@@ -163,46 +181,37 @@ export default function Communities() {
                     if (nameLower.includes("limited")) return c.id === "limited";
                     return false;
                   });
-                  const achievements = career ? career.achievements : (
-                    selectedCommunity.name.toLowerCase().includes("rogallery") || selectedCommunity.name.toLowerCase().includes("로블갤러리") ? [
-                      t("유저들이 스스로 교류하고 성장할 수 있는 소통 채널 구축", "Building channels where users communicate and grow together"),
-                      t("자발적 피드백과 투명한 운영 체계 확립", "Establishing voluntary feedback and transparent operation systems"),
-                      t("지속 가능한 소통의 장을 통한 유저 리텐션 증대", "Increasing user retention through a sustainable communication playground")
-                    ] : [
-                      t("유저 친화적인 커뮤니티 규칙 정의 및 소통 구조 확립", "Establishing user-friendly communication rules and transparent structures"),
-                      t("커뮤니티 내 활발한 유저 상호작용 및 이벤트 기획/진행", "Planning and executing active user interactions and events"),
-                      t("자율적인 유저 참여형 서비스 피드백 채널 수립 및 운영", "Operating voluntary user feedback channels")
-                    ]
-                  );
-                  const skills = career ? career.skills : (
-                    selectedCommunity.name.toLowerCase().includes("rogallery") || selectedCommunity.name.toLowerCase().includes("로블갤러리") ? [
-                      "Community Operations", "User Retention", "Communication Design"
-                    ] : ["Community Management", "User Engagement", "Branding"]
-                  );
+                  const achievements = career ? career.achievements : [
+                    t("유저들이 스스로 교류하고 성장할 수 있는 소통 채널 구축", "Building channels where users communicate and grow together"),
+                    t("자발적 피드백과 투명한 운영 체계 확립", "Establishing voluntary feedback and transparent operation systems"),
+                    t("지속 가능한 소통의 장을 통한 유저 리텐션 증대", "Increasing user retention through a sustainable communication playground")
+                  ];
+                  const skills = career ? career.skills : ["Community Operations", "User Retention", "Communication Design"];
+                  
                   return (
-                    <div className="space-y-6 pt-4 border-t border-zinc-900">
-                      <div className="space-y-3">
-                        <h4 className="text-[9px] font-mono font-bold text-zinc-500 uppercase tracking-widest flex items-center gap-1.5">
+                    <div className="space-y-5 pt-4 border-t border-[#373737]">
+                      <div className="space-y-2">
+                        <h4 className="text-[8px] font-mono font-bold text-zinc-500 uppercase tracking-widest flex items-center gap-1.5">
                           <Compass className="w-3.5 h-3.5 text-zinc-500" />
                           {t('핵심 기여 및 성과', 'Key Contributions')}
                         </h4>
-                        <ul className="space-y-2.5">
+                        <ul className="space-y-2">
                           {achievements.map((ach, idx) => (
                             <li key={idx} className="flex gap-2.5 text-xs text-zinc-300 leading-relaxed font-normal tracking-tight">
-                              <span className="text-zinc-400 font-bold">•</span>
+                              <span className="text-[#18a0fb] font-bold">•</span>
                               <span>{ach}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
 
-                      <div className="space-y-3 border-t border-zinc-900 pt-4">
-                        <h4 className="text-[9px] font-mono font-bold text-zinc-500 uppercase tracking-widest">
+                      <div className="space-y-2 border-t border-[#373737] pt-4">
+                        <h4 className="text-[8px] font-mono font-bold text-zinc-500 uppercase tracking-widest">
                           {t('보유 역량', 'Capabilities')}
                         </h4>
                         <div className="flex flex-wrap gap-1.5">
                           {skills.map((skill, idx) => (
-                            <span key={idx} className="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-zinc-300 text-[10px] font-mono">
+                            <span key={idx} className="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-zinc-300 text-[9px] font-mono">
                               {skill}
                             </span>
                           ))}
@@ -214,10 +223,10 @@ export default function Communities() {
               </div>
 
               {/* Modal Action Footer */}
-              <div className="px-6 py-4 bg-zinc-950 border-t border-zinc-900 flex justify-end">
+              <div className="px-6 py-4 bg-[#2b2b2b] border-t border-[#373737] flex justify-end gap-3">
                 <button
                   onClick={() => setSelectedCommunity(null)}
-                  className="px-5 py-2.5 rounded-full bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 text-[10px] font-mono font-bold uppercase tracking-wider transition-all cursor-pointer"
+                  className="px-5 py-2.5 rounded bg-[#1e1e1e] hover:bg-zinc-800 border border-[#373737] text-zinc-300 text-[10px] font-mono font-bold uppercase tracking-wider transition-all cursor-pointer"
                 >
                   {t('닫기', 'Close')}
                 </button>

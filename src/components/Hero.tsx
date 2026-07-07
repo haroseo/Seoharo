@@ -35,10 +35,22 @@ export default function Hero() {
   return (
     <section 
       id="hero" 
-      className="relative overflow-hidden px-4 sm:px-6 lg:px-8 pt-32 pb-24 sm:pt-40 sm:pb-28 min-h-screen bg-black flex items-center border-b border-zinc-900"
+      className="relative overflow-hidden px-4 sm:px-6 lg:px-8 pt-32 pb-24 sm:pt-40 sm:pb-28 min-h-screen bg-black flex items-center border-b border-[#373737]"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-[#030303] to-transparent pointer-events-none" />
       
+      {/* Figma Selection Boundary Box for visual wow factor */}
+      <div className="absolute inset-4 sm:inset-6 border border-[#18a0fb]/30 rounded-2xl pointer-events-none z-10">
+        <div className="absolute -top-2.5 left-4 px-1.5 py-0.5 bg-[#18a0fb] text-white text-[8px] font-bold font-mono rounded">
+          # Hero Section
+        </div>
+        {/* Four corner handles */}
+        <div className="absolute -top-1 -left-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
+        <div className="absolute -top-1 -right-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
+        <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
+        <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
+      </div>
+
       <div className="relative z-10 mx-auto max-w-7xl w-full">
         <motion.div
           initial="hidden"
@@ -52,7 +64,7 @@ export default function Hero() {
               <span className="text-[11px] font-bold tracking-wide text-zinc-400 uppercase">
                 {t('소개', 'INTRODUCTION')}
               </span>
-              <span className="h-px w-6 bg-zinc-850" />
+              <span className="h-px w-6 bg-zinc-800" />
             </div>
 
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold uppercase tracking-tight text-white leading-tight">
@@ -66,7 +78,7 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <button
                 onClick={() => navigate('/portfolio')}
-                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-[var(--toss-blue)] px-8 py-3.5 text-xs sm:text-sm font-bold text-white hover:bg-[var(--toss-blue-hover)] shadow-lg transition-all cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-[#18a0fb] hover:bg-[#0c8ce9] px-8 py-3.5 text-xs sm:text-sm font-bold text-white shadow-lg transition-all cursor-pointer"
               >
                 {t('프로젝트 목록', 'PROJECT CATALOG')}
               </button>
@@ -79,14 +91,16 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Profile Card Summary Panel - Apple Dark Widget style */}
+          {/* Profile Card Summary Panel - Figma Purple Component Frame style */}
           <motion.div
             variants={itemVariants}
-            className="apple-widget p-8 md:p-10"
+            className="relative border border-[#a259ff]/30 bg-[#130f1d]/50 p-8 md:p-10 rounded-2xl shadow-xl z-20 backdrop-blur-md"
           >
-            <p className="text-[9px] font-bold tracking-[0.2em] text-zinc-500 uppercase">
-              {t('프로필', 'PROFILE')}
-            </p>
+            {/* Component Label */}
+            <div className="absolute -top-2.5 left-4 px-1.5 py-0.5 bg-[#a259ff] text-white text-[8px] font-bold font-mono rounded flex items-center gap-1">
+              <span>❖</span> Profile Card Component
+            </div>
+
             <div className="mt-8 space-y-6">
               <div className="flex items-end justify-between gap-4">
                 <div>
@@ -94,7 +108,7 @@ export default function Hero() {
                     SEOHARO
                   </h2>
                 </div>
-                <div className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[9px] font-bold uppercase tracking-wider text-zinc-200">
+                <div className="rounded-full border border-[#a259ff]/30 bg-[#a259ff]/10 px-3 py-1 text-[9px] font-bold uppercase tracking-wider text-[#d3b4ff]">
                   {t('활동 중', 'ACTIVE')}
                 </div>
               </div>
@@ -121,7 +135,7 @@ export default function Hero() {
                 >
                   <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider flex justify-between items-center">
                     깃허브
-                    <span className="text-[8px] text-zinc-600 group-hover:text-white transition-colors">방문 ↗</span>
+                    <span className="text-[8px] text-[#18a0fb] transition-colors">이동 ↗</span>
                   </span>
                   <span className="mt-1 font-semibold text-zinc-200 truncate">github.com/haroseo</span>
                 </a>
@@ -133,7 +147,7 @@ export default function Hero() {
                 >
                   <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider flex justify-between items-center">
                     피그마
-                    <span className="text-[8px] text-zinc-600 group-hover:text-white transition-colors">프로필 ↗</span>
+                    <span className="text-[8px] text-[#a259ff] transition-colors">이동 ↗</span>
                   </span>
                   <span className="mt-1 font-semibold text-zinc-200 truncate font-sans">figma.com/@seoharo</span>
                 </a>

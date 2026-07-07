@@ -11,7 +11,6 @@ export default function Timeline() {
     offset: ["start end", "end start"]
   });
 
-  // Soft spring for buttery smooth line drawing
   const scaleY = useSpring(scrollYProgress, { stiffness: 70, damping: 26 });
 
   const timelineEvents = [
@@ -54,7 +53,22 @@ export default function Timeline() {
   ];
 
   return (
-    <section id="journey" className="py-20 px-4 sm:px-6 lg:px-8 bg-black border-b border-zinc-900 relative overflow-hidden">
+    <section 
+      id="timeline" 
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-black border-b border-[#373737] relative overflow-hidden"
+    >
+      {/* Figma Selection Boundary Box */}
+      <div className="absolute inset-4 sm:inset-6 border border-[#18a0fb]/20 rounded-2xl pointer-events-none z-10">
+        <div className="absolute -top-2.5 left-4 px-1.5 py-0.5 bg-[#18a0fb] text-white text-[8px] font-bold font-mono rounded">
+          # Growth Timeline Frame
+        </div>
+        {/* Handles */}
+        <div className="absolute -top-1 -left-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
+        <div className="absolute -top-1 -right-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
+        <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
+        <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
+      </div>
+
       <div className="relative z-10 mx-auto max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -63,23 +77,23 @@ export default function Timeline() {
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <p className="section-overline">JOURNEY</p>
+          <p className="section-overline">PROTOTYPE / TIMELINE</p>
           <h2 className="section-title mt-4 mb-6 font-display bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent font-bold">
             {t('성장 여정', 'Growth Journey')}
           </h2>
-          <p className="mx-auto max-w-2xl text-sm sm:text-base text-zinc-200 font-normal leading-relaxed">
+          <p className="mx-auto max-w-2xl text-sm sm:text-base text-zinc-200 font-normal leading-relaxed tracking-tight">
             {t('한 걸음씩 배우고 경험하며 쌓아 올린 기록입니다.', 'A record of learning and experiencing step by step.')}
           </p>
         </motion.div>
 
         <div ref={containerRef} className="relative mt-16">
           {/* Background vertical line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-zinc-800/80 transform md:-translate-x-1/2" />
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-[#373737] transform md:-translate-x-1/2" />
           
-          {/* Scroll-driven active path in monochrome white */}
+          {/* Scroll-driven active path in Figma Prototype Blue */}
           <motion.div 
             style={{ scaleY, transformOrigin: 'top' }}
-            className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-white shadow-[0_0_8px_rgba(255,255,255,0.3)] transform md:-translate-x-1/2" 
+            className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[3px] bg-[#18a0fb] shadow-[0_0_10px_rgba(24,160,251,0.5)] transform md:-translate-x-1/2" 
           />
 
           <div className="space-y-20">
@@ -98,28 +112,28 @@ export default function Timeline() {
                 <div className="hidden md:block w-[45%]" />
 
                 {/* Dot */}
-                <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-black border-2 border-white/40 transition-all duration-500 group-hover:bg-white group-hover:border-white group-hover:shadow-[0_0_10px_rgba(255,255,255,0.5)] group-hover:scale-130 z-10 mt-1.5" />
+                <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-black border-2 border-[#18a0fb] transition-all duration-300 group-hover:bg-[#18a0fb] group-hover:scale-130 group-hover:shadow-[0_0_12px_rgba(24,160,251,0.8)] z-10 mt-1.5" />
 
                 {/* Content */}
                 <div className={`w-full pl-20 md:pl-0 md:w-[45%] flex flex-col ${
                   index % 2 === 0 ? 'md:items-end md:text-right' : 'md:items-start md:text-left'
                 }`}>
-                  <div className={`flex flex-wrap items-center gap-4 mb-3 ${index % 2 === 0 ? 'md:justify-end' : 'md:justify-start'}`}>
-                    <span className="text-xl font-semibold tracking-tight text-zinc-450 group-hover:text-white transition-colors duration-500 font-sans">
+                  <div className={`flex flex-wrap items-center gap-4 mb-2.5 ${index % 2 === 0 ? 'md:justify-end' : 'md:justify-start'}`}>
+                    <span className="text-[10px] font-mono font-bold text-[#18a0fb] tracking-wider uppercase select-none">
                       {event.phase}
                     </span>
-                    <div className="hidden md:block h-px w-8 bg-white/5 group-hover:bg-white/10 transition-colors duration-500" />
+                    <div className="hidden md:block h-px w-6 bg-[#373737]" />
                     <div className="flex flex-wrap gap-2">
                       {event.keywords.map(kw => (
-                        <span key={kw} className="px-2.5 py-0.5 bg-white/5 border border-white/5 text-[10px] font-bold tracking-wide text-zinc-400 rounded-lg group-hover:text-zinc-200 group-hover:border-white/10 transition-all duration-500">
+                        <span key={kw} className="px-2 py-0.5 bg-[#18a0fb]/10 border border-[#18a0fb]/25 text-[8.5px] font-mono font-bold tracking-wide text-zinc-300 rounded-md">
                           {kw}
                         </span>
                       ))}
                     </div>
                   </div>
                   
-                  <div className="relative mt-2 w-full">
-                    <h3 className="text-lg font-bold text-zinc-300 group-hover:text-white transition-colors duration-500 font-display">
+                  <div className="relative w-full">
+                    <h3 className="text-[14px] font-bold text-white tracking-tight font-display mb-3">
                       {event.title}
                     </h3>
                     <motion.div 
@@ -127,8 +141,12 @@ export default function Timeline() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: "-60px" }}
                       transition={{ duration: 1.2, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                      className={`mt-4 text-xs sm:text-sm text-zinc-300 group-hover:text-zinc-100 transition-colors duration-500 leading-relaxed max-w-sm apple-widget p-5 ${index % 2 === 0 ? 'ml-auto text-left md:text-right' : 'mr-auto text-left'}`}
+                      className={`relative text-xs sm:text-[13px] text-zinc-300 leading-relaxed max-w-sm bg-[#131720]/80 border border-[#18a0fb]/20 hover:border-[#18a0fb]/40 rounded-xl p-5 shadow-[0_0_15px_rgba(24,160,251,0.03)] hover:shadow-[0_0_20px_rgba(24,160,251,0.06)] transition-all ${index % 2 === 0 ? 'ml-auto text-left md:text-right' : 'mr-auto text-left'}`}
                     >
+                      {/* Fake Prototype Connector interaction tag */}
+                      <span className="absolute -top-2.5 right-4 px-1.5 py-0.5 bg-[#18a0fb]/20 border border-[#18a0fb]/40 text-[#18a0fb] text-[8px] font-mono rounded font-bold uppercase select-none">
+                        On Click ➔ Smart Animate
+                      </span>
                       {event.description}
                     </motion.div>
                   </div>
