@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
 import type { Community } from '../data/portfolioData';
-import { X, Users, Compass, Shield, ArrowUpRight } from 'lucide-react';
+import { X, Compass, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from './LanguageContext';
 
 export default function Communities() {
@@ -57,14 +57,13 @@ export default function Communities() {
                   />
                 </div>
                 
-                <h3 className="text-xl font-bold text-white mb-3 tracking-tight font-display">
+                <h3 className="text-xl font-bold text-white mb-1.5 tracking-tight font-display">
                   {community.name}
                 </h3>
                 
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-5 rounded-full bg-zinc-900 text-zinc-200 text-[10px] font-sans font-semibold border border-zinc-800">
-                  <Users size={10} className="text-zinc-500" />
+                <p className="text-[10.5px] font-semibold text-zinc-400 mb-5 tracking-wide">
                   {community.members} Members
-                </div>
+                </p>
                 
                 <p className="text-zinc-300 text-xs sm:text-sm leading-relaxed font-normal whitespace-pre-line mb-6">
                   {community.description}
@@ -123,15 +122,10 @@ export default function Communities() {
                 {/* Intro Card */}
                 <div className="grid gap-6 md:grid-cols-[1.5fr_1fr] items-center bg-zinc-950/60 rounded-2xl border border-zinc-900 p-6">
                   <div className="space-y-4">
-                    <div className="flex flex-wrap gap-2 items-center">
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-200 text-[9px] font-sans font-semibold uppercase tracking-wider">
-                        <Shield size={10} className="text-zinc-400" />
-                        {selectedCommunity.role}
-                      </span>
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-200 text-[9px] font-sans font-semibold uppercase tracking-wider">
-                        <Users size={10} className="text-zinc-400" />
-                        {selectedCommunity.members} Members
-                      </span>
+                    <div className="flex flex-wrap items-center gap-3 text-[11px] font-semibold text-zinc-400 select-none">
+                      <span>{selectedCommunity.role}</span>
+                      <span className="text-zinc-700">•</span>
+                      <span>{selectedCommunity.members} Members</span>
                     </div>
                     
                     <h3 className="text-xl font-bold text-white font-display tracking-tight">
@@ -200,10 +194,10 @@ export default function Communities() {
                         <h4 className="text-[9px] font-sans font-bold text-zinc-500 uppercase tracking-widest">
                           {t('보유 역량', 'Capabilities')}
                         </h4>
-                        <div className="flex flex-wrap gap-1.5">
+                        <div className="flex flex-wrap gap-2.5">
                           {skills.map((skill, idx) => (
-                            <span key={idx} className="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-zinc-200 text-[10px] font-sans font-medium">
-                              {skill}
+                            <span key={idx} className="text-zinc-400 text-xs font-semibold select-none">
+                              #{skill}
                             </span>
                           ))}
                         </div>
