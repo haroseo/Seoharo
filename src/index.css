@@ -190,40 +190,4 @@
   .gradient-mask {
     mask-image: linear-gradient(to bottom, black 80%, transparent);
   }
-
-  /* Figma Interface Specific Styles */
-  .figma-bg-dark {
-    background-color: #1e1e1e;
-  }
-  .figma-bg-canvas {
-    background-color: #1e1e1e;
-  }
-  .figma-bg-sidebar {
-    background-color: #2b2b2b;
-  }
-  .figma-border-color {
-    border-color: #373737;
-  }
-  .figma-border {
-    border: 1px solid #373737;
-  }
-  .figma-canvas-grid {
-    background-size: 24px 24px;
-    background-image: 
-      linear-gradient(to right, rgba(255, 255, 255, 0.012) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
-  }
-  .figma-input {
-    background-color: #2b2b2b;
-    border: 1px solid #373737;
-    color: #ffffff;
-    font-size: 11px;
-    padding: 3px 6px;
-    border-radius: 4px;
-    font-family: 'JetBrains Mono', monospace;
-  }
-  .figma-input:focus {
-    outline: none;
-    border-color: #18a0fb;
-  }
 }

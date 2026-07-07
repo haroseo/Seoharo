@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, MousePointer2, Play, ChevronDown, MessageSquare, Component, Globe, Layers } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useRouter } from './router';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from './LanguageContext';
@@ -24,10 +24,10 @@ export default function Header() {
   }, [isOpen]);
 
   const navItems = [
-    { label: t('소개 (V)', 'ABOUT (V)'), path: '/about', icon: MousePointer2, tooltip: 'Move tool' },
-    { label: t('포토폴리오 (F)', 'PORTFOLIO (F)'), path: '/portfolio', icon: Layers, tooltip: 'Frame tool' },
-    { label: t('챗봇 (I)', 'AI CHAT (I)'), path: '/chat', icon: Component, tooltip: 'Resource component' },
-    { label: t('협업 (C)', 'CONTACT (C)'), path: '/contact', icon: MessageSquare, tooltip: 'Comment' },
+    { label: 'ABOUT', path: '/about' },
+    { label: 'PORTFOLIO', path: '/portfolio' },
+    { label: 'CHAT', path: '/chat' },
+    { label: 'CONTACT', path: '/contact' },
   ];
 
   const handleNavClick = (path: string) => {
@@ -46,74 +46,57 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full bg-[#2b2b2b] border-b border-[#373737] py-2 px-4 shadow-[0_2px_4px_rgba(0,0,0,0.15)] select-none">
-      <div className="w-full flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50 w-full bg-black/60 backdrop-blur-md border-b border-white/5 py-3 px-6 sm:px-8 shadow-sm">
+      <div className="mx-auto max-w-7xl w-full flex items-center justify-between">
         
-        {/* Left: Figma Logo Dropdown & File Name */}
-        <div className="flex items-center gap-3">
-          {/* Small Figma Logo */}
-          <div className="flex items-center justify-center p-1.5 hover:bg-white/5 rounded transition-colors cursor-pointer">
-            <svg viewBox="0 0 12 18" className="w-3 h-[18px]">
-              <path fill="#F24E1E" d="M6 0H3a3 3 0 0 0 0 6H6V0z"/>
-              <path fill="#A259FF" d="M3 6a3 3 0 0 0 0 6H6V6H3z"/>
-              <path fill="#0ACF83" d="M3 12a3 3 0 0 0 0 6 3 3 0 0 0 3-3V12H3z"/>
-              <path fill="#1ABC9C" d="M6 12h3a3 3 0 0 0 0-6H6v6z"/>
-              <path fill="#FF7262" d="M9 6A3 3 0 0 0 6 3V6h3z"/>
-            </svg>
-          </div>
-          
-          <div className="h-4 w-px bg-[#373737]" />
-
-          {/* Project File Info */}
-          <div className="flex items-center gap-1.5 px-2 py-1 hover:bg-white/5 rounded transition-colors cursor-pointer">
-            <span className="text-[11px] font-semibold text-[#dddddd] font-sans tracking-wide">
-              Seoharo_Portfolio.fig
-            </span>
-            <ChevronDown size={10} className="text-zinc-400 mt-0.5" />
+        {/* Brand Logo & Name */}
+        <div className="flex items-center gap-2">
+          <img 
+            src="/assets/seoharo-logo-round.png" 
+            alt="SEOHARO" 
+            className="w-7 h-7 object-cover rounded-full border border-white/10 bg-black" 
+          />
+          <div className="flex flex-col">
+            <button
+              onClick={() => navigate('/about')}
+              className="text-left text-xs font-bold tracking-[0.2em] uppercase text-white hover:text-zinc-200 transition-colors cursor-pointer"
+            >
+              SEOHARO
+            </button>
+            <p className="text-[7px] uppercase tracking-[0.1em] text-zinc-400 font-semibold">
+              DESIGN & DEV
+            </p>
           </div>
         </div>
 
-        {/* Center: Figma Interactive Toolbar */}
-        <div className="hidden md:flex items-center justify-center bg-[#2b2b2b] p-0.5 rounded-lg border border-[#373737] gap-0.5">
-          {navItems.map((item) => {
-            const active = isLinkActive(item.path);
-            const Icon = item.icon;
-            return (
+        {/* Desktop Nav Items & Language Toggle */}
+        <div className="hidden md:flex items-center gap-6">
+          <div className="flex items-center gap-1">
+            {navItems.map((item) => (
               <button
-                key={item.path}
+                key={item.label}
                 onClick={() => handleNavClick(item.path)}
-                title={item.tooltip}
-                className={`relative px-3.5 py-1.5 rounded flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
-                  active
-                    ? 'bg-[#18a0fb] text-white shadow-sm'
-                    : 'text-zinc-300 hover:bg-white/5'
+                className={`relative px-3 py-1 text-[11px] font-bold uppercase tracking-wide cursor-pointer transition-colors ${
+                  isLinkActive(item.path)
+                    ? 'text-white'
+                    : 'text-zinc-500 hover:text-zinc-200'
                 }`}
               >
-                <Icon size={12} className={active ? 'text-white' : 'text-zinc-400'} />
-                <span className="text-[10px] font-bold tracking-tight">
-                  {item.label}
-                </span>
+                {isLinkActive(item.path) && (
+                  <motion.div
+                    layoutId="active-nav-underline"
+                    className="absolute left-3 right-3 -bottom-1 h-0.5 bg-white rounded-full"
+                    transition={{ type: 'spring', stiffness: 380, damping: 22 }}
+                  />
+                )}
+                {item.label}
               </button>
-            );
-          })}
-        </div>
-
-        {/* Right: Share, Play, Zoom & Language Toggles */}
-        <div className="hidden md:flex items-center gap-4">
+            ))}
+          </div>
+          <div className="h-3 w-px bg-white/10" />
           
-          {/* Language Toggle */}
-          <button
-            onClick={() => setLanguage(language === 'ko' ? 'en' : 'ko')}
-            className="px-2 py-1 border border-[#373737] hover:border-zinc-500 bg-[#1e1e1e] hover:bg-zinc-800 text-zinc-300 hover:text-white rounded-md text-[9px] font-bold tracking-wide cursor-pointer transition-all uppercase flex items-center gap-1"
-          >
-            <Globe size={10} />
-            {language === 'ko' ? 'EN' : 'KO'}
-          </button>
-
-          <div className="h-4 w-px bg-[#373737]" />
-
-          {/* Background Theme Switcher Dots */}
-          <div className="flex items-center gap-1 px-1 bg-[#1e1e1e] py-1 rounded border border-[#373737]">
+          {/* Minimalist Background Theme Switcher Dots */}
+          <div className="flex items-center gap-1.5 px-1">
             {[
               { id: 'solid', label: t('솔리드', 'Solid') },
               { id: 'grid', label: t('그리드', 'Grid') },
@@ -125,56 +108,32 @@ export default function Header() {
                 key={themeOption.id}
                 onClick={() => setBgTheme(themeOption.id as any)}
                 title={themeOption.label}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
                   bgTheme === themeOption.id
-                    ? 'bg-[#18a0fb] scale-110 shadow-[0_0_4px_rgba(24,160,251,0.5)]'
-                    : 'bg-white/10 hover:bg-white/30'
+                    ? 'bg-white scale-110 shadow-[0_0_6px_rgba(255,255,255,0.4)]'
+                    : 'bg-white/15 hover:bg-white/40'
                 }`}
                 aria-label={`Switch to ${themeOption.label} background`}
               />
             ))}
           </div>
 
-          <div className="h-4 w-px bg-[#373737]" />
-
-          {/* Share Button (Figma Style) */}
-          <button 
-            onClick={() => handleNavClick('/contact')}
-            className="px-3.5 py-1.5 bg-[#18a0fb] hover:bg-[#0c8ce9] text-white text-[10px] font-bold rounded-md cursor-pointer transition-all tracking-wide"
+          <div className="h-3 w-px bg-white/10" />
+          <button
+            onClick={() => setLanguage(language === 'ko' ? 'en' : 'ko')}
+            className="px-2.5 py-1 border border-white/10 bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white rounded-lg text-[8px] font-bold tracking-wide cursor-pointer transition-all uppercase"
           >
-            {t('공유', 'Share')}
+            {language === 'ko' ? 'English' : '한국어'}
           </button>
-
-          {/* Presentation (Play) Button */}
-          <button 
-            onClick={() => handleNavClick('/portfolio')}
-            title="Present (Presentation Mode)"
-            className="p-2 hover:bg-white/5 text-zinc-400 hover:text-white rounded cursor-pointer transition-all"
-          >
-            <Play size={12} className="fill-current" />
-          </button>
-
-          {/* Zoom Level Indicator */}
-          <div className="text-[10px] text-zinc-400 font-mono select-none px-1.5 py-1 rounded border border-transparent hover:border-[#373737] hover:bg-white/5 transition-all cursor-pointer">
-            100%
-          </div>
         </div>
 
         {/* Mobile Toggle */}
-        <div className="md:hidden flex items-center gap-3">
-          {/* Language Toggle */}
-          <button
-            onClick={() => setLanguage(language === 'ko' ? 'en' : 'ko')}
-            className="px-2 py-1 border border-[#373737] bg-[#1e1e1e] text-zinc-300 rounded-md text-[8px] font-bold uppercase"
-          >
-            {language === 'ko' ? 'EN' : 'KO'}
-          </button>
-          
+        <div className="md:hidden flex items-center gap-4">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="text-zinc-300 hover:text-white transition-colors cursor-pointer"
+            className="text-zinc-450 hover:text-white transition-colors cursor-pointer"
           >
-            {isOpen ? <X size={18} /> : <Menu size={18} />}
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
@@ -183,34 +142,28 @@ export default function Header() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.15, ease: "easeOut" }}
-            className="absolute top-12 left-4 right-4 bg-[#2b2b2b] border border-[#373737] rounded-xl p-4 flex flex-col gap-2.5 shadow-[0_20px_40px_rgba(0,0,0,0.5)] pointer-events-auto md:hidden"
+            initial={{ opacity: 0, y: -10, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.98 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="absolute top-14 left-4 right-4 bg-zinc-950/95 border border-white/5 rounded-2xl p-5 flex flex-col gap-3 shadow-[0_30px_60px_rgba(0,0,0,0.5)] pointer-events-auto md:hidden"
           >
-            {navItems.map((item) => {
-              const active = isLinkActive(item.path);
-              const Icon = item.icon;
-              return (
-                <button
-                  key={item.label}
-                  onClick={() => handleNavClick(item.path)}
-                  className={`w-full text-left py-2 px-3 rounded-lg text-[12px] font-bold tracking-wide uppercase cursor-pointer transition-colors flex items-center gap-2 ${
-                    active
-                      ? 'bg-[#18a0fb] text-white shadow'
-                      : 'text-zinc-300 hover:bg-white/5'
-                  }`}
-                >
-                  <Icon size={12} className={active ? 'text-white' : 'text-zinc-400'} />
-                  {item.label}
-                </button>
-              );
-            })}
-            
+            {navItems.map((item) => (
+              <button
+                key={item.label}
+                onClick={() => handleNavClick(item.path)}
+                className={`w-full text-left py-2.5 px-4 rounded-xl text-[13px] font-bold tracking-wide uppercase cursor-pointer transition-colors ${
+                  isLinkActive(item.path)
+                    ? 'bg-white/5 text-white border border-white/10'
+                    : 'text-zinc-500 hover:text-zinc-200'
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
             {/* Mobile Background Theme Picker */}
-            <div className="pt-3 border-t border-[#373737] mt-1 flex justify-between items-center px-2">
-              <span className="text-[8px] font-bold text-zinc-400 uppercase tracking-wider">{t('배경 테마', 'THEME')}</span>
+            <div className="pt-3.5 border-t border-white/5 mt-1 flex justify-between items-center px-4">
+              <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-wider">{t('배경 테마', 'BACKGROUND')}</span>
               <div className="flex items-center gap-2">
                 {[
                   { id: 'solid', label: t('솔리드', 'Solid') },
@@ -222,14 +175,29 @@ export default function Header() {
                   <button
                     key={themeOption.id}
                     onClick={() => setBgTheme(themeOption.id as any)}
+                    title={themeOption.label}
                     className={`w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${
                       bgTheme === themeOption.id
-                        ? 'bg-[#18a0fb] scale-110'
+                        ? 'bg-white scale-110'
                         : 'bg-white/20'
                     }`}
+                    aria-label={`Switch to ${themeOption.label} background`}
                   />
                 ))}
               </div>
+            </div>
+
+            <div className="pt-3 border-t border-white/5 mt-1 flex justify-between items-center px-4">
+              <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">{t('언어 설정', 'LANGUAGE')}</span>
+              <button
+                onClick={() => {
+                  setLanguage(language === 'ko' ? 'en' : 'ko');
+                  setIsOpen(false);
+                }}
+                className="px-3.5 py-1 bg-white/5 border border-white/10 rounded-lg text-[10px] font-bold text-zinc-300 transition-colors cursor-pointer"
+              >
+                {language === 'ko' ? 'English' : '한국어'}
+              </button>
             </div>
           </motion.div>
         )}
