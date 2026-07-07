@@ -191,35 +191,39 @@
     mask-image: linear-gradient(to bottom, black 80%, transparent);
   }
 
-  /* Cosmic Glassmorphism Specific Styles */
-  .cosmic-nebula {
-    background: radial-gradient(circle at 50% 50%, rgba(24, 160, 251, 0.08) 0%, rgba(162, 89, 255, 0.06) 30%, transparent 70%);
-    filter: blur(100px);
-    pointer-events: none;
+  /* Figma Interface Specific Styles */
+  .figma-bg-dark {
+    background-color: #1e1e1e;
   }
-  .glass-panel {
-    background: rgba(15, 15, 20, 0.6);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  .figma-bg-canvas {
+    background-color: #1e1e1e;
   }
-  .glass-card-hologram {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  .figma-bg-sidebar {
+    background-color: #2b2b2b;
   }
-  .glass-card-hologram:hover {
-    border-color: rgba(24, 160, 251, 0.3);
-    box-shadow: 0 0 30px rgba(24, 160, 251, 0.15);
-    transform: translateY(-2px);
+  .figma-border-color {
+    border-color: #373737;
   }
-  .cosmic-glow-blue {
-    box-shadow: 0 0 40px rgba(24, 160, 251, 0.25);
+  .figma-border {
+    border: 1px solid #373737;
   }
-  .cosmic-glow-purple {
-    box-shadow: 0 0 40px rgba(162, 89, 255, 0.25);
+  .figma-canvas-grid {
+    background-size: 24px 24px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+  }
+  .figma-input {
+    background-color: #2b2b2b;
+    border: 1px solid #373737;
+    color: #ffffff;
+    font-size: 11px;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .figma-input:focus {
+    outline: none;
+    border-color: #18a0fb;
   }
 }
