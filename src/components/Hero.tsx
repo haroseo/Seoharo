@@ -1,115 +1,93 @@
-import { portfolioData } from '../data/portfolioData';
-import { ArrowDown } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { useRouter } from './router';
+import { portfolioData } from '../data/portfolioData';
 import { useLanguage } from './LanguageContext';
+import { useRouter } from './router';
 
 export default function Hero() {
-  const { navigate } = useRouter();
   const { language, t } = useLanguage();
+  const { navigate } = useRouter();
   const data = portfolioData[language];
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
+      transition: { staggerChildren: 0.15 }
+    }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.8,
-        ease: 'easeOut' as const
-      },
-    },
+      transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] as const }
+    }
   };
 
   return (
     <section 
       id="hero" 
-      className="relative overflow-hidden px-4 sm:px-6 lg:px-8 pt-32 pb-24 sm:pt-40 sm:pb-28 min-h-screen bg-black flex items-center border-b border-[#373737]"
+      className="relative overflow-hidden min-h-[85vh] flex items-center py-12"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-[#030303] to-transparent pointer-events-none" />
-      
-      {/* Figma Selection Boundary Box for visual wow factor */}
-      <div className="absolute inset-4 sm:inset-6 border border-[#18a0fb]/30 rounded-2xl pointer-events-none z-10">
-        <div className="absolute -top-2.5 left-4 px-1.5 py-0.5 bg-[#18a0fb] text-white text-[8px] font-bold font-mono rounded">
-          # Hero Section
-        </div>
-        {/* Four corner handles */}
-        <div className="absolute -top-1 -left-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
-        <div className="absolute -top-1 -right-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
-        <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
-        <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-7xl w-full">
+      <div className="relative z-10 w-full">
         <motion.div
           initial="hidden"
           animate="visible"
           variants={containerVariants}
-          className="grid gap-16 lg:grid-cols-[1.5fr_1fr] items-center"
+          className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] items-center"
         >
           {/* Main Title / Slogan block */}
           <motion.div variants={itemVariants} className="space-y-8 text-center lg:text-left">
             <div className="flex items-center justify-center lg:justify-start gap-3">
-              <span className="text-[11px] font-bold tracking-wide text-zinc-400 uppercase">
-                {t('소개', 'INTRODUCTION')}
+              <span className="text-[10px] font-bold tracking-[0.2em] text-zinc-500 uppercase">
+                {t('크리에이티브 포트폴리오', 'CREATIVE PORTFOLIO')}
               </span>
-              <span className="h-px w-6 bg-zinc-800" />
+              <span className="h-px w-8 bg-zinc-800" />
             </div>
 
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold uppercase tracking-tight text-white leading-tight">
               SEOHARO
             </h1>
 
-            <p className="max-w-xl text-sm md:text-base leading-relaxed text-zinc-200 mx-auto lg:mx-0 font-normal tracking-tight">
+            <p className="max-w-xl text-sm md:text-[15px] leading-relaxed text-zinc-400 mx-auto lg:mx-0 font-normal tracking-tight">
               {data.description}
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
               <button
                 onClick={() => navigate('/portfolio')}
-                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-[#18a0fb] hover:bg-[#0c8ce9] px-8 py-3.5 text-xs sm:text-sm font-bold text-white shadow-lg transition-all cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white text-black hover:bg-zinc-200 px-8 py-3.5 text-xs sm:text-sm font-bold shadow-2xl transition-all duration-300 cursor-pointer"
               >
-                {t('프로젝트 목록', 'PROJECT CATALOG')}
+                {t('프로젝트 카탈로그', 'PROJECT CATALOG')}
               </button>
               <button
                 onClick={() => navigate('/contact')}
-                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-8 py-3.5 text-xs sm:text-sm font-bold text-white hover:bg-white/10 hover:border-white/20 transition-all cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-8 py-3.5 text-xs sm:text-sm font-bold text-white hover:bg-white/10 transition-all duration-300 cursor-pointer"
               >
-                {t('협업 문의', 'COLLABORATE')}
+                {t('협업 제안하기', 'COLLABORATE')}
               </button>
             </div>
           </motion.div>
 
-          {/* Profile Card Summary Panel - Figma Purple Component Frame style */}
+          {/* Profile Card Summary Panel - Celestial Glass Card */}
           <motion.div
             variants={itemVariants}
-            className="relative border border-[#a259ff]/30 bg-[#130f1d]/50 p-8 md:p-10 rounded-2xl shadow-xl z-20 backdrop-blur-md"
+            className="relative glass-panel p-8 md:p-10 rounded-3xl shadow-2xl z-20 overflow-hidden"
           >
-            {/* Component Label */}
-            <div className="absolute -top-2.5 left-4 px-1.5 py-0.5 bg-[#a259ff] text-white text-[8px] font-bold font-mono rounded flex items-center gap-1">
-              <span>❖</span> Profile Card Component
-            </div>
+            {/* Interactive Light Beam Accent */}
+            <div className="absolute -top-1/2 -right-1/2 w-96 h-96 bg-gradient-to-br from-[#18a0fb]/10 to-[#a259ff]/10 rounded-full blur-3xl pointer-events-none" />
 
-            <div className="mt-8 space-y-6">
+            <div className="relative z-10 space-y-6">
               <div className="flex items-end justify-between gap-4">
                 <div>
-                  <h2 className="text-2xl font-bold text-white font-display tracking-tight">
+                  <h2 className="text-2xl font-bold text-white font-display tracking-tight uppercase">
                     SEOHARO
                   </h2>
+                  <p className="text-[10px] font-mono text-zinc-500 tracking-wider mt-1">{t('총괄 디렉터', 'GENERAL DIRECTOR')}</p>
                 </div>
-                <div className="rounded-full border border-[#a259ff]/30 bg-[#a259ff]/10 px-3 py-1 text-[9px] font-bold uppercase tracking-wider text-[#d3b4ff]">
-                  {t('활동 중', 'ACTIVE')}
+                <div className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-[9px] font-bold uppercase tracking-wider text-emerald-400">
+                  {t('온라인', 'ACTIVE')}
                 </div>
               </div>
 
@@ -117,25 +95,25 @@ export default function Hero() {
                 {data.title}
               </p>
 
-              {/* Grid-based Metadata Tiles (Figma & GitHub) */}
+              {/* Grid-based Metadata Tiles */}
               <div className="grid grid-cols-1 min-[380px]:grid-cols-2 gap-3 text-xs text-zinc-300 font-normal">
-                <div className="bg-white/[0.02] border border-white/5 p-3.5 rounded-xl flex flex-col justify-between overflow-hidden">
-                  <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider">이메일</span>
+                <div className="glass-card-hologram p-4 rounded-xl flex flex-col justify-between overflow-hidden">
+                  <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider">{t('이메일', 'EMAIL')}</span>
                   <span className="mt-1 font-semibold text-zinc-200 truncate select-all">{data.contact.email}</span>
                 </div>
-                <div className="bg-white/[0.02] border border-white/5 p-3.5 rounded-xl flex flex-col justify-between overflow-hidden">
-                  <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider">위치</span>
-                  <span className="mt-1 font-semibold text-zinc-200 truncate">{t('대한민국', 'South Korea')}</span>
+                <div className="glass-card-hologram p-4 rounded-xl flex flex-col justify-between overflow-hidden">
+                  <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider">{t('위치', 'LOCATION')}</span>
+                  <span className="mt-1 font-semibold text-zinc-200 truncate">{t('대한민국 서울', 'Seoul, South Korea')}</span>
                 </div>
                 <a
                   href={data.contact.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white/[0.02] border border-white/5 hover:border-zinc-300/30 hover:bg-white/[0.04] p-3.5 rounded-xl flex flex-col justify-between transition-all duration-300 group overflow-hidden"
+                  className="glass-card-hologram p-4 rounded-xl flex flex-col justify-between transition-all duration-300 group overflow-hidden"
                 >
                   <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider flex justify-between items-center">
-                    깃허브
-                    <span className="text-[8px] text-[#18a0fb] transition-colors">이동 ↗</span>
+                    {t('깃허브', 'GITHUB')}
+                    <span className="text-[8px] text-zinc-400 group-hover:text-white transition-colors">↗</span>
                   </span>
                   <span className="mt-1 font-semibold text-zinc-200 truncate">github.com/haroseo</span>
                 </a>
@@ -143,49 +121,19 @@ export default function Hero() {
                   href={data.contact.figma}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white/[0.02] border border-white/5 hover:border-zinc-300/30 hover:bg-white/[0.04] p-3.5 rounded-xl flex flex-col justify-between transition-all duration-300 group overflow-hidden"
+                  className="glass-card-hologram p-4 rounded-xl flex flex-col justify-between transition-all duration-300 group overflow-hidden"
                 >
                   <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider flex justify-between items-center">
-                    피그마
-                    <span className="text-[8px] text-[#a259ff] transition-colors">이동 ↗</span>
+                    {t('피그마', 'FIGMA')}
+                    <span className="text-[8px] text-zinc-400 group-hover:text-white transition-colors">↗</span>
                   </span>
-                  <span className="mt-1 font-semibold text-zinc-200 truncate font-sans">figma.com/@seoharo</span>
+                  <span className="mt-1 font-semibold text-zinc-200 truncate">figma.com/@seoharo</span>
                 </a>
-              </div>
-
-              {/* Tag-based Micro Chips (Monochrome minimal design) */}
-              <div className="pt-6 border-t border-white/5 space-y-3">
-                <span className="text-[9px] font-bold tracking-wider text-zinc-500 uppercase block">역할 및 소속</span>
-                <div className="flex flex-wrap gap-1.5">
-                  {[
-                    'RoFolder CEO',
-                    'Limited™ Founder',
-                    'LUXERET Marketer',
-                    'HANN LABS™ Staff Designer',
-                    'SIMPLX Developer'
-                  ].map((role) => (
-                    <span 
-                      key={role} 
-                      className="inline-flex items-center px-2.5 py-1 text-[9.5px] font-bold text-zinc-300 font-sans tracking-tight bg-white/[0.02] border border-white/5 rounded-lg hover:border-white/20 hover:bg-white/[0.04] transition-all duration-300 cursor-default"
-                    >
-                      {role}
-                    </span>
-                  ))}
-                </div>
               </div>
             </div>
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Bounce Down Arrow */}
-      <motion.div
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 3, repeat: Infinity }}
-        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2"
-      >
-        <ArrowDown className="text-zinc-650" size={24} />
-      </motion.div>
     </section>
   );
 }

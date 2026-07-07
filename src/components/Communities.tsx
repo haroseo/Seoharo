@@ -1,29 +1,16 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
-import type { Community } from '../data/portfolioData';
-import { X, Users, Compass, Shield, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from './LanguageContext';
+import { Users, Shield, Compass, X, ArrowUpRight } from 'lucide-react';
 
 export default function Communities() {
-  const [selectedCommunity, setSelectedCommunity] = useState<Community | null>(null);
   const { language, t } = useLanguage();
+  const [selectedCommunity, setSelectedCommunity] = useState<any | null>(null);
   const data = portfolioData[language];
 
   return (
-    <section id="communities" className="py-20 px-4 sm:px-6 lg:px-8 bg-black border-b border-[#373737] relative overflow-hidden">
-      {/* Figma Selection Boundary Box */}
-      <div className="absolute inset-4 sm:inset-6 border border-[#18a0fb]/20 rounded-2xl pointer-events-none z-10">
-        <div className="absolute -top-2.5 left-4 px-1.5 py-0.5 bg-[#18a0fb] text-white text-[8px] font-bold font-mono rounded">
-          # Communities Section Frame
-        </div>
-        {/* Handles */}
-        <div className="absolute -top-1 -left-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
-        <div className="absolute -top-1 -right-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
-        <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
-        <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-white border border-[#18a0fb] rounded-sm" />
-      </div>
-
+    <section id="communities" className="py-12 relative overflow-hidden">
       <div className="relative mx-auto max-w-7xl z-10">
         
         {/* Title */}
@@ -34,39 +21,40 @@ export default function Communities() {
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <p className="section-overline">COMMUNITY MANAGEMENT</p>
-          <h2 className="section-title mt-4 mb-6 font-display bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent font-bold">
-            {t('커뮤니티 운영', 'Community Management')}
+          <span className="text-[10px] font-bold tracking-[0.2em] text-[#a259ff] uppercase">COMMUNITIES</span>
+          <h2 className="text-3xl sm:text-4xl font-display bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent font-extrabold tracking-tight mt-4 mb-4">
+            {t('커뮤니티 빌딩', 'Community Leadership')}
           </h2>
-          <p className="mx-auto max-w-3xl text-sm sm:text-base text-zinc-200 font-normal leading-relaxed tracking-tight">
+          <p className="mx-auto max-w-3xl text-sm text-zinc-400 leading-relaxed tracking-tight">
             {t(
-              '총 2,000명 이상의 유저와 소통하며 커뮤니티를 성장시킨 경험을 바탕으로 더 나은 소통과 긍정적인 커뮤니티 문화를 설계합니다.',
-              'Based on the experience of growing servers and communicating with over 2,000 users, I design a better user experience and positive community culture.'
+              '다양한 소통 공간을 개설하고 기획하여, 유저 리텐션을 높이고 지속 가능한 네트워킹 생태계를 구축해 왔습니다.',
+              'Created and designed diverse networking channels, maximizing user retention and building sustainable user communities.'
             )}
           </p>
         </motion.div>
 
-        {/* Figma Plugins Market layout (List form instead of cards) */}
-        <div className="max-w-4xl mx-auto bg-[#2b2b2b]/95 border border-[#373737] rounded-2xl overflow-hidden shadow-2xl divide-y divide-[#373737] font-sans">
-          {/* Header of marketplace window */}
-          <div className="px-6 py-3 bg-[#1e1e1e] flex justify-between items-center text-[10px] text-zinc-400 font-mono select-none border-b border-[#373737]">
-            <span>Figma Community Plugins</span>
-            <span>Sort: Popular</span>
-          </div>
-
+        {/* 3D Glass Cards Grid (Symmetric & Premium) */}
+        <div className="grid gap-8 md:grid-cols-3 max-w-6xl mx-auto">
           {data.communities.map((community, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: -15 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
               viewport={{ once: true }}
               onClick={() => setSelectedCommunity(community)}
-              className="group p-5 md:p-6 flex items-center justify-between hover:bg-white/[0.02] transition-colors cursor-pointer select-none"
+              whileHover={{ 
+                y: -6,
+                borderColor: 'rgba(162, 89, 255, 0.3)',
+                boxShadow: '0 15px 30px rgba(162, 89, 255, 0.08)'
+              }}
+              className="glass-panel p-8 rounded-3xl flex flex-col justify-between cursor-pointer select-none transition-all duration-300 relative overflow-hidden group"
             >
-              <div className="flex items-center gap-5 min-w-0">
-                {/* Plugin Icon/Logo */}
-                <div className="w-14 h-14 rounded-xl overflow-hidden border border-[#373737] bg-black flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+              {/* Glow Accent */}
+              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#a259ff]/10 to-transparent blur-xl pointer-events-none" />
+
+              <div className="flex flex-col items-center text-center">
+                <div className="w-16 h-16 mb-6 rounded-2xl overflow-hidden border border-white/10 group-hover:scale-105 transition-transform duration-500 bg-black flex items-center justify-center shadow-lg">
                   <img 
                     src={community.logo} 
                     alt={community.name} 
@@ -74,34 +62,30 @@ export default function Communities() {
                   />
                 </div>
                 
-                {/* Description texts */}
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <h3 className="text-sm font-bold text-white tracking-tight truncate">
-                      {community.name}
-                    </h3>
-                    <span className="text-[8px] bg-white/5 text-zinc-400 border border-white/5 px-1.5 py-0.5 rounded font-mono">
-                      {community.members}{t('명', ' Members')}
-                    </span>
-                  </div>
-                  <p className="text-[10.5px] text-zinc-400 font-mono mt-0.5">by @seoharo</p>
-                  <p className="text-zinc-300 text-xs mt-2 line-clamp-1 tracking-tight leading-relaxed">
-                    {community.description}
-                  </p>
+                <h3 className="text-lg font-bold text-white mb-2 tracking-tight font-display">
+                  {community.name}
+                </h3>
+                
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-5 rounded-full bg-white/5 text-zinc-300 text-[9.5px] font-mono border border-white/5">
+                  <Users size={9} className="text-zinc-500" />
+                  {community.members}{t('명 돌파', ' Members')}
                 </div>
-              </div>
+                
+                <p className="text-zinc-400 text-xs leading-relaxed font-normal mb-6 line-clamp-2">
+                  {community.description}
+                </p>
 
-              {/* Install / Run Action Button */}
-              <button className="flex-shrink-0 ml-4 px-4 py-2 bg-[#18a0fb] hover:bg-[#0c8ce9] text-white text-[10.5px] font-bold rounded-lg cursor-pointer transition-all shadow-sm flex items-center gap-1">
-                {t('열기', 'Run')}
-                <ArrowUpRight size={11} />
-              </button>
+                <span className="inline-flex items-center gap-1 text-[9px] font-bold font-mono text-[#a259ff] group-hover:text-white transition-colors uppercase tracking-wider">
+                  {t('상세 내용 확인', 'VIEW DETAILS')}
+                  <ArrowUpRight size={10} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </span>
+              </div>
             </motion.div>
           ))}
         </div>
       </div>
 
-      {/* DETAILED COMMUNITY MODAL - Figma Plugin Details Style */}
+      {/* DETAILED COMMUNITY MODAL - Celestial Hologram Style */}
       <AnimatePresence>
         {selectedCommunity && (
           <>
@@ -114,23 +98,23 @@ export default function Communities() {
               className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm"
             />
 
-            {/* Modal Box: Figma Plugin Details View */}
+            {/* Modal Box */}
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               transition={{ type: 'spring', damping: 25, stiffness: 280 }}
-              className="fixed inset-x-4 top-1/2 -translate-y-1/2 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-[600px] md:h-auto max-h-[85vh] z-50 bg-[#1e1e1e] border border-[#373737] rounded-2xl shadow-2xl overflow-hidden flex flex-col font-sans"
+              className="fixed inset-x-4 top-1/2 -translate-y-1/2 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-[580px] md:h-auto max-h-[85vh] z-50 bg-[#0d0d11] border border-white/10 rounded-3xl shadow-2xl overflow-hidden flex flex-col"
             >
               {/* Modal Header */}
-              <div className="flex items-center justify-between px-6 py-4 bg-[#2b2b2b] border-b border-[#373737]">
+              <div className="flex items-center justify-between px-6 py-4 bg-white/[0.02] border-b border-white/5">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg overflow-hidden border border-[#373737] bg-black">
+                  <div className="w-8 h-8 rounded-lg overflow-hidden border border-white/10 bg-black">
                     <img src={selectedCommunity.logo} alt={selectedCommunity.name} className="w-full h-full object-cover" />
                   </div>
                   <div>
                     <h3 className="text-xs font-bold text-white">{selectedCommunity.name}</h3>
-                    <p className="text-[8px] text-zinc-500 font-mono">Plugin Details & Documentation</p>
+                    <p className="text-[8px] text-zinc-500 font-mono tracking-widest uppercase">Overview</p>
                   </div>
                 </div>
                 <button
@@ -147,11 +131,11 @@ export default function Communities() {
                 {/* Intro Card */}
                 <div className="space-y-4">
                   <div className="flex flex-wrap gap-2 items-center">
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-white/5 border border-white/5 text-zinc-300 text-[9px] font-mono uppercase tracking-wider">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/5 text-zinc-300 text-[9px] font-mono uppercase tracking-wider">
                       <Shield size={9} className="text-zinc-500" />
                       {selectedCommunity.role}
                     </span>
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-white/5 border border-white/5 text-zinc-300 text-[9px] font-mono uppercase tracking-wider">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/5 text-zinc-300 text-[9px] font-mono uppercase tracking-wider">
                       <Users size={9} className="text-zinc-500" />
                       {selectedCommunity.members}{t('명', ' Members')}
                     </span>
@@ -162,7 +146,7 @@ export default function Communities() {
                   </p>
                   
                   {/* Slogan block */}
-                  <div className="bg-[#2b2b2b] border border-[#373737] p-4 rounded-xl flex flex-col justify-center">
+                  <div className="glass-panel p-4 rounded-2xl flex flex-col justify-center">
                     <span className="text-[8px] font-mono font-bold text-zinc-500 uppercase tracking-widest mb-1.5 flex items-center gap-1">
                       <Compass size={10} />
                       {t('슬로건', 'SLOGAN')}
@@ -189,29 +173,29 @@ export default function Communities() {
                   const skills = career ? career.skills : ["Community Operations", "User Retention", "Communication Design"];
                   
                   return (
-                    <div className="space-y-5 pt-4 border-t border-[#373737]">
+                    <div className="space-y-5 pt-4 border-t border-white/5">
                       <div className="space-y-2">
                         <h4 className="text-[8px] font-mono font-bold text-zinc-500 uppercase tracking-widest flex items-center gap-1.5">
                           <Compass className="w-3.5 h-3.5 text-zinc-500" />
-                          {t('핵심 기여 및 성과', 'Key Contributions')}
+                          {t('주요 활동 성과', 'Key Contributions')}
                         </h4>
                         <ul className="space-y-2">
                           {achievements.map((ach, idx) => (
                             <li key={idx} className="flex gap-2.5 text-xs text-zinc-300 leading-relaxed font-normal tracking-tight">
-                              <span className="text-[#18a0fb] font-bold">•</span>
+                              <span className="text-[#a259ff] font-bold">•</span>
                               <span>{ach}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
 
-                      <div className="space-y-2 border-t border-[#373737] pt-4">
+                      <div className="space-y-2 border-t border-white/5 pt-4">
                         <h4 className="text-[8px] font-mono font-bold text-zinc-500 uppercase tracking-widest">
-                          {t('보유 역량', 'Capabilities')}
+                          {t('운영 역량', 'Capabilities')}
                         </h4>
                         <div className="flex flex-wrap gap-1.5">
                           {skills.map((skill, idx) => (
-                            <span key={idx} className="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-zinc-300 text-[9px] font-mono">
+                            <span key={idx} className="px-2.5 py-0.5 rounded bg-white/5 border border-white/10 text-zinc-300 text-[9px] font-mono">
                               {skill}
                             </span>
                           ))}
@@ -223,10 +207,10 @@ export default function Communities() {
               </div>
 
               {/* Modal Action Footer */}
-              <div className="px-6 py-4 bg-[#2b2b2b] border-t border-[#373737] flex justify-end gap-3">
+              <div className="px-6 py-4 bg-white/[0.01] border-t border-white/5 flex justify-end">
                 <button
                   onClick={() => setSelectedCommunity(null)}
-                  className="px-5 py-2.5 rounded bg-[#1e1e1e] hover:bg-zinc-800 border border-[#373737] text-zinc-300 text-[10px] font-mono font-bold uppercase tracking-wider transition-all cursor-pointer"
+                  className="px-5 py-2.5 rounded-full bg-white text-black hover:bg-zinc-200 text-[10px] font-bold uppercase tracking-wider transition-all cursor-pointer"
                 >
                   {t('닫기', 'Close')}
                 </button>
