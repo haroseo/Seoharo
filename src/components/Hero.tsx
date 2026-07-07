@@ -84,16 +84,10 @@ export default function Hero() {
             variants={itemVariants}
             className="apple-widget p-8 md:p-10"
           >
-            <p className="text-[10px] font-bold tracking-widest text-zinc-450 uppercase">
-              {t('프로필 개요', 'PROFILE OVERVIEW')}
-            </p>
-            <div className="mt-8 space-y-6">
+            <div className="space-y-6">
               <div className="flex items-end justify-between gap-4">
                 <div>
-                  <p className="text-[9px] font-bold tracking-wider text-zinc-550 uppercase">
-                    {t('성명', 'CREATOR NAME')}
-                  </p>
-                  <h2 className="text-2xl font-bold text-white mt-1.5 font-display tracking-tight">
+                  <h2 className="text-2xl font-bold text-white font-display tracking-tight">
                     SEOHARO
                   </h2>
                 </div>

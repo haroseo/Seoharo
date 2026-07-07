@@ -118,7 +118,6 @@ export default function About() {
           {/* Main Info Side */}
           <div className="space-y-12">
             <div className="space-y-4">
-              <p className="section-overline">ABOUT</p>
               <h2 className="section-title mt-2 font-display bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent font-bold">
                 {t('디자인, 마케팅, 프로그래밍.', 'Design, Marketing, Programming.')}
               </h2>
@@ -156,8 +155,7 @@ export default function About() {
 
           {/* Profile Card Side - 2x2 Modern Dashboard Grid */}
           <GlowCard className="apple-widget p-8 sm:p-10 lg:sticky lg:top-28">
-            <p className="section-overline">PROFILE</p>
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 text-zinc-300">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-zinc-300">
               
               <motion.div 
                 initial={{ opacity: 0, y: 15 }}
@@ -231,7 +229,6 @@ export default function About() {
         {/* Interactive Stats Grid (What it Proves) */}
         <div className="pt-16 border-t border-zinc-900/80">
           <div className="text-center mb-10">
-            <p className="section-overline">METRICS & EVIDENCE</p>
             <h3 className="text-2xl font-bold tracking-tight text-white font-display mt-2">{t('지표와 증명', 'Metrics & Proof')}</h3>
             <p className="text-xs text-zinc-500 mt-1 uppercase tracking-wider">{t('각 지표를 클릭하여 증명하는 역량을 확인해보세요', 'Click each metric to verify capabilities')}</p>
           </div>

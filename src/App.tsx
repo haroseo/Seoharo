@@ -2,14 +2,12 @@ import { useEffect } from 'react';
 import { RouterProvider, useRouter } from './components/router';
 import Header from './components/Header';
 import ProgressBar from './components/ProgressBar';
-import SideProgressTracker from './components/SideProgressTracker';
 import Hero from './components/Hero';
 import About from './components/About';
 import Timeline from './components/Timeline';
 import Communities from './components/Communities';
 import Skills from './components/Skills';
 import PortfolioPage from './components/PortfolioPage';
-import ChatPage from './components/ChatPage';
 import ContactPage from './components/ContactPage';
 import Footer from './components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -34,7 +32,6 @@ function AppContent() {
       <div>
         <ProgressBar />
         <Header />
-        <SideProgressTracker />
         <main>
           <AnimatePresence mode="wait">
             <motion.div
@@ -54,7 +51,6 @@ function AppContent() {
                 </>
               )}
               {(currentPath === '/portfolio' || currentPath === '/design' || currentPath === '/marketing' || currentPath === '/development') && <PortfolioPage />}
-              {currentPath === '/chat' && <ChatPage />}
               {currentPath === '/contact' && <ContactPage />}
             </motion.div>
           </AnimatePresence>

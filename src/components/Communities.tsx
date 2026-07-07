@@ -61,7 +61,7 @@ export default function Communities() {
                   {community.name}
                 </h3>
                 
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-5 rounded-full bg-zinc-900 text-zinc-300 text-[10px] font-mono border border-zinc-800">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-5 rounded-full bg-zinc-900 text-zinc-200 text-[10px] font-sans font-semibold border border-zinc-800">
                   <Users size={10} className="text-zinc-500" />
                   {community.members} Members
                 </div>
@@ -107,7 +107,7 @@ export default function Communities() {
                   <div className="w-8 h-8 rounded-lg overflow-hidden border border-zinc-800 bg-black">
                     <img src={selectedCommunity.logo} alt={selectedCommunity.name} className="w-full h-full object-cover" />
                   </div>
-                  <span className="text-xs font-mono font-bold text-zinc-300 uppercase">{selectedCommunity.name}</span>
+                  <span className="text-xs font-sans font-bold text-white uppercase">{selectedCommunity.name}</span>
                 </div>
                 <button
                   onClick={() => setSelectedCommunity(null)}
@@ -124,11 +124,11 @@ export default function Communities() {
                 <div className="grid gap-6 md:grid-cols-[1.5fr_1fr] items-center bg-zinc-950/60 rounded-2xl border border-zinc-900 p-6">
                   <div className="space-y-4">
                     <div className="flex flex-wrap gap-2 items-center">
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 text-[9px] font-mono uppercase tracking-wider">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-200 text-[9px] font-sans font-semibold uppercase tracking-wider">
                         <Shield size={10} className="text-zinc-400" />
                         {selectedCommunity.role}
                       </span>
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 text-[9px] font-mono uppercase tracking-wider">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-200 text-[9px] font-sans font-semibold uppercase tracking-wider">
                         <Users size={10} className="text-zinc-400" />
                         {selectedCommunity.members} Members
                       </span>
@@ -145,7 +145,7 @@ export default function Communities() {
                   
                   {/* Slogan block */}
                   <div className="border-t md:border-t-0 md:border-l border-zinc-900 pt-6 md:pt-0 md:pl-6 flex flex-col justify-center">
-                    <span className="text-[8.5px] font-mono font-bold text-zinc-500 uppercase tracking-widest mb-2 flex items-center gap-1">
+                    <span className="text-[8.5px] font-sans font-bold text-zinc-500 uppercase tracking-widest mb-2 flex items-center gap-1">
                       <Compass size={11} />
                       SLOGAN
                     </span>
@@ -182,7 +182,7 @@ export default function Communities() {
                   return (
                     <div className="space-y-6 pt-4 border-t border-zinc-900">
                       <div className="space-y-3">
-                        <h4 className="text-[9px] font-mono font-bold text-zinc-500 uppercase tracking-widest flex items-center gap-1.5">
+                        <h4 className="text-[9px] font-sans font-bold text-zinc-500 uppercase tracking-widest flex items-center gap-1.5">
                           <Compass className="w-3.5 h-3.5 text-zinc-500" />
                           {t('핵심 기여 및 성과', 'Key Contributions')}
                         </h4>
@@ -197,12 +197,12 @@ export default function Communities() {
                       </div>
 
                       <div className="space-y-3 border-t border-zinc-900 pt-4">
-                        <h4 className="text-[9px] font-mono font-bold text-zinc-500 uppercase tracking-widest">
+                        <h4 className="text-[9px] font-sans font-bold text-zinc-500 uppercase tracking-widest">
                           {t('보유 역량', 'Capabilities')}
                         </h4>
                         <div className="flex flex-wrap gap-1.5">
                           {skills.map((skill, idx) => (
-                            <span key={idx} className="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-zinc-300 text-[10px] font-mono">
+                            <span key={idx} className="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-zinc-200 text-[10px] font-sans font-medium">
                               {skill}
                             </span>
                           ))}
@@ -217,7 +217,7 @@ export default function Communities() {
               <div className="px-6 py-4 bg-zinc-950 border-t border-zinc-900 flex justify-end">
                 <button
                   onClick={() => setSelectedCommunity(null)}
-                  className="px-5 py-2.5 rounded-full bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 text-[10px] font-mono font-bold uppercase tracking-wider transition-all cursor-pointer"
+                  className="px-5 py-2.5 rounded-full bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-200 text-[10px] font-sans font-bold uppercase tracking-wider transition-all cursor-pointer"
                 >
                   {t('닫기', 'Close')}
                 </button>
