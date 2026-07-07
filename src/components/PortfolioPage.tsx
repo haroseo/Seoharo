@@ -54,7 +54,7 @@ export default function PortfolioPage() {
       details: {
         background: t('창업에 관심 있는 청년들이 정보 부족으로 어려움을 겪는 문제를 해결하기 위해 기획되었습니다.', 'Conceived to resolve networking bottlenecks and lack of early-stage resources for youth creators.'),
         strategy: t('커뮤니티 내 지식 데이터베이스 구축 및 정기적인 협업 채널 활성화를 핵심 전략으로 삼았습니다.', 'Established dynamic networking schedules and structured database sharing assets as core pillars.'),
-        metrics: t('디스코드 내 활성 소통 유저 수 1,200명 이상 도달 및 네트워킹 데이터 기여.', 'Reached 1,200+ conversational users, driving networking data growth.')
+        metrics: t('로폴더 디스코드 커뮤니티 멤버 700명 돌파 및 네트워킹 활성화.', 'Reached 700+ members in the Discord community and activated networking.')
       }
     },
     {
@@ -128,15 +128,15 @@ export default function PortfolioPage() {
       id: 'figmalibrary',
       type: 'site',
       category: 'brand',
-      title: 'Figma Asset Library',
-      slogan: t('디자인 생산성을 개선하는 오픈소스 UI 라이브러리', 'Distributing open-source Figma libraries to boost workflow speed'),
-      description: t('피그마 커뮤니티 프로필(@seoharo)을 통해 디자이너와 개발자를 위한 고품질 UI/UX 템플릿과 디자인 리소스 라이브러리를 공유합니다.', 'Sharing high-quality UI/UX templates and design resource libraries for designers and developers via Figma Community.'),
-      tags: ['Figma Creator', 'UI/UX Library', 'Open Source Asset'],
+      title: t('피그마 커뮤니티 프로필', 'Figma Community Profile'),
+      slogan: t('디자인 자산과 템플릿 아카이빙', 'Archiving UI templates and design assets'),
+      description: t('피그마 커뮤니티 프로필(@seoharo)을 통해 개인 작업물과 디자인 템플릿 에셋을 공유하며 다양한 크리에이터들과 소통합니다.', 'Sharing personal UI/UX design assets and layout templates to interact with creators via Figma Community Profile (@seoharo).'),
+      tags: ['Figma Profile', 'UX/UI Design', 'Asset Archive'],
       link: 'https://www.figma.com/@seoharo',
       details: {
-        background: t('사용자의 작업 속도를 단축하고 디자인 완성도를 높일 수 있도록 설계된 디자인 키트입니다.', 'A design kit conceptualized to reduce layout overhead and optimize overall visual alignment.'),
-        strategy: t('피그마의 최신 오토 레이아웃과 배리언트 시스템을 엄격히 적용하여 실무에 즉시 사용할 수 있도록 배포했습니다.', 'Applied Figma Auto Layout and Variants strictly, creating drop-in component blocks for mockups.'),
-        metrics: t('피그마 커뮤니티 배포 및 오픈소스 디자인 리소스 기여.', 'Published to Figma Community and contributed to open-source design resources.')
+        background: t('개인적인 작업 과정에서 설계한 컴포넌트와 템플릿들을 체계적으로 축적하고 오픈소스 형태로 공유하기 위해 프로필을 개설했습니다.', 'Opened a Figma community profile to systematically archive and publicly share design components and templates.'),
+        strategy: t('실용성이 우수하고 즉시 조립 가능한 구조로 컴포넌트를 설계하여 업로드하고 있습니다.', 'Designed and uploaded highly reusable UI components structured for instant production utility.'),
+        metrics: t('피그마 커뮤니티 계정 활성화 및 에셋 공유.', 'Active archiving and asset sharing on Figma Community.')
       }
     },
     // Workplace
@@ -250,22 +250,33 @@ export default function PortfolioPage() {
               className="bg-[#101010]/40 border border-white/5 rounded-xl overflow-hidden hover:border-white/12 transition-all duration-300 group flex flex-col justify-between cursor-pointer h-full shadow-[0_8px_24px_rgba(0,0,0,0.5)] hover:shadow-[0_16px_36px_rgba(0,0,0,0.7)] hover:-translate-y-0.5"
             >
               {/* Thumbnail header */}
-              <div className="aspect-[1.6/1] w-full overflow-hidden relative border-b border-white/5 bg-zinc-950">
-                <img
-                  src={
-                    item.id === 'rofolder' ? '/assets/rofolder-new.jpg' :
-                    item.id === 'limited' ? '/assets/limited.png' :
-                    item.id === 'designpick' ? '/assets/designpick.png' :
-                    item.id === 'planor' ? '/assets/planor.png' :
-                    item.id === 'naramarsami' ? '/assets/naramarsami.png' :
-                    item.id === 'figmalibrary' ? '/assets/limited-banner.png' :
-                    item.id === 'luxeret' ? '/assets/luxeret.png' :
-                    item.id === 'simplx' ? '/assets/simplx.png' :
-                    '/assets/hannlabs.png'
-                  }
-                  alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]"
-                />
+              <div className="aspect-[1.6/1] w-full overflow-hidden relative border-b border-white/5 bg-zinc-950 flex items-center justify-center">
+                {item.id === 'figmalibrary' ? (
+                  <div className="w-12 h-18 transition-transform duration-700 ease-out group-hover:scale-110 flex items-center justify-center">
+                    <svg viewBox="0 0 38 57" className="w-full h-full">
+                      <path fill="#F24E1E" d="M19 0h-9.5a9.5 9.5 0 0 0 0 19H19V0z"/>
+                      <path fill="#A259FF" d="M9.5 19a9.5 9.5 0 0 0 0 19H19V19H9.5z"/>
+                      <path fill="#0ACF83" d="M9.5 38a9.5 9.5 0 0 0 0 19 9.5 9.5 0 0 0 9.5-9.5V38H9.5z"/>
+                      <path fill="#1ABC9C" d="M19 38h9.5a9.5 9.5 0 0 0 0-19H19v19z"/>
+                      <path fill="#FF7262" d="M28.5 19A9.5 9.5 0 0 0 19 9.5V19h9.5z"/>
+                    </svg>
+                  </div>
+                ) : (
+                  <img
+                    src={
+                      item.id === 'rofolder' ? '/assets/rofolder-new.jpg' :
+                      item.id === 'limited' ? '/assets/limited.png' :
+                      item.id === 'designpick' ? '/assets/designpick.png' :
+                      item.id === 'planor' ? '/assets/planor.png' :
+                      item.id === 'naramarsami' ? '/assets/naramarsami.png' :
+                      item.id === 'luxeret' ? '/assets/luxeret.png' :
+                      item.id === 'simplx' ? '/assets/simplx.png' :
+                      '/assets/hannlabs.png'
+                    }
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]"
+                  />
+                )}
                 <div className="absolute top-3 left-3 px-2 py-0.5 rounded-md bg-black/60 backdrop-blur-md border border-white/10 text-[8px] font-bold text-zinc-300 uppercase tracking-wider">
                   {getLocalizedType(item.type)}
                 </div>

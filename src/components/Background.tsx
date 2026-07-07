@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { useTheme } from './ThemeContext';
 
 export default function Background() {
   const { bgTheme } = useTheme();
+  const [isMobile, setIsMobile] = useState(false);
 
   // Mouse movement tracking for 3D Perspective Grid Horizon
   const mouseX = useMotionValue(0);
@@ -14,7 +15,9 @@ export default function Background() {
   const rotateY = useSpring(useTransform(mouseX, [-600, 600], [-8, 8]), { stiffness: 45, damping: 22 });
 
   useEffect(() => {
-    if (window.matchMedia('(pointer: coarse)').matches) return;
+    const isCoarse = window.matchMedia('(pointer: coarse)').matches;
+    setIsMobile(isCoarse);
+    if (isCoarse) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       const halfWidth = window.innerWidth / 2;
@@ -38,7 +41,15 @@ export default function Background() {
             style={{ perspective: '800px' }}
           >
             <motion.div
-              style={{
+              style={isMobile ? {
+                rotateX: 64,
+                rotateY: 0,
+                backgroundImage: `
+                  linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                  linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
+                `,
+                backgroundSize: '60px 60px',
+              } : {
                 rotateX,
                 rotateY,
                 backgroundImage: `

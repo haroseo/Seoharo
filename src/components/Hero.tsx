@@ -59,7 +59,7 @@ export default function Hero() {
               SEOHARO
             </h1>
 
-            <p className="max-w-xl text-sm md:text-base leading-relaxed text-zinc-200 mx-auto lg:mx-0 font-normal">
+            <p className="max-w-xl text-sm md:text-base leading-relaxed text-zinc-200 mx-auto lg:mx-0 font-normal tracking-tight">
               {data.description}
             </p>
 
@@ -104,44 +104,44 @@ export default function Hero() {
               </p>
 
               {/* Grid-based Metadata Tiles (Figma & GitHub) */}
-              <div className="grid grid-cols-2 gap-3 text-xs text-zinc-300 font-normal">
-                <div className="bg-white/[0.02] border border-white/5 p-3.5 rounded-xl flex flex-col justify-between">
-                  <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider">EMAIL</span>
+              <div className="grid grid-cols-1 min-[380px]:grid-cols-2 gap-3 text-xs text-zinc-300 font-normal">
+                <div className="bg-white/[0.02] border border-white/5 p-3.5 rounded-xl flex flex-col justify-between overflow-hidden">
+                  <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider">이메일</span>
                   <span className="mt-1 font-semibold text-zinc-200 truncate select-all">{data.contact.email}</span>
                 </div>
-                <div className="bg-white/[0.02] border border-white/5 p-3.5 rounded-xl flex flex-col justify-between">
-                  <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider">LOCATION</span>
-                  <span className="mt-1 font-semibold text-zinc-200">{t('대한민국', 'South Korea')}</span>
+                <div className="bg-white/[0.02] border border-white/5 p-3.5 rounded-xl flex flex-col justify-between overflow-hidden">
+                  <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider">위치</span>
+                  <span className="mt-1 font-semibold text-zinc-200 truncate">{t('대한민국', 'South Korea')}</span>
                 </div>
                 <a
                   href={data.contact.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white/[0.02] border border-white/5 hover:border-zinc-300/30 hover:bg-white/[0.04] p-3.5 rounded-xl flex flex-col justify-between transition-all duration-300 group"
+                  className="bg-white/[0.02] border border-white/5 hover:border-zinc-300/30 hover:bg-white/[0.04] p-3.5 rounded-xl flex flex-col justify-between transition-all duration-300 group overflow-hidden"
                 >
                   <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider flex justify-between items-center">
-                    GITHUB
-                    <span className="text-[8px] text-zinc-600 group-hover:text-white transition-colors">LAUNCH ↗</span>
+                    깃허브
+                    <span className="text-[8px] text-zinc-600 group-hover:text-white transition-colors">방문 ↗</span>
                   </span>
-                  <span className="mt-1 font-semibold text-zinc-200">github.com/haroseo</span>
+                  <span className="mt-1 font-semibold text-zinc-200 truncate">github.com/haroseo</span>
                 </a>
                 <a
                   href={data.contact.figma}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white/[0.02] border border-white/5 hover:border-zinc-300/30 hover:bg-white/[0.04] p-3.5 rounded-xl flex flex-col justify-between transition-all duration-300 group"
+                  className="bg-white/[0.02] border border-white/5 hover:border-zinc-300/30 hover:bg-white/[0.04] p-3.5 rounded-xl flex flex-col justify-between transition-all duration-300 group overflow-hidden"
                 >
                   <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider flex justify-between items-center">
-                    FIGMA
-                    <span className="text-[8px] text-zinc-600 group-hover:text-white transition-colors">PROFILE ↗</span>
+                    피그마
+                    <span className="text-[8px] text-zinc-600 group-hover:text-white transition-colors">프로필 ↗</span>
                   </span>
-                  <span className="mt-1 font-semibold text-zinc-200">figma.com/@seoharo</span>
+                  <span className="mt-1 font-semibold text-zinc-200 truncate font-sans">figma.com/@seoharo</span>
                 </a>
               </div>
 
               {/* Tag-based Micro Chips (Monochrome minimal design) */}
               <div className="pt-6 border-t border-white/5 space-y-3">
-                <span className="text-[9px] font-bold tracking-wider text-zinc-500 uppercase block">ROLES & POSITION</span>
+                <span className="text-[9px] font-bold tracking-wider text-zinc-500 uppercase block">역할 및 소속</span>
                 <div className="flex flex-wrap gap-1.5">
                   {[
                     'RoFolder CEO',

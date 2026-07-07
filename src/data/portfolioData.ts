@@ -52,7 +52,7 @@ const portfolioDataKo: PortfolioDataType = {
   title: "Brand Design · Marketing · Programming",
   tagline: "당신의 스토리를 성공의 데이터로",
   description:
-    "디자인, 마케팅, 프로그래밍을 통해 비즈니스와 유저를 연결하는 크리에이터 서하루입니다. 청소년 창업 커뮤니티 로폴더(RoFolder), 에셋 공유 공간 Limited™, 그리고 로블갤러리(ROGLLAERY)를 운영하고 있습니다.",
+    "디자인, 마케팅, 프로그래밍을 통해 비즈니스와 유저를 연결하는 크리에이터 서하루입니다. 청소년 창업 커뮤니티 로폴더(RoFolder), 에셋 공유 공간 Limited™, 그리고 로블갤러리(RoGALLERY)를 운영하고 있습니다.",
 
   skills: [
     {
@@ -200,7 +200,7 @@ const portfolioDataKo: PortfolioDataType = {
 
   communities: [
     {
-      name: "로블갤러리 (ROGLLAERY)",
+      name: "로블갤러리 (RoGALLERY)",
       members: "800+",
       logo: "/assets/rogllaery.png",
       role: "설립자 및 총괄 (Founder)",
@@ -234,7 +234,7 @@ const portfolioDataEn: PortfolioDataType = {
   title: "Brand Design · Marketing · Programming",
   tagline: "Turn your story into data for success",
   description:
-    "A creator connecting businesses and users through design, marketing, and programming. I manage the youth startup community RoFolder, the asset sharing channel Limited™, and ROGLLAERY.",
+    "A creator connecting businesses and users through design, marketing, and programming. I manage the youth startup community RoFolder, the asset sharing channel Limited™, and RoGALLERY.",
 
   skills: [
     {
@@ -382,13 +382,13 @@ const portfolioDataEn: PortfolioDataType = {
 
   communities: [
     {
-      name: "ROGLLAERY",
+      name: "RoGALLERY",
       members: "800+",
       logo: "/assets/rogllaery.png",
       role: "Founder & General Manager",
-      slogan: "A transparent community built by users, ROGLLAERY",
-      description: "A transparent community built by users, ROGLLAERY",
-      detailsText: "ROGLLAERY is a communication community where users interact and grow together. We aim for voluntary user participation and transparent culture, providing a healthy and transparent environment."
+      slogan: "A transparent community built by users, RoGALLERY",
+      description: "A transparent community built by users, RoGALLERY",
+      detailsText: "RoGALLERY is a communication community where users interact and grow together. We aim for voluntary user participation and transparent culture, providing a healthy and transparent environment."
     },
     {
       name: "Limited™",

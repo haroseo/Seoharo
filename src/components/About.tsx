@@ -81,10 +81,10 @@ export default function About() {
   const stats = [
     {
       label: t('경력 수', 'Experience'),
-      value: '30+',
+      value: '5',
       proof: t(
-        '로폴더 대표, Limited™ 설립자, LUXERET 마케터, HANN LABS™ 디자이너, SIMPLX 개발자 등 30개 이상의 조직에서 다양한 역할을 경험하며 실무 역량을 길렀습니다.',
-        'Having worked with 30+ organizations, covering roles from CEO and Founder to Marketer, Designer, and Developer - proving wide cross-disciplinary experience.'
+        '로폴더 대표, Limited™ 설립자, LUXERET 마케터, HANN LABS™ 디자이너, SIMPLX 개발자 등 5개의 팀과 조직에서 리더, 마케터, 디자이너, 개발자 역할을 두루 경험했습니다.',
+        'Having worked with 5 core organizations, covering roles from CEO and Founder to Marketer, Designer, and Developer - proving wide cross-disciplinary experience.'
       )
     },
     {
@@ -122,7 +122,7 @@ export default function About() {
               <h2 className="section-title mt-2 font-display bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent font-bold">
                 {t('디자인, 마케팅, 프로그래밍.', 'Design, Marketing, Programming.')}
               </h2>
-              <p className="max-w-3xl text-sm sm:text-base leading-relaxed text-zinc-200 font-normal">
+              <p className="max-w-3xl text-sm sm:text-base leading-relaxed text-zinc-200 font-normal tracking-tight">
                 {t(
                   '시각적인 균형을 디자인하고, 효과적인 마케팅 전략을 고민하며, 논리적인 구조와 깨끗한 코드로 웹 서비스를 구현합니다. 단순히 단일 업무에 머무르지 않고, 아이디어를 직접 실현해내는 구조적 크리에이터를 지향합니다.',
                   'Designing visual balance, planning effective marketing strategies, and implementing web services with logical structure and clean code. I aim to be a structural creator who directly realizes ideas rather than staying within a single task.'
@@ -146,7 +146,7 @@ export default function About() {
                   <h3 className="text-sm sm:text-base font-bold text-white mb-3 font-display">
                     {item.title}
                   </h3>
-                  <p className="text-xs sm:text-sm leading-relaxed text-zinc-300 font-normal">
+                  <p className="text-xs sm:text-sm leading-relaxed text-zinc-300 font-normal tracking-tight">
                     {item.description}
                   </p>
                 </GlowCard>
@@ -169,7 +169,7 @@ export default function About() {
                 <p className="text-[10px] font-bold text-zinc-500 tracking-wider uppercase">
                   {t('활동 분야', 'Areas of Activity')}
                 </p>
-                <p className="mt-4 text-xs sm:text-sm font-bold text-white font-display leading-relaxed">
+                <p className="mt-4 text-xs sm:text-sm font-bold text-white font-display leading-relaxed tracking-tight">
                   CEO · Founder · Marketer · Designer · Developer
                 </p>
               </motion.div>
@@ -184,7 +184,7 @@ export default function About() {
                 <p className="text-[10px] font-bold text-zinc-500 tracking-wider uppercase">
                   {t('소속 및 역할', 'Affiliation & Role')}
                 </p>
-                <p className="mt-4 text-xs sm:text-sm font-bold text-white font-sans leading-relaxed">
+                <p className="mt-4 text-xs sm:text-sm font-bold text-white font-sans leading-relaxed tracking-tight">
                   RoFolder CEO · Limited™ Founder · LUXERET Marketer · HANN LABS™ Staff Designer · SIMPLX Developer
                 </p>
               </motion.div>
@@ -199,7 +199,7 @@ export default function About() {
                 <p className="text-[10px] font-bold text-zinc-500 tracking-wider uppercase">
                   {t('핵심 지향점', 'Core Approach')}
                 </p>
-                <p className="mt-4 text-xs sm:text-sm font-bold text-zinc-200 font-sans leading-relaxed">
+                <p className="mt-4 text-xs sm:text-sm font-bold text-zinc-200 font-sans leading-relaxed tracking-tight">
                   {t(
                     '사용자 피드백 중심 설계, 스토리텔링 및 주도적 서비스 빌딩',
                     'User feedback-centric design, storytelling, and proactive service building'
@@ -217,7 +217,7 @@ export default function About() {
                 <p className="text-[10px] font-bold text-zinc-500 tracking-wider uppercase">
                   {t('주요 강점', 'Key Strengths')}
                 </p>
-                <p className="mt-4 text-xs sm:text-sm font-bold text-zinc-200 font-sans leading-relaxed">
+                <p className="mt-4 text-xs sm:text-sm font-bold text-zinc-200 font-sans leading-relaxed tracking-tight">
                   {t(
                     '비주얼 디렉션 · 유저 인터랙션 기획 · 커뮤니티 매니지먼트',
                     'Visual Direction · Interaction Planning · Community Management'
@@ -300,7 +300,7 @@ export default function About() {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: -8, scale: 0.96 }}
                           transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-                          className="text-[11px] leading-relaxed text-zinc-200 font-medium"
+                          className="text-[11px] leading-relaxed text-zinc-200 font-medium tracking-tight"
                         >
                           {stat.proof}
                         </motion.p>

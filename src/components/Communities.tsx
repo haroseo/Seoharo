@@ -28,7 +28,7 @@ export default function Communities() {
           <h2 className="section-title mt-4 mb-6 font-display bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent font-bold">
             {t('커뮤니티 운영', 'Community Management')}
           </h2>
-          <p className="mx-auto max-w-3xl text-sm sm:text-base text-zinc-200 font-normal leading-relaxed">
+          <p className="mx-auto max-w-3xl text-sm sm:text-base text-zinc-200 font-normal leading-relaxed tracking-tight">
             {t(
               '총 2,000명 이상의 유저와 소통하며 커뮤니티를 성장시킨 경험을 바탕으로 더 나은 소통과 긍정적인 커뮤니티 문화를 설계합니다.',
               'Based on the experience of growing servers and communicating with over 2,000 users, I design a better user experience and positive community culture.'
@@ -63,10 +63,10 @@ export default function Communities() {
                 
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-5 rounded-full bg-zinc-900 text-zinc-300 text-[10px] font-mono border border-zinc-800">
                   <Users size={10} className="text-zinc-500" />
-                  {community.members} Members
+                  {community.members}{t('명', ' Members')}
                 </div>
                 
-                <p className="text-zinc-300 text-xs sm:text-sm leading-relaxed font-normal whitespace-pre-line mb-6">
+                <p className="text-zinc-300 text-xs sm:text-sm leading-relaxed font-normal whitespace-pre-line mb-6 tracking-tight">
                   {community.description}
                 </p>
 
@@ -130,7 +130,7 @@ export default function Communities() {
                       </span>
                       <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 text-[9px] font-mono uppercase tracking-wider">
                         <Users size={10} className="text-zinc-400" />
-                        {selectedCommunity.members} Members
+                        {selectedCommunity.members}{t('명', ' Members')}
                       </span>
                     </div>
                     
@@ -138,7 +138,7 @@ export default function Communities() {
                       {selectedCommunity.name}
                     </h3>
                     
-                    <p className="text-zinc-300 font-normal text-xs sm:text-sm leading-relaxed whitespace-pre-line">
+                    <p className="text-zinc-300 font-normal text-xs sm:text-sm leading-relaxed whitespace-pre-line tracking-tight">
                       {selectedCommunity.detailsText}
                     </p>
                   </div>
@@ -147,7 +147,7 @@ export default function Communities() {
                   <div className="border-t md:border-t-0 md:border-l border-zinc-900 pt-6 md:pt-0 md:pl-6 flex flex-col justify-center">
                     <span className="text-[8.5px] font-mono font-bold text-zinc-500 uppercase tracking-widest mb-2 flex items-center gap-1">
                       <Compass size={11} />
-                      SLOGAN
+                      {t('슬로건', 'SLOGAN')}
                     </span>
                     <p className="text-xs font-semibold text-zinc-300 italic leading-relaxed">
                       "{selectedCommunity.slogan}"
@@ -164,7 +164,7 @@ export default function Communities() {
                     return false;
                   });
                   const achievements = career ? career.achievements : (
-                    selectedCommunity.name.toLowerCase().includes("rogllaery") || selectedCommunity.name.toLowerCase().includes("로블갤러리") ? [
+                    selectedCommunity.name.toLowerCase().includes("rogallery") || selectedCommunity.name.toLowerCase().includes("로블갤러리") ? [
                       t("유저들이 스스로 교류하고 성장할 수 있는 소통 채널 구축", "Building channels where users communicate and grow together"),
                       t("자발적 피드백과 투명한 운영 체계 확립", "Establishing voluntary feedback and transparent operation systems"),
                       t("지속 가능한 소통의 장을 통한 유저 리텐션 증대", "Increasing user retention through a sustainable communication playground")
@@ -175,7 +175,7 @@ export default function Communities() {
                     ]
                   );
                   const skills = career ? career.skills : (
-                    selectedCommunity.name.toLowerCase().includes("rogllaery") || selectedCommunity.name.toLowerCase().includes("로블갤러리") ? [
+                    selectedCommunity.name.toLowerCase().includes("rogallery") || selectedCommunity.name.toLowerCase().includes("로블갤러리") ? [
                       "Community Operations", "User Retention", "Communication Design"
                     ] : ["Community Management", "User Engagement", "Branding"]
                   );
@@ -188,7 +188,7 @@ export default function Communities() {
                         </h4>
                         <ul className="space-y-2.5">
                           {achievements.map((ach, idx) => (
-                            <li key={idx} className="flex gap-2.5 text-xs text-zinc-300 leading-relaxed font-normal">
+                            <li key={idx} className="flex gap-2.5 text-xs text-zinc-300 leading-relaxed font-normal tracking-tight">
                               <span className="text-zinc-400 font-bold">•</span>
                               <span>{ach}</span>
                             </li>
