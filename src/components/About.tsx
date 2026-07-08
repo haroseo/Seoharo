@@ -1,51 +1,7 @@
-import { useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from './LanguageContext';
-
-function GlowCard({ children, className = "", style = {}, onClick, layout }: { children: React.ReactNode, className?: string, style?: any, onClick?: () => void, layout?: boolean }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [coords, setCoords] = useState({ x: -9999, y: -9999 });
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    setCoords({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
-    });
-  };
-
-  return (
-    <motion.div
-      ref={cardRef}
-      layout={layout}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => {
-        setIsHovered(false);
-        setCoords({ x: -9999, y: -9999 });
-      }}
-      onClick={onClick}
-      className={`relative overflow-hidden ${className}`}
-      style={style}
-    >
-      <div
-        className="absolute inset-0 pointer-events-none transition-opacity duration-300"
-        style={{
-          opacity: isHovered ? 1 : 0,
-          background: `radial-gradient(280px circle at ${coords.x}px ${coords.y}px, rgba(255, 255, 255, 0.04), transparent 80%)`
-        }}
-      />
-      {children}
-    </motion.div>
-  );
-}
 
 export default function About() {
   const { t } = useLanguage();
-
-  const [activeStat, setActiveStat] = useState<number | null>(null);
 
   const details = [
     {
@@ -113,7 +69,7 @@ export default function About() {
       <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-zinc-950 to-transparent pointer-events-none" />
       
       <div className="relative z-10 mx-auto max-w-7xl space-y-24">
-        <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] items-start">
+        <div className="grid gap-16 lg:grid-cols-[1.2fr_0.8fr] items-start">
           
           {/* Main Info Side */}
           <div className="space-y-12">
@@ -129,190 +85,99 @@ export default function About() {
               </p>
             </div>
 
-            {/* Smooth Animated Card Grid */}
-            <motion.div 
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="grid gap-6 sm:grid-cols-2"
-            >
+            {/* Flat Text-based Info List (No Card boxes) */}
+            <div className="divide-y divide-zinc-900/80">
               {details.map((item, index) => (
-                <GlowCard
+                <div
                   key={index}
-                  className="apple-widget p-8 transition-all duration-300"
+                  className="py-6 first:pt-0 last:pb-0 space-y-2"
                 >
-                  <h3 className="text-sm sm:text-base font-bold text-white mb-4 font-display">
+                  <h3 className="text-sm sm:text-base font-bold text-white font-display">
                     {item.title}
                   </h3>
-                  <p className="text-xs sm:text-sm leading-relaxed text-zinc-300 font-normal">
+                  <p className="text-xs sm:text-sm leading-relaxed text-zinc-400 font-normal">
                     {item.description}
                   </p>
-                </GlowCard>
+                </div>
               ))}
-            </motion.div>
+            </div>
           </div>
 
-          {/* Profile Card Side - 2x2 Modern Dashboard Grid */}
-          <GlowCard className="apple-widget p-8 sm:p-10 lg:sticky lg:top-28">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-zinc-300">
+          {/* Profile Details Side - Flat Grid Layout (No Card boxes) */}
+          <div className="space-y-8 lg:sticky lg:top-28">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8 text-zinc-300">
               
-              <motion.div 
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-                viewport={{ once: true }}
-                className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-300 flex flex-col justify-between"
-              >
+              <div className="space-y-2.5">
                 <p className="text-[10px] font-bold text-zinc-500 tracking-wider uppercase">
                   {t('활동 분야', 'Areas of Activity')}
                 </p>
-                <p className="mt-4 text-xs sm:text-sm font-bold text-white font-display leading-relaxed">
+                <p className="text-xs sm:text-sm font-semibold text-white font-display leading-relaxed">
                   CEO · Founder · Marketer · Designer · Developer
                 </p>
-              </motion.div>
+              </div>
 
-              <motion.div 
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.05, ease: 'easeOut' }}
-                viewport={{ once: true }}
-                className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-300 flex flex-col justify-between"
-              >
+              <div className="space-y-2.5">
                 <p className="text-[10px] font-bold text-zinc-500 tracking-wider uppercase">
                   {t('소속 및 역할', 'Affiliation & Role')}
                 </p>
-                <p className="mt-4 text-xs sm:text-sm font-bold text-white font-sans leading-relaxed">
+                <p className="text-xs sm:text-sm font-semibold text-zinc-300 font-sans leading-relaxed">
                   RoFolder CEO · Limited™ Founder · LUXERET Marketer · HANN LABS™ Staff Designer · SIMPLX Developer
                 </p>
-              </motion.div>
+              </div>
 
-              <motion.div 
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
-                viewport={{ once: true }}
-                className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-300 flex flex-col justify-between"
-              >
+              <div className="space-y-2.5">
                 <p className="text-[10px] font-bold text-zinc-500 tracking-wider uppercase">
                   {t('핵심 지향점', 'Core Approach')}
                 </p>
-                <p className="mt-4 text-xs sm:text-sm font-bold text-zinc-200 font-sans leading-relaxed">
+                <p className="text-xs sm:text-sm font-semibold text-zinc-300 font-sans leading-relaxed">
                   {t(
                     '사용자 피드백 중심 설계, 스토리텔링 및 주도적 서비스 빌딩',
                     'User feedback-centric design, storytelling, and proactive service building'
                   )}
                 </p>
-              </motion.div>
+              </div>
 
-              <motion.div 
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.15, ease: 'easeOut' }}
-                viewport={{ once: true }}
-                className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-300 flex flex-col justify-between"
-              >
+              <div className="space-y-2.5">
                 <p className="text-[10px] font-bold text-zinc-500 tracking-wider uppercase">
                   {t('주요 강점', 'Key Strengths')}
                 </p>
-                <p className="mt-4 text-xs sm:text-sm font-bold text-zinc-200 font-sans leading-relaxed">
+                <p className="text-xs sm:text-sm font-semibold text-zinc-300 font-sans leading-relaxed">
                   {t(
                     '비주얼 디렉션 · 유저 인터랙션 기획 · 커뮤니티 매니지먼트',
                     'Visual Direction · Interaction Planning · Community Management'
                   )}
                 </p>
-              </motion.div>
+              </div>
             </div>
-          </GlowCard>
+          </div>
         </div>
 
-        {/* Interactive Stats Grid (What it Proves) */}
-        <div className="pt-16 border-t border-zinc-900/80">
-          <div className="text-center mb-10">
+        {/* Flat Stats Grid (No Cards, No circular charts) */}
+        <div className="pt-16 border-t border-zinc-900">
+          <div className="text-center mb-12">
             <h3 className="text-2xl font-bold tracking-tight text-white font-display mt-2">{t('지표와 증명', 'Metrics & Proof')}</h3>
-            <p className="text-xs text-zinc-500 mt-2 uppercase tracking-wider">{t('각 지표를 클릭하여 증명하는 역량을 확인해보세요', 'Click each metric to verify capabilities')}</p>
+            <p className="text-xs text-zinc-500 mt-2 uppercase tracking-wider">{t('정량적 경험과 신뢰의 증명입니다', 'Quantitative proof of experience and trust')}</p>
           </div>
 
-          <div className="grid gap-6 grid-cols-1 sm:grid-cols-3 max-w-4xl mx-auto">
-            {stats.map((stat, idx) => {
-              const isActive = activeStat === idx;
-              // Determine ring color based on Apple Health activity style
-              const ringColor = idx === 0 ? 'text-[#ff2d55]' : idx === 1 ? 'text-[#4cd964]' : 'text-[#5ac8fa]';
-              return (
-                <GlowCard
-                  key={idx}
-                  layout
-                  onClick={() => setActiveStat(isActive ? null : idx)}
-                  className={`apple-widget p-6 text-left relative overflow-hidden transition-all duration-300 cursor-pointer group ${
-                    isActive ? 'border-white/20 bg-white/10' : 'border-white/5 bg-white/5 hover:border-white/10'
-                  }`}
-                >
-                  {/* Decorative Apple Activity Ring */}
-                  <div className="absolute right-5 top-5 w-10 h-10">
-                    <svg viewBox="0 0 36 36" className={`w-full h-full ${ringColor}`}>
-                      <circle
-                        className="opacity-10"
-                        strokeWidth="3.5"
-                        stroke="currentColor"
-                        fill="none"
-                        cx="18"
-                        cy="18"
-                        r="15.915"
-                      />
-                      <circle
-                        strokeWidth="3.5"
-                        strokeDasharray={`${idx === 0 ? '80' : idx === 1 ? '90' : '75'}, 100`}
-                        strokeLinecap="round"
-                        stroke="currentColor"
-                        fill="none"
-                        cx="18"
-                        cy="18"
-                        r="15.915"
-                        transform="rotate(-90 18 18)"
-                      />
-                    </svg>
-                  </div>
-
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 pr-12">
-                    {stat.label}
-                  </p>
-                  
-                  <p className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mt-4 mb-2 font-display">
-                    {stat.value}
-                  </p>
-                  
-                  <div className="h-px bg-white/5 w-full my-4" />
-                  
-                  <div className="relative overflow-hidden min-h-[40px] flex items-center">
-                    <AnimatePresence mode="wait">
-                      {isActive ? (
-                        <motion.p
-                          key="proof"
-                          initial={{ opacity: 0, y: 8, scale: 0.96 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: -8, scale: 0.96 }}
-                          transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-                          className="text-[11px] leading-relaxed text-zinc-200 font-medium"
-                        >
-                          {stat.proof}
-                        </motion.p>
-                      ) : (
-                        <motion.p
-                          key="click-me"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 0.6 }}
-                          exit={{ opacity: 0 }}
-                          transition={{ duration: 0.15 }}
-                          className="text-[10px] text-zinc-455 font-bold tracking-wide uppercase hover:text-white transition-colors"
-                        >
-                          {t('자세히 보기', 'CLICK TO READ')} →
-                        </motion.p>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                </GlowCard>
-              );
-            })}
+          <div className="grid gap-8 grid-cols-1 sm:grid-cols-3 max-w-5xl mx-auto">
+            {stats.map((stat, idx) => (
+              <div
+                key={idx}
+                className="space-y-3.5 py-6 border-b sm:border-b-0 sm:border-r border-zinc-900 last:border-0 px-0 sm:px-8 first:pl-0 last:pr-0"
+              >
+                <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-500">
+                  {stat.label}
+                </p>
+                
+                <p className="text-4xl sm:text-5xl font-black tracking-tighter text-white font-display">
+                  {stat.value}
+                </p>
+                
+                <p className="text-xs leading-relaxed text-zinc-400 font-normal">
+                  {stat.proof}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -320,4 +185,3 @@ export default function About() {
     </section>
   );
 }
-
