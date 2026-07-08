@@ -39,8 +39,8 @@ export default function About() {
       label: t('경력 수', 'Organizations'),
       value: '30+',
       proof: t(
-        '로폴더 대표, Limited™ 설립자, LUXERET 마케터, HANN LABS™ 디자이너, SIMPLX 개발자 등 30개 이상의 조직에서 다양한 역할을 경험하며 실무 역량을 길렀습니다.',
-        'Having worked with 30+ organizations, covering roles from CEO and Founder to Marketer, Designer, and Developer - proving wide cross-disciplinary experience.'
+        '로폴더 대표, Limited™ 설립자, LUXERET 마케터, HANN LABS™ 디자이너 등 30개 이상의 조직에서 다양한 역할을 경험하며 실무 역량을 길렀습니다.',
+        'Having worked with 30+ organizations, covering roles from CEO and Founder to Marketer and Designer - proving wide cross-disciplinary experience.'
       )
     },
     {
@@ -112,7 +112,7 @@ export default function About() {
                   {t('활동 분야', 'Areas of Activity')}
                 </p>
                 <p className="text-xs sm:text-sm font-semibold text-white font-display leading-relaxed">
-                  CEO · Founder · Marketer · Designer · Developer
+                  CEO · Founder · Marketer · Designer
                 </p>
               </div>
 
@@ -121,7 +121,7 @@ export default function About() {
                   {t('소속 및 역할', 'Affiliation & Role')}
                 </p>
                 <p className="text-xs sm:text-sm font-semibold text-zinc-300 font-sans leading-relaxed">
-                  RoFolder CEO · Limited™ Founder · LUXERET Marketer · HANN LABS™ Staff Designer · SIMPLX Developer
+                  RoFolder CEO · Limited™ Founder · LUXERET Marketer · HANN LABS™ Staff Designer
                 </p>
               </div>
 

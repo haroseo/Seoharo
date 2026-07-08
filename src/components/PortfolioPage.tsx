@@ -5,8 +5,6 @@ import {
   Compass, 
   Sparkles, 
   Award,
-  Heart,
-  Eye,
   ExternalLink
 } from 'lucide-react';
 import { useLanguage } from './LanguageContext';
@@ -98,30 +96,30 @@ export default function PortfolioPage() {
       type: 'site',
       category: 'marketing',
       title: 'Planor',
-      slogan: t('가장 효율적인 협업 캘린더 플랫폼', 'Smart planning, seamless team coordination'),
-      description: t('스마트한 일정 조율과 직관적인 업무 조율을 지원하는 협업 캘린더 웹 서비스입니다.', 'A collaborative team calendar service designed for effortless schedule sharing.'),
+      slogan: t('당신의 일상에 조화로운 시간 질서를 부여하는 스케줄러, Planor', 'Bringing harmonious order to your daily rhythm, Planor'),
+      description: t('파편화된 일정과 협업 일정을 하나의 유려한 인터페이스에 통합하여 효율적인 일상 관리를 실현하는 캘린더 웹 서비스입니다.', 'A collaborative schedule planner designed to unify scattered schedules and project calendars into one streamlined timeline UI.'),
       tags: ['Product Design', 'Web Service', 'Marketing Strategy'],
       link: 'https://planor.kro.kr',
       details: {
-        background: t('여러 도구로 파편화된 스케줄 협업을 단 하나의 유려한 타임라인에 통합하려는 취지에서 출발했습니다.', 'Developed to unify scattered schedules and project calendars into one streamlined timeline UI.'),
-        strategy: t('카드 방식의 드래그 인터랙션과 연간/월간 보기의 시각적 경량화를 제품 디자인에 주입했습니다.', 'Applied lightweight annual/monthly view options and responsive drag layouts to the core product.'),
-        metrics: t('릴리스 이후 실사용 유저 피드백 수집 및 브랜드 신뢰도 향상.', 'Collected valuable user feedback post-release, solidifying collaborative brand trust.')
+        background: t('일정 조율과 캘린더 파편화 문제를 해결하고 스케줄 프로세스의 온보딩을 개선하기 위해 설계되었습니다.', 'Developed to resolve team calendar fragmentation and improve user schedule onboarding drop-offs.'),
+        strategy: t('부드러운 카드 드래그 제스처와 경량화된 연간/월간 타임라인 레이아웃을 통해 최상의 일정 사용성을 확보했습니다.', 'Applied lightweight annual/monthly time grid displays and responsive drag layouts.'),
+        metrics: t('사용자 친화적 협업 스케줄러 인터페이스 설계', 'Designed highly intuitive collaborative scheduler interfaces.')
       }
     },
     {
-      id: 'naramarsami',
+      id: 'typolab',
       type: 'site',
       category: 'development',
-      title: '나랏말싸미',
-      slogan: t('훈민정음 자모결합 원리를 담아낸 타자 연습', 'Interactive typing practice with Hunminjeongeum principles'),
-      description: t('훈민정음 고유의 자모결합 원리를 현대적 인터랙션 디자인으로 재해석한 교육용 타자 연습 서비스입니다.', 'An educational typing service reinterpreting historical Hangeul assembly into interactive UI.'),
-      tags: ['Interaction', 'EdTech', 'Development'],
+      title: 'TypoLab',
+      slogan: t('훈민정음 자모결합 원리를 담아낸 인터랙티브 타이포랩', 'Interactive typography experiments with Hunminjeongeum principles'),
+      description: t('한글의 조형적 가치와 자모 결합 원리를 현대적 인터랙션 디자인으로 풀어낸 실험적 웹 타이핑 서비스입니다.', 'An experimental web typing service reinterpreting Hangeul\'s assembly mechanisms and visual values into interactive typography motion graphics.'),
+      tags: ['Typography', 'Interactive Design', 'Web Experiment'],
       link: 'https://훈민정음.kro.kr',
       github: 'https://github.com/naramarsami/naramarsami',
       details: {
-        background: t('한글의 자모음 결합 원리를 타이핑 경험과 연계하여 흥미를 자아내기 위해 기획되었습니다.', 'Designed to link Hangeul\'s assembly principles with typing experience for engagement.'),
-        strategy: t('훈민정음 용자례를 현대적 인터랙션 디자인으로 재해석하여 한글 고유의 비주얼을 이끌어냈습니다.', 'Reinterpreted historical Hunminjeongeum structures into modern interactive UI.'),
-        metrics: t('교육 플랫폼 내 바이럴 활성화 및 사용자 평균 연습 세션 시간 향상.', 'Activated viral sharing and increased user practice session duration.')
+        background: t('디자인과 프로그래밍의 융합을 통해 한글 자모음의 결합 메커니즘을 타이핑 인터랙션으로 표현했습니다.', 'Conceived to translate Hangeul\'s letters and assembly dynamics into browser-based interactive mechanics.'),
+        strategy: t('훈민정음 고유의 용자례 구조를 분석하여 브라우저 환경에 맞는 인터랙티브 모션 그래픽으로 구현했습니다.', 'Analyzed historical Hunminjeongeum structures to build real-time responsive web motion layouts.'),
+        metrics: t('인터랙티브 한글 타이포그래피 시스템 기획 및 구축', 'Planned and built interactive Hangeul typography system.')
       }
     },
     {
@@ -166,20 +164,6 @@ export default function PortfolioPage() {
         background: t('아이디어를 실제 눈에 보이는 그래픽 디자인 가이드라인으로 형태화하고 다지기 위한 연구 지원입니다.', 'Conceived to transform conceptual ideas into solid graphic layout guidelines for digital platforms.'),
         strategy: t('일관성 있는 격자선 구조와 로고 서체의 무결함을 기저에 둔 서브 그래픽 소스 제작에 임했습니다.', 'Focused on strict grid layouts and typography guidelines to support coherent visual assets.'),
         metrics: t('팀 내 비주얼 자산 관리 프로세스 확립 및 브랜딩 가이드 구현 지원.', 'Supported visual asset workflows, contributing to final brand identity guidelines.')
-      }
-    },
-    {
-      id: 'simplx',
-      type: 'workplace',
-      category: 'development',
-      title: 'SIMPLX',
-      slogan: t('시스템 최적화 및 도구 설계', 'System optimization and custom tool design'),
-      description: t('효율성을 최우선으로 지향하며, 시스템 최적화를 위한 디스코드 봇 소프트웨어 개발 및 연구에 기여했습니다.', 'Contributing to system optimization scripts and custom Discord bot software design for workflow efficiency.'),
-      tags: ['Developer', 'Automation Script', 'System Optimization'],
-      details: {
-        background: t('반복되는 인프라 운영 작업의 피로도를 해결하고 리소스 모니터링을 효율화하기 위해 기획되었습니다.', 'Initiated to resolve operational overhead in server infrastructures and automate resource monitors.'),
-        strategy: t('비동기 스레드 구조 최적화 및 모듈화된 명령 툴 세트를 설계해 유지보수성을 극대화했습니다.', 'Optimized asynchronous worker modules and engineered extensible toolsets for clean maintenance.'),
-        metrics: t('시스템 모니터링 자동화 성공 및 인프라 대응 효율 향상.', 'Automated key system tracking nodes, leading to increased server stability and response time.')
       }
     }
   ];
@@ -268,9 +252,8 @@ export default function PortfolioPage() {
                       item.id === 'limited' ? '/assets/limited.png' :
                       item.id === 'designpick' ? '/assets/designpick.png' :
                       item.id === 'planor' ? '/assets/planor.png' :
-                      item.id === 'naramarsami' ? '/assets/naramarsami.png' :
+                      item.id === 'typolab' ? '/assets/naramarsami.png' :
                       item.id === 'luxeret' ? '/assets/luxeret.png' :
-                      item.id === 'simplx' ? '/assets/simplx.png' :
                       '/assets/hannlabs.png'
                     }
                     alt={item.title}
@@ -312,31 +295,6 @@ export default function PortfolioPage() {
                     />
                     <span className="text-[9px] font-bold text-zinc-400 font-sans tracking-wide">SEOHARO</span>
                   </div>
-
-                  <div className="flex items-center gap-2.5 text-[8.5px] font-mono text-zinc-500">
-                    <span className="flex items-center gap-1 transition-colors">
-                      <Heart size={9} className="text-zinc-500 fill-zinc-500/10 group-hover:text-[#ff2d55] group-hover:fill-[#ff2d55]/10 transition-colors" />
-                      {item.id === 'rofolder' ? '78' :
-                       item.id === 'limited' ? '54' :
-                       item.id === 'designpick' ? '32' :
-                       item.id === 'planor' ? '28' :
-                       item.id === 'naramarsami' ? '40' :
-                       item.id === 'figmalibrary' ? '15' :
-                       item.id === 'luxeret' ? '12' :
-                       item.id === 'hannlabs' ? '18' : '22'}
-                    </span>
-                    <span className="flex items-center gap-1 transition-colors">
-                      <Eye size={9} />
-                      {item.id === 'rofolder' ? '1.2K' :
-                       item.id === 'limited' ? '920' :
-                       item.id === 'designpick' ? '480' :
-                       item.id === 'planor' ? '390' :
-                       item.id === 'naramarsami' ? '620' :
-                       item.id === 'figmalibrary' ? '190' :
-                       item.id === 'luxeret' ? '150' :
-                       item.id === 'hannlabs' ? '210' : '290'}
-                    </span>
-                  </div>
                 </div>
 
               </div>
@@ -359,13 +317,13 @@ export default function PortfolioPage() {
               className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm"
             />
 
-            {/* Sliding Panel */}
+            {/* Centered Modal Content */}
             <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', stiffness: 280, damping: 30 }}
-              className="fixed top-0 right-0 z-50 w-full sm:w-[500px] md:w-[540px] h-full bg-[#0d1117] border-l border-white/5 p-8 md:p-12 overflow-y-auto flex flex-col justify-between shadow-2xl font-sans"
+              initial={{ opacity: 0, scale: 0.95, y: '-45%', x: '-50%' }}
+              animate={{ opacity: 1, scale: 1, y: '-50%', x: '-50%' }}
+              exit={{ opacity: 0, scale: 0.95, y: '-45%', x: '-50%' }}
+              transition={{ type: 'spring', stiffness: 350, damping: 28 }}
+              className="fixed top-1/2 left-1/2 z-50 w-[92%] sm:w-[540px] md:w-[600px] max-h-[85vh] bg-[#0d1117] border border-white/5 rounded-2xl p-8 md:p-10 overflow-y-auto flex flex-col justify-between shadow-2xl font-sans"
             >
               <div className="space-y-10">
                 
@@ -453,7 +411,7 @@ export default function PortfolioPage() {
               {/* Footer */}
               <div className="border-t border-white/5 pt-6 mt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
                 <p className="text-[7.5px] leading-relaxed text-zinc-650 tracking-wider font-mono uppercase text-center sm:text-left max-w-xs">
-                  Trademarks (RoFolder, Limited™, HANN LABS™, LUXERET, SIMPLX) are properties of their respective owners.
+                  Trademarks (RoFolder, Limited™, HANN LABS™, LUXERET) are properties of their respective owners.
                 </p>
                 <div className="flex items-center gap-3">
                   {selectedItem.link && (

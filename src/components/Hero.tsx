@@ -133,8 +133,7 @@ export default function Hero() {
                     'RoFolder CEO',
                     'Limited™ Founder',
                     'LUXERET Marketer',
-                    'HANN LABS™ Staff Designer',
-                    'SIMPLX Developer'
+                    'HANN LABS™ Staff Designer'
                   ].map((role, idx, arr) => (
                     <span 
                       key={role} 

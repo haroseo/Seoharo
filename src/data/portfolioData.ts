@@ -88,33 +88,33 @@ const portfolioDataKo: PortfolioDataType = {
     },
     {
       id: 2,
-      title: "나랏말싸미",
+      title: "TypoLab",
       description:
-        "한글 창제 원리와 타이포그래피 요소를 녹여낸 인터랙티브 에듀테크 타자 연습 서비스입니다.",
-      tags: ["EdTech", "UX/UI Design", "Web Service"],
+        "한글의 조형적 가치와 자모 결합 원리를 현대적 인터랙션 디자인으로 풀어낸 실험적 웹 타이핑 서비스입니다.",
+      tags: ["Typography", "Interactive Design", "Web Experiment"],
       link: "https://훈민정음.kro.kr",
       github: "https://github.com/naramarsami/naramarsami",
       featured: true,
       category: "development",
       details: {
-        background: "한글의 자모음 결합 원리를 타이핑 경험과 연계하여 흥미를 자아내기 위해 기획되었습니다.",
-        strategy: "훈민정음 용자례를 현대적 인터랙션 디자인으로 재해석하여 한글 고유의 비주얼을 이끌어냈습니다.",
-        metrics: "한글 자모 결합 타자 연습 시스템 설계 및 구현"
+        background: "디자인과 프로그래밍의 융합을 통해 한글 자모음의 결합 메커니즘을 타이핑 인터랙션으로 표현했습니다.",
+        strategy: "훈민정음 고유의 용자례 구조를 분석하여 브라우저 환경에 맞는 인터랙티브 모션 그래픽으로 구현했습니다.",
+        metrics: "인터랙티브 한글 타이포그래피 시스템 기획 및 구축"
       }
     },
     {
       id: 3,
       title: "Planor",
       description:
-        "스마트하게 일정을 조율하고 효율적인 협업 캘린더 기능을 제안하는 통합 웹 스케줄러 서비스입니다.",
+        "당신의 일상에 조화로운 시간 질서를 부여하고 파편화된 일정 협업을 하나의 유려한 인터페이스에 통합하는 캘린더 웹 서비스입니다.",
       tags: ["Product Design", "Web Service"],
       link: "https://planor.kro.kr",
       featured: true,
       category: "marketing",
       details: {
-        background: "직관적인 캘린더 뷰와 일정 조율 문제를 신속하게 조율하기 위한 플랫폼 프로젝트입니다.",
-        strategy: "사용자 분석 및 핵심 기능 중심의 제작을 담당하여 온보딩 이탈률을 최소화했습니다.",
-        metrics: "사용자 친화적 캘린더 인터페이스 설계"
+        background: "일정 조율과 캘린더 파편화 문제를 해결하고 스케줄 프로세스의 온보딩을 개선하기 위해 설계되었습니다.",
+        strategy: "부드러운 카드 드래그 제스처와 경량화된 연간/월간 타임라인 레이아웃을 통해 최상의 일정 사용성을 확보했습니다.",
+        metrics: "사용자 친화적 협업 스케줄러 인터페이스 설계"
       }
     }
   ],
@@ -167,17 +167,6 @@ const portfolioDataKo: PortfolioDataType = {
         "아트워크 기획 보조 및 커뮤니티 그래픽 요소 제작 지원"
       ],
       skills: ["Graphic Design", "Brand Design", "Figma"],
-    },
-    {
-      id: "simplx",
-      title: "SIMPLX - Developer",
-      slogan: "시스템 최적화 및 도구 개발",
-      description: "SIMPLX에서 개발자로 활동하며 시스템 최적화 및 소프트웨어 툴 개발을 진행하고 있습니다.",
-      achievements: [
-        "효율적인 스크립팅 모듈 구축 및 성능 최적화",
-        "디스코드 봇 및 개발 도구 설계/구축"
-      ],
-      skills: ["Software Development", "System Optimization", "Discord Tools"],
     }
   ],
 
@@ -268,33 +257,33 @@ const portfolioDataEn: PortfolioDataType = {
     },
     {
       id: 2,
-      title: "Naramarsami",
+      title: "TypoLab",
       description:
-        "An interactive typing practice service presenting Hangeul's letters and typography elements.",
-      tags: ["EdTech", "UX/UI Design", "Web Service"],
+        "An experimental web typing service reinterpreting Hangeul's assembly mechanisms and visual values into interactive typography motion graphics.",
+      tags: ["Typography", "Interactive Design", "Web Experiment"],
       link: "https://훈민정음.kro.kr",
       github: "https://github.com/naramarsami/naramarsami",
       featured: true,
       category: "development",
       details: {
-        background: "Designed to link Hangeul's assembly principles withtyping experience for engagement.",
-        strategy: "Reinterpreted historical Hunminjeongeum structures into modern interactive UI.",
-        metrics: "Activated viral sharing and increased user practice session duration."
+        background: "Conceived to translate Hangeul's letters and assembly dynamics into browser-based interactive mechanics.",
+        strategy: "Analyzed historical Hunminjeongeum structures to build real-time responsive web motion layouts.",
+        metrics: "Planned and built interactive Hangeul typography system."
       }
     },
     {
       id: 3,
       title: "Planor",
       description:
-        "A collaborative calendar service providing smart scheduling and schedule coordination.",
+        "A collaborative schedule planner bringing harmonious order to your daily rhythm by integrating scattered task management into one polished interface.",
       tags: ["Product Design", "Web Service"],
       link: "https://planor.kro.kr",
       featured: true,
       category: "marketing",
       details: {
-        background: "A platform project built to solve schedule coordination issues with a calendar view.",
-        strategy: "Conducted user analysis and produced key features to minimize onboarding drop-off.",
-        metrics: "Increased user retention metrics by improving the onboarding page UX."
+        background: "Developed to resolve team calendar fragmentation and improve user schedule onboarding drop-offs.",
+        strategy: "Injected lightweight annual/monthly time grid displays and buttery drag-and-drop layouts.",
+        metrics: "Designed highly intuitive collaborative scheduler interfaces."
       }
     }
   ],
@@ -347,17 +336,6 @@ const portfolioDataEn: PortfolioDataType = {
         "Supporting artwork planning and community graphic production"
       ],
       skills: ["Graphic Design", "Brand Design", "Figma"],
-    },
-    {
-      id: "simplx",
-      title: "SIMPLX - Developer",
-      slogan: "System Optimization & Tool Development",
-      description: "Working as a developer at SIMPLX, focusing on system optimization and software tool development.",
-      achievements: [
-        "Building efficient scripting modules and optimizing performance",
-        "Designing and building Discord bots and development tools"
-      ],
-      skills: ["Software Development", "System Optimization", "Discord Tools"],
     }
   ],
 
