@@ -79,12 +79,12 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Profile Card Summary Panel - Apple Dark Widget style */}
+          {/* Profile Card Summary Panel - Flat Borderless style */}
           <motion.div
             variants={itemVariants}
-            className="apple-widget p-8 md:p-10"
+            className="py-8 lg:py-10 bg-transparent"
           >
-            <div className="space-y-6">
+            <div className="space-y-8">
               <div className="flex items-end justify-between gap-4">
                 <div>
                   <h2 className="text-2xl font-bold text-white font-display tracking-tight">
@@ -101,32 +101,32 @@ export default function Hero() {
                 {data.title}
               </p>
 
-              {/* Grid-based Metadata Tiles */}
-              <div className="grid grid-cols-2 gap-3 text-xs text-zinc-300 font-normal">
-                <div className="bg-white/[0.02] border border-white/5 p-3.5 rounded-xl flex flex-col justify-between">
+              {/* Grid-based Metadata Tiles - Flat with bottom border only */}
+              <div className="grid grid-cols-2 gap-y-6 gap-x-8 text-xs text-zinc-300 font-normal">
+                <div className="flex flex-col justify-between py-2 border-b border-zinc-900">
                   <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider">EMAIL</span>
-                  <span className="mt-1 font-semibold text-zinc-200 truncate select-all">{data.contact.email}</span>
+                  <span className="mt-1.5 font-semibold text-zinc-200 truncate select-all">{data.contact.email}</span>
                 </div>
-                <div className="bg-white/[0.02] border border-white/5 p-3.5 rounded-xl flex flex-col justify-between">
+                <div className="flex flex-col justify-between py-2 border-b border-zinc-900">
                   <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider">LOCATION</span>
-                  <span className="mt-1 font-semibold text-zinc-200">{t('대한민국', 'South Korea')}</span>
+                  <span className="mt-1.5 font-semibold text-zinc-200">{t('대한민국', 'South Korea')}</span>
                 </div>
                 <a
                   href={data.contact.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white/[0.02] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] p-3.5 rounded-xl flex flex-col justify-between col-span-2 transition-all duration-300 group"
+                  className="flex flex-col justify-between py-2 border-b border-zinc-900 col-span-2 group transition-all duration-300"
                 >
                   <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider flex justify-between items-center">
                     GITHUB
                     <span className="text-[8px] text-zinc-600 group-hover:text-white transition-colors">LAUNCH ↗</span>
                   </span>
-                  <span className="mt-1 font-semibold text-zinc-200">github.com/haroseo</span>
+                  <span className="mt-1.5 font-semibold text-zinc-200 group-hover:text-white transition-colors">github.com/haroseo</span>
                 </a>
               </div>
 
-              {/* Tag-based Micro Chips (No slashes) */}
-              <div className="pt-6 border-t border-white/5 space-y-3">
+              {/* Tag-based Micro Chips (Flat bullet list) */}
+              <div className="pt-6 border-t border-zinc-900 space-y-3">
                 <span className="text-[9px] font-bold tracking-wider text-zinc-500 uppercase block">ROLES & POSITION</span>
                 <div className="flex flex-wrap gap-x-3 gap-y-1.5">
                   {[
@@ -141,7 +141,7 @@ export default function Hero() {
                       className="text-[10px] font-semibold text-zinc-300 font-sans tracking-tight flex items-center"
                     >
                       {role}
-                      {idx < arr.length - 1 && <span className="text-zinc-700 ml-3 select-none font-normal text-[8px]">•</span>}
+                      {idx < arr.length - 1 && <span className="text-zinc-705 ml-3 select-none font-normal text-[8px]">•</span>}
                     </span>
                   ))}
                 </div>
