@@ -47,19 +47,19 @@ export default function Hero() {
           className="grid gap-16 lg:grid-cols-[1.5fr_1fr] items-center"
         >
           {/* Main Title / Slogan block */}
-          <motion.div variants={itemVariants} className="space-y-8 text-center lg:text-left">
-            <div className="flex items-center justify-center lg:justify-start gap-3">
-              <span className="text-[11px] font-bold tracking-wide text-zinc-400 uppercase">
+          <motion.div variants={itemVariants} className="space-y-6 text-center lg:text-left">
+            <div className="flex items-center justify-center lg:justify-start gap-2">
+              <span className="text-[10px] font-bold tracking-widest text-zinc-450 uppercase">
                 {t('소개', 'INTRODUCTION')}
               </span>
-              <span className="h-px w-6 bg-zinc-850" />
+              <span className="h-px w-4 bg-zinc-800" />
             </div>
 
-            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold uppercase tracking-tight text-white leading-tight">
+            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-white leading-[1.1]">
               SEOHARO
             </h1>
 
-            <p className="max-w-xl text-sm md:text-base leading-relaxed text-zinc-200 mx-auto lg:mx-0 font-normal">
+            <p className="max-w-xl text-sm md:text-[15px] leading-relaxed text-zinc-300 mx-auto lg:mx-0 font-normal tracking-normal">
               {data.description}
             </p>
 
@@ -91,7 +91,8 @@ export default function Hero() {
                     SEOHARO
                   </h2>
                 </div>
-                <div className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[9px] font-bold uppercase tracking-wider text-zinc-200">
+                <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-400 select-none">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
                   {t('활동 중', 'ACTIVE')}
                 </div>
               </div>
@@ -127,19 +128,20 @@ export default function Hero() {
               {/* Tag-based Micro Chips (No slashes) */}
               <div className="pt-6 border-t border-white/5 space-y-3">
                 <span className="text-[9px] font-bold tracking-wider text-zinc-500 uppercase block">ROLES & POSITION</span>
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-x-3 gap-y-1.5">
                   {[
                     'RoFolder CEO',
                     'Limited™ Founder',
                     'LUXERET Marketer',
                     'HANN LABS™ Staff Designer',
                     'SIMPLX Developer'
-                  ].map((role) => (
+                  ].map((role, idx, arr) => (
                     <span 
                       key={role} 
-                      className="inline-flex items-center px-2.5 py-1.5 rounded-lg bg-white/[0.03] border border-white/5 text-[9.5px] font-medium text-zinc-300 font-sans tracking-tight hover:border-white/10 transition-colors"
+                      className="text-[10px] font-semibold text-zinc-300 font-sans tracking-tight flex items-center"
                     >
                       {role}
+                      {idx < arr.length - 1 && <span className="text-zinc-700 ml-3 select-none font-normal text-[8px]">•</span>}
                     </span>
                   ))}
                 </div>

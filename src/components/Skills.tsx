@@ -65,20 +65,18 @@ export default function Skills() {
                   {skillGroup.category === 'Marketing' && 'Growth Strategy'}
                   {skillGroup.category === 'Programming' && 'Systems & Logic'}
                 </p>
-                <motion.div variants={containerVariants} className="flex flex-wrap gap-2.5">
+                <motion.div variants={containerVariants} className="flex flex-wrap gap-x-4 gap-y-2.5">
                   {skillGroup.items.map((skill, itemIndex) => (
                     <motion.span
                       key={itemIndex}
                       variants={itemVariants}
                       whileHover={{ 
-                        scale: 1.04, 
-                        borderColor: '#ffffff', 
+                        scale: 1.05, 
                         color: '#ffffff',
-                        boxShadow: '0 0 10px rgba(255, 255, 255, 0.05)'
                       }}
-                      className="rounded-lg border border-zinc-900 bg-zinc-900/60 px-3.5 py-1.5 text-xs font-sans font-semibold text-zinc-400 transition-all select-none cursor-pointer"
+                      className="text-xs font-sans font-bold text-zinc-450 transition-colors select-none cursor-pointer"
                     >
-                      {skill}
+                      #{skill}
                     </motion.span>
                   ))}
                 </motion.div>

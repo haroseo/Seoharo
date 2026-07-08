@@ -117,11 +117,11 @@ export default function About() {
           
           {/* Main Info Side */}
           <div className="space-y-12">
-            <div className="space-y-4">
-              <h2 className="section-title mt-2 font-display bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent font-bold">
+            <div className="space-y-6">
+              <h2 className="section-title mt-2 font-display bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent font-bold tracking-tight">
                 {t('디자인, 마케팅, 프로그래밍.', 'Design, Marketing, Programming.')}
               </h2>
-              <p className="max-w-3xl text-sm sm:text-base leading-relaxed text-zinc-200 font-normal">
+              <p className="max-w-3xl text-sm sm:text-[15px] leading-relaxed text-zinc-300 font-normal tracking-tight">
                 {t(
                   '시각적인 균형을 디자인하고, 효과적인 마케팅 전략을 고민하며, 논리적인 구조와 깨끗한 코드로 웹 서비스를 구현합니다. 단순히 단일 업무에 머무르지 않고, 아이디어를 직접 실현해내는 구조적 크리에이터를 지향합니다.',
                   'Designing visual balance, planning effective marketing strategies, and implementing web services with logical structure and clean code. I aim to be a structural creator who directly realizes ideas rather than staying within a single task.'
@@ -142,7 +142,7 @@ export default function About() {
                   key={index}
                   className="apple-widget p-8 transition-all duration-300"
                 >
-                  <h3 className="text-sm sm:text-base font-bold text-white mb-3 font-display">
+                  <h3 className="text-sm sm:text-base font-bold text-white mb-4 font-display">
                     {item.title}
                   </h3>
                   <p className="text-xs sm:text-sm leading-relaxed text-zinc-300 font-normal">
@@ -230,7 +230,7 @@ export default function About() {
         <div className="pt-16 border-t border-zinc-900/80">
           <div className="text-center mb-10">
             <h3 className="text-2xl font-bold tracking-tight text-white font-display mt-2">{t('지표와 증명', 'Metrics & Proof')}</h3>
-            <p className="text-xs text-zinc-500 mt-1 uppercase tracking-wider">{t('각 지표를 클릭하여 증명하는 역량을 확인해보세요', 'Click each metric to verify capabilities')}</p>
+            <p className="text-xs text-zinc-500 mt-2 uppercase tracking-wider">{t('각 지표를 클릭하여 증명하는 역량을 확인해보세요', 'Click each metric to verify capabilities')}</p>
           </div>
 
           <div className="grid gap-6 grid-cols-1 sm:grid-cols-3 max-w-4xl mx-auto">
