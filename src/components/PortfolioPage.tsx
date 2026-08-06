@@ -101,7 +101,7 @@ export default function PortfolioPage() {
       tags: ['Product Design', 'Web Service', 'Marketing Strategy'],
       link: 'https://planor.kro.kr',
       details: {
-        background: t('일정 조율과 캘린더 파편화 문제를 해결하고 스케줄 프로세스의 온보딩을 개선하기 위해 설계되었습니다.', 'Developed to resolve team calendar fragmentation and improve user schedule onboarding drop-offs.'),
+        background: t('일정 조율และ 캘린더 파편화 문제를 해결하고 스케줄 프로세스의 온보딩을 개선하기 위해 설계되었습니다.', 'Developed to resolve team calendar fragmentation and improve user schedule onboarding drop-offs.'),
         strategy: t('부드러운 카드 드래그 제스처와 경량화된 연간/월간 타임라인 레이아웃을 통해 최상의 일정 사용성을 확보했습니다.', 'Applied lightweight annual/monthly time grid displays and responsive drag layouts.'),
         metrics: t('사용자 친화적 협업 스케줄러 인터페이스 설계', 'Designed highly intuitive collaborative scheduler interfaces.')
       }
@@ -137,6 +137,134 @@ export default function PortfolioPage() {
         metrics: t('피그마 커뮤니티 계정 활성화 및 에셋 공유.', 'Active archiving and asset sharing on Figma Community.')
       }
     },
+    {
+      id: 'xeproject',
+      type: 'site',
+      category: 'development',
+      title: 'Xe Project',
+      slogan: t('개인 창작과 개발을 위한 실험실', 'A personal sandbox for creative development'),
+      description: t('개인 창작 프로젝트로, 다양한 브라우저 기반 기술 스택과 새로운 기획 아이디어를 프로토타이핑하는 공간입니다.', 'A personal creative workspace where I prototype and experiment with diverse programming concepts.'),
+      tags: ['Personal', 'Development'],
+      link: 'https://github.com/haroseo/Xe-project',
+      github: 'https://github.com/haroseo/Xe-project',
+      details: {
+        background: t('개인 창작과 개발 실험을 통해 새로운 아이디어를 탐색하기 위한 프로젝트입니다.', 'Conceived to explore new technologies and ideas through personal creative workflows.'),
+        strategy: t('빠른 프로토타이핑과 반복적인 실험을 통해 다양한 기술 스택을 직접 경험했습니다.', 'Rapidly built prototypes to experiment with multiple framework combinations.'),
+        metrics: t('개인 기술 역량 확장 및 창작 실험 기록', 'Documented tech stack experiences and structured sandbox builds.')
+      }
+    },
+    {
+      id: 'mindmap',
+      type: 'site',
+      category: 'development',
+      title: 'Mindmap',
+      slogan: t('마인드맵 기반 시각적 암기 학습 서비스', 'Visual mind mapping study tool'),
+      description: t('개념과 연결고리를 직관적인 노드 네트워크로 시각화하여 사용자의 암기 및 학습 능률을 높여주는 지적 생산성 도구입니다.', 'An interactive web study tool based on node-graph structures to enhance memorization efficiency.'),
+      tags: ['Education', 'Data Mapping'],
+      link: 'https://github.com/haroseo/Mindmap',
+      github: 'https://github.com/haroseo/Mindmap',
+      details: {
+        background: t('암기 학습에서 마인드맵의 시각적 구조가 가진 가능성을 웹으로 구현하기 위해 제작했습니다.', 'Developed to translate the cognitive benefit of visual mind mapping into a web application.'),
+        strategy: t('노드 기반의 연결 구조로 개념 간 관계를 직관적으로 표현하고 사용자 친화적인 UI를 구성했습니다.', 'Designed connection flows using node networks with an intuitive UI.'),
+        metrics: t('마인드맵 기반 학습 도구 웹 구현', 'Implemented highly responsive canvas matching and concept mapping interfaces.')
+      }
+    },
+    {
+      id: 'crewcheck',
+      type: 'site',
+      category: 'development',
+      title: 'Crewcheck',
+      slogan: t('함수연구소 출석 체크 및 정산 자동화 툴', 'Automated attendance tracking for Function Factory'),
+      description: t('함수연구소(Function Factory) 팀 내 출결 상태 및 일정 정산 프로세스를 TypeScript 기반으로 개발하여 관리 효율을 대폭 개선했습니다.', 'An automated team attendance tracking tool tailored for Function Factory, written in TypeScript.'),
+      tags: ['TypeScript', 'Automation'],
+      link: 'https://github.com/haroseo/Crewcheck',
+      github: 'https://github.com/haroseo/Crewcheck',
+      details: {
+        background: t('함수연구소 팀 내 출석 관리의 번거로움을 해소하기 위해 직접 기획 및 개발했습니다.', 'Created to automate the administrative overhead of team presence logs in Function Factory.'),
+        strategy: t('TypeScript를 활용해 안정적인 타입 시스템을 구축하고 간결한 대시보드 그리드를 채택했습니다.', 'Applied strict TypeScript static typings and simple dashboard grids for daily use.'),
+        metrics: t('팀 출결 관리 자동화 시스템 구현', 'Fully automated attendance logs and simplified user validation workflows.')
+      }
+    },
+    {
+      id: 'hannbot',
+      type: 'site',
+      category: 'development',
+      title: 'HANN BOT',
+      slogan: t('디스코드 커뮤니티 자동화와 서버 관리의 표준', 'Establishing standards for Discord server automation'),
+      description: t('디스코드 서버 운영의 효율을 극대화하기 위해 다채로운 관리 명령어와 자동 감지 로직을 갖춘 TypeScript 기반 서버 봇입니다.', 'A feature-rich Discord administration bot built on TypeScript, establishing new standards for server operations.'),
+      tags: ['Discord Bot', 'Automation'],
+      link: 'https://github.com/haroseo/HANN-BOT',
+      github: 'https://github.com/haroseo/HANN-BOT',
+      details: {
+        background: t('HANN LABS™ 소속 당시 팀 디스코드 서버 관리 효율화를 위해 직접 설계하고 개발한 봇입니다.', 'Designed and developed during my stay to optimize HANN LABS™\' developer community server.'),
+        strategy: t('TypeScript의 강타입 시스템을 활용해 안정적인 명령어 처리와 이벤트 핸들링을 구현했습니다.', 'Constructed structured event handlers and robust command architectures for stability.'),
+        metrics: t('디스코드 서버 관리 자동화 봇 단독 개발', 'Delivered reliable discord integration features.')
+      }
+    },
+    {
+      id: 'movtier',
+      type: 'site',
+      category: 'development',
+      title: 'movtier',
+      slogan: t('영화 및 미디어 콘텐츠 드래그 앤 드롭 티어 메이커', 'Draggable movie and contents tier list builder'),
+      description: t('사용자가 선호하는 영화와 콘텐츠를 직관적인 티어 그리드 레이아웃에 직접 배치하고 공유할 수 있는 랭킹 플랫폼입니다.', 'A simple web ranking service to curate and rank movies/contents on modular tier lists.'),
+      tags: ['Ranking', 'Vanilla JS'],
+      link: 'https://github.com/haroseo/movtier',
+      github: 'https://github.com/haroseo/movtier',
+      details: {
+        background: t('영화와 콘텐츠를 티어 형식으로 정리하고 공유하는 플랫폼을 직접 기획했습니다.', 'Conceived to create a lightweight, responsive cataloging format to organize movie tiers.'),
+        strategy: t('HTML 기반의 가벼운 구조로 빠른 렌더링과 직관적인 티어 배치 UI를 구현했습니다.', 'Wrote lightweight vanilla structures and streamlined draggable ranking assets.'),
+        metrics: t('콘텐츠 랭킹 큐레이션 서비스 제작', 'Created intuitive tier lists and curation pages.')
+      }
+    },
+    {
+      id: 'cokform',
+      type: 'site',
+      category: 'development',
+      title: 'Cokform',
+      slogan: t('사용자 반응형 초간단 폼 빌더 서비스', 'Super fast & customizable web form builder'),
+      description: t('코딩 없이 간편하게 드래그 앤 드롭만으로 설문지와 응답 수집 폼을 생성할 수 있는 웹 퍼블리싱 생산성 서비스입니다.', 'A fast and customizable web form builder for collecting user feedback and surveys.'),
+      tags: ['Form Builder', 'Productivity'],
+      link: 'https://github.com/haroseo',
+      github: 'https://github.com/haroseo',
+      details: {
+        background: t('사용자가 코딩 없이 직관적으로 설문 조사 및 입력 폼을 빌드하고 데이터를 수집할 수 있도록 돕는 솔루션이 필요하여 제작했습니다.', 'Aimed to let non-developers build dynamic feedback sheets and collect database payloads easily.'),
+        strategy: t('컴포넌트 드래그 앤 드롭 방식의 유연한 에디터 인터페이스를 도입하고 데이터 저장 프로세스를 경량화했습니다.', 'Implemented drag-and-drop element editors and secure submission streams.'),
+        metrics: t('직관적인 폼 빌더 에디터 인터페이스 구현', 'Delivered intuitive form creation flows and minimal database configurations.')
+      }
+    },
+    {
+      id: 'functionfactory',
+      type: 'site',
+      category: 'development',
+      title: 'function factory',
+      slogan: t('재사용 가능한 고성능 유틸리티 함수 팩토리', 'Highly reusable TypeScript utility function packaging'),
+      description: t('중복되는 모듈 코드를 최적화하고 코드 안정성을 극대화하기 위해 공통 로직을 라이브러리 형태로 모아놓은 오픈소스 프로젝트입니다.', 'A repository dedicated to researching and packaging reusable TypeScript utility functions.'),
+      tags: ['Library', 'Utility'],
+      link: 'https://github.com/haroseo',
+      github: 'https://github.com/haroseo',
+      details: {
+        background: t('반복적인 코드 작성을 방지하고 개발자들의 생산성을 올리기 위해 검증된 유틸리티 코드들을 통합 관리하기 위한 목적입니다.', 'Formed to minimize boilerplate programming across multiple personal web services.'),
+        strategy: t('엄격한 타입 정의와 단위 테스트 구성을 통해 라이브러리의 신뢰성을 높이고 패키지 배포 파이프라인을 구축했습니다.', 'Used precise type definitions and unit tests to maximize library reliability.'),
+        metrics: t('오픈소스 유틸리티 라이브러리 프레임워크 구축', 'Constructed modular utilities and code snippet structures.')
+      }
+    },
+    {
+      id: 'mapfit',
+      type: 'site',
+      category: 'development',
+      title: 'Mapfit',
+      slogan: t('위치 기반 좌표 매칭 및 경로 시각화 솔루션', 'Geographic path visualization and coordinate matching'),
+      description: t('사용자 좌표 정보와 지리 데이터 API를 결합하여 정확한 위치 매칭을 돕고 브라우저 상에 직관적으로 시각화하는 지도 서비스입니다.', 'A geographic data visualization service designed to match and plot locations on interactive maps.'),
+      tags: ['Map API', 'Geolocation'],
+      link: 'https://github.com/haroseo',
+      github: 'https://github.com/haroseo',
+      details: {
+        background: t('복잡한 공간 좌표 데이터를 최적의 경로와 장소 매칭 알고리즘을 사용해 브라우저에 시각화하기 위해 개발되었습니다.', 'Created to render dense geo-coordinate information onto client browsers with custom routing.'),
+        strategy: t('지도 API와 좌표 변환 알고리즘을 결합해 부드러운 렌더링 성능과 높은 핀 매칭 정밀도를 구현했습니다.', 'Linked Map APIs with path-matching algorithms for smooth animations.'),
+        metrics: t('실시간 위치 데이터 렌더링 및 경로 탐색 인터랙션 구현', 'Rendered interactive route mapping and pin coordinates dynamically.')
+      }
+    },
     // Workplace
     {
       id: 'luxeret',
@@ -153,17 +281,21 @@ export default function PortfolioPage() {
       }
     },
     {
-      id: 'hannlabs',
+      id: 'kustudio',
       type: 'workplace',
       category: 'brand',
-      title: 'HANN LABS™',
-      slogan: t('상상을 시각화하는 브랜드 디자인', 'Visualizing imagination through brand design'),
-      description: t('HANN LABS™에서 디자이너로 활동하며, 기획된 브랜딩 비주얼 아이덴티티와 프로모션 소재 제작을 지원하고 있습니다.', 'Working as a staff designer, assisting in visual identity guidelines and promotional asset production.'),
-      tags: ['Staff Designer', 'Identity Guide', 'Visual Assets'],
+      title: 'Ku:/ Studio',
+      slogan: t('창작의 경계를 넓히는 곳', 'Expanding the boundaries of creation'),
+      description: t('Ku:/ Studio에서 크리에이티브 멤버로 활동하며 다양한 브랜드 및 비주얼 디자인 프로젝트를 수행하고 있습니다.', 'Working as a creative member at Ku:/ Studio, participating in branding and design projects.'),
+      tags: ['Creative Member', 'Brand Design', 'Visual Design'],
+      achievements: [
+        t('스튜디오 내 브랜드 및 비주얼 디자인 프로젝트 참여', 'Participated in studio brand identity design and visual assets'),
+        t('크리에이티브 방향성 논의 및 콘텐츠 기획 기여', 'Contributed to creative design direction and contents curation')
+      ],
       details: {
-        background: t('아이디어를 실제 눈에 보이는 그래픽 디자인 가이드라인으로 형태화하고 다지기 위한 연구 지원입니다.', 'Conceived to transform conceptual ideas into solid graphic layout guidelines for digital platforms.'),
-        strategy: t('일관성 있는 격자선 구조와 로고 서체의 무결함을 기저에 둔 서브 그래픽 소스 제작에 임했습니다.', 'Focused on strict grid layouts and typography guidelines to support coherent visual assets.'),
-        metrics: t('팀 내 비주얼 자산 관리 프로세스 확립 및 브랜딩 가이드 구현 지원.', 'Supported visual asset workflows, contributing to final brand identity guidelines.')
+        background: t('스튜디오 내부 브랜딩 정체성을 강화하고 다양한 시각 창작 콘텐츠를 생성하기 위해 합류했습니다.', 'Joined to strengthen the studio\'s internal branding identity and create various visual creative contents.'),
+        strategy: t('모던한 비주얼 톤앤매너와 사용자 경험을 조화시키는 아이디어 제안을 중심으로 프로젝트를 리드했습니다.', 'Led projects focusing on aligning modern visual tone & manner with user experiences.'),
+        metrics: t('스튜디오 브랜드 디자인 품질 제고 및 창작 콘텐츠 라인업 다양화.', 'Elevated studio branding quality and diversified creative content lineups.')
       }
     }
   ];
@@ -254,7 +386,8 @@ export default function PortfolioPage() {
                       item.id === 'planor' ? '/assets/planor.png' :
                       item.id === 'typolab' ? '/assets/naramarsami.png' :
                       item.id === 'luxeret' ? '/assets/luxeret.png' :
-                      '/assets/hannlabs.png'
+                      item.id === 'kustudio' ? '/assets/kustudio.png' :
+                      '/assets/default-project.png'
                     }
                     alt={item.title}
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]"
@@ -411,7 +544,7 @@ export default function PortfolioPage() {
               {/* Footer */}
               <div className="border-t border-white/5 pt-6 mt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
                 <p className="text-[7.5px] leading-relaxed text-zinc-650 tracking-wider font-mono uppercase text-center sm:text-left max-w-xs">
-                  Trademarks (RoFolder, Limited™, HANN LABS™, LUXERET) are properties of their respective owners.
+                  Trademarks (RoFolder, Limited™, Ku:/ Studio, LUXERET) are properties of their respective owners.
                 </p>
                 <div className="flex items-center gap-3">
                   {selectedItem.link && (
