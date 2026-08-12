@@ -50,7 +50,7 @@ export default function Hero() {
           <motion.div variants={itemVariants} className="space-y-6 text-center lg:text-left">
             <div className="flex items-center justify-center lg:justify-start gap-2">
               <span className="text-[10px] font-bold tracking-widest text-zinc-450 uppercase">
-                {t('소개', 'INTRODUCTION')}
+                {t('?�개', 'INTRODUCTION')}
               </span>
               <span className="h-px w-4 bg-zinc-800" />
             </div>
@@ -68,13 +68,13 @@ export default function Hero() {
                 onClick={() => navigate('/portfolio')}
                 className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-[var(--toss-blue)] px-8 py-3.5 text-xs sm:text-sm font-bold text-white hover:bg-[var(--toss-blue-hover)] shadow-lg transition-all cursor-pointer"
               >
-                {t('프로젝트 목록', 'PROJECT CATALOG')}
+                {t('?�로?�트 목록', 'PROJECT CATALOG')}
               </button>
               <button
                 onClick={() => navigate('/contact')}
                 className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-8 py-3.5 text-xs sm:text-sm font-bold text-white hover:bg-white/10 hover:border-white/20 transition-all cursor-pointer"
               >
-                {t('협업 문의', 'COLLABORATE')}
+                {t('?�업 문의', 'COLLABORATE')}
               </button>
             </div>
           </motion.div>
@@ -91,11 +91,7 @@ export default function Hero() {
                     SEOHARO
                   </h2>
                 </div>
-                <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-400 select-none">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  {t('활동 중', 'ACTIVE')}
                 </div>
-              </div>
 
               <p className="text-xs leading-relaxed text-zinc-300 font-medium">
                 {data.title}
@@ -109,7 +105,7 @@ export default function Hero() {
                 </div>
                 <div className="flex flex-col justify-between py-2 border-b border-zinc-900">
                   <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider">LOCATION</span>
-                  <span className="mt-1.5 font-semibold text-zinc-200">{t('대한민국', 'South Korea')}</span>
+                  <span className="mt-1.5 font-semibold text-zinc-200">{t('?�?��?�?, 'South Korea')}</span>
                 </div>
                 <a
                   href={data.contact.github}
@@ -119,7 +115,7 @@ export default function Hero() {
                 >
                   <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider flex justify-between items-center">
                     GITHUB
-                    <span className="text-[8px] text-zinc-600 group-hover:text-white transition-colors">LAUNCH ↗</span>
+                    <span className="text-[8px] text-zinc-600 group-hover:text-white transition-colors">LAUNCH ??/span>
                   </span>
                   <span className="mt-1.5 font-semibold text-zinc-200 group-hover:text-white transition-colors">github.com/haroseo</span>
                 </a>
@@ -131,16 +127,16 @@ export default function Hero() {
                 <div className="flex flex-wrap gap-x-3 gap-y-1.5">
                   {[
                     'RoFolder CEO',
-                    'Limited™ Founder',
+                    'Limited??Founder',
                     'LUXERET Marketer',
-                    'HANN LABS™ Staff Designer'
+                    'HANN LABS??Staff Designer'
                   ].map((role, idx, arr) => (
                     <span 
                       key={role} 
                       className="text-[10px] font-semibold text-zinc-300 font-sans tracking-tight flex items-center"
                     >
                       {role}
-                      {idx < arr.length - 1 && <span className="text-zinc-705 ml-3 select-none font-normal text-[8px]">•</span>}
+                      {idx < arr.length - 1 && <span className="text-zinc-705 ml-3 select-none font-normal text-[8px]">??/span>}
                     </span>
                   ))}
                 </div>
@@ -161,3 +157,4 @@ export default function Hero() {
     </section>
   );
 }
+
