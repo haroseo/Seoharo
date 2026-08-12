@@ -79,7 +79,7 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Profile Card Summary Panel */}
+          {/* Profile Card Summary Panel - Flat Borderless style */}
           <motion.div
             variants={itemVariants}
             className="py-8 lg:py-10 bg-transparent"
@@ -97,6 +97,7 @@ export default function Hero() {
                 {data.title}
               </p>
 
+              {/* Grid-based Metadata Tiles - Flat with bottom border only */}
               <div className="grid grid-cols-2 gap-y-6 gap-x-8 text-xs text-zinc-300 font-normal">
                 <div className="flex flex-col justify-between py-2 border-b border-zinc-900">
                   <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider">EMAIL</span>
@@ -112,7 +113,7 @@ export default function Hero() {
                   rel="noopener noreferrer"
                   className="flex flex-col justify-between py-2 border-b border-zinc-900 col-span-2 group transition-all duration-300"
                 >
-                  <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider flex justify-between items-center">       
+                  <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider flex justify-between items-center">
                     GITHUB
                     <span className="text-[8px] text-zinc-600 group-hover:text-white transition-colors">LAUNCH ↗</span>
                   </span>
@@ -120,20 +121,21 @@ export default function Hero() {
                 </a>
               </div>
 
+              {/* Tag-based Micro Chips (Flat bullet list) */}
               <div className="pt-6 border-t border-zinc-900 space-y-3">
-                <span className="text-[9px] font-bold tracking-wider text-zinc-500 uppercase block">ROLES & POSITION</span>      
+                <span className="text-[9px] font-bold tracking-wider text-zinc-500 uppercase block">ROLES & POSITION</span>
                 <div className="flex flex-wrap gap-x-3 gap-y-1.5">
                   {[
                     'RoFolder CEO',
                     'Limited™ Founder',
                     'LUXERET Marketer'
-                  ].map((role) => (
-                    <span
-                      key={role}
+                  ].map((role, idx, arr) => (
+                    <span 
+                      key={role} 
                       className="text-[10px] font-semibold text-zinc-300 font-sans tracking-tight flex items-center"
                     >
                       {role}
-                      <span className="text-zinc-705 ml-3 select-none font-normal text-[8px]">•</span>
+                      {idx < arr.length - 1 && <span className="text-zinc-705 ml-3 select-none font-normal text-[8px]">•</span>}
                     </span>
                   ))}
                 </div>
