@@ -7,8 +7,14 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Pretendard', 'Outfit', 'system-ui', 'sans-serif'],
+        sans: ['Pretendard Variable', 'Manrope', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial'],
+        heading: ['Manrope', 'Pretendard Variable', 'system-ui'],
+        mono: ['"IBM Plex Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
+      borderRadius: {
+        xl: '12px',
+        '2xl': '16px'
+      }
     },
   },
   darkMode: 'class',
