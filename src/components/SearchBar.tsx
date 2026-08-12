@@ -1,6 +1,4 @@
-﻿import React from "react";
-
-interface Props {
+﻿interface Props {
   query: string;
   setQuery: (q: string) => void;
   activeTag: string | null;
