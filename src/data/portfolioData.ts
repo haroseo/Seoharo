@@ -52,7 +52,7 @@ const portfolioDataKo: PortfolioDataType = {
   title: "Brand Design · Marketing · Programming",
   tagline: "당신의 스토리를 성공의 데이터로",
   description:
-    "디자인, 마케팅, 프로그래밍을 통해 비즈니스와 유저를 연결하는 크리에이터 서하루입니다. 청소년 창업 서버 로폴더(RoFolder)와 리소스 배포 공간 Limited™를 운영하고 있습니다.",
+    "디자인, 마케팅, 프로그래밍을 통해 비즈니스와 유저를 연결하는 크리에이터 서하루입니다. 청소년 창업 서버 로폴더(RoFolder)와 리소스 배포 공�[...]",
 
   skills: [
     {
@@ -176,7 +176,7 @@ const portfolioDataKo: PortfolioDataType = {
       featured: false,
       category: "development",
       details: {
-        background: "HANN LABS™ 소속 당시 팀 디스코드 서버 관리 효율화를 위해 직접 설계하고 개발한 봇입니다.",
+        background: "팀 디스코드 서버 관리 효율화를 위해 설계하고 개발한 봇입니다.",
         strategy: "TypeScript의 강타입 시스템을 활용해 안정적인 명령어 처리와 이벤트 핸들링을 구현했습니다.",
         metrics: "디스코드 서버 관리 자동화 봇 단독 개발"
       }
@@ -208,7 +208,7 @@ const portfolioDataKo: PortfolioDataType = {
       featured: false,
       category: "development",
       details: {
-        background: "사용자가 코딩 없이 직관적으로 설문 조사 및 입력 폼을 빌드하고 데이터를 수집할 수 있도록 돕는 솔루션이 필요하여 제작했습니다.",
+        background: "사용자가 코딩 없이 직관적으로 설문 조사 및 입력 폼을 빌드하고 데이터를 수집할 수 있도록 돕는 솔루션이 필요하여 제작했습니�[...]",
         strategy: "컴포넌트 드래그 앤 드롭 방식의 유연한 에디터 인터페이스를 도입하고 데이터 저장 프로세스를 경량화했습니다.",
         metrics: "직관적인 폼 빌더 에디터 인터페이스 구현"
       }
@@ -224,7 +224,7 @@ const portfolioDataKo: PortfolioDataType = {
       featured: false,
       category: "development",
       details: {
-        background: "반복적인 코드 작성을 방지하고 개발자들의 생산성을 올리기 위해 검증된 유틸리티 코드들을 통합 관리하기 위한 목적입니다.",
+        background: "반복적인 코드 작성을 방지하고 개발자들의 생산성을 올리기 위해 검증된 유틸티 코드들을 통합 관리하기 위한 목적입니다.",
         strategy: "엄격한 타입 정의와 단위 테스트 구성을 통해 라이브러리의 신뢰성을 높이고 패키지 배포 파이프라인을 구축했습니다.",
         metrics: "오픈소스 유틸리티 라이브러리 프레임워크 구축"
       }
@@ -265,7 +265,7 @@ const portfolioDataKo: PortfolioDataType = {
       id: "limited",
       title: "Limited™ - Founder",
       slogan: "오직 나만을 위한 제품, Limited™",
-      description: "Limited™는 오직 나만을 위한 제품, Limited™ 브랜드로 가상 공간에 최적화된 게임 리소스와 에셋 라이브러리를 공유하고 소통하는 채널입니다.",
+      description: "Limited™는 오직 나만을 위한 제품, Limited™ 브랜드로 가상 공간에 최적화된 게임 리소스와 에셋 라이브러리를 공유하고 소통하는 채[...]",
       achievements: [
         "게임 개발에 사용 가능한 무료 에셋 및 리소스 배포",
         "사용자 피드백 기반 리소스 구성 및 커뮤니티 채널 관리"
@@ -321,7 +321,7 @@ const portfolioDataKo: PortfolioDataType = {
       role: "설립자 및 총괄 (Founder)",
       slogan: "유저가 만들어 나가는 투명한 커뮤니티, 로블갤러리",
       description: "유저가 만들어 나가는 투명한 커뮤니티, 로블갤러리",
-      detailsText: "로블갤러리는 유저들이 스스로 교류하고 성장하는 소통 커뮤니티입니다. 유저들의 자발적인 참여와 투명한 문화를 지향하며 건전하고 투명한 커뮤니티 환경을 제공하고 지속 가능한 소통의 장을 만듭니다."
+      detailsText: "로블갤러리는 유저들이 스스로 교류하고 성장하는 소통 커뮤니티입니다. 유저들의 자발적인 참여와 투명한 문화를 지향하며 건전��[...]"
     },
     {
       name: "Limited™",
@@ -330,7 +330,7 @@ const portfolioDataKo: PortfolioDataType = {
       role: "Founder",
       slogan: "오직 나만을 위한 제품, Limited™",
       description: "최상급 무료 에셋 배포와 가상 공간에 최적화된 게임 리소스 라이브러리 채널",
-      detailsText: "Limited™는 최상급 무료배포와 게임 환경에 특화된 맞춤형 그래픽/코드 에셋을 제공합니다. 개발자들의 시간 비용을 획기적으로 줄여줄 프리미엄 창작 리소스를 지속 연구하고 유통합니다."
+      detailsText: "Limited™는 최상급 무료배포와 게임 환경에 특화된 맞춤형 그래픽/코드 에셋을 제공합니다. 개발자들의 시간 비용을 획기적으로 줄��[...]"
     },
     {
       name: "로폴더 (RoFolder)",
@@ -339,7 +339,7 @@ const portfolioDataKo: PortfolioDataType = {
       role: "대표 (CEO)",
       slogan: "당신의 가치를 높이는, 로샵 탐색의 모든 것",
       description: "청소년 및 청년의 스타트업 창업을 독려하고 이끄는 디스코드 대표 커뮤니티",
-      detailsText: "로폴더는 청소년 및 청년의 스타트업 창업을 독려하고 이끄는 디스코드 대표 커뮤니티입니다. 브랜드 가치 구축, 모의 피칭 피드백, 네트워킹 리소스를 결합하여 비즈니스의 첫 데이터를 생성할 수 있도록 스타트업 생태계를 활성화합니다."
+      detailsText: "로폴더는 청소년 및 청년의 스타트업 창업을 독려하고 이끄는 디스코드 대표 커뮤니티입니다. 브랜드 가치 구축, 모의 피칭 피드백,[...]
     }
   ],
 };
@@ -473,7 +473,7 @@ const portfolioDataEn: PortfolioDataType = {
       featured: false,
       category: "development",
       details: {
-        background: "Designed and developed during my stay to optimize HANN LABS™' developer community server.",
+        background: "Designed and developed to optimize a developer community Discord server.",
         strategy: "Constructed structured event handlers and robust command architectures for stability.",
         metrics: "Delivered reliable discord integration features."
       }
@@ -618,7 +618,7 @@ const portfolioDataEn: PortfolioDataType = {
       role: "Founder & General Manager",
       slogan: "A transparent community built by users, ROGLLAERY",
       description: "A transparent community built by users, ROGLLAERY",
-      detailsText: "ROGLLAERY is a communication community where users interact and grow together. We aim for voluntary user participation and transparent culture, providing a healthy and transparent environment."
+      detailsText: "ROGLLAERY is a communication community where users interact and grow together. We aim for voluntary user participation and transparent culture, providing a healthy and transpa[...]"
     },
     {
       name: "Limited™",
@@ -627,7 +627,7 @@ const portfolioDataEn: PortfolioDataType = {
       role: "Founder",
       slogan: "Products made exclusively for you, Limited™",
       description: "A channel distributing top-tier free assets and hosting a game resource library optimized for virtual spaces",
-      detailsText: "Limited™ provides custom graphic and code assets tailored for game environments along with top-tier free distribution. We continuously research and distribute premium creative resources to drastically save development time and costs."
+      detailsText: "Limited™ provides custom graphic and code assets tailored for game environments along with top-tier free distribution. We continuously research and distribute premium creati[...]"
     },
     {
       name: "RoFolder",
@@ -636,7 +636,7 @@ const portfolioDataEn: PortfolioDataType = {
       role: "CEO",
       slogan: "Everything about RoShop searches that raises your value",
       description: "A leading Discord community that encourages youth startup entrepreneurship",
-      detailsText: "RoFolder is a leading Discord community that encourages and guides youth startup entrepreneurship. We activate the startup ecosystem by combining brand value establishment, mock pitch feedback, and networking resources so businesses can generate their first data."
+      detailsText: "RoFolder is a leading Discord community that encourages and guides youth startup entrepreneurship. We activate the startup ecosystem by combining brand value establishment, mo[...]"
     }
   ],
 };
