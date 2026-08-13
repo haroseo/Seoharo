@@ -188,22 +188,7 @@ export default function PortfolioPage() {
         metrics: t('팀 출결 관리 시스템 구현', 'Fully automated attendance logs and simplified user validation workflows.')
       }
     },
-    {
-      id: 'hannbot',
-      type: 'site',
-      category: 'development',
-      title: 'HANN BOT',
-      slogan: t('디스코드 커뮤니티 서버 관리의 표준', 'Establishing standards for Discord server automation'),
-      description: t('디스코드 서버 운영의 효율을 극대화하기 위해 다채로운 관리 명령어와 자동 감지 로직을 갖춘 서버 봇입니다.', 'A feature-rich Discord administration bot establishing new standards for server operations.'),
-      tags: ['Discord Bot', 'Automation'],
-      link: 'https://github.com/haroseo/HANN-BOT',
-      github: 'https://github.com/haroseo/HANN-BOT',
-      details: {
-        background: t('디스코드 서버 운영 효율화를 위해 직접 설계하고 개발한 봇입니다.', 'Designed and developed to optimize a Discord server\'s operational efficiency.'),
-        strategy: t('안정적인 명령어 처리와 이벤트 핸들링을 구현했습니다.', 'Constructed structured event handlers and robust command architectures for stability.'),
-        metrics: t('디스코드 서버 관리 봇 단독 개발', 'Delivered reliable Discord bot integration features.')
-      }
-    },
+
     {
       id: 'movtier',
       type: 'site',

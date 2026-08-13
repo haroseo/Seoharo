@@ -165,22 +165,7 @@ const portfolioDataKo: PortfolioDataType = {
         metrics: "팀 출결 관리 자동화 시스템 구현"
       }
     },
-    {
-      id: 7,
-      title: "HANN BOT",
-      description:
-        "서버 관리의 새로운 기준을 제시하는 TypeScript 기반 디스코드 봇입니다.",
-      tags: ["Discord Bot", "TypeScript", "Automation"],
-      link: "https://github.com/haroseo/HANN-BOT",
-      github: "https://github.com/haroseo/HANN-BOT",
-      featured: false,
-      category: "development",
-      details: {
-        background: "디스코드 서버 운영 효율화를 위해 직접 설계하고 개발한 보트입니다.",
-        strategy: "안정적인 명령어 처리와 이벤트 핸들링을 구현했습니다.",
-        metrics: "디스코드 서버 관리 자동화 봇 단독 개발"
-      }
-    },
+
     {
       id: 8,
       title: "movtier",
@@ -462,22 +447,7 @@ const portfolioDataEn: PortfolioDataType = {
         metrics: "Fully automated attendance logs and simplified user validation workflows."
       }
     },
-    {
-      id: 7,
-      title: "HANN BOT",
-      description:
-        "A feature-rich Discord administration bot built on TypeScript, establishing new standards for server operations.",
-      tags: ["Discord Bot", "TypeScript", "Automation"],
-      link: "https://github.com/haroseo/HANN-BOT",
-      github: "https://github.com/haroseo/HANN-BOT",
-      featured: false,
-      category: "development",
-      details: {
-        background: "Designed and developed to optimize a developer community Discord server's operational efficiency.",
-        strategy: "Constructed structured event handlers and robust command architectures for stability.",
-        metrics: "Delivered reliable discord integration features."
-      }
-    },
+
     {
       id: 8,
       title: "movtier",
