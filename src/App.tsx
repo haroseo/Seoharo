@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { RouterProvider, useRouter } from './components/router';
+import { LanguageProvider, useLanguage } from './components/LanguageContext';
 import Header from './components/Header';
 import ProgressBar from './components/ProgressBar';
 import Hero from './components/Hero';
@@ -15,6 +16,33 @@ import './index.css';
 
 function AppContent() {
   const { currentPath } = useRouter();
+  const { language } = useLanguage();
+
+  // Dynamic Browser Title for SEO / GEO
+  useEffect(() => {
+    const routeTitlesKo: Record<string, string> = {
+      '/': '서하루 | Brand Designer · Marketer · Developer',
+      '/about': '서하루 | Brand Designer · Marketer · Developer',
+      '/portfolio': '서하루 | 포트폴리오 전체',
+      '/design': '서하루 | 브랜드 디자인 포트폴리오',
+      '/marketing': '서하루 | 마케팅 포트폴리오',
+      '/development': '서하루 | 웹 개발 포트폴리오',
+      '/contact': '서하루 | 협업 및 문의',
+    };
+
+    const routeTitlesEn: Record<string, string> = {
+      '/': 'SEOHARO | Brand Designer · Marketer · Developer',
+      '/about': 'SEOHARO | Brand Designer · Marketer · Developer',
+      '/portfolio': 'SEOHARO | Full Portfolio',
+      '/design': 'SEOHARO | Brand Design Portfolio',
+      '/marketing': 'SEOHARO | Marketing Portfolio',
+      '/development': 'SEOHARO | Web Dev Portfolio',
+      '/contact': 'SEOHARO | Contact & Collaborate',
+    };
+
+    const titleMap = language === 'ko' ? routeTitlesKo : routeTitlesEn;
+    document.title = titleMap[currentPath] || titleMap['/'];
+  }, [currentPath, language]);
 
   // Block middle-click auto-scroll globally
   useEffect(() => {
@@ -60,8 +88,6 @@ function AppContent() {
     </div>
   );
 }
-
-import { LanguageProvider } from './components/LanguageContext';
 
 function App() {
   return (

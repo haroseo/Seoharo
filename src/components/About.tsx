@@ -7,8 +7,8 @@ export default function About() {
     {
       title: t('시각 디자인 & 브랜딩', 'Visual Design & Branding'),
       description: t(
-        'HANN LABS™에서 디자인을 배우며 보조 스태프로 참여하고, 브랜드 비주얼 기획 경험을 기반으로 Limited™의 비주얼 정체성을 구상해 나갑니다.',
-        'Learning design and participating as assistant staff at HANN LABS™, and conceptualizing the visual identity of Limited™ based on brand design experience.'
+        'Ku:/ Studio에서 크리에이티브 멤버로 활동하며 브랜드 비주얼 기획을 경험하고, 그 기반 위에 Limited™의 시각 정체성을 구상해 나갑니다.',
+        'Working as a creative member at Ku:/ Studio, gaining brand visual experience and conceptualizing the visual identity of Limited™ on that foundation.'
       ),
     },
     {
@@ -39,8 +39,8 @@ export default function About() {
       label: t('경력 수', 'Organizations'),
       value: '30+',
       proof: t(
-        '로폴더 대표, Limited™ 설립자, LUXERET 마케터, HANN LABS™ 디자이너 등 30개 이상의 조직에서 다양한 역할을 경험하며 실무 역량을 길렀습니다.',
-        'Having worked with 30+ organizations, covering roles from CEO and Founder to Marketer and Designer - proving wide cross-disciplinary experience.'
+        '로폴더 대표, Limited™ 설립자, LUXERET 마케터, Ku:/ Studio 크리에이티브 멤버 등 30개 이상의 조직에서 다양한 역할을 경험하며 실무 역량을 길렀습니다.',
+        'Having worked with 30+ organizations, covering roles from CEO and Founder to Marketer and Creative Member — proving wide cross-disciplinary experience.'
       )
     },
     {
@@ -121,7 +121,7 @@ export default function About() {
                   {t('소속 및 역할', 'Affiliation & Role')}
                 </p>
                 <p className="text-xs sm:text-sm font-semibold text-zinc-300 font-sans leading-relaxed">
-                  RoFolder CEO · Limited™ Founder · LUXERET Marketer · HANN LABS™ Staff Designer
+                  RoFolder CEO · Limited™ Founder · LUXERET Marketer · Ku:/ Studio Creative Member
                 </p>
               </div>
 

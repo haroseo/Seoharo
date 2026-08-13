@@ -199,9 +199,9 @@ export default function PortfolioPage() {
       link: 'https://github.com/haroseo/HANN-BOT',
       github: 'https://github.com/haroseo/HANN-BOT',
       details: {
-        background: t('HANN LABS™ 소속 당시 팀 디스코드 서버 관리 효율화를 위해 직접 설계하고 개발한 봇입니다.', 'Designed and developed during my stay to optimize HANN LABS™\'s developer community server.'),
+        background: t('디스코드 서버 운영 효율화를 위해 직접 설계하고 개발한 봇입니다.', 'Designed and developed to optimize a Discord server\'s operational efficiency.'),
         strategy: t('안정적인 명령어 처리와 이벤트 핸들링을 구현했습니다.', 'Constructed structured event handlers and robust command architectures for stability.'),
-        metrics: t('디스코드 서버 관리 봇 단독 개발', 'Delivered reliable discord integration features.')
+        metrics: t('디스코드 서버 관리 봇 단독 개발', 'Delivered reliable Discord bot integration features.')
       }
     },
     {
