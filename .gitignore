@@ -10,6 +10,8 @@ lerna-debug.log*
 node_modules
 __pycache__/
 *.pyc
+ai-sync/sources/EXTERNAL_SOURCES.json
+ai-sync/local-exports/
 dist
 dist-ssr
 *.local

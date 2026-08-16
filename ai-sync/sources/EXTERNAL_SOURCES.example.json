@@ -1,0 +1,5 @@
+{
+  "notion_export_paths": [],
+  "drive_export_paths": [],
+  "note": "Put only local export paths in a private EXTERNAL_SOURCES.json; never commit that file or credentials."
+}
