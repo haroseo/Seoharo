@@ -12,6 +12,7 @@ __pycache__/
 *.pyc
 ai-sync/sources/EXTERNAL_SOURCES.json
 ai-sync/local-exports/
+ai-sync/archive/
 dist
 dist-ssr
 *.local

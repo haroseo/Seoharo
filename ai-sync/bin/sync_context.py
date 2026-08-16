@@ -20,7 +20,7 @@ GENERATED = ROOT / "ai-sync" / "generated"
 ALLOWLIST = [
     ".gitignore", "AGENTS.md", "CLAUDE.md", "GEMINI.md", ".agents/AGENTS.md",
     "ai-sync/README.md", "ai-sync/bin/sync_context.py", "ai-sync/bin/external_sync.py",
-    "ai-sync/context/", "ai-sync/generated/", "ai-sync/sources/INBOX.md",
+    "ai-sync/context/", "ai-sync/generated/", "ai-sync/projects/", "ai-sync/sources/INBOX.md",
     "ai-sync/sources/EXTERNAL_SOURCES.example.json",
 ]
 SECRET_PATTERNS = ("BEGIN PRIVATE KEY", "api_key=", "api-key:", "authorization: bearer", "password=", "secret=")
