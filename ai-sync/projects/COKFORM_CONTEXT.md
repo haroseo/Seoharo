@@ -95,3 +95,13 @@ MVP에서 반드시 지켜야 할 선은 공개 폼 생성, 기본 질문 편집
 3. 응답 성공·실패·재시도·중복 제출 테스트를 추가한다.
 4. Cloudflare Pages에서 실제 라우팅·헤더·새로고침·모바일 화면을 검증한다.
 5. 그 결과를 반영한 뒤 사용자 승인 항목만 `INBOX.md`에 기록하고 정본을 갱신한다.
+
+## 2026-08-16 실제 저장소 검증 업데이트
+
+참조 저장소 `Cokform-47203810394/Conform-2938103840`를 직접 확인하고 수정했다. 현재 GitHub Pages `main` 배포는 built 상태이며 실제 주소의 홈·에디터·공개 응답·제출 흐름을 브라우저에서 확인했다.
+
+이번 수정에서는 폼 본문과 응답을 분리했다. 편집자용 `forms`, 공개용 정제 데이터 `form_public`, 응답용 `responses` 스키마와 RLS 정책을 `supabase/schema.sql`에 추가했다. 공개 응답이 폼 전체 문서를 덮어쓰지 않으며, 공동작업자 메타데이터는 공개 데이터에 복사하지 않는다. Supabase가 설정된 상태에서 클라우드 저장·제출이 실패하면 localStorage 성공으로 위장하지 않고 실패를 표시한다.
+
+Vite는 기본 GitHub Pages 하위 경로를 유지하면서 `VITE_BASE_PATH=/`로 root 호스팅도 지원한다. 기본 build, root build, `git diff --check`, 홈·에디터·공개 응답·로컬 제출 흐름을 통과했다. 커밋은 `3419cb7 fix: separate form and response storage`이며 `main`에 push했다.
+
+남은 작업은 Supabase SQL 적용, Google OAuth와 소유자 RLS 실계정 테스트, 서버 기준 rate limit·스팸 방어, 개인정보·보관·삭제·법무·상표 검토다. 이 내용은 Cokform 전용이며 공통 정본에는 고수준 상태만 유지한다.
