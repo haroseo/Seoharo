@@ -1,0 +1,26 @@
+name: AI context sync check
+
+on:
+  push:
+    paths:
+      - 'ai-sync/**'
+      - 'AGENTS.md'
+      - 'CLAUDE.md'
+      - 'GEMINI.md'
+  pull_request:
+    paths:
+      - 'ai-sync/**'
+      - 'AGENTS.md'
+      - 'CLAUDE.md'
+      - 'GEMINI.md'
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check generated context
+        run: python3 ai-sync/bin/sync_context.py --check
