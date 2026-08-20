@@ -333,6 +333,7 @@ export default function PortfolioPage() {
       typolab: '/assets/naramarsami.png',
       luxeret: '/assets/luxeret.png',
       kustudio: '/assets/kustudio.png',
+      cokform: '/assets/cokform.jpg',
     };
     return map[id] ?? null;
   };
