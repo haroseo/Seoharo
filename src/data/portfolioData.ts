@@ -188,8 +188,8 @@ const portfolioDataKo: PortfolioDataType = {
       description:
         "손쉽고 빠른 웹 설문지 및 데이터 수집 폼 제작 서비스입니다.",
       tags: ["Web Service", "Form Builder", "Productivity"],
-      link: "https://github.com/haroseo",
-      github: "https://github.com/haroseo",
+      link: "https://github.com/Cokform-47203810394/Conform-2938103840",
+      github: "https://github.com/Cokform-47203810394/Conform-2938103840",
       featured: false,
       category: "development",
       details: {
@@ -470,8 +470,8 @@ const portfolioDataEn: PortfolioDataType = {
       description:
         "A fast and customizable web form builder for collecting user feedback and surveys.",
       tags: ["Web Service", "Form Builder", "Productivity"],
-      link: "https://github.com/haroseo",
-      github: "https://github.com/haroseo",
+      link: "https://github.com/Cokform-47203810394/Conform-2938103840",
+      github: "https://github.com/Cokform-47203810394/Conform-2938103840",
       featured: false,
       category: "development",
       details: {
