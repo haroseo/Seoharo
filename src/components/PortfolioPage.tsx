@@ -339,10 +339,10 @@ export default function PortfolioPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-black text-white select-none">
+    <div className="relative min-h-screen bg-black text-white select-none pt-[56px]">
 
       {/* Sticky Filter Bar */}
-      <div className="sticky top-12 sm:top-[53px] z-30 w-full bg-black/60 backdrop-blur-md border-b border-white/5">
+      <div className="sticky top-[56px] z-30 w-full bg-black/60 backdrop-blur-md border-b border-white/5">
         {/* Category Tabs */}
         <div className="py-3 px-6 flex justify-center gap-1.5 overflow-x-auto whitespace-nowrap scrollbar-hide">
           {filterTabs.map(tab => {
