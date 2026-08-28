@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   X,
@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import { useLanguage } from './LanguageContext';
 import { useRouter } from './router';
-import SearchBar from './SearchBar';
+import { useSearch } from './SearchContext';
 
 interface DisplayItem {
   id: string;
@@ -31,8 +31,7 @@ interface DisplayItem {
 
 export default function PortfolioPage() {
   const [selectedItem, setSelectedItem] = useState<DisplayItem | null>(null);
-  const [query, setQuery] = useState('');
-  const [activeTag, setActiveTag] = useState<string | null>(null);
+  const { query, activeTag } = useSearch();
   const { t } = useLanguage();
   const { currentPath, navigate } = useRouter();
 
@@ -288,11 +287,7 @@ export default function PortfolioPage() {
     }
   ];
 
-  const allTags = useMemo(() => {
-    const s = new Set<string>();
-    displayItems.forEach((it) => it.tags?.forEach((tg) => s.add(tg)));
-    return Array.from(s);
-  }, []);
+
 
   const filterTabs = [
     { label: t('전체', '전체'), path: '/portfolio' },
@@ -365,8 +360,6 @@ export default function PortfolioPage() {
             );
           })}
         </div>
-        {/* Search & Tag Filter */}
-        <SearchBar query={query} setQuery={setQuery} activeTag={activeTag} setActiveTag={setActiveTag} allTags={allTags} />
       </div>
 
       {/* Grid */}
@@ -389,7 +382,7 @@ export default function PortfolioPage() {
                 className="bg-[#101010]/40 border border-white/5 rounded-xl overflow-hidden hover:border-white/12 transition-all duration-300 group flex flex-col justify-between cursor-pointer h-full shadow-[0_8px_24px_rgba(0,0,0,0.5)] hover:shadow-[0_16px_36px_rgba(0,0,0,0.7)] hover:-translate-y-0.5"
               >
                 {/* Thumbnail */}
-                <div className="aspect-[1.6/1] w-full overflow-hidden relative border-b border-white/5 bg-zinc-950 flex items-center justify-center">
+                <div className="aspect-video w-full overflow-hidden relative border-b border-white/5 bg-zinc-950 flex items-center justify-center">
                   {item.id === 'figmalibrary' ? (
                     <div className="w-12 h-18 transition-transform duration-700 ease-out group-hover:scale-110 flex items-center justify-center">
                       <svg viewBox="0 0 38 57" className="w-full h-full">

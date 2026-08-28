@@ -89,11 +89,15 @@ function AppContent() {
   );
 }
 
+import { SearchProvider } from './components/SearchContext';
+
 function App() {
   return (
     <LanguageProvider>
       <RouterProvider>
-        <AppContent />
+        <SearchProvider>
+          <AppContent />
+        </SearchProvider>
       </RouterProvider>
     </LanguageProvider>
   );
