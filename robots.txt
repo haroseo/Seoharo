@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://seoharo.kro.kr/sitemap.xml
+
+# Disallow private/build directories
+Disallow: /dist/
+Disallow: /.github/
+Disallow: /node_modules/
