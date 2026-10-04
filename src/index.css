@@ -1,191 +1,113 @@
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css');
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css');
 @import "tailwindcss";
 @import "@toss/tds-colors/colors.css";
 
 @layer base {
   :root {
-    color-scheme: dark;
-
-    /* Apple HIG Tokens */
+    color-scheme: light;
     --apple-system-blue: #007aff;
     --apple-system-blue-dark: #0a84ff;
     --apple-glass-bg: rgba(22, 22, 23, 0.75);
     --apple-glass-border: rgba(255, 255, 255, 0.08);
     --apple-squircle-radius: 24px;
-    
-    /* Toss Design System (TDS) UI Tokens */
-    --toss-blue: var(--blue500); /* #3182f6 */
-    --toss-blue-hover: var(--blue600); /* #2272eb */
-    --toss-bg-card: var(--grey900); /* #191f28 */
-    --toss-bg-page: #0f151c;
-    --toss-border: var(--grey800); /* #333d4b */
-    --toss-text-primary: #ffffff;
-    --toss-text-secondary: var(--grey400); /* #b0b8c1 */
+    --serenity: var(--blue500);
+    --serenity-soft: var(--blue50);
+    --serenity-pale: var(--grey50);
+    --ink: var(--grey900);
+    --body-copy: var(--grey700);
+    --muted-copy: var(--grey600);
+    --line: var(--grey200);
+    --toss-blue: var(--blue700);
+    --toss-blue-hover: var(--blue800);
+    --toss-bg-card: #ffffff;
+    --toss-bg-page: var(--grey50);
+    --toss-border: var(--grey200);
+    --toss-text-primary: var(--ink);
+    --toss-text-secondary: var(--muted-copy);
+    --brand-accent: var(--blue700);
+    --brand-accent-hover: var(--blue800);
+    --brand-accent-soft: var(--blue50);
+    --hero-surface: var(--grey50);
+    --hero-mark-surface: var(--blue50);
+    --career-surface: var(--blue50);
+    --career-line: var(--blue100);
+    --career-status-ink: var(--blue800);
   }
 
-  html {
-    scroll-behavior: smooth;
-    background-color: #000000;
-  }
-
+  html { position: relative; scroll-behavior: smooth; background-color: #ffffff; }
   body {
     min-height: 100vh;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Pretendard", "Outfit", sans-serif;
-    background-color: #000000;
-    color: #f4f4f5;
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #ffffff;
+    color: var(--ink);
     position: relative;
     overflow-x: hidden;
   }
+  button, input, textarea { font: inherit; }
+  button, a { -webkit-tap-highlight-color: transparent; }
+  button { cursor: pointer; }
+  a { color: inherit; text-decoration: none; }
+  .sj-header-mark { display: block; filter: none; }
+  ::selection { background: var(--blue100); color: var(--ink); }
+  :focus-visible { outline: 2px solid var(--brand-accent); outline-offset: 3px; }
 
-
-
-  ::selection {
-    background: #27272a;
-    color: #ffffff;
-  }
-
-  .font-display {
-    font-family: 'Outfit', 'Pretendard', sans-serif;
-  }
-
-  .font-mono {
-    font-family: 'JetBrains Mono', monospace;
-  }
-
-  .section-title {
-    font-size: clamp(2.25rem, 5vw, 3.5rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    color: #ffffff;
-  }
-
-  .section-overline {
-    font-family: 'Outfit', 'Pretendard', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #a1a1aa;
-  }
-
-  /* Dark Futuristic Glass Card */
-  .glass-card {
-    border-radius: 24px;
-    border: 1px solid rgba(39, 39, 42, 0.8);
-    background-color: rgba(9, 9, 11, 0.7);
-    backdrop-filter: blur(24px);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-  }
-
-  /* Apple Glass Material Widget */
-  .apple-widget {
-    border-radius: var(--apple-squircle-radius);
-    border: 1px solid var(--apple-glass-border);
-    background-color: var(--apple-glass-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-  }
-
-  /* Toss Design System Card Container */
-  .toss-card {
-    border-radius: 20px;
-    background-color: var(--toss-bg-card);
-    border: 1px solid var(--toss-border);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  }
-
-  /* Toss Blue Action Button */
-  .toss-blue-btn {
-    background-color: var(--toss-blue);
-    color: #ffffff;
-    font-weight: 600;
-    transition: background-color 0.2s ease;
-  }
-  .toss-blue-btn:hover {
-    background-color: var(--toss-blue-hover);
-  }
-
-  /* Toss Interactive Input styles */
-  .toss-input-group {
-    position: relative;
-    width: 100%;
-  }
-
-  .toss-input-line {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: #27272a;
-    transition: background-color 0.2s ease;
-  }
-
-  .toss-input-focus-line {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background-color: var(--toss-blue);
-    transition: width 0.3s ease, left 0.3s ease;
-  }
-
-  .toss-input-group:focus-within .toss-input-focus-line {
-    width: 100%;
-    left: 0;
-  }
-
-  .notion-card {
-    border-radius: 24px;
-    border: 1px solid rgba(39, 39, 42, 0.8);
-    background-color: rgba(9, 9, 11, 0.8);
-    padding: 2rem;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-  }
-
-  /* Scrollbar styling */
-  ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: #000000;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #1f1f23;
-    border-radius: 3px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #2e2e33;
-  }
+  .font-display { font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+  .font-mono { font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace; }
+  .section-title { font-size: clamp(2rem, 3.4vw, 2.75rem); font-weight: 700; letter-spacing: -0.015em; color: var(--ink); }
+  .section-overline { font-size: 0.875rem; font-weight: 600; letter-spacing: 0; color: var(--muted-copy); }
+  .glass-card { border: 1px solid var(--line); border-radius: 16px; background: #ffffff; box-shadow: 0 8px 24px rgba(32, 43, 60, 0.05); }
+  .apple-widget { border: 1px solid var(--line); border-radius: 16px; background: #ffffff; box-shadow: 0 8px 24px rgba(32, 43, 60, 0.05); }
+  .toss-card { border: 1px solid var(--toss-border); border-radius: 16px; background: var(--toss-bg-card); box-shadow: 0 8px 24px rgba(32, 43, 60, 0.05); }
+  .toss-blue-btn { background: var(--toss-blue); color: #ffffff; font-weight: 600; transition: background-color 0.2s ease; }
+  .toss-blue-btn:hover { background: var(--toss-blue-hover); }
+  .notion-card { border: 1px solid var(--line); border-radius: 16px; background: #ffffff; padding: 2rem; box-shadow: 0 8px 24px rgba(32, 43, 60, 0.05); }
+  #hero h1 { position: relative; z-index: 1; color: #fff; }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--grey50); }
+  ::-webkit-scrollbar-thumb { background: var(--grey300); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--grey500); }
 }
 
-/* Custom glow and beam utilities in white/gray */
+@keyframes home-hero-copy {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes home-hero-visual {
+  from { opacity: 0; transform: translateY(8px) scale(.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes home-hero-underline {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.home-hero-copy { animation: home-hero-copy 520ms cubic-bezier(.2,.7,.2,1) both; }
+.home-hero-visual { animation: home-hero-visual 650ms 90ms cubic-bezier(.2,.7,.2,1) both; }
+.home-hero-emphasis::after {
+  position: absolute;
+  right: 0;
+  bottom: -4px;
+  left: 0;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--blue200);
+  content: '';
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: home-hero-underline 500ms 340ms ease-out forwards;
+}
+
 @layer utilities {
-  .glow-text-white {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-  }
-
-  .glow-border-white:hover {
-    border-color: rgba(255, 255, 255, 0.5);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-  }
-
-  .tech-border {
-    border: 1px solid rgba(39, 39, 42, 0.6);
-  }
-
-  .gradient-mask {
-    mask-image: linear-gradient(to bottom, black 80%, transparent);
-  }
+  .glow-text-white { text-shadow: 0 0 10px rgba(255, 255, 255, 0.2); }
+  .glow-border-white:hover { border-color: rgba(255, 255, 255, 0.5); box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); }
+  .tech-border { border: 1px solid var(--line); }
+  .gradient-mask { mask-image: linear-gradient(to bottom, black 80%, transparent); }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}

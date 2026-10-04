@@ -1,12 +1,17 @@
 {
-  "name": "seoharo-s-portfolio",
+  "name": "work-archive-portfolio",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "build": "tsc -b && npm run build:client && npm run build:ssr && npm run prerender && npm run build:verify",
+    "build:client": "vite build",
+    "build:ssr": "vite build --ssr src/entry-server.tsx --outDir dist-ssr",
+    "prerender": "node scripts/prerender.mjs",
+    "build:verify": "node scripts/verify-seo-build.mjs",
+    "lint": "eslint src tests scripts vite.config.ts tailwind.config.js eslint.config.js postcss.config.js",
+    "test": "node --test --test-concurrency=1 tests/*.test.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

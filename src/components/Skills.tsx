@@ -1,87 +1,29 @@
-import { motion } from 'framer-motion';
-import { portfolioData } from '../data/portfolioData';
+import { aboutCapabilities } from '../data/aboutContent';
 import { useLanguage } from './LanguageContext';
+import AboutReveal from './AboutReveal';
 
 export default function Skills() {
   const { language, t } = useLanguage();
-  const data = portfolioData[language];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.05,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 },
-    },
-  };
-
   return (
-    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-black relative overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mb-16 text-center"
-        >
-          <p className="section-overline">
-            CAPABILITIES
+    <section id="about-skills" tabIndex={-1} className="about-original-section relative overflow-hidden bg-black px-4 py-20 sm:px-6 lg:px-8" aria-labelledby="about-skills-heading">
+      <div className="mx-auto max-w-7xl">
+        <AboutReveal className="mb-16 text-center">
+          <p className="section-overline">CAPABILITIES</p>
+          <h2 id="about-skills-heading" className="section-title mb-6 mt-4 font-bold">{t('다루는 역량', 'Skills & capabilities')}</h2>
+          <p className="mx-auto max-w-2xl text-sm leading-7 text-zinc-300 sm:text-base">
+            {t('디자인, 마케팅, 개발을 연결해 아이디어를 실행하는 데 사용하는 역량입니다.', 'Capabilities I use to connect design, marketing, and development and put ideas into action.')}
           </p>
-          <h2 className="section-title mt-4 mb-6 font-display bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent font-bold">
-            {t('기술 스택', 'Skills & Stack')}
-          </h2>
-          <p className="mx-auto max-w-2xl text-sm sm:text-base leading-relaxed text-zinc-200 font-normal">
-            {t('디자인, 마케팅, 개발 전반의 역량을 나타내는 핵심 기술 스택입니다.', 'Key skill stack representing capabilities across design, marketing, and programming.')}
-          </p>
-        </motion.div>
- 
+        </AboutReveal>
+
         <div className="grid gap-8 lg:grid-cols-3">
-          {data.skills.map((skillGroup, groupIndex) => (
-            <motion.div
-              key={groupIndex}
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="glass-card p-8 border border-zinc-900 bg-zinc-950/40 shadow-2xl flex flex-col justify-between"
-            >
-              <div>
-                <h3 className="text-lg font-bold text-white mb-2 font-display tracking-tight">
-                  {skillGroup.category}
-                </h3>
-                <p className="text-[10px] font-sans font-bold text-zinc-450 uppercase tracking-widest mb-6">
-                  {skillGroup.category === 'Design' && 'Creative Interface'}
-                  {skillGroup.category === 'Marketing' && 'Growth Strategy'}
-                  {skillGroup.category === 'Programming' && 'Systems & Logic'}
-                </p>
-                <motion.div variants={containerVariants} className="flex flex-wrap gap-x-4 gap-y-2.5">
-                  {skillGroup.items.map((skill, itemIndex) => (
-                    <motion.span
-                      key={itemIndex}
-                      variants={itemVariants}
-                      whileHover={{ 
-                        scale: 1.05, 
-                        color: '#ffffff',
-                      }}
-                      className="text-xs font-sans font-bold text-zinc-450 transition-colors select-none cursor-pointer"
-                    >
-                      #{skill}
-                    </motion.span>
-                  ))}
-                </motion.div>
-              </div>
-            </motion.div>
+          {aboutCapabilities.map((group, index) => (
+            <AboutReveal key={group.id} delay={index * 0.06} className="glass-card p-8">
+              <h3 className="mb-2 text-lg font-bold text-white">{group.title}</h3>
+              <p className="mb-6 text-[11px] font-semibold text-zinc-400">{group.subtitle}</p>
+              <ul className="flex flex-wrap gap-x-4 gap-y-3">
+                {group.items.map((skill) => <li key={skill.ko} className="text-sm font-semibold leading-6 text-zinc-400">#{skill[language]}</li>)}
+              </ul>
+            </AboutReveal>
           ))}
         </div>
       </div>

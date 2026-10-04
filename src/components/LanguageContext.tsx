@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
 type Language = 'ko' | 'en';
 
@@ -10,15 +10,21 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguageState] = useState<Language>(() => {
-    const saved = localStorage.getItem('seoharo_lang');
-    return (saved === 'ko' || saved === 'en') ? saved : 'ko';
-  });
+export const LanguageProvider: React.FC<{ children: React.ReactNode; initialLanguage?: Language }> = ({ children, initialLanguage = 'ko' }) => {
+  const [language, setLanguageState] = useState<Language>(initialLanguage);
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      try {
+        const saved = localStorage.getItem('portfolio_language');
+        if (saved === 'ko' || saved === 'en') setLanguageState(saved);
+      } catch { /* Storage is optional. */ }
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    localStorage.setItem('seoharo_lang', lang);
+    try { localStorage.setItem('portfolio_language', lang); } catch { /* Language still works when storage is blocked. */ }
   };
 
   const t = (koText: string, enText: string) => {

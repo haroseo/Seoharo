@@ -1,156 +1,66 @@
-﻿import { portfolioData } from '../data/portfolioData';
-import { ArrowDown } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { useRouter } from './router';
+import { ArrowRight } from 'lucide-react';
+import { Link } from './router';
 import { useLanguage } from './LanguageContext';
 
 export default function Hero() {
-  const { navigate } = useRouter();
-  const { language, t } = useLanguage();
-  const data = portfolioData[language];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: 'easeOut' as const
-      },
-    },
-  };
+  const { t } = useLanguage();
 
   return (
-    <section 
-      id="hero" 
-      className="relative overflow-hidden px-4 sm:px-6 lg:px-8 pt-32 pb-24 sm:pt-40 sm:pb-28 min-h-screen bg-black flex items-center border-b border-zinc-900"
-    >
-      <div className="absolute inset-0 bg-gradient-to-b from-[#030303] to-transparent pointer-events-none" />
-      
-      <div className="relative z-10 mx-auto max-w-7xl w-full">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
-          className="grid gap-16 lg:grid-cols-[1.5fr_1fr] items-center"
-        >
-          {/* Main Title / Slogan block */}
-          <motion.div variants={itemVariants} className="space-y-6 text-center lg:text-left">
-            <div className="flex items-center justify-center lg:justify-start gap-2">
-              <span className="text-[10px] font-bold tracking-widest text-zinc-450 uppercase">
-                {t('소개', 'INTRODUCTION')}
-              </span>
-              <span className="h-px w-4 bg-zinc-800" />
+    <section id="hero" aria-labelledby="hero-title" className="bg-[#090a0c] px-5 pb-16 pt-24 text-white sm:px-8 sm:pb-20 sm:pt-28 lg:px-10">
+      <div className="mx-auto grid min-h-[min(760px,calc(100svh-4rem))] max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
+        <div className="max-w-2xl">
+          <p className="text-sm font-semibold text-white/65">{t('소개', 'About')}</p>
+          <h1 id="hero-title" className="mt-5 text-[clamp(3.5rem,7.6vw,6.25rem)] font-bold leading-[1.08]">
+            {t('서주원', 'Seo Juwon')}
+          </h1>
+          <p className="mt-5 max-w-xl text-base leading-8 text-white/75 sm:text-lg">
+            {t(
+              '디자인과 마케팅, 개발을 오가며 떠올린 생각을 실제 결과물로 만듭니다. 기획과 글로 방향을 정리하고, 필요한 사람들과 함께 실행합니다.',
+              'I move between design, marketing, and development to turn ideas into real work. I shape the direction through planning and writing, then build with people.'
+            )}
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <Link
+              to="/portfolio"
+              className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-[var(--brand-accent)] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--brand-accent-hover)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            >
+              {t('프로젝트 목록', 'Projects')}
+              <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+            <Link
+              to="/career"
+              className="inline-flex min-h-11 items-center rounded-lg px-4 py-2.5 text-sm font-semibold text-white/80 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
+              {t('경력 보기', 'Career')}
+            </Link>
+          </div>
+        </div>
+
+        <aside className="border-t border-white/20 pt-7 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0" aria-label={t('소개 요약', 'Profile summary')}>
+          <div className="flex items-center gap-5">
+            <span className="relative block h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-[#eef1f6] sm:h-24 sm:w-24">
+              <img src="/assets/juwon-mark.png" alt="" className="absolute left-1/2 top-1/2 h-[180%] w-[180%] max-w-none -translate-x-1/2 -translate-y-1/2 object-contain" />
+            </span>
+            <p className="max-w-xs text-base font-semibold leading-7 sm:text-lg">Brand Designer • Marketer • Developer</p>
+          </div>
+
+          <dl className="mt-8 divide-y divide-white/15 border-y border-white/15">
+            <div className="grid grid-cols-[5.25rem_1fr] gap-4 py-4 sm:grid-cols-[6rem_1fr]">
+              <dt className="text-sm font-medium text-white/50">{t('분야', 'Fields')}</dt>
+              <dd className="text-sm leading-6 text-white/85">{t('기획 · 브랜드 디자인 · 마케팅 · 개발', 'Planning · Brand design · Marketing · Development')}</dd>
             </div>
-
-            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-white leading-[1.1]">
-              SEOHARO
-            </h1>
-
-            <p className="max-w-xl text-sm md:text-[15px] leading-relaxed text-zinc-300 mx-auto lg:mx-0 font-normal tracking-normal">
-              {data.description}
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-              <button
-                onClick={() => navigate('/portfolio')}
-                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-[var(--toss-blue)] px-8 py-3.5 text-xs sm:text-sm font-bold text-white hover:bg-[var(--toss-blue)] transition-colors"
-              >
-                {t('프로젝트 목록', 'PROJECT CATALOG')}
-              </button>
-              <button
-                onClick={() => navigate('/contact')}
-                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-8 py-3.5 text-xs sm:text-sm font-bold text-white hover:bg-white/[0.04] transition-colors"
-              >
-                {t('협업 문의', 'COLLABORATE')}
-              </button>
+            <div className="grid grid-cols-[5.25rem_1fr] gap-4 py-4 sm:grid-cols-[6rem_1fr]">
+              <dt className="text-sm font-medium text-white/50">{t('강점', 'Strengths')}</dt>
+              <dd className="text-sm leading-6 text-white/85">{t('글쓰기 · 말하기 · 기획 · 팀 리딩', 'Writing · Speaking · Planning · Team leadership')}</dd>
             </div>
-          </motion.div>
-
-          {/* Profile Card Summary Panel */}
-          <motion.div
-            variants={itemVariants}
-            className="py-8 lg:py-10 bg-transparent"
-          >
-            <div className="space-y-8">
-              <div className="flex items-end justify-between gap-4">
-                <div>
-                  <h2 className="text-2xl font-bold text-white font-display tracking-tight">
-                    SEOHARO
-                  </h2>
-                </div>
-              </div>
-
-              <p className="text-xs leading-relaxed text-zinc-300 font-medium">
-                {data.title}
-              </p>
-
-              <div className="grid grid-cols-2 gap-y-6 gap-x-8 text-xs text-zinc-300 font-normal">
-                <div className="flex flex-col justify-between py-2 border-b border-zinc-900">
-                  <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider">EMAIL</span>
-                  <span className="mt-1.5 font-semibold text-zinc-200 truncate select-all">{data.contact.email}</span>
-                </div>
-                <div className="flex flex-col justify-between py-2 border-b border-zinc-900">
-                  <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider">LOCATION</span>
-                  <span className="mt-1.5 font-semibold text-zinc-200">{t('대한민국', 'South Korea')}</span>
-                </div>
-                <a
-                  href={data.contact.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex flex-col justify-between py-2 border-b border-zinc-900 col-span-2 group transition-all duration-300"
-                >
-                  <span className="text-[8.5px] font-bold text-zinc-500 tracking-wider flex justify-between items-center">       
-                    GITHUB
-                    <span className="text-[8px] text-zinc-600 group-hover:text-white transition-colors">LAUNCH ↗</span>
-                  </span>
-                  <span className="mt-1.5 font-semibold text-zinc-200 group-hover:text-white transition-colors">github.com/haroseo</span>
-                </a>
-              </div>
-
-              <div className="pt-6 border-t border-zinc-900 space-y-3">
-                <span className="text-[9px] font-bold tracking-wider text-zinc-500 uppercase block">ROLES & POSITION</span>      
-                <div className="flex flex-wrap gap-x-3 gap-y-1.5">
-                  {[
-                    'RoFolder CEO',
-                    'Limited™ Founder',
-                    'LUXERET Marketer'
-                  ].map((role) => (
-                    <span
-                      key={role}
-                      className="text-[10px] font-semibold text-zinc-300 font-sans tracking-tight flex items-center"
-                    >
-                      {role}
-                      <span className="text-zinc-705 ml-3 select-none font-normal text-[8px]">•</span>
-                    </span>
-                  ))}
-                </div>
-              </div>
+            <div className="grid grid-cols-[5.25rem_1fr] gap-4 py-4 sm:grid-cols-[6rem_1fr]">
+              <dt className="text-sm font-medium text-white/50">{t('방식', 'Approach')}</dt>
+              <dd className="text-sm leading-6 text-white/85">{t('생각을 시도하고, 결과물로 확인합니다.', 'Try an idea, then make it tangible.')}</dd>
             </div>
-          </motion.div>
-        </motion.div>
+          </dl>
+        </aside>
       </div>
-
-      {/* Bounce Down Arrow */}
-      <motion.div
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 3, repeat: Infinity }}
-        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2"
-      >
-        <ArrowDown className="text-zinc-650" size={24} />
-      </motion.div>
     </section>
   );
 }

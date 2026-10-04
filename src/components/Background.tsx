@@ -4,7 +4,7 @@ import { useTheme } from './ThemeContext';
 
 export default function Background() {
   const { bgTheme } = useTheme();
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile] = useState(() => window.matchMedia('(pointer: coarse)').matches);
 
   // Mouse movement tracking for 3D Perspective Grid Horizon
   const mouseX = useMotionValue(0);
@@ -16,7 +16,6 @@ export default function Background() {
 
   useEffect(() => {
     const isCoarse = window.matchMedia('(pointer: coarse)').matches;
-    setIsMobile(isCoarse);
     if (isCoarse) return;
 
     const handleMouseMove = (e: MouseEvent) => {

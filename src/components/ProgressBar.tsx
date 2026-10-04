@@ -1,7 +1,8 @@
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { motion, useReducedMotion, useScroll, useSpring } from 'framer-motion';
 
 export default function ProgressBar() {
   const { scrollYProgress } = useScroll();
+  const shouldReduceMotion = useReducedMotion();
   
   // Apply spring physics for ultra-smooth progress bar movement
   const scaleX = useSpring(scrollYProgress, {
@@ -12,8 +13,8 @@ export default function ProgressBar() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 right-0 h-0.5 bg-white origin-left z-[100] shadow-[0_0_8px_rgba(255,255,255,0.4)]"
-      style={{ scaleX }}
+      className="fixed top-0 left-0 right-0 h-0.5 bg-[var(--brand-accent)] origin-left z-[100]"
+      style={{ scaleX: shouldReduceMotion ? scrollYProgress : scaleX }}
     />
   );
 }

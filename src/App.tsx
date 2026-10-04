@@ -1,106 +1,82 @@
 import { useEffect } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { RouterProvider, useRouter } from './components/router';
 import { LanguageProvider, useLanguage } from './components/LanguageContext';
+import { SearchProvider } from './components/SearchContext';
 import Header from './components/Header';
 import ProgressBar from './components/ProgressBar';
-import Hero from './components/Hero';
 import About from './components/About';
-import Timeline from './components/Timeline';
-import Communities from './components/Communities';
-import Skills from './components/Skills';
 import PortfolioPage from './components/PortfolioPage';
 import ContactPage from './components/ContactPage';
+import CareerPage from './components/CareerPage';
 import Footer from './components/Footer';
-import { motion, AnimatePresence } from 'framer-motion';
+import { MissingPage, ProjectDetail } from './components/portfolio/WorkPages';
+import { careerEntries, selectedWorks, type Locale } from './data/portfolioContent';
+import { getPortfolioRoute, getPrimaryNavigationPath } from './data/portfolioRoutes';
+import { getPageMetadata } from './data/siteSeo';
+import { applyPageMetadata } from './lib/applyPageMetadata';
+import { usePageRendering } from './components/PageRenderingContext';
 import './index.css';
+import './portfolio.css';
 
-function AppContent() {
+function Portfolio() {
   const { currentPath } = useRouter();
   const { language } = useLanguage();
+  const { hydrated } = usePageRendering();
+  const shouldReduceMotion = useReducedMotion() ?? false;
+  const route = getPortfolioRoute(currentPath);
+  const careerSlug = route.page === 'career-detail' ? route.slug : '';
+  const project = route.page === 'project' ? selectedWorks.find((work) => work.slug === route.slug) : undefined;
+  const isNotFound = route.page === 'missing' || (route.page === 'project' && !project)
+    || (route.page === 'career-detail' && !careerEntries.some(entry => entry.slug === careerSlug));
 
-  // Dynamic Browser Title for SEO / GEO
   useEffect(() => {
-    const routeTitlesKo: Record<string, string> = {
-      '/': '서하루 | Brand Designer · Marketer · Developer',
-      '/about': '서하루 | Brand Designer · Marketer · Developer',
-      '/portfolio': '서하루 | 포트폴리오 전체',
-      '/design': '서하루 | 브랜드 디자인 포트폴리오',
-      '/marketing': '서하루 | 마케팅 포트폴리오',
-      '/development': '서하루 | 웹 개발 포트폴리오',
-      '/contact': '서하루 | 협업 및 문의',
-    };
-
-    const routeTitlesEn: Record<string, string> = {
-      '/': 'SEOHARO | Brand Designer · Marketer · Developer',
-      '/about': 'SEOHARO | Brand Designer · Marketer · Developer',
-      '/portfolio': 'SEOHARO | Full Portfolio',
-      '/design': 'SEOHARO | Brand Design Portfolio',
-      '/marketing': 'SEOHARO | Marketing Portfolio',
-      '/development': 'SEOHARO | Web Dev Portfolio',
-      '/contact': 'SEOHARO | Contact & Collaborate',
-    };
-
-    const titleMap = language === 'ko' ? routeTitlesKo : routeTitlesEn;
-    document.title = titleMap[currentPath] || titleMap['/'];
+    applyPageMetadata(getPageMetadata(currentPath, language));
   }, [currentPath, language]);
 
-  // Block middle-click auto-scroll globally
-  useEffect(() => {
-    const handleMouseDown = (e: MouseEvent) => {
-      if (e.button === 1) { // Middle button clicked
-        e.preventDefault();
-      }
-    };
-    window.addEventListener('mousedown', handleMouseDown, { passive: false });
-    return () => window.removeEventListener('mousedown', handleMouseDown);
-  }, []);
+  const isAbout = route.page === 'about';
+  const isPortfolio = route.page === 'work';
+  const isCareer = route.page === 'career' || route.page === 'career-detail';
+  const fromWorkTab = route.page === 'career-detail' && route.slug === 'company-work';
+  const pageKey = getPrimaryNavigationPath(currentPath) ?? currentPath;
 
   return (
-    <div className="min-h-screen bg-black flex flex-col justify-between transition-colors duration-300">
+    <div className="min-h-screen bg-white text-[var(--ink)] flex flex-col justify-between">
       <div>
         <ProgressBar />
         <Header />
-        <main>
-          <AnimatePresence mode="wait">
+        <main id="main-content" tabIndex={-1}>
+          <AnimatePresence mode="wait" initial={false}>
             <motion.div
-              key={(currentPath === '/' || currentPath === '/about') ? '/about' : (['/portfolio', '/design', '/marketing', '/development'].includes(currentPath) ? '/portfolio' : currentPath)}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              key={pageKey}
+              initial={!hydrated || shouldReduceMotion ? false : { opacity: 0, x: 8 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -8 }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.22, ease: [0.22, 1, 0.36, 1] }}
             >
-              {(currentPath === '/' || currentPath === '/about') && (
-                <>
-                  <Hero />
-                  <About />
-                  <Timeline />
-                  <Communities />
-                  <Skills />
-                </>
-              )}
-              {(currentPath === '/portfolio' || currentPath === '/design' || currentPath === '/marketing' || currentPath === '/development') && <PortfolioPage />}
-              {currentPath === '/contact' && <ContactPage />}
+              {isAbout && <About />}
+              {isPortfolio && <PortfolioPage focusSection={route.page === 'work' ? route.focusSection : undefined} />}
+              {project && <ProjectDetail slug={project.slug} />}
+              {isCareer && !isNotFound && <CareerPage slug={route.page === 'career-detail' ? route.slug : undefined} initialGroup={route.page === 'career' ? route.group : undefined} fromWorkTab={fromWorkTab} />}
+              {route.page === 'contact' && <ContactPage />}
+              {isNotFound && <MissingPage />}
             </motion.div>
           </AnimatePresence>
         </main>
       </div>
-      <Footer />
+      <Footer originalAbout={isAbout || route.page === 'contact'} />
     </div>
   );
 }
 
-import { SearchProvider } from './components/SearchContext';
-
-function App() {
+export default function App({ initialPath = '/', initialLanguage = 'ko' }: { initialPath?: string; initialLanguage?: Locale; prerendered?: boolean }) {
   return (
-    <LanguageProvider>
-      <RouterProvider>
+    <LanguageProvider initialLanguage={initialLanguage}>
+      <RouterProvider initialPath={initialPath}>
         <SearchProvider>
-          <AppContent />
+          <Portfolio />
         </SearchProvider>
       </RouterProvider>
     </LanguageProvider>
   );
 }
-
-export default App;

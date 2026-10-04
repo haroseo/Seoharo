@@ -11,13 +11,13 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [bgTheme, setBgThemeState] = useState<BgTheme>(() => {
-    const saved = localStorage.getItem('seoharo_bg_theme');
+    const saved = localStorage.getItem('portfolio_background_theme');
     return (saved as BgTheme) || 'solid';
   });
 
   const setBgTheme = (theme: BgTheme) => {
     setBgThemeState(theme);
-    localStorage.setItem('seoharo_bg_theme', theme);
+    localStorage.setItem('portfolio_background_theme', theme);
   };
 
   useEffect(() => {

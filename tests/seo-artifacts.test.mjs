@@ -1,0 +1,62 @@
+import assert from 'node:assert/strict';
+import test from 'node:test';
+import { mkdtemp, readFile, writeFile, cp, rm, mkdir } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join, resolve } from 'node:path';
+import { createServer } from 'vite';
+import { getHtmlOutputPath, readPngDimensions, writeSiteArtifacts } from '../scripts/seo-artifacts.mjs';
+import { verifySeoBuild } from '../scripts/verify-seo-build.mjs';
+
+test('real public HTML artifacts stay within output and exclude private data', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'seoharo-seo-'));
+  const server = await createServer({ server: { middlewareMode: true, hmr: false, watch: null, ws: false }, optimizeDeps: { noDiscovery: true, include: [] }, appType: 'custom' });
+  try {
+    const { renderPage, publicPages } = await server.ssrLoadModule('/src/entry-server.tsx');
+    const template = (await readFile('index.html', 'utf8')).replace('/src/main.tsx', '/assets/runtime.js');
+    await cp('public/assets', join(directory, 'assets'), { recursive: true });
+    await writeFile(join(directory, 'assets/runtime.js'), '/* Fixture resource; rendering is the real App. */');
+    await cp('public/favicon.svg', join(directory, 'favicon.svg'));
+    const pages = [...publicPages.map(page => renderPage(page.path)), renderPage('/404')];
+    const input = { outputDirectory: directory, template, pages, cname: 'seoharo.kro.kr' };
+    assert.deepEqual(await writeSiteArtifacts(input), { pages: 12, aliases: 12, notFound: 1 });
+    assert.deepEqual(await verifySeoBuild(directory), { pages: 12, aliases: 12, notFound: 1, sitemapUrls: 12 });
+    assert.match(await readFile(join(directory, 'contact/index.html'), 'utf8'), /mailto:seoharo0111@gmail.com/);
+    const sitemap = await readFile(join(directory, 'sitemap.xml'), 'utf8');
+    assert.ok(sitemap.includes('https://seoharo.kro.kr/portfolio/company-work/'));
+    assert.ok(!sitemap.includes('/career/group/'));
+    for (const path of ['/../../escape', '/%2e%2e/escape', '//evil.example/x', '/x\\y']) assert.throws(() => getHtmlOutputPath(directory, path));
+    assert.throws(() => readPngDimensions(Buffer.alloc(24)));
+    await assert.rejects(writeSiteArtifacts({ ...input, cname: 'another.example' }));
+    await assert.rejects(writeSiteArtifacts({ ...input, pages: [...pages, pages[0]] }));
+    const contact = await readFile(join(directory, 'contact/index.html'), 'utf8');
+    await writeFile(join(directory, 'contact/index.html'), contact.replace(/<main\b[^>]*>[\s\S]*?<\/main>/, '<main></main>'));
+    await assert.rejects(verifySeoBuild(directory));
+    await writeFile(join(directory, 'contact/index.html'), contact);
+    await writeFile(join(directory, 'contact/index.html'), contact.replace('rel="canonical" href="https://seoharo.kro.kr/contact/"', 'rel="canonical" href="https://seoharo.kro.kr/"'));
+    await assert.rejects(verifySeoBuild(directory));
+    await writeFile(join(directory, 'contact/index.html'), contact);
+    const missing = await readFile(join(directory, '404.html'), 'utf8');
+    await writeFile(join(directory, '404.html'), missing.replace('noindex, follow', 'index, follow'));
+    await assert.rejects(verifySeoBuild(directory));
+    await writeFile(join(directory, '404.html'), missing);
+    await mkdir(join(directory, '.well-known'));
+    await writeFile(join(directory, '.well-known/discord.txt'), 'PRIVATE_FIXTURE=not-a-challenge');
+    await assert.rejects(verifySeoBuild(directory));
+    await rm(join(directory, '.well-known/discord.txt'));
+    const planor = await readFile(join(directory, 'portfolio/planor/index.html'), 'utf8');
+    const aboutMain = (await readFile(join(directory, 'index.html'), 'utf8')).match(/<main\b[^>]*>[\s\S]*?<\/main>/)[0];
+    await writeFile(join(directory, 'portfolio/planor/index.html'), planor.replace(/<main\b[^>]*>[\s\S]*?<\/main>/, aboutMain));
+    await assert.rejects(verifySeoBuild(directory));
+    await writeFile(join(directory, 'portfolio/planor/index.html'), planor);
+    await writeFile(join(directory, '.env'), 'PRIVATE_FIXTURE=not-a-secret');
+    await assert.rejects(verifySeoBuild(directory));
+    await rm(join(directory, '.env'));
+    await writeFile(join(directory, 'sitemap.xml'), sitemap.replace('</urlset>', '<url><loc>https://seoharo.kro.kr/about/</loc></url></urlset>'));
+    await assert.rejects(verifySeoBuild(directory));
+  } finally {
+    await server.close();
+    assert.ok(resolve(directory).startsWith(resolve(tmpdir()) + '\\') || resolve(directory).startsWith(resolve(tmpdir()) + '/'));
+    assert.ok(directory.includes('seoharo-seo-'));
+    await rm(directory, { recursive: true, force: true });
+  }
+});

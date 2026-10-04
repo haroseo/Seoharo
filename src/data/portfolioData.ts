@@ -43,29 +43,29 @@ export interface PortfolioDataType {
   projects: Project[];
   careers: Career[];
   socialLinks: { icon: string; label: string; url: string }[];
-  contact: { email: string; github: string; discord: string; instagram: string; location: string };
+  contact: { email: string; github: string; instagram: string };
   communities: Community[];
 }
 
 const portfolioDataKo: PortfolioDataType = {
-  name: "서하루",
-  title: "Brand Design · Marketing · Programming",
-  tagline: "당신의 스토리를 성공의 데이터로",
+  name: "작업 기록",
+  title: "기획 · 디자인 · 개발 · 마케팅",
+  tagline: "생각을 시도하고, 현실로 만듭니다.",
   description:
-    "디자인, 마케팅, 프로그래밍을 통해 비즈니스와 유저를 연결하는 크리에이터 서하루입니다. 청소년 창업 서버 로폴더(RoFolder)와 리소스 배포 공간 Limited™를 운영하고 있습니다.",
+    "회사에서 개발·마케팅 관련 업무를 경험했고, 디자인은 프리랜서 작업으로 이어가고 있습니다. 기획과 글쓰기, 웹 제작 경험을 함께 정리했습니다.",
 
   skills: [
     {
-      category: "Design",
-      items: ["UX/UI Design", "Typography", "Figma", "Brand Identity"],
+      category: "디자인 · 기획",
+      items: ["UI 디자인", "브랜드 비주얼", "Figma", "콘텐츠 기획"],
     },
     {
-      category: "Marketing",
-      items: ["Growth Marketing", "Viral Marketing", "Community Strategy", "Instagram Marketing"],
+      category: "사업 · 마케팅",
+      items: ["사업 운영 경험", "마케팅 업무 경험", "커뮤니티 운영", "팀 리딩"],
     },
     {
-      category: "Programming",
-      items: ["Web Development", "Scripting", "Discord Bot Development", "Software Tools"],
+      category: "개발 · AI 활용",
+      items: ["개발 업무 경험", "웹 개발", "빠른 프로토타이핑", "생성형 AI 활용"],
     },
   ],
 
@@ -77,7 +77,6 @@ const portfolioDataKo: PortfolioDataType = {
         "감각적인 아트워크와 완성도 높은 비주얼을 큐레이션하는 크리에이티브 디자인 플랫폼입니다.",
       tags: ["Brand Design", "UX/UI Design"],
       link: "https://designs.kro.kr",
-      github: "https://github.com/haroseo/Design-Pick",
       featured: true,
       category: "brand",
       details: {
@@ -88,18 +87,18 @@ const portfolioDataKo: PortfolioDataType = {
     },
     {
       id: 2,
-      title: "TypoLab",
+      title: "나랏말싸미",
       description:
-        "한글의 조형적 가치와 자모 결합 원리를 현대적 인터랙션 디자인으로 풀어낸 실험적 웹 타이핑 서비스입니다.",
-      tags: ["Typography", "Interactive Design", "Web Experiment"],
+        "한글의 자모 결합 원리를 타이핑 연습에 담아낸 웹 프로젝트입니다.",
+      tags: ["Hangeul typing", "Web service"],
       link: "https://훈민정음.kro.kr",
-      github: "https://github.com/naramarsami/naramarsami",
+      github: "",
       featured: true,
       category: "development",
       details: {
-        background: "디자인과 프로그래밍의 융합을 통해 한글 자모음의 결합 메커니즘을 타이핑 인터랙션으로 표현했습니다.",
-        strategy: "훈민정음 고유의 용자례 구조를 분석하여 브라우저 환경에 맞는 인터랙티브 모션 그래픽으로 구현했습니다.",
-        metrics: "인터랙티브 한글 타이포그래피 시스템 기획 및 구축"
+        background: "한글 창제의 결합 원리를 타이핑 연습으로 접할 수 있도록 기획했습니다.",
+        strategy: "글자와 입력에 집중할 수 있도록 간결한 연습 흐름을 구성했습니다.",
+        metrics: "한글 타이핑 연습 웹 프로젝트"
       }
     },
     {
@@ -121,10 +120,9 @@ const portfolioDataKo: PortfolioDataType = {
       id: 4,
       title: "Xe Project",
       description:
-        "서하루가 직접 기획하고 개발한 개인 창작 프로젝트로, 다양한 아이디어를 실험하는 공간입니다.",
+        "다양한 아이디어를 시험해 보는 개인 창작 프로젝트입니다.",
       tags: ["Personal Project", "Development"],
-      link: "https://github.com/haroseo/Xe-project",
-      github: "https://github.com/haroseo/Xe-project",
+      link: "",
       featured: false,
       category: "development",
       details: {
@@ -139,8 +137,7 @@ const portfolioDataKo: PortfolioDataType = {
       description:
         "마인드맵을 활용한 시각적 암기 학습 웹 서비스입니다. 개념과 연결고리를 직관적으로 표현해 학습 효율을 높입니다.",
       tags: ["Web Service", "Education", "Interactive Design"],
-      link: "https://github.com/haroseo/Mindmap",
-      github: "https://github.com/haroseo/Mindmap",
+      link: "",
       featured: false,
       category: "development",
       details: {
@@ -155,8 +152,7 @@ const portfolioDataKo: PortfolioDataType = {
       description:
         "함수연구소(Function Factory)의 출석 체크 전용 프로젝트입니다. TypeScript 기반으로 팀 출결 현황을 효율적으로 관리합니다.",
       tags: ["TypeScript", "Tool", "Community"],
-      link: "https://github.com/haroseo/Crewcheck",
-      github: "https://github.com/haroseo/Crewcheck",
+      link: "",
       featured: false,
       category: "development",
       details: {
@@ -172,8 +168,7 @@ const portfolioDataKo: PortfolioDataType = {
       description:
         "몹티어 - 영화 및 콘텐츠 티어 랭킹 서비스입니다.",
       tags: ["Web Service", "HTML", "Ranking"],
-      link: "https://github.com/haroseo/movtier",
-      github: "https://github.com/haroseo/movtier",
+      link: "",
       featured: false,
       category: "development",
       details: {
@@ -189,7 +184,7 @@ const portfolioDataKo: PortfolioDataType = {
         "손쉽고 빠른 웹 설문지 및 데이터 수집 폼 제작 서비스입니다.",
       tags: ["Web Service", "Form Builder", "Productivity"],
       link: "https://cokform.pages.dev/",
-      github: "https://github.com/Cokform-47203810394/Conform-2938103840",
+      github: "",
       featured: false,
       category: "development",
       details: {
@@ -204,8 +199,7 @@ const portfolioDataKo: PortfolioDataType = {
       description:
         "유용한 공통 유틸리티 함수와 오픈소스 코드 조각들을 실험하고 패키징하는 개발 연구 프로젝트입니다.",
       tags: ["Library", "Developer Tool", "TypeScript"],
-      link: "https://github.com/haroseo",
-      github: "https://github.com/haroseo",
+      link: "",
       featured: false,
       category: "development",
       details: {
@@ -220,8 +214,7 @@ const portfolioDataKo: PortfolioDataType = {
       description:
         "위치 데이터를 정밀 매칭하고 지도 위에 시각화하는 지리 정보 통합 웹 서비스입니다.",
       tags: ["Map API", "Geolocation", "Data Visualization"],
-      link: "https://github.com/haroseo",
-      github: "https://github.com/haroseo",
+      link: "",
       featured: false,
       category: "development",
       details: {
@@ -235,46 +228,42 @@ const portfolioDataKo: PortfolioDataType = {
   careers: [
     {
       id: "rofolder",
-      title: "RoFolder - CEO",
-      slogan: "당신의 스토리를 성공의 데이터로, 로폴더",
-      description: "청소년 및 청년의 스타트업 창업을 독려하고 지원하는 디스코드 대표 커뮤니티입니다.",
+      title: "커뮤니티 사업 · 이전 운영",
+      slogan: "커뮤니티를 직접 기획하고 운영한 경험",
+      description: "창업 커뮤니티 사업을 운영했습니다. 이후 사업을 다른 사람에게 넘기고 운영에서 물러났습니다.",
       achievements: [
-        "창업 활성화를 장려하는 네트워킹 채널 운영",
-        "스타트업 아이디어 매칭 및 커뮤니티 이벤트 기획",
-        "브랜드 아이덴티티 수립 및 공식 로고 기획 주도"
+        "사업을 직접 시작하고 팀을 이끌며 운영했습니다.",
+        "이후 사업을 다른 사람에게 넘기고 운영에서 물러났습니다."
       ],
-      skills: ["CEO / Leadership", "Branding", "Community Operations"],
-      link: "https://discord.gg/ABz6SQ74Yv"
+      skills: ["사업 운영", "팀 리딩", "책임감"]
     },
     {
       id: "limited",
-      title: "Limited™ - Founder",
-      slogan: "오직 나만을 위한 제품, Limited™",
-      description: "Limited™는 오직 나만을 위한 제품, Limited™ 브랜드로 가상 공간에 최적화된 게임 리소스와 에셋 라이브러리를 공유하고 소통하는 채널입니다.",
+      title: "디자인 리소스 사업 · 이전 운영",
+      slogan: "디자인 리소스 사업을 기획하고 운영한 경험",
+      description: "디자인 리소스 사업을 운영했습니다. 이후 사업을 다른 사람에게 넘기고 운영에서 물러났습니다.",
       achievements: [
-        "게임 개발에 사용 가능한 무료 에셋 및 리소스 배포",
-        "사용자 피드백 기반 리소스 구성 및 커뮤니티 채널 관리"
+        "디자인 리소스 사업을 직접 시작하고 운영했습니다.",
+        "이후 사업을 다른 사람에게 넘기고 운영에서 물러났습니다."
       ],
-      skills: ["Asset Curation", "Figma Design", "Community Operations"],
-      link: "https://discord.gg/utGzjE6r8J"
+      skills: ["사업 운영", "디자인", "팀 리딩"]
     },
     {
       id: "luxeret",
-      title: "LUXERET - Marketer",
+      title: "회사 업무 경험",
       slogan: "가능성을 넘어, 가치를 향해",
-      description: "LUXERET에서 브랜드 마케터로 일하며 다양한 가치 중심 마케팅 활동을 펼치고 있습니다.",
+      description: "회사에서 브랜드 마케팅 관련 업무를 경험했습니다.",
       achievements: [
         "마케팅 캠페인 기획 및 브랜드 채널 운영",
         "온라인 프로모션 및 트렌드 분석"
       ],
       skills: ["Growth Marketing", "Marketing Strategy"],
-      link: "https://luxeret.com/"
     },
     {
       id: "kustudio",
-      title: "Ku:/ Studio - Member",
+      title: "크리에이티브 스튜디오 경험",
       slogan: "창작의 경계를 넓히는 곳",
-      description: "Ku:/ Studio에서 크리에이티브 멤버로 활동하며 디자인 및 브랜딩 프로젝트에 참여하고 있습니다.",
+      description: "스튜디오의 디자인 및 브랜딩 프로젝트에 참여했습니다.",
       achievements: [
         "스튜디오 내 브랜드 및 비주얼 디자인 프로젝트 참여",
         "크리에이티브 방향성 논의 및 콘텐츠 기획 기여"
@@ -283,71 +272,64 @@ const portfolioDataKo: PortfolioDataType = {
     }
   ],
 
-  socialLinks: [
-    { icon: "github", label: "GitHub", url: "https://github.com/haroseo" },
-    { icon: "instagram", label: "Instagram", url: "https://www.instagram.com/tooday.zip/" },
-    { icon: "discord", label: "Discord", url: "https://discord.com/users/seoharo" },
-    { icon: "mail", label: "Email", url: "mailto:seoharo0111@gmail.com" },
-  ],
+  socialLinks: [],
 
   contact: {
-    email: "seoharo0111@gmail.com",
-    github: "https://github.com/haroseo",
-    discord: "seoharo",
-    instagram: "tooday.zip",
-    location: "대한민국",
+    email: "",
+    github: "",
+    instagram: "",
   },
 
   communities: [
     {
-      name: "로블갤러리 (ROGLLAERY)",
-      members: "800+",
+      name: "커뮤니티 운영 경험",
+      members: "커뮤니티 경험",
       logo: "/assets/rogllaery.png",
       role: "설립자 및 총괄 (Founder)",
-      slogan: "유저가 만들어 나가는 투명한 커뮤니티, 로블갤러리",
-      description: "유저가 만들어 나가는 투명한 커뮤니티, 로블갤러리",
-      detailsText: "로블갤러리는 유저들이 스스로 교류하고 성장하는 소통 커뮤니티입니다. 유저들의 자발적인 참여와 투명한 문화를 지향하며 건전하고 투명한 커뮤니티 환경을 제공하고 지속 가능한 소통의 장을 만듭니다."
+      slogan: "사용자가 함께 만들어가는 커뮤니티",
+      description: "사용자 참여와 투명한 소통을 중심으로 커뮤니티를 운영했습니다.",
+      detailsText: "사용자 참여와 투명한 문화를 바탕으로 커뮤니티 운영 경험을 쌓았습니다."
     },
     {
-      name: "Limited™",
-      members: "500+",
+      name: "디자인 리소스 사업",
+      members: "이전 사업 · 양도 후 퇴임",
       logo: "/assets/limited.png",
-      role: "Founder",
-      slogan: "오직 나만을 위한 제품, Limited™",
-      description: "최상급 무료 에셋 배포와 가상 공간에 최적화된 게임 리소스 라이브러리 채널",
-      detailsText: "Limited™는 최상급 무료배포와 게임 환경에 특화된 맞춤형 그래픽/코드 에셋을 제공합니다. 개발자들의 시간 비용을 획기적으로 줄여줄 프리미엄 창작 리소스를 지속 연구하고 유통합니다."
+      role: "창업 · 운영 · 양도 후 퇴임",
+      slogan: "디자인 리소스 사업 운영 경험",
+      description: "디자인 리소스 사업을 운영했습니다. 이후 다른 사람에게 넘기고 운영에서 물러났습니다.",
+      detailsText: "이전 사업으로 디자인 리소스를 다루고 운영했습니다. 현재는 사업을 다른 사람에게 넘기고 운영에서 물러난 상태입니다."
     },
     {
-      name: "로폴더 (RoFolder)",
-      members: "700+",
+      name: "커뮤니티 사업",
+      members: "이전 사업 · 양도 후 퇴임",
       logo: "/assets/rofolder-logo-new.png",
-      role: "대표 (CEO)",
-      slogan: "당신의 가치를 높이는, 로샵 탐색의 모든 것",
-      description: "청소년 및 청년의 스타트업 창업을 독려하고 이끄는 디스코드 대표 커뮤니티",
-      detailsText: "로폴더는 청소년 및 청년의 스타트업 창업을 독려하고 이끄는 디스코드 대표 커뮤니티입니다. 브랜드 가치 구축, 모의 피칭 피드백, 네트워킹 리소스를 결합하여 비즈니스의 첫 데이터를 생성할 수 있도록 스타트업 생태계를 활성화합니다."
+      role: "창업 · 운영 · 양도 후 퇴임",
+      slogan: "커뮤니티 서비스 기획과 운영 경험",
+      description: "창업 커뮤니티 사업을 운영했습니다. 이후 다른 사람에게 넘기고 운영에서 물러났습니다.",
+      detailsText: "창업 커뮤니티 사업을 직접 시작하고 운영했습니다. 이후 사업을 다른 사람에게 넘기고 운영에서 물러났습니다."
     }
   ],
 };
 
 const portfolioDataEn: PortfolioDataType = {
-  name: "SEOHARO",
-  title: "Brand Design · Marketing · Programming",
-  tagline: "Turn your story into data for success",
+  name: "WORK ARCHIVE",
+  title: "Planning · Design · Development · Marketing",
+  tagline: "I try ideas and bring them to life.",
   description:
-    "A creator who connects businesses and users through design, marketing, and programming. I operate the youth startup community RoFolder and the asset distribution channel Limited™.",
+    "I have experience in development- and marketing-related work and continue design through freelance projects. This portfolio also includes planning, writing, and web work.",
 
   skills: [
     {
-      category: "Design",
-      items: ["UX/UI Design", "Typography", "Figma", "Brand Identity"],
+      category: "Design & Planning",
+      items: ["UI Design", "Brand Visuals", "Figma", "Content Planning"],
     },
     {
-      category: "Marketing",
-      items: ["Growth Marketing", "Viral Marketing", "Community Strategy", "Instagram Marketing"],
+      category: "Business & Marketing",
+      items: ["Business Operations", "Marketing Experience", "Community Operations", "Team Leadership"],
     },
     {
-      category: "Programming",
-      items: ["Web Development", "Scripting", "Discord Bot Development", "Software Tools"],
+      category: "Development & AI",
+      items: ["Development Experience", "Web Development", "Rapid Prototyping", "Generative AI"],
     },
   ],
 
@@ -359,7 +341,6 @@ const portfolioDataEn: PortfolioDataType = {
         "A visual design platform curating aesthetic artwork and high-quality web layouts.",
       tags: ["Brand Design", "UX/UI Design"],
       link: "https://designs.kro.kr",
-      github: "https://github.com/haroseo/Design-Pick",
       featured: true,
       category: "brand",
       details: {
@@ -370,18 +351,18 @@ const portfolioDataEn: PortfolioDataType = {
     },
     {
       id: 2,
-      title: "TypoLab",
+      title: "나랏말싸미",
       description:
-        "An experimental web typing service reinterpreting Hangeul's assembly mechanisms and visual values into interactive typography motion graphics.",
-      tags: ["Typography", "Interactive Design", "Web Experiment"],
+        "A web project that brings the principles of Hangeul composition into typing practice.",
+      tags: ["Hangeul typing", "Web service"],
       link: "https://훈민정음.kro.kr",
-      github: "https://github.com/naramarsami/naramarsami",
+      github: "",
       featured: true,
       category: "development",
       details: {
-        background: "Conceived to translate Hangeul's letters and assembly dynamics into browser-based interactive mechanics.",
-        strategy: "Analyzed historical Hunminjeongeum structures to build real-time responsive web motion layouts.",
-        metrics: "Planned and built interactive Hangeul typography system."
+        background: "Planned as a way to encounter Hangeul composition principles through typing practice.",
+        strategy: "Kept the practice flow focused on reading and entering Hangeul.",
+        metrics: "Hangeul typing practice web project"
       }
     },
     {
@@ -405,8 +386,7 @@ const portfolioDataEn: PortfolioDataType = {
       description:
         "A personal creative workspace where I prototype and experiment with diverse programming concepts.",
       tags: ["Personal Project", "Development"],
-      link: "https://github.com/haroseo/Xe-project",
-      github: "https://github.com/haroseo/Xe-project",
+      link: "",
       featured: false,
       category: "development",
       details: {
@@ -421,8 +401,7 @@ const portfolioDataEn: PortfolioDataType = {
       description:
         "An interactive web study tool based on node-graph structures to enhance memorization efficiency.",
       tags: ["Web Service", "Education", "Interactive Design"],
-      link: "https://github.com/haroseo/Mindmap",
-      github: "https://github.com/haroseo/Mindmap",
+      link: "",
       featured: false,
       category: "development",
       details: {
@@ -437,8 +416,7 @@ const portfolioDataEn: PortfolioDataType = {
       description:
         "An automated team attendance tracking tool tailored for Function Factory, written in TypeScript.",
       tags: ["TypeScript", "Tool", "Community"],
-      link: "https://github.com/haroseo/Crewcheck",
-      github: "https://github.com/haroseo/Crewcheck",
+      link: "",
       featured: false,
       category: "development",
       details: {
@@ -454,8 +432,7 @@ const portfolioDataEn: PortfolioDataType = {
       description:
         "A simple web ranking service to curate and rank movies/contents on modular tier lists.",
       tags: ["Web Service", "HTML", "Ranking"],
-      link: "https://github.com/haroseo/movtier",
-      github: "https://github.com/haroseo/movtier",
+      link: "",
       featured: false,
       category: "development",
       details: {
@@ -471,7 +448,7 @@ const portfolioDataEn: PortfolioDataType = {
         "A fast and customizable web form builder for collecting user feedback and surveys.",
       tags: ["Web Service", "Form Builder", "Productivity"],
       link: "https://cokform.pages.dev/",
-      github: "https://github.com/Cokform-47203810394/Conform-2938103840",
+      github: "",
       featured: false,
       category: "development",
       details: {
@@ -486,8 +463,7 @@ const portfolioDataEn: PortfolioDataType = {
       description:
         "A repository dedicated to researching and packaging reusable TypeScript utility functions.",
       tags: ["Library", "Developer Tool", "TypeScript"],
-      link: "https://github.com/haroseo",
-      github: "https://github.com/haroseo",
+      link: "",
       featured: false,
       category: "development",
       details: {
@@ -502,8 +478,7 @@ const portfolioDataEn: PortfolioDataType = {
       description:
         "A geographic data visualization service designed to match and plot locations on interactive maps.",
       tags: ["Map API", "Geolocation", "Data Visualization"],
-      link: "https://github.com/haroseo",
-      github: "https://github.com/haroseo",
+      link: "",
       featured: false,
       category: "development",
       details: {
@@ -517,46 +492,42 @@ const portfolioDataEn: PortfolioDataType = {
   careers: [
     {
       id: "rofolder",
-      title: "RoFolder - CEO",
-      slogan: "Turn your story into data for success, RoFolder",
-      description: "A leading Discord community that encourages youth startup entrepreneurship.",
+      title: "Community business · Former",
+      slogan: "Experience planning and operating a community business",
+      description: "I ran a startup community business, then handed it over and stepped away from operations.",
       achievements: [
-        "Operating networking channels that promote youth startup business",
-        "Supporting startup ideas matchmaking and planning community events",
-        "Leading brand identity designs and official logo renewals"
+        "Started the business, led a team, and took responsibility for operations.",
+        "Later handed the business over and stepped away from operations."
       ],
-      skills: ["CEO / Leadership", "Branding", "Community Operations"],
-      link: "https://discord.gg/ABz6SQ74Yv"
+      skills: ["Business operations", "Team leadership", "Accountability"]
     },
     {
       id: "limited",
-      title: "Limited™ - Founder",
-      slogan: "Products made exclusively for you, Limited™",
-      description: "Limited™ is a channel exclusively for me — sharing and communicating game resources and assets optimized for virtual spaces under the Limited™ brand.",
+      title: "Design-resource business · Former",
+      slogan: "Experience planning and operating a design-resource business",
+      description: "I ran a design resource business, then handed it over and stepped away from operations.",
       achievements: [
-        "Distributing free game assets and design resources for developers",
-        "Structuring resource categories and managing channels based on feedback"
+        "Started and ran a business focused on design resources.",
+        "Later handed the business over and stepped away from operations."
       ],
-      skills: ["Asset Curation", "Figma Design", "Community Operations"],
-      link: "https://discord.gg/utGzjE6r8J"
+      skills: ["Business operations", "Design", "Team leadership"]
     },
     {
       id: "luxeret",
-      title: "LUXERET - Marketer",
+      title: "Company experience",
       slogan: "Beyond possibilities, towards value",
-      description: "Working as a brand marketer at LUXERET, carrying out various value-oriented marketing activities.",
+      description: "Experience in brand marketing-related work.",
       achievements: [
         "Planning marketing campaigns and managing brand channels",
         "Analyzing online promotions and market trends"
       ],
       skills: ["Growth Marketing", "Marketing Strategy"],
-      link: "https://luxeret.com/"
     },
     {
       id: "kustudio",
-      title: "Ku:/ Studio - Creative Member",
+      title: "Creative studio experience",
       slogan: "Expanding the boundaries of creation",
-      description: "Working as a creative member at Ku:/ Studio, participating in branding and design projects.",
+      description: "Participated in studio design and branding projects.",
       achievements: [
         "Participated in studio brand identity design and visual assets",
         "Contributed to creative design direction and contents curation"
@@ -565,48 +536,41 @@ const portfolioDataEn: PortfolioDataType = {
     }
   ],
 
-  socialLinks: [
-    { icon: "github", label: "GitHub", url: "https://github.com/haroseo" },
-    { icon: "instagram", label: "Instagram", url: "https://www.instagram.com/tooday.zip/" },
-    { icon: "discord", label: "Discord", url: "https://discord.com/users/seoharo" },
-    { icon: "mail", label: "Email", url: "mailto:seoharo0111@gmail.com" },
-  ],
+  socialLinks: [],
 
   contact: {
-    email: "seoharo0111@gmail.com",
-    github: "https://github.com/haroseo",
-    discord: "seoharo",
-    instagram: "tooday.zip",
-    location: "Republic of Korea",
+    email: "",
+    github: "",
+    instagram: "",
   },
 
   communities: [
     {
-      name: "ROGLLAERY",
-      members: "800+",
+      name: "Community experience",
+      members: "Community experience",
       logo: "/assets/rogllaery.png",
       role: "Founder & General Manager",
-      slogan: "A transparent community built by users, ROGLLAERY",
-      description: "A transparent community built by users, ROGLLAERY",
-      detailsText: "ROGLLAERY is a communication community where users interact and grow together. We aim for voluntary user participation and transparent culture, providing a healthy and transparent environment."
+      slogan: "A community built together with its users",
+      description: "Community operations centered on user participation and open communication.",
+      detailsText: "Experience operating a community around user participation and transparent communication."
     },
     {
-      name: "Limited™",
-      members: "500+",
+      name: "Design-resource business",
+      members: "Former business · handed over",
       logo: "/assets/limited.png",
-      role: "Founder",
-      slogan: "Products made exclusively for you, Limited™",
-      description: "A channel distributing top-tier free assets and hosting a game resource library optimized for virtual spaces",
-      detailsText: "Limited™ provides custom graphic and code assets tailored for game environments along with top-tier free distribution. We continuously research and distribute premium creative resources to drastically save development time and costs."
+      role: "Founded · operated · handed over",
+      slogan: "Design-resource business experience",
+      description: "I ran a design resource business, then handed it over and stepped away from operations.",
+      detailsText: "This was a former business focused on design resources. I handed it over and am no longer involved in its operations."
     },
     {
-      name: "RoFolder",
-      members: "700+",
+      name: "Community business",
+      members: "Former business · handed over",
       logo: "/assets/rofolder-logo-new.png",
-      role: "CEO",
+      role: "Founded · operated · handed over",
       slogan: "Everything about RoShop searches that raises your value",
-      description: "A leading Discord community that encourages youth startup entrepreneurship",
-      detailsText: "RoFolder is a leading Discord community that encourages and guides youth startup entrepreneurship. We activate the startup ecosystem by combining brand value establishment, mock pitch feedback, and networking resources so businesses can generate their first data."
+      description: "I ran a startup community business, then handed it over and stepped away from operations.",
+      detailsText: "I started and ran this startup community business, then handed it over and stepped away from operations."
     }
   ],
 };
