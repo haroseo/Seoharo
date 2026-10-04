@@ -38,6 +38,16 @@ export async function verifySeoBuild(outputDirectory) {
   for (const page of [...publicPages, { path: '/404', indexable: false }]) {
     const html = await readFile(getHtmlOutputPath(root, page.path), 'utf8');
     const metadata = getPageMetadata(page.path, 'ko');
+    if (page.path === '/') {
+      const head = html.match(/<head\b[^>]*>([\s\S]*?)<\/head>/)?.[1] ?? '';
+      for (const [name, value] of [
+        ['msvalidate.01', '230AE140E58F75920EDB0EA20EC0FD39'],
+        ['naver-site-verification', '239679eef06375e786bdccfc7fad64c1c67d1e7c'],
+      ]) {
+        const tag = `<meta name="${name}" content="${value}" />`;
+        requireCheck(head.split(tag).length - 1 === 1, `Missing or duplicate search verification: ${name}`);
+      }
+    }
     requireCheck(html.includes(`<title>${escapeHtml(metadata.title)}</title>`), `Wrong title: ${page.path}`);
     requireCheck(html.includes(`name="description" content="${escapeHtml(metadata.description)}"`), `Wrong description: ${page.path}`);
     requireCheck(html.includes(`name="robots" content="${metadata.robots}"`), `Wrong robots: ${page.path}`);

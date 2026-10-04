@@ -20,6 +20,21 @@ test('real public HTML artifacts stay within output and exclude private data', a
     const input = { outputDirectory: directory, template, pages, cname: 'seoharo.kro.kr' };
     assert.deepEqual(await writeSiteArtifacts(input), { pages: 12, aliases: 12, notFound: 1 });
     assert.deepEqual(await verifySeoBuild(directory), { pages: 12, aliases: 12, notFound: 1, sitemapUrls: 12 });
+    // Removing a configured search verification tag from the rendered head must fail release validation.
+    const home = await readFile(join(directory, 'index.html'), 'utf8');
+    const homeHead = home.match(/<head\b[^>]*>([\s\S]*?)<\/head>/)[1];
+    for (const tag of [
+      '<meta name="msvalidate.01" content="230AE140E58F75920EDB0EA20EC0FD39" />',
+      '<meta name="naver-site-verification" content="239679eef06375e786bdccfc7fad64c1c67d1e7c" />',
+    ]) {
+      assert.equal(homeHead.split(tag).length - 1, 1, 'Crawler-readable ownership tag must appear once in the head');
+      await writeFile(join(directory, 'index.html'), home.replace(tag, ''));
+      await assert.rejects(verifySeoBuild(directory), /Missing or duplicate search verification/);
+      await writeFile(join(directory, 'index.html'), home);
+      await writeFile(join(directory, 'index.html'), home.replace(tag, `${tag}${tag}`));
+      await assert.rejects(verifySeoBuild(directory), /Missing or duplicate search verification/);
+      await writeFile(join(directory, 'index.html'), home);
+    }
     assert.match(await readFile(join(directory, 'contact/index.html'), 'utf8'), /mailto:seoharo0111@gmail.com/);
     const sitemap = await readFile(join(directory, 'sitemap.xml'), 'utf8');
     assert.ok(sitemap.includes('https://seoharo.kro.kr/portfolio/company-work/'));
