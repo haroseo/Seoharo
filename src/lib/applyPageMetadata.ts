@@ -1,5 +1,5 @@
 import type { PageMetadata } from '../data/siteSeo';
-import { SITE_NAME } from '../data/siteIdentity';
+import { SEARCH_SITE_NAME } from '../data/siteIdentity';
 
 export function applyPageMetadata(metadata: PageMetadata) {
   document.title = metadata.title;
@@ -7,7 +7,7 @@ export function applyPageMetadata(metadata: PageMetadata) {
   const values: [string, string, string | null][] = [
     ['name', 'robots', metadata.robots], ['name', 'description', metadata.description],
     ['property', 'og:title', metadata.title], ['property', 'og:description', metadata.description],
-    ['property', 'og:site_name', SITE_NAME], ['property', 'og:url', metadata.canonicalUrl],
+    ['property', 'og:site_name', SEARCH_SITE_NAME], ['property', 'og:url', metadata.canonicalUrl],
     ['property', 'og:image', metadata.imageUrl], ['property', 'og:image:width', String(metadata.imageWidth)],
     ['property', 'og:image:height', String(metadata.imageHeight)],
     ['property', 'og:locale', metadata.language === 'ko' ? 'ko_KR' : 'en_US'],

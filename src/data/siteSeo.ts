@@ -1,6 +1,6 @@
 import type { Locale } from './portfolioContent.ts';
 import { careerEntries, selectedWorks } from './portfolioContent.ts';
-import { SITE_NAME, getSitePageTitle } from './siteIdentity.ts';
+import { SITE_NAME, SEARCH_SITE_NAME, SEARCH_SITE_ALIASES, getSitePageTitle } from './siteIdentity.ts';
 import { resolvePublicPage } from './publicPages.ts';
 import { SITE_ORIGIN, normalizeAppPath, toCanonicalUrl } from './siteUrl.ts';
 
@@ -31,7 +31,7 @@ export function getPageMetadata(pathname: string, language: Locale): PageMetadat
     : project ? `${project.title} | ${SITE_NAME}`
     : career ? `${career.title[language]} | ${SITE_NAME}` : getSitePageTitle(path, language);
   const canonicalUrl = page ? toCanonicalUrl(page.canonicalPath) : null;
-  const graph: Record<string, unknown>[] = [{ '@type': 'WebSite', '@id': `${SITE_ORIGIN}/#website`, name: SITE_NAME, url: `${SITE_ORIGIN}/` }];
+  const graph: Record<string, unknown>[] = [{ '@type': 'WebSite', '@id': `${SITE_ORIGIN}/#website`, name: SEARCH_SITE_NAME, alternateName: [...SEARCH_SITE_ALIASES], url: `${SITE_ORIGIN}/` }];
   if (page) {
     graph.push({ '@type': isAbout ? 'ProfilePage' : 'WebPage', '@id': canonicalUrl + '#page', url: canonicalUrl, name: title, description, inLanguage: language,
       isPartOf: { '@id': `${SITE_ORIGIN}/#website` }, ...(isAbout ? { mainEntity: { '@id': `${SITE_ORIGIN}/#person` } } : {}) });

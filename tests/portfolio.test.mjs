@@ -643,11 +643,11 @@ test('small-text colors retain WCAG AA contrast on their surfaces', () => {
   assert.ok(contrast(color('Grey900'), color('Blue50')) >= 4.5);
 });
 
-test('production metadata keeps the approved site name and excludes contact details from metadata', () => {
+test('production metadata preserves approved page titles with a concise search name and no private details', () => {
   const html = renderHead(getPageMetadata('/', 'ko'));
   const siteName = '서주원 | Brand Designer • Marketer • Developer';
   assert.match(html, new RegExp(`<title>${siteName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}<\\/title>`));
-  assert.match(html, new RegExp(`<meta property="og:site_name" content="${siteName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`));
+  assert.match(html, /<meta property="og:site_name" content="서주원"/);
   assert.ok(!/"worksFor"|"jobTitle"|discord\.gg|700\+|500\+/i.test(html));
   assert.doesNotMatch(html, /preconnect[^>]+fonts\.googleapis|fonts\.gstatic/i);
   assert.doesNotMatch(html, /<meta\s+name="author"|birthDate|address|school|mailto:/i);

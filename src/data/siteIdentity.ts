@@ -1,5 +1,9 @@
 export const SITE_NAME = '서주원 | Brand Designer • Marketer • Developer';
 
+// Search-result source labels are distinct from the unchanged page/tab titles.
+export const SEARCH_SITE_NAME = '서주원';
+export const SEARCH_SITE_ALIASES = ['Seoharo', 'seoharo.kro.kr'] as const;
+
 const pageLabels = {
   ko: {
     '/about': '소개',

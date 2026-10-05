@@ -1,4 +1,4 @@
-import { SITE_NAME } from '../src/data/siteIdentity.ts';
+import { SEARCH_SITE_NAME } from '../src/data/siteIdentity.ts';
 export function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
 }
@@ -10,7 +10,7 @@ export function renderHead(meta) {
   return [
     `<title>${escapeHtml(meta.title)}</title>`, tag('name', 'description', meta.description), tag('name', 'robots', meta.robots),
     meta.canonicalUrl ? `<link rel="canonical" href="${escapeHtml(meta.canonicalUrl)}" />` : '',
-    tag('property', 'og:type', 'website'), tag('property', 'og:site_name', SITE_NAME), tag('property', 'og:title', meta.title),
+    tag('property', 'og:type', 'website'), tag('property', 'og:site_name', SEARCH_SITE_NAME), tag('property', 'og:title', meta.title),
     tag('property', 'og:description', meta.description), tag('property', 'og:url', meta.canonicalUrl), tag('property', 'og:locale', meta.language === 'ko' ? 'ko_KR' : 'en_US'),
     tag('property', 'og:image', meta.imageUrl), tag('property', 'og:image:width', meta.imageWidth), tag('property', 'og:image:height', meta.imageHeight),
     tag('name', 'twitter:card', 'summary'), tag('name', 'twitter:title', meta.title), tag('name', 'twitter:description', meta.description), tag('name', 'twitter:image', meta.imageUrl),
