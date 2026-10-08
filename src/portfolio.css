@@ -83,6 +83,7 @@
 .sj-work-card-link { display: block; border-radius: 8px; }
 .sj-work-visual { position: relative; overflow: hidden; aspect-ratio: 1.35; border-radius: 8px; background: var(--sj-pale); }
 .sj-work-visual img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.sj-work-visual--screen img { object-position: top; }
 .sj-work-card-link:hover .sj-work-visual img { transform: scale(1.025); }
 .sj-work-visual--paper { background: var(--adaptiveGrey50); }
 .sj-work-visual--ink { background: var(--adaptiveGrey900); }
@@ -229,6 +230,46 @@
 .sj-contact-channel span span { display: block; font-size: 11px; color: var(--sj-muted); margin-top: 5px; }
 .sj-contact-channel:hover { color: var(--sj-blue); }
 .sj-project-detail { padding-block: 45px 55px; }
+.sj-screen-gallery { padding-top: 48px; }
+.sj-screen-gallery-header { max-width: 760px; }
+.sj-screen-gallery h2 { margin: 12px 0 16px; font-size: 28px; font-weight: 750; }
+.sj-screen-gallery-header > p:last-child { font-size: 14px; line-height: 1.85; color: var(--sj-muted); }
+.sj-screen-index { display: grid; grid-template-columns: 1fr 2fr; gap: 32px; padding: 24px 0; margin-top: 24px; border-block: 1px solid var(--sj-line); }
+.sj-screen-index h3 { margin: 0 0 10px; font-size: 14px; font-weight: 700; }
+.sj-screen-index h3 span { margin-left: 6px; color: var(--sj-muted); }
+.sj-screen-index ol { display: flex; flex-wrap: wrap; gap: 4px 16px; list-style: none; margin: 0; padding: 0; }
+.sj-screen-index a { display: inline-flex; align-items: center; min-height: 40px; font-size: 14px; color: var(--sj-blue); text-decoration: underline; text-underline-offset: 4px; }
+.sj-screen-row { display: grid; grid-template-columns: minmax(0,1.7fr) minmax(240px,1fr); align-items: start; gap: 40px; padding: 48px 0; border-bottom: 1px solid var(--sj-line); scroll-margin-top: 112px; }
+.sj-screen-row figure { min-width: 0; margin: 0; }
+.sj-screen-row figure > a { display: block; }
+.sj-screen-row img { display: block; width: 100%; height: auto; border: 1px solid var(--sj-line); background: white; }
+.sj-screen-row--mobile img { max-width: 390px; margin-inline: auto; }
+.sj-screen-row figcaption { display: flex; justify-content: center; align-items: center; gap: 5px; margin-top: 12px; font-size: 12px; color: var(--sj-muted); }
+.sj-screen-notes { position: sticky; top: 112px; }
+.sj-screen-notes h3 { margin: 10px 0 28px; font-size: 24px; font-weight: 750; line-height: 1.4; }
+.sj-screen-notes h4 { margin: 24px 0 8px; font-size: 14px; font-weight: 700; }
+.sj-screen-notes > p:not(.sj-caption) { margin: 0; font-size: 15px; line-height: 1.85; word-break: keep-all; color: var(--sj-body); }
+.sj-screen-back { display: inline-flex; min-height: 44px; align-items: center; margin-top: 24px; font-size: 13px; color: var(--sj-blue); }
+#design-screens-heading { scroll-margin-top: 112px; }
+.sj-design-case-links { display: grid; grid-template-columns: 190px minmax(0,1fr); gap: 48px; margin-top: 48px; border-top: 1px solid var(--sj-line); padding-top: 32px; }
+.sj-design-case-links h2 { margin: 0 0 10px; font-size: 16px; font-weight: 750; }
+.sj-design-case-links header p { font-size: 14px; color: var(--sj-muted); line-height: 1.8; }
+.sj-design-case-link { display: flex; align-items: center; gap: 20px; justify-content: space-between; border-bottom: 1px solid var(--sj-line); padding: 24px 0; }
+.sj-design-case-link strong { display: block; font-size: 20px; font-weight: 700; }
+.sj-design-case-link span span { display: block; margin-top: 8px; color: var(--sj-body); font-size: 14px; line-height: 1.8; }
+.sj-design-case-link small { display: block; margin-top: 12px; font-size: 12px; color: var(--sj-muted); }
+.sj-design-case-link > svg { flex-shrink: 0; color: var(--sj-blue); }
+.sj-design-case-link:hover strong { color: var(--sj-blue); }
+@media (max-width: 800px) {
+  .sj-screen-row { grid-template-columns: minmax(0,1fr) minmax(220px,.85fr); gap: 24px; }
+}
+@media (max-width: 600px) {
+  .sj-screen-gallery h2 { font-size: 24px; }
+  .sj-screen-index, .sj-screen-row, .sj-design-case-links { grid-template-columns: minmax(0,1fr); gap: 24px; }
+  .sj-screen-row { padding: 32px 0; }
+  .sj-screen-notes { position: static; }
+  .sj-screen-notes h3 { font-size: 21px; margin-bottom: 20px; }
+}
 .sj-back-link { padding-block: 12px; color: var(--sj-muted); font-size: 12px; }
 .sj-detail-header { padding-block: 42px 30px; }
 .sj-detail-header > p { max-width: 720px; margin: 24px 0 36px; font-size: 16px; color: var(--sj-muted); line-height: 1.9; word-break: keep-all; }

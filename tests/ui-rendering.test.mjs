@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { createServer } from 'vite';
+import { readFileSync } from 'node:fs';
+import { buildSiteSearchIndex } from '../src/data/siteSearch.ts';
 
 let server;
 let App;
@@ -25,6 +27,51 @@ function renderPage(path, language = 'ko') {
   const html = renderToStaticMarkup(createElement(App, { initialPath: path, initialLanguage: language, prerendered: true }));
   return html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1] ?? '';
 }
+
+test('1 to Z shows all 18 original screens with accessible explanations and original-size links', () => {
+  for (const language of ['ko', 'en']) {
+    const main = renderPage('/portfolio/one-to-z', language);
+    assert.equal((main.match(/data-design-screen="/g) ?? []).length, 18);
+    assert.equal((main.match(/data-screen-original="/g) ?? []).length, 18);
+    assert.equal((main.match(/data-screen-image="/g) ?? []).length, 18);
+    assert.match(main, language === 'ko' ? /화면 해설/ : /Screen notes/);
+    assert.match(main, language === 'ko' ? /디자인 시안/ : /Design prototype/);
+    assert.ok(!main.includes('figma-alpha-api'), 'Temporary export URLs must not become public assets');
+  }
+});
+
+test('Designgraphy displays the actual Claude screens separately from the Figma archive', () => {
+  const main = renderPage('/portfolio/designgraphy');
+  assert.equal((main.match(/data-design-screen="/g) ?? []).length, 12);
+  assert.match(main, /Claude/);
+  assert.match(main, /준비 중/);
+  assert.ok(!main.includes('iframe'), 'The source application must not run inside the portfolio');
+});
+
+test('rendered design images have real local assets, accurate dimensions and searchable anchors', () => {
+  const entries = buildSiteSearchIndex();
+  for (const slug of ['one-to-z', 'designgraphy']) {
+    const main = renderPage(`/portfolio/${slug}`);
+    const images = [...main.matchAll(/<img data-screen-image="([^"]+)" src="([^"]+)"[^>]*width="(\d+)" height="(\d+)"/g)];
+    assert.equal(images.length, slug === 'one-to-z' ? 18 : 12);
+    for (const [, id, source, width, height] of images) {
+      const bytes = readFileSync(new URL(`../public${source}`, import.meta.url));
+      assert.equal(bytes.toString('ascii', 0, 4), 'RIFF');
+      assert.equal(bytes.toString('ascii', 8, 16), 'WEBPVP8 ');
+      assert.equal(bytes.readUInt16LE(26) & 0x3fff, Number(width), source);
+      assert.equal(bytes.readUInt16LE(28) & 0x3fff, Number(height), source);
+      assert.ok(main.includes(`id="screen-${id}"`));
+      assert.ok(entries.some(entry => entry.href === `/portfolio/${slug}#screen-${id}`));
+    }
+  }
+});
+
+test('design work links to both source-backed design cases without claiming client deliveries', () => {
+  const main = renderPage('/career/freelance-design');
+  assert.match(main, /href="\/portfolio\/one-to-z"/);
+  assert.match(main, /href="\/portfolio\/designgraphy"/);
+  assert.match(main, /개인 프로젝트와 시안/);
+});
 
 test('contact with a trailing slash renders the contact screen instead of an empty main', () => {
   const main = renderPage('/contact/');
@@ -60,7 +107,7 @@ test('public page families and aliases render one primary heading and unique anc
     '/career', '/career/', '/career/group/company', '/career/group/club',
     '/portfolio/company-work', '/career/company-work/', '/career/freelance-design',
     '/career/business-operations', '/career/function-factory',
-    '/portfolio/designgraphy', '/portfolio/planor', '/portfolio/design-pick',
+    '/portfolio/designgraphy', '/portfolio/one-to-z', '/portfolio/planor', '/portfolio/design-pick',
     '/portfolio/naratmalsami', '/portfolio/typolab', '/contact', '/contact/', '/missing-page',
   ]) {
     const main = renderPage(path);

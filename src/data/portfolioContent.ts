@@ -15,6 +15,7 @@ export interface SelectedWork {
   output: Copy;
   image?: string;
   imageAlt?: Copy;
+  imagePresentation?: 'screen';
   href: string;
   github?: string;
   theme: 'ink' | 'paper' | 'blue';
@@ -50,11 +51,28 @@ export const selectedWorks: SelectedWork[] = [
     summary: { ko: '기업과 대학의 공식 디자인 가이드를 모아 검색하고, 원문으로 연결하는 레퍼런스 아카이브 프로토타입.', en: 'A reference archive prototype for finding official company and university design guides and opening their original sources.' },
     roles: { ko: '개인 프로젝트 · 웹 프로토타입', en: 'Personal project · Web prototype' },
     output: { ko: '검색 · 분야별 목록 · 가이드 상세 화면', en: 'Search · Categorized index · Guide detail pages' },
+    image: '/assets/designgraphy/home.webp', imagePresentation: 'screen',
+    imageAlt: { ko: 'Claude 원본 디자인그래피 홈페이지 화면', en: 'Homepage captured from the original Claude Designgraphy prototype' },
     href: 'https://claude.ai/artifact/SMJrhw1mdYerMNnQNVWyur',
     notes: [
       { title: { ko: '무엇을 만들었나요?', en: 'What is it?' }, body: { ko: '디자인을 참고할 때 기업과 대학의 공식 자료를 한곳에서 찾을 수 있도록 구성한 웹 프로토타입입니다. 자료 소개에서 원문 가이드로 바로 이동하는 흐름을 담았습니다.', en: 'A web prototype that brings official design references from companies and universities into one place, connecting guide summaries to their original sources.' } },
       { title: { ko: '화면에서 확인할 수 있는 것', en: 'What the prototype shows' }, body: { ko: '검색, 국내·해외와 기업·대학 분류, 가이드 목록과 상세 화면을 구성했습니다. 공식 자료를 만든 기관과 아카이브의 역할을 구분합니다.', en: 'The interface includes search, domestic and international company and university categories, a guide index, and detail pages. The archive remains distinct from the organizations that created the guides.' } },
       { title: { ko: '현재 작업 범위', en: 'Current scope' }, body: { ko: '공유된 Claude 아티팩트 버전입니다. 컬러 팔레트와 타이포그래피 메뉴는 준비 중이며, 아카이브 전체 자료의 정확성이나 서비스 운영 성과를 검증한 결과는 아닙니다.', en: 'The shared Claude artifact version. Color palette and typography sections are marked as coming soon. This record does not claim independently validated archive data or service outcomes.' } },
+    ],
+  },
+  {
+    slug: 'one-to-z', title: '1 to Z', category: 'design', status: 'prototype', eyebrow: 'FASHION PLATFORM · UI/UX', theme: 'paper',
+    headline: { ko: '취향을 발견하고,\n옷을 고르는 화면.', en: 'Discover a style.\nExplore the clothes.' },
+    summary: { ko: '의류 관련 플랫폼 1 to Z의 웹·모바일 디자인 시안. 홈부터 상품 탐색, 주문과 배송 조회까지 18개 원본 화면을 정리했습니다.', en: 'Web and mobile design prototypes for the clothing platform 1 to Z. Eighteen original screens cover home, discovery, products, ordering and delivery tracking.' },
+    roles: { ko: '개인 디자인 시안 · UI/UX 구성', en: 'Personal design prototype · UI/UX layout' },
+    output: { ko: '웹 5개 · 모바일 13개 디자인 화면', en: '5 web · 13 mobile design screens' },
+    image: '/assets/one-to-z/one-to-z-20-11859.webp', imagePresentation: 'screen',
+    imageAlt: { ko: '1 to Z 의류 플랫폼 쇼핑 홈페이지 디자인 시안', en: '1 to Z clothing platform shopping homepage design prototype' },
+    href: 'https://www.figma.com/design/EnoG62fRkbWFIPsRd7MJA5?node-id=20-11859',
+    notes: [
+      { title: { ko: '작업 범위', en: 'Scope' }, body: { ko: '의류 관련 플랫폼의 웹·모바일 화면을 구성한 디자인 시안입니다. 상품 목록과 상세, 브랜드 이야기와 에디토리얼, 찜과 장바구니, 주문 이후 화면까지 담았습니다.', en: 'Design prototypes for a clothing platform across web and mobile, including product lists and details, brand stories, editorial content, saved items, cart and post-order screens.' } },
+      { title: { ko: '화면 전체로 확인하기', en: 'Inspect the full screens' }, body: { ko: 'Figma 화면 18개를 내보내어 화면별 기능과 함께 정리했습니다. 각 화면은 잘리지 않은 전체 이미지로 볼 수 있으며, 이미지를 누르면 새 창에서 크게 확인할 수 있습니다.', en: 'Eighteen exported Figma screens are documented with notes. Each full-length image is shown without cropping and can be opened in a new tab for closer inspection.' } },
+      { title: { ko: '시안과 실제 서비스 구분', en: 'Prototype, not a live service' }, body: { ko: '화면에 있는 상품·가격·주문·회원·회사 정보는 예시입니다. 실제 판매, 고객 수, 구매 성과나 개발 완료를 주장하지 않습니다.', en: 'Products, prices, orders, member and company information in the design are examples, not claims of sales, customers, purchase outcomes or a completed implementation.' } },
     ],
   },
   {

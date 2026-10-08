@@ -31,6 +31,7 @@ export interface ProfilePortfolioItem {
   logo?: string;
   image?: string;
   imageAlt?: LocalizedText;
+  imagePresentation?: 'screen';
   href?: string;
   detailHref?: string;
   status?: LocalizedText;
@@ -61,6 +62,7 @@ const selectedWorkProfileItems: ProfilePortfolioItem[] = selectedWorks.map((work
   tags: [categoryLabelByWorkCategory[work.category], work.output],
   image: work.image,
   imageAlt: work.imageAlt,
+  imagePresentation: work.imagePresentation,
   href: work.href,
   detailHref: `/portfolio/${work.slug}`,
   status: work.projectStatus === 'ongoing'

@@ -8,6 +8,16 @@ import { contactChannels } from '../src/data/contactChannels.ts';
 import { hiddenPortfolioIds } from '../src/data/siteRevision.ts';
 import { profilePortfolioItems } from '../src/data/profilePortfolio.ts';
 import { buildSiteSearchIndex, searchSiteContent } from '../src/data/siteSearch.ts';
+import { withAppRenderer } from './helpers/render-app.mjs';
+
+test('1 to Z is found by Korean aliases and screen keywords link directly to their detail', () => {
+  const entries = buildSiteSearchIndex();
+  for (const query of ['1 to Z', '1toz', '원투지', '원투제트']) {
+    assert.ok(searchSiteContent(entries, query).some(entry => entry.href === '/portfolio/one-to-z'), query);
+  }
+  assert.ok(searchSiteContent(entries, '주문 상세 배송').some(entry => entry.href === '/portfolio/one-to-z#screen-31-14363'));
+  assert.equal(entries.filter(entry => entry.id.startsWith('project-screen:one-to-z:')).length, 18);
+});
 
 test('site-wide index includes each visible content family once and omits hidden project IDs', () => {
   const entries = buildSiteSearchIndex();
@@ -151,14 +161,15 @@ test('complete Korean words do not become different Korean words through keyboar
   assert.equal(searchSiteContent(entries, '로ㅍ')[0]?.id, '로폴더', 'partially composed Korean should still find the intended name');
 });
 
-test('every internal search destination resolves to a public route and an existing section when it has a hash', () => {
+test('every internal search destination resolves to a public route and a rendered section when it has a hash', async () => {
   const entries = buildSiteSearchIndex();
-  const anchors = new Map([
-    ['/', new Set(['about-growth', ...aboutGrowth.map(step => step.anchorId)])],
-    ['/about', new Set(['about', ...aboutDisciplines.map(item => `about-${item.id}`)])],
-    ['/portfolio', new Set(['experience', 'projects', 'skills'])],
-    ['/contact', new Set(['contact'])],
-  ]);
+  const anchors = await withAppRenderer(render => {
+    const paths = new Set(entries.filter(entry => entry.href.includes('#')).map(entry => new URL(entry.href, 'https://seoharo.kro.kr').pathname));
+    return new Map([...paths].map(path => {
+      const html = render({ initialPath: path, initialLanguage: 'ko', prerendered: true });
+      return [path, new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]))];
+    }));
+  });
   for (const entry of entries) {
     assert.ok(entry.id && entry.title.ko.trim() && entry.title.en.trim());
     assert.ok(entry.section.ko.trim() && entry.section.en.trim());

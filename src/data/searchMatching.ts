@@ -5,6 +5,7 @@ const nameAliases: readonly (readonly string[])[] = [
   ['Roblox Gallery', 'RoGallery', '로블갤러리'],
   ['LUXERET', '룩세렛'],
   ['Designgraphy', '디자인그래피'],
+  ['1 to Z', '1toz', '원투지', '원투제트'],
   ['Design Pick', '디자인픽'],
   ['Planor', '플래너'],
   ['Naratmalsami', '나랏말싸미'],

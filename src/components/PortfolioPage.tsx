@@ -222,11 +222,11 @@ export default function PortfolioPage({ focusSection }: { focusSection?: 'experi
                         <span className="relative block size-[76px] shrink-0 overflow-hidden rounded-lg border border-[#e7eaf0] bg-white sm:size-[88px]">
                           <img src={item.logo} alt={t(`${item.title.ko} 로고`, `${item.title.en} logo`)} className="size-full object-contain p-1.5" />
                         </span>
-                      ) : item.id === 'designgraphy' || item.id === 'planor' || item.id === 'naratmalsami' ? (
+                      ) : item.id === 'planor' || item.id === 'naratmalsami' ? (
                         <span className="hidden h-[76px] w-[132px] shrink-0 overflow-hidden rounded-lg border border-[#e7eaf0] sm:block">
                           <ProjectCover slug={item.id} title={item.title[language]} language={language} compact />
                         </span>
-                      ) : item.image && <img src={item.image} alt={item.imageAlt?.[language] ?? ''} className="hidden h-[76px] w-[104px] shrink-0 rounded-lg border border-[#e7eaf0] object-cover sm:block" />}
+                      ) : item.image && <img src={item.image} alt={item.imageAlt?.[language] ?? ''} loading="lazy" decoding="async" width="104" height="76" className={`hidden h-[76px] w-[104px] shrink-0 rounded-lg border border-[#e7eaf0] object-cover sm:block ${item.imagePresentation === 'screen' ? 'object-top' : ''}`} />}
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                           <h3 className="text-base font-bold text-[var(--ink)]">

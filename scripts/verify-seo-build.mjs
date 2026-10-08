@@ -76,8 +76,10 @@ export async function verifySeoBuild(outputDirectory) {
     if (page.path === '/portfolio/company-work/') requireCheck(main.includes('LUXERET') && main.includes('Knowly'), 'Missing company contributions');
     if (page.path === '/career/business-operations/') for (const name of ['RoFolder', 'Limited', '로블갤러리']) requireCheck(main.includes(name), 'Missing business record');
   }
-  requireCheck(descriptions.size === 12, 'Canonical descriptions must be distinct');
-  return { pages: 12, aliases: 12, notFound: 1, sitemapUrls: 12 };
+  const pages = publicPages.filter(page => page.indexable).length;
+  const aliases = publicPages.length - pages;
+  requireCheck(descriptions.size === pages, 'Canonical descriptions must be distinct');
+  return { pages, aliases, notFound: 1, sitemapUrls: pages };
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   try { console.log(JSON.stringify(await verifySeoBuild(process.argv[2] ?? 'dist'))); }

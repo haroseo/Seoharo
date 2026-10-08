@@ -12,7 +12,7 @@ test('only real detail pages and canonical equivalents are indexable', () => {
   assert.equal(getPageMetadata('/career/not-real', 'ko').canonicalUrl, null);
   for (const bad of ['//evil.example/a', '/../../escape', '/x\\y', '/%2e%2e/escape', '/x?y']) assert.equal(resolvePublicPage(bad), null);
   assert.deepEqual(publicPages.filter(p => p.indexable).map(p => p.path), [
-    '/', '/portfolio/', '/contact/', '/career/', '/portfolio/designgraphy/', '/portfolio/planor/',
+    '/', '/portfolio/', '/contact/', '/career/', '/portfolio/designgraphy/', '/portfolio/one-to-z/', '/portfolio/planor/',
     '/portfolio/design-pick/', '/portfolio/naratmalsami/', '/portfolio/company-work/',
     '/career/freelance-design/', '/career/business-operations/', '/career/function-factory/',
   ]);
@@ -28,7 +28,7 @@ test('metadata describes approved identity without inferring private facts', () 
   assert.deepEqual(person.sameAs, ['https://github.com/haroseo', 'https://www.linkedin.com/in/seoharo/']);
   assert.doesNotMatch(JSON.stringify(person), /birthDate|worksFor|address|email|school/i);
   const descriptions = publicPages.filter(p => p.indexable).map(p => getPageMetadata(p.path, 'ko').description);
-  assert.equal(new Set(descriptions).size, 12);
+  assert.equal(new Set(descriptions).size, 13);
   assert.equal(getPageMetadata('/portfolio/planor/', 'ko').canonicalUrl, 'https://seoharo.kro.kr/portfolio/planor/');
 });
 

@@ -4,6 +4,7 @@ import {
   careerEntries,
   companyWorkSpecialties,
   filterCompanyContributions,
+  selectedWorks,
   type CareerGroupId,
   type CompanyWorkSpecialtyFilter,
 } from '../data/portfolioContent';
@@ -180,6 +181,19 @@ export default function CareerPage({ slug, fromWorkTab = false, initialGroup }: 
             </div>
           </section>
         )}
+
+        {entry.slug === 'freelance-design' && <section className="sj-design-case-links" aria-labelledby="design-cases-heading">
+          <header><h2 id="design-cases-heading">{t('디자인 작업', 'Design work')}</h2>
+            <p>{t('개인 프로젝트와 시안을 함께 정리했습니다. 실제 적용·유료 납품 작업과는 구분합니다.', 'Personal projects and prototypes, separate from client deliveries or confirmed production work.')}</p></header>
+          <div>{['one-to-z', 'designgraphy'].map(slug => {
+            const work = selectedWorks.find(item => item.slug === slug);
+            if (!work) return null;
+            return <Link to={`/portfolio/${work.slug}`} key={work.slug} className="sj-design-case-link">
+              <span><strong>{work.title}</strong><span>{work.summary[language]}</span><small>{work.output[language]}</small></span>
+              <ArrowUpRight size={20} aria-hidden="true" />
+            </Link>;
+          })}</div>
+        </section>}
 
         {entry.ventures && (
           <section className="mt-12 grid gap-8 border-t border-[var(--line)] pt-8 sm:mt-16 sm:grid-cols-[190px_minmax(0,1fr)] sm:gap-12" aria-labelledby="career-ventures-heading">

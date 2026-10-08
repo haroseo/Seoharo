@@ -34,7 +34,7 @@ test('filters combine category and case-insensitive, trimmed bilingual search', 
   assert.equal(filterWorks('all', 'no-such-work').length, 0);
 });
 test('work view keeps employment and clubs inside their selected categories', () => {
-  assert.deepEqual(profilePortfolioModule.getProfilePortfolioDisplayItems('all').map(item => item.id), ['designgraphy', 'planor', 'design-pick', 'naratmalsami', 'cokform']);
+  assert.deepEqual(profilePortfolioModule.getProfilePortfolioDisplayItems('all').map(item => item.id), ['designgraphy', 'one-to-z', 'planor', 'design-pick', 'naratmalsami', 'cokform']);
   assert.deepEqual(profilePortfolioModule.getProfilePortfolioDisplayItems('marketing').map(item => item.id), ['company-work']);
   assert.deepEqual(profilePortfolioModule.getProfilePortfolioDisplayItems('club').map(item => item.id), ['functionfactory']);
 });
@@ -574,7 +574,7 @@ test('profile experience and project copy is complete in both languages', () => 
 test('profile filters search both languages and combine with categories and tags', () => {
   assert.deepEqual(filterProfilePortfolioItems('all', '  SERVER DISCOVERY  ').map(item => item.id), ['rofolder']);
   assert.deepEqual(filterProfilePortfolioItems('development', 'calendar').map(item => item.id), ['planor']);
-  assert.deepEqual(filterProfilePortfolioItems('brand', '', 'Design').map(item => item.id), ['freelance-design', 'designgraphy', 'design-pick']);
+  assert.deepEqual(filterProfilePortfolioItems('brand', '', 'Design').map(item => item.id), ['freelance-design', 'designgraphy', 'one-to-z', 'design-pick']);
   assert.deepEqual(filterProfilePortfolioItems('operations').map(item => item.id), ['rofolder', 'limited', 'roblox-gallery']);
   assert.equal(filterProfilePortfolioItems('marketing', 'nonsense').length, 0);
   assert.ok(!filterProfilePortfolioItems().some(item => hiddenPortfolioIds.includes(item.id)));

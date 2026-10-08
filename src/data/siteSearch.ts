@@ -11,6 +11,7 @@ import {
 import { profilePortfolioItems } from './profilePortfolio.ts';
 import { visiblePortfolioItems } from './siteRevision.ts';
 import { prepareSearchQuery, scoreSearchFields } from './searchMatching.ts';
+import { designCaseStudies } from './designCaseStudies.ts';
 
 export interface SiteSearchEntry {
   id: string;
@@ -138,6 +139,14 @@ export function buildSiteSearchIndex(): SiteSearchEntry[] {
         ...(work.href ? [sameCopy(new URL(work.href).hostname)] : []),
       ],
     })),
+    ...designCaseStudies.flatMap(study => study.screens.map(screen => ({
+      id: `project-screen:${study.slug}:${screen.id}`,
+      title: screen.title,
+      section: sameCopy(selectedWorks.find(work => work.slug === study.slug)?.title ?? study.slug),
+      excerpt: screen.function,
+      href: `/portfolio/${study.slug}#screen-${screen.id}`,
+      terms: [screen.rationale, sameCopy(screen.format)],
+    }))),
     ...visiblePortfolioItems(profilePortfolioItems)
       .filter((item) => item.kind === 'project' && !item.detailHref)
       .map((item) => ({

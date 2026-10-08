@@ -18,8 +18,8 @@ test('real public HTML artifacts stay within output and exclude private data', a
     await cp('public/favicon.svg', join(directory, 'favicon.svg'));
     const pages = [...publicPages.map(page => renderPage(page.path)), renderPage('/404')];
     const input = { outputDirectory: directory, template, pages, cname: 'seoharo.kro.kr' };
-    assert.deepEqual(await writeSiteArtifacts(input), { pages: 12, aliases: 12, notFound: 1 });
-    assert.deepEqual(await verifySeoBuild(directory), { pages: 12, aliases: 12, notFound: 1, sitemapUrls: 12 });
+    assert.deepEqual(await writeSiteArtifacts(input), { pages: 13, aliases: 12, notFound: 1 });
+    assert.deepEqual(await verifySeoBuild(directory), { pages: 13, aliases: 12, notFound: 1, sitemapUrls: 13 });
     // Removing a configured search verification tag from the rendered head must fail release validation.
     const home = await readFile(join(directory, 'index.html'), 'utf8');
     const homeHead = home.match(/<head\b[^>]*>([\s\S]*?)<\/head>/)[1];
