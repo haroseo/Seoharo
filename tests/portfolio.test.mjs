@@ -277,8 +277,9 @@ test('career profile links open the relevant detail and keep the work tab active
   assert.equal(companyMetadata.description, portfolioContent.careerEntries[0].summary.ko);
   assert.match(app, /const fromWorkTab = route\.page === 'career-detail' && route\.slug === 'company-work'/);
   assert.match(app, /fromWorkTab=\{fromWorkTab\}/);
-  assert.ok(renderHead(companyMetadata).includes('property="og:title" content="회사 업무 | 서주원'));
-  assert.ok(renderHead(companyMetadata).includes('name="twitter:title" content="회사 업무 | 서주원'));
+  assert.equal(companyMetadata.socialTitle, '회사 업무 | 서주원');
+  assert.ok(renderHead(companyMetadata).includes('property="og:title" content="회사 업무 | 서주원"'));
+  assert.ok(renderHead(companyMetadata).includes('name="twitter:title" content="회사 업무 | 서주원"'));
   assert.equal(SITE_NAME, '서주원 | Brand Designer • Marketer • Developer');
   assert.equal(getSitePageTitle('/marketing', 'ko'), '마케팅 | 서주원 | Brand Designer • Marketer • Developer');
   assert.equal(getSitePageTitle('/operations', 'ko'), '사업 운영 | 서주원 | Brand Designer • Marketer • Developer');
@@ -422,7 +423,7 @@ test('SPA navigation scrolls to same-page and cross-page search anchors', () => 
 test('header wordmark uses the personal logo and the approved Creative entrepreneur descriptor', () => {
   const header = readFileSync(new URL('../src/components/Header.tsx', import.meta.url), 'utf8');
   assert.match(header, /t\('서주원', 'Seo Juwon'\)/);
-  assert.match(header, /aria-label=\{t\('서주원 소개', 'Seo Juwon — About'\)\}/);
+  assert.match(header, /aria-label=\{t\('서주원 소개', 'Seo Juwon About'\)\}/);
   assert.match(header, /juwon-mark\.svg/);
   assert.match(header, /className="sj-header-mark/);
   assert.doesNotMatch(header, /bg-\[#eef1f6\]|rounded-\[.*\] bg-/);
@@ -453,7 +454,7 @@ test('about introduces the person without former affiliations, community metrics
   assert.match(timeline, /step\.phase\[language\]/);
   assert.match(timeline, /step\.tags\.map/);
   assert.match(about, /SEOHARO/);
-  assert.match(about, /프로젝트 목록/);
+  assert.match(about, /포트폴리오 보기/);
   assert.match(about, /협업 문의/);
   assert.match(about, /lg:grid-cols/);
   assert.doesNotMatch(about, /juwon-mark\.png/);

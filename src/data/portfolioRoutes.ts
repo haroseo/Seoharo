@@ -1,5 +1,6 @@
-import type { CareerGroupId, WorkCategory } from './portfolioContent';
+import { careerEntries, selectedWorks, type CareerGroupId, type Locale, type WorkCategory } from './portfolioContent.ts';
 import { normalizeAppPath } from './siteUrl.ts';
+import { SITE_ORIGIN } from './siteUrl.ts';
 
 export const primaryNavigation = [
   { path: '/', label: { ko: '소개', en: 'About' } },
@@ -51,4 +52,43 @@ export function getPrimaryNavigationPath(path: string): string | null {
   if (route.page === 'contact') return '/contact';
   if (route.page === 'work' || route.page === 'career' || route.page === 'career-detail' || route.page === 'project') return '/portfolio';
   return null;
+}
+
+function getScreen(href: string | null | undefined) {
+  if (typeof href !== 'string' || !href || !resolveRedirectPath(href, SITE_ORIGIN)) return null;
+  const path = normalizeAppPath(href.split(/[?#]/)[0]);
+  if (!path) return null;
+  const route = getPortfolioRoute(path);
+  if (route.page === 'missing') return null;
+  if (route.page === 'project') {
+    const work = selectedWorks.find(item => item.slug === route.slug);
+    return work ? { key: `project:${work.slug}`, name: { ko: work.title, en: work.title }, path, secondary: true } : null;
+  }
+  if (route.page === 'career-detail' || (route.page === 'career' && route.group)) {
+    const entry = careerEntries.find(item => route.page === 'career-detail' ? item.slug === route.slug : item.group === route.group);
+    return entry ? { key: `career:${entry.slug}`, name: entry.title, path, secondary: true } : null;
+  }
+  const names = { about: { ko: '소개', en: 'About' }, work: { ko: '포트폴리오', en: 'Portfolio' }, contact: { ko: '연락', en: 'Contact' }, career: { ko: '경력 목록', en: 'Career' } };
+  return { key: route.page, name: names[route.page], path, secondary: route.page === 'career' };
+}
+
+export function getNavigationScreenKey(href: string) {
+  return getScreen(href)?.key ?? null;
+}
+
+export function getNavigationAnchor(hash: string) {
+  try { return decodeURIComponent(hash.startsWith('#') ? hash.slice(1) : hash); }
+  catch { return ''; }
+}
+
+export function getReturnDestination(currentPath: string, previousHref: string | null | undefined, language: Locale) {
+  const screen = getScreen(currentPath);
+  if (!screen?.secondary) return null;
+  const previous = getScreen(previousHref);
+  const fallback = screen.key === 'career' || screen.key.startsWith('project:') || screen.key === 'career:company-work' ? '/portfolio' : '/career';
+  const href = previous && previous.key !== screen.key ? previousHref! : fallback;
+  const name = getScreen(href)!.name[language];
+  const ending = name.charCodeAt(name.length - 1) - 0xac00;
+  const particle = ending >= 0 && ending <= 11171 && ending % 28 !== 0 && ending % 28 !== 8 ? '으로' : '로';
+  return { href, label: language === 'ko' ? `${name}${particle} 돌아가기` : `Back to ${name}` };
 }

@@ -1,5 +1,4 @@
 import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
-import { useState } from 'react';
 import {
   careerEntries,
   companyWorkSpecialties,
@@ -8,7 +7,8 @@ import {
   type CareerGroupId,
   type CompanyWorkSpecialtyFilter,
 } from '../data/portfolioContent';
-import { Link } from './router';
+import { Link, useRouter } from './router';
+import ReturnNavigation from './ReturnNavigation';
 import { useLanguage } from './LanguageContext';
 
 interface CareerPageProps {
@@ -19,7 +19,9 @@ interface CareerPageProps {
 
 export default function CareerPage({ slug, fromWorkTab = false, initialGroup }: CareerPageProps) {
   const { language, t } = useLanguage();
-  const [activeSpecialty, setActiveSpecialty] = useState<CompanyWorkSpecialtyFilter>('all');
+  const { viewState, updateViewState } = useRouter();
+  const activeSpecialty = viewState.companySpecialty ?? 'all';
+  const setActiveSpecialty = (companySpecialty: CompanyWorkSpecialtyFilter) => updateViewState({ companySpecialty });
   const selectedGroupEntry = initialGroup
     ? careerEntries.find((entry) => entry.group === initialGroup)
     : undefined;
@@ -30,6 +32,7 @@ export default function CareerPage({ slug, fromWorkTab = false, initialGroup }: 
     return (
       <section className="min-h-[65vh] bg-white px-5 pb-20 pt-24 sm:px-8 sm:pb-24 sm:pt-28 lg:px-10">
         <div className="mx-auto max-w-6xl">
+          <ReturnNavigation className="mb-5" />
           <header className="max-w-3xl">
             <p className="text-sm font-semibold text-[var(--brand-accent)]">{t('경력', 'Career')}</p>
             <h1 className="mt-2 text-2xl font-bold leading-snug text-[var(--ink)] sm:text-3xl">
@@ -85,9 +88,7 @@ export default function CareerPage({ slug, fromWorkTab = false, initialGroup }: 
   return (
     <article className="min-h-[65vh] bg-white px-5 pb-20 pt-24 sm:px-8 sm:pb-24 sm:pt-28 lg:px-10">
       <div className="mx-auto max-w-6xl">
-        <Link to={backPath} className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[var(--body-copy)] transition-colors hover:text-[var(--brand-accent)]">
-          <ArrowLeft size={16} aria-hidden="true" />{fromWorkTab ? t('작업 목록', 'Work') : t('경력 목록', 'Career')}
-        </Link>
+        <ReturnNavigation />
 
         <header className="mt-7 rounded-2xl border border-[var(--career-line)] bg-[var(--career-surface)] p-5 sm:p-8">
           <div className="flex items-start gap-4 sm:gap-6">

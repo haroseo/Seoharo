@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, ArrowUpRight, Search, X } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Search, X } from 'lucide-react';
 import { Github } from './BrandIcons';
 import { useState } from 'react';
 import { useLanguage } from '../LanguageContext';
@@ -8,6 +8,7 @@ import type { WorkCategory } from '../../data/portfolioContent';
 import { ContactBanner, WorkCard, WorkVisual } from './PortfolioUI';
 import { getDesignCaseStudy } from '../../data/designCaseStudies';
 import { DesignScreenGallery } from './DesignScreenGallery';
+import ReturnNavigation from '../ReturnNavigation';
 
 export function ProjectsPage({ initialCategory = 'all' }: { initialCategory?: WorkCategory | 'all' }) {
   const { language, t } = useLanguage();
@@ -30,7 +31,7 @@ export function ProjectDetail({ slug }: { slug: string }) {
   if (!work) return <MissingPage />;
   const next = selectedWorks[(selectedWorks.indexOf(work) + 1) % selectedWorks.length];
   const study = getDesignCaseStudy(slug);
-  return <article className="sj-project-detail sj-container"><Link to="/portfolio" className="sj-back-link"><ArrowLeft size={16} />{t('프로젝트 목록', 'All projects')}</Link><header className="sj-detail-header"><span className="sj-eyebrow">{work.eyebrow}</span><h1>{work.headline[language]}</h1><p>{work.summary[language]}</p><dl className="sj-project-facts"><div><dt>PROJECT</dt><dd>{work.title}</dd></div><div><dt>{t('참여한 일', 'CONTRIBUTION')}</dt><dd>{work.roles[language]}</dd></div><div><dt>{t('작업', 'OUTPUT')}</dt><dd>{work.output[language]}</dd></div></dl></header>{!study && <WorkVisual key={work.slug} work={work} priority />}
+  return <article className="sj-project-detail sj-container"><ReturnNavigation className="sj-back-link" /><header className="sj-detail-header"><span className="sj-eyebrow">{work.eyebrow}</span><h1>{work.headline[language]}</h1><p>{work.summary[language]}</p><dl className="sj-project-facts"><div><dt>PROJECT</dt><dd>{work.title}</dd></div><div><dt>{t('참여한 일', 'CONTRIBUTION')}</dt><dd>{work.roles[language]}</dd></div><div><dt>{t('작업', 'OUTPUT')}</dt><dd>{work.output[language]}</dd></div></dl></header>{!study && <WorkVisual key={work.slug} work={work} priority />}
       {study && <DesignScreenGallery study={study} />}
       <div className="sj-case-notes"><h2>{t('작업에 담은 생각.', 'Thinking behind the work.')}</h2><div>{work.notes.map((note, index) => <section key={note.title.en}><span className="sj-caption">0{index + 1}</span><h3>{note.title[language]}</h3><p>{note.body[language]}</p></section>)}<p className="sj-case-note">{t('개인 프로젝트 기록입니다. 공개 링크의 현재 서비스 상태는 달라질 수 있습니다.', 'Personal project archive. The current availability of linked services may vary.')}</p><div className="sj-detail-actions"><a href={work.href} target="_blank" rel="noopener noreferrer" className="sj-button sj-button--primary">{t('원본 작업 보기', 'View original work')}<ArrowUpRight size={18} /></a>{work.github && <a href={work.github} target="_blank" rel="noopener noreferrer" className="sj-button sj-button--outline"><Github size={17} />{t('코드 살펴보기', 'Explore the code')}</a>}</div></div></div><Link to={`/portfolio/${next.slug}`} className="sj-next-project"><div><span className="sj-eyebrow">NEXT PROJECT</span><h2>{next.title}</h2></div><ArrowRight size={30} /></Link></article>;
 }

@@ -19,6 +19,17 @@ export function readPngDimensions(buffer) {
   if (!dimensions.width || !dimensions.height) throw new Error('Invalid PNG dimensions');
   return dimensions;
 }
+export async function readSharingImage(outputDirectory, metadata) {
+  const url = new URL(metadata.imageUrl);
+  if (url.origin !== SITE_ORIGIN || url.search || url.hash || !/^\/assets\/share\/seoharo-(?:ko|en)-v1\.png$/.test(url.pathname)) throw new Error('Invalid sharing image');
+  const root = resolve(outputDirectory);
+  const target = resolve(root, url.pathname.slice(1));
+  await rejectSymlinkAncestors(root, target);
+  const bytes = await readFile(target);
+  const dimensions = readPngDimensions(bytes);
+  if (dimensions.width !== 1200 || dimensions.height !== 630 || dimensions.width !== metadata.imageWidth || dimensions.height !== metadata.imageHeight || bytes.length >= 5_000_000) throw new Error('Image metadata mismatch');
+  return dimensions;
+}
 export function makeSitemap() {
   return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + publicPages.filter(page => page.indexable).map(page => `  <url><loc>${toCanonicalUrl(page.path)}</loc></url>`).join('\n') + '\n</urlset>\n';
 }
@@ -39,14 +50,13 @@ export async function writeSiteArtifacts({ outputDirectory, template, pages, cna
   const expected = new Set([...publicPages.map(page => normalizeAppPath(page.path)), '/404']);
   const seen = new Set();
   const files = [];
-  const image = readPngDimensions(await readFile(resolve(outputDirectory, 'assets/juwon-mark.png')));
   for (const page of pages) {
     const path = normalizeAppPath(page.bootstrap.initialPath);
     if (!path || !expected.has(path) || seen.has(path)) throw new Error('Missing, duplicate or non-public page');
     seen.add(path);
     const config = resolvePublicPage(path);
     if (page.metadata.canonicalUrl !== (config ? toCanonicalUrl(config.canonicalPath) : null)) throw new Error('Unexpected canonical');
-    if (page.metadata.imageUrl !== `${SITE_ORIGIN}/assets/juwon-mark.png` || image.width !== page.metadata.imageWidth || image.height !== page.metadata.imageHeight) throw new Error('Image metadata mismatch');
+    await readSharingImage(outputDirectory, page.metadata);
     if ((page.html.match(/<h1\b/g) ?? []).length !== 1 || /opacity:0(?:;|"|\b)/.test(page.html)) throw new Error('Missing or hidden primary content');
     files.push([getHtmlOutputPath(outputDirectory, path), renderHtml(template, page)]);
   }

@@ -28,6 +28,51 @@ function renderPage(path, language = 'ko') {
   return html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1] ?? '';
 }
 
+test('the home reading flow ends with original work previews and a direct portfolio destination', () => {
+  for (const language of ['ko', 'en']) {
+    const main = renderPage('/', language);
+    const preview = main.match(/<section\b[^>]*id="about-work"[\s\S]*?<\/section>/)?.[0] ?? '';
+    assert.ok(preview, 'Reading the home page should lead to work before the footer');
+    assert.ok(main.indexOf('id="about-work"') > main.indexOf('id="about-skills"'));
+    assert.match(preview, /href="\/portfolio#projects"/);
+    for (const slug of ['one-to-z', 'designgraphy']) {
+      assert.match(preview, new RegExp(`href="/portfolio/${slug}"`));
+      assert.match(preview, new RegExp(`src="/assets/${slug}/[^" ]+"`));
+    }
+    assert.match(preview, language === 'ko' ? /시안/ : /prototype/i);
+    assert.doesNotMatch(renderPage('/contact', language), /id="about-work"/);
+  }
+});
+
+test('return navigation appears on secondary destinations with safe fallback names, never on primary pages', () => {
+  for (const [path, label, href] of [
+    ['/career', '포트폴리오로 돌아가기', '/portfolio'],
+    ['/career/group/freelance', '경력 목록으로 돌아가기', '/career'],
+    ['/career/business-operations', '경력 목록으로 돌아가기', '/career'],
+    ['/portfolio/company-work', '포트폴리오로 돌아가기', '/portfolio'],
+    ['/portfolio/one-to-z', '포트폴리오로 돌아가기', '/portfolio'],
+  ]) {
+    const main = renderPage(path);
+    assert.equal((main.match(/data-return-navigation="true"/g) ?? []).length, 1, path);
+    assert.match(main, new RegExp(`href="${href}"[^>]*data-return-navigation="true"`));
+    assert.ok(main.includes(label), path);
+  }
+  assert.match(renderPage('/career', 'en'), /Back to Portfolio/);
+  for (const path of ['/', '/about', '/portfolio', '/contact', '/design', '/development', '/marketing', '/operations', '/clubs', '/404']) {
+    assert.doesNotMatch(renderPage(path), /data-return-navigation/, path);
+  }
+});
+
+test('the portfolio uses the supplied LinkedIn banner without replacing the profile identity', () => {
+  for (const language of ['ko', 'en']) {
+    const main = renderPage('/portfolio', language);
+    assert.match(main, /class="profile-banner[^>]*>[\s\S]*?<img src="\/assets\/profile-banner\.jpg"[^>]*width="1400" height="349"/);
+    assert.match(main, /id="profile-heading"/);
+    assert.match(main, /src="\/assets\/juwon-mark\.svg"/);
+    assert.equal((main.match(/src="\/assets\/profile-banner\.jpg"/g) ?? []).length, 1);
+  }
+});
+
 test('1 to Z shows all 18 original screens with accessible explanations and original-size links', () => {
   for (const language of ['ko', 'en']) {
     const main = renderPage('/portfolio/one-to-z', language);

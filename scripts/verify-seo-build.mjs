@@ -7,7 +7,7 @@ import { SITE_ORIGIN, normalizeAppPath } from '../src/data/siteUrl.ts';
 import { parsePageBootstrap } from '../src/data/pageBootstrap.ts';
 import { aboutGrowth } from '../src/data/aboutContent.ts';
 import { selectedWorks, careerEntries } from '../src/data/portfolioContent.ts';
-import { getHtmlOutputPath, makeRobots, makeSitemap, readPngDimensions } from './seo-artifacts.mjs';
+import { getHtmlOutputPath, makeRobots, makeSitemap, readSharingImage } from './seo-artifacts.mjs';
 import { escapeHtml } from './seo-html.mjs';
 
 function requireCheck(condition, message) { if (!condition) throw new Error(message); }
@@ -32,14 +32,23 @@ export async function verifySeoBuild(outputDirectory) {
   requireCheck((await readFile(resolve(root, 'CNAME'), 'utf8')).trim() === new URL(SITE_ORIGIN).hostname, 'Wrong CNAME');
   requireCheck(await readFile(resolve(root, 'robots.txt'), 'utf8') === makeRobots(), 'Wrong robots policy');
   requireCheck(await readFile(resolve(root, 'sitemap.xml'), 'utf8') === makeSitemap(), 'Wrong sitemap');
-  const imageDimensions = readPngDimensions(await readFile(resolve(root, 'assets/juwon-mark.png')));
-  requireCheck(imageDimensions.width === 1254 && imageDimensions.height === 1254, 'Wrong sharing image');
+  for (const language of ['ko', 'en']) await readSharingImage(root, getPageMetadata('/', language));
   const descriptions = new Set();
   for (const page of [...publicPages, { path: '/404', indexable: false }]) {
     const html = await readFile(getHtmlOutputPath(root, page.path), 'utf8');
     const metadata = getPageMetadata(page.path, 'ko');
+    const head = html.match(/<head\b[^>]*>([\s\S]*?)<\/head>/)?.[1] ?? '';
+    for (const [attribute, name, content] of [
+      ['property', 'og:title', metadata.socialTitle], ['property', 'og:description', metadata.socialDescription],
+      ['property', 'og:image', metadata.imageUrl], ['property', 'og:image:width', metadata.imageWidth],
+      ['property', 'og:image:height', metadata.imageHeight], ['property', 'og:image:type', 'image/png'], ['property', 'og:image:alt', metadata.imageAlt],
+      ['name', 'twitter:card', 'summary_large_image'], ['name', 'twitter:title', metadata.socialTitle],
+      ['name', 'twitter:description', metadata.socialDescription], ['name', 'twitter:image', metadata.imageUrl], ['name', 'twitter:image:alt', metadata.imageAlt],
+    ]) {
+      const tag = `<meta ${attribute}="${name}" content="${escapeHtml(content)}" />`;
+      requireCheck(head.split(tag).length - 1 === 1 && (head.match(new RegExp(`${attribute}="${name}"`, 'g')) ?? []).length === 1, `Wrong sharing metadata: ${page.path} ${name}`);
+    }
     if (page.path === '/') {
-      const head = html.match(/<head\b[^>]*>([\s\S]*?)<\/head>/)?.[1] ?? '';
       for (const [name, value] of [
         ['msvalidate.01', '230AE140E58F75920EDB0EA20EC0FD39'],
         ['naver-site-verification', '239679eef06375e786bdccfc7fad64c1c67d1e7c'],

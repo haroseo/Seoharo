@@ -4,6 +4,7 @@ import AboutHero from './AboutHero';
 import AboutReveal from './AboutReveal';
 import Timeline from './Timeline';
 import Skills from './Skills';
+import AboutWorkPreview from './AboutWorkPreview';
 import '../about-original.css';
 
 export default function About() {
@@ -59,6 +60,7 @@ export default function About() {
 
       <Timeline />
       <Skills />
+      <AboutWorkPreview />
     </div>
   );
 }

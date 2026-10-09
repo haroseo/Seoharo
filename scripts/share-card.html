@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ko" translate="no">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>서주원 링크 미리보기 이미지 원본</title>
+    <style>
+      @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css');
+      * { box-sizing: border-box; }
+      html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+      body { background: #f6f7f9; color: #1d1d1f; font-family: 'Pretendard Variable', Pretendard, sans-serif; }
+      main { position: relative; width: 1200px; height: 630px; padding: 64px 72px 60px; }
+      .identity { display: flex; align-items: center; gap: 16px; }
+      .identity img { width: 54px; height: 54px; }
+      .identity strong { font-size: 30px; font-weight: 700; line-height: 1.2; }
+      .identity span { margin-left: 9px; font-size: 22px; font-weight: 500; color: #667085; }
+      h1 { margin: 65px 0 22px; font-size: 60px; font-weight: 730; line-height: 1.3; letter-spacing: -.015em; white-space: pre-line; }
+      .description { margin: 0; font-size: 24px; font-weight: 500; line-height: 1.65; color: #4c5665; }
+      footer { position: absolute; inset: auto 72px 52px; display: flex; justify-content: space-between; align-items: center; padding-top: 22px; border-top: 1px solid #d6dce5; }
+      footer span { font-size: 20px; font-weight: 550; color: #4c5665; }
+      footer strong { font-size: 20px; font-weight: 650; color: #0145f2; }
+      .accent { position: absolute; inset: 0 0 auto; height: 8px; background: #0145f2; }
+      html[lang="en"] h1 { font-size: 64px; }
+      #export { position: fixed; right: 16px; bottom: 16px; padding: 10px 16px; border: 0; border-radius: 6px; background: #0145f2; color: white; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+    <main aria-label="서주원 링크 미리보기 카드">
+      <div class="accent" aria-hidden="true"></div>
+      <div class="identity"><img src="/assets/juwon-mark.svg" alt="" /><strong id="name">서주원<span>Seoharo</span></strong></div>
+      <h1 id="headline">생각을 시도하고
+현실로 만듭니다.</h1>
+      <p class="description" id="description">만든 것과 만들어 온 과정.</p>
+      <footer><span id="fields">기획 · 디자인 · 웹 프로젝트</span><strong>seoharo.kro.kr</strong></footer>
+    </main>
+    <button id="export" type="button">PNG 저장 · 1200 × 630</button>
+    <script>
+      // Fit the fixed-size artwork in the capture viewport without changing its composition.
+      const fitArtwork = () => {
+        const artwork = document.querySelector('main');
+        artwork.style.transformOrigin = 'top left';
+        artwork.style.transform = `scale(${Math.min(innerWidth / 1200, innerHeight / 630)})`;
+      };
+      fitArtwork();
+      addEventListener('resize', fitArtwork);
+      if (new URLSearchParams(location.search).get('lang') === 'en') {
+        document.documentElement.lang = 'en';
+        document.getElementById('name').textContent = 'Seo Juwon · Seoharo';
+        document.getElementById('headline').textContent = 'I try ideas.\nThen make them real.';
+        document.getElementById('description').textContent = 'Explore the ideas, decisions and prototypes behind my projects.';
+        document.getElementById('fields').textContent = 'Planning · Design · Web projects';
+        document.querySelector('main').setAttribute('aria-label', 'Seo Juwon link preview card');
+      }
+      // Render the new artwork directly, avoiding display zoom and screenshot compression.
+      document.getElementById('export').addEventListener('click', async () => {
+        await Promise.all([document.fonts.load('730 60px "Pretendard Variable"'), document.fonts.load('500 24px "Pretendard Variable"')]);
+        const canvas = document.createElement('canvas');
+        canvas.width = 1200; canvas.height = 630;
+        const context = canvas.getContext('2d');
+        const english = new URLSearchParams(location.search).get('lang') === 'en';
+        context.fillStyle = '#f6f7f9'; context.fillRect(0, 0, 1200, 630);
+        context.fillStyle = '#0145f2'; context.fillRect(0, 0, 1200, 8);
+        const logo = document.querySelector('.identity img');
+        await logo.decode(); context.drawImage(logo, 72, 64, 54, 54);
+        const text = (value, x, y, size, weight, color = '#1d1d1f') => {
+          context.font = `${weight} ${size}px "Pretendard Variable", sans-serif`;
+          context.fillStyle = color; context.fillText(value, x, y);
+        };
+        text(english ? 'Seo Juwon · Seoharo' : '서주원', 142, 100, 30, 700);
+        if (!english) text('Seoharo', 234, 100, 22, 500, '#667085');
+        text(english ? 'I try ideas.' : '생각을 시도하고', 72, 244, english ? 64 : 60, 730);
+        text(english ? 'Then make them real.' : '현실로 만듭니다.', 72, 322, english ? 64 : 60, 730);
+        text(english ? 'Explore the ideas, decisions and prototypes' : '만든 것과 만들어 온 과정.', 72, 400, 24, 500, '#4c5665');
+        if (english) text('behind my projects.', 72, 440, 24, 500, '#4c5665');
+        context.strokeStyle = '#d6dce5'; context.beginPath(); context.moveTo(72, 542); context.lineTo(1128, 542); context.stroke();
+        text(english ? 'Planning · Design · Web projects' : '기획 · 디자인 · 웹 프로젝트', 72, 578, 20, 550, '#4c5665');
+        context.textAlign = 'right'; text('seoharo.kro.kr', 1128, 578, 20, 650, '#0145f2');
+        const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+        const link = document.createElement('a'); link.href = URL.createObjectURL(blob);
+        link.download = `seoharo-${english ? 'en' : 'ko'}-v1.png`; link.click();
+        setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+      });
+    </script>
+  </body>
+</html>

@@ -6,6 +6,7 @@ import { SITE_ORIGIN, normalizeAppPath, toCanonicalUrl } from './siteUrl.ts';
 
 export type PageMetadata = {
   language: Locale; title: string; description: string;
+  socialTitle: string; socialDescription: string; imageAlt: string;
   robots: 'index, follow' | 'noindex, follow'; canonicalUrl: string | null;
   imageUrl: string; imageWidth: number; imageHeight: number;
   structuredData: Record<string, unknown>;
@@ -31,6 +32,18 @@ export function getPageMetadata(pathname: string, language: Locale): PageMetadat
     : project ? `${project.title} | ${SITE_NAME}`
     : career ? `${career.title[language]} | ${SITE_NAME}` : getSitePageTitle(path, language);
   const canonicalUrl = page ? toCanonicalUrl(page.canonicalPath) : null;
+  const personName = language === 'ko' ? '서주원' : 'Seo Juwon';
+  const socialTitle = isAbout && language === 'ko' ? '안녕하세요, 서주원입니다.'
+    : isAbout || path === '/portfolio'
+    ? (language === 'ko' ? '서주원 | 생각을 시도하고 현실로 만듭니다' : 'Seo Juwon | I try ideas. Then make them real.')
+    : project ? `${project.title} | ${personName}`
+    : career ? `${career.title[language]} | ${personName}`
+    : `${title.split(' | ')[0]} | ${personName}`;
+  const socialDescription = isAbout
+    ? (language === 'ko' ? '생각을 시도하고 현실로 만듭니다. 디자인 시안과 웹 프로젝트, 만든 과정을 담았습니다.' : 'From planning to design and prototypes. Explore the ideas, decisions and process behind my projects.')
+    : path === '/portfolio'
+      ? (language === 'ko' ? '작업 화면과 맡은 역할, 배운 점을 한곳에 정리했습니다.' : 'Explore Designgraphy, 1 to Z and web projects through real screens, individual roles and lessons learned.')
+      : description;
   const graph: Record<string, unknown>[] = [{ '@type': 'WebSite', '@id': `${SITE_ORIGIN}/#website`, name: SEARCH_SITE_NAME, alternateName: [...SEARCH_SITE_ALIASES], url: `${SITE_ORIGIN}/` }];
   if (page) {
     graph.push({ '@type': isAbout ? 'ProfilePage' : 'WebPage', '@id': canonicalUrl + '#page', url: canonicalUrl, name: title, description, inLanguage: language,
@@ -43,6 +56,8 @@ export function getPageMetadata(pathname: string, language: Locale): PageMetadat
       graph.push({ '@type': 'BreadcrumbList', itemListElement: crumbs.map((item, index) => ({ '@type': 'ListItem', position: index + 1, name: item.name, item: item.url })) });
     }
   }
-  return { language, title, description, robots: page ? 'index, follow' : 'noindex, follow', canonicalUrl,
-    imageUrl: `${SITE_ORIGIN}/assets/juwon-mark.png`, imageWidth: 1254, imageHeight: 1254, structuredData: { '@context': 'https://schema.org', '@graph': graph } };
+  return { language, title, description, socialTitle, socialDescription,
+    imageAlt: language === 'ko' ? '서주원·Seoharo 이름과 개인 로고, 생각을 시도하고 현실로 만든다는 소개가 담긴 카드' : 'Seo Juwon · Seoharo, personal logo and the introduction: I try ideas. Then make them real.',
+    robots: page ? 'index, follow' : 'noindex, follow', canonicalUrl,
+    imageUrl: `${SITE_ORIGIN}/assets/share/seoharo-${language}-v1.png`, imageWidth: 1200, imageHeight: 630, structuredData: { '@context': 'https://schema.org', '@graph': graph } };
 }

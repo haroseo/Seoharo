@@ -48,6 +48,7 @@ function Portfolio() {
         <main id="main-content" tabIndex={-1}>
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
+              data-page-path={currentPath}
               key={pageKey}
               initial={!hydrated || shouldReduceMotion ? false : { opacity: 0, x: 8 }}
               animate={{ opacity: 1, x: 0 }}
