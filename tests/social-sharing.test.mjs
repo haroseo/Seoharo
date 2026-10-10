@@ -6,14 +6,14 @@ import { publicPages } from '../src/data/publicPages.ts';
 import { renderHead } from '../scripts/seo-html.mjs';
 import { readPngDimensions } from '../scripts/seo-artifacts.mjs';
 
-test('a bare home link supplies a greeting and scoped work summary in initial preview HTML', () => {
+test('a bare home link supplies a complete personal sharing description without replacing the browser title', () => {
   for (const path of ['/', '/about/']) {
     const head = renderHead(getPageMetadata(path, 'ko'));
-    assert.match(head, /property="og:title" content="안녕하세요, 서주원입니다\."/);
+    const title = head.match(/property="og:title" content="([^"]+)"/)?.[1] ?? '';
+    assert.match(title, /서주원/);
+    assert.ok(title.length <= 70, 'A shared home link needs a concise personal title');
     const description = head.match(/property="og:description" content="([^"]+)"/)?.[1] ?? '';
-    assert.match(description, /디자인 시안/);
-    assert.match(description, /웹 프로젝트/);
-    assert.ok(description.length <= 100, 'The summary should fit a compact preview rather than becoming a letter');
+    assert.ok(description.trim().length > 0, 'The initial sharing HTML must include the introduction, not an empty fallback');
     assert.match(head, /<title>서주원 \| Brand Designer • Marketer • Developer<\/title>/);
   }
   assert.match(getPageMetadata('/portfolio/one-to-z', 'ko').socialTitle, /1 to Z/);

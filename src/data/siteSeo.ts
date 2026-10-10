@@ -11,6 +11,13 @@ export type PageMetadata = {
   imageUrl: string; imageWidth: number; imageHeight: number;
   structuredData: Record<string, unknown>;
 };
+
+const koreanHomeIntroduction = [
+  '떠오른 아이디어를 기획으로 정리하고, 디자인과 개발로 직접 만듭니다. 생각을 오래 붙잡기보다 먼저 시도하고, 만들면서 배우는 편입니다.',
+  '글과 말로 방향을 정리하고, 사람들과 함께 결과물까지 이어가는 일을 좋아합니다. 디자인과 마케팅, 개발을 오가며 작업하고 여러 팀을 이끌어 본 경험이 있습니다. 이곳에는 제가 해온 작업과 맡은 역할, 그 과정에서 배운 것들을 담았습니다. 작업을 살펴보시면 제가 어떻게 생각하고 실행하는 사람인지 조금 더 알 수 있을 거예요.',
+  '먼저 제 작업을 통해 저를 소개하고, 서로의 생각과 경험을 나눠보고 싶습니다. 읽어보시고 궁금한 점이나 나누고 싶은 이야기가 있다면 편하게 연락 주세요.',
+].join('\n\n');
+
 export function getPageMetadata(pathname: string, language: Locale): PageMetadata {
   const page = resolvePublicPage(pathname);
   const path = normalizeAppPath(page?.canonicalPath ?? pathname) ?? '/404';
@@ -40,7 +47,7 @@ export function getPageMetadata(pathname: string, language: Locale): PageMetadat
     : career ? `${career.title[language]} | ${personName}`
     : `${title.split(' | ')[0]} | ${personName}`;
   const socialDescription = isAbout
-    ? (language === 'ko' ? '생각을 시도하고 현실로 만듭니다. 디자인 시안과 웹 프로젝트, 만든 과정을 담았습니다.' : 'From planning to design and prototypes. Explore the ideas, decisions and process behind my projects.')
+    ? (language === 'ko' ? koreanHomeIntroduction : 'From planning to design and prototypes. Explore the ideas, decisions and process behind my projects.')
     : path === '/portfolio'
       ? (language === 'ko' ? '작업 화면과 맡은 역할, 배운 점을 한곳에 정리했습니다.' : 'Explore Designgraphy, 1 to Z and web projects through real screens, individual roles and lessons learned.')
       : description;
