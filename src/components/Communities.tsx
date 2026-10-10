@@ -27,7 +27,7 @@ export default function Communities() {
               <AboutReveal delay={index * 0.06} className="h-full">
                 <Link to="/career/business-operations" className="about-community-card group relative flex h-full flex-col items-center rounded-3xl border border-zinc-900 bg-zinc-950/40 p-8 text-center md:p-10" aria-label={t(venture.name + ' 운영 상세 보기', 'View ' + venture.name + ' operation details')}>
                   <div className="mb-6 flex size-20 items-center justify-center overflow-hidden rounded-2xl border border-zinc-800 bg-black">
-                    <img src={venture.logo} alt="" aria-hidden="true" loading="lazy" decoding="async" className="size-full object-contain" />
+                    <img src={venture.logo} alt="" aria-hidden="true" loading="lazy" decoding="async" className="size-full object-contain" draggable={false} />
                   </div>
                   <h3 className="mb-1.5 text-xl font-bold text-white">{venture.name}</h3>
                   <p className="mb-5 text-xs font-semibold text-zinc-400">

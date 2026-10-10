@@ -5,6 +5,7 @@ import {
   careerGroups,
   companyWorkSpecialties,
   selectedWorks,
+  profileApproach,
   skillGroups,
   type Copy,
 } from './portfolioContent.ts';
@@ -12,6 +13,9 @@ import { profilePortfolioItems } from './profilePortfolio.ts';
 import { visiblePortfolioItems } from './siteRevision.ts';
 import { prepareSearchQuery, scoreSearchFields } from './searchMatching.ts';
 import { designCaseStudies } from './designCaseStudies.ts';
+import { sharingGreeting, sharingIntroduction } from './sharingIntroduction.ts';
+import { getContributionAnchor, getVentureAnchor } from './careerAnchors.ts';
+import { projectEvidence } from './projectEvidence.ts';
 
 export interface SiteSearchEntry {
   id: string;
@@ -42,11 +46,27 @@ export function buildSiteSearchIndex(): SiteSearchEntry[] {
   const entries: SiteSearchEntry[] = [
     {
       id: 'about:overview',
-      title: { ko: '소개', en: 'About' },
+      title: { ko: '서주원 · Seoharo 소개', en: 'Seo Juwon · Seoharo · About' },
       section: { ko: '소개', en: 'About' },
       excerpt: aboutIntro,
       href: '/about#about',
       terms: [aboutPrinciple],
+    },
+    {
+      id: 'about:greeting',
+      title: sharingGreeting,
+      section: { ko: '인사글', en: 'Introduction' },
+      excerpt: { ko: sharingIntroduction.ko.join('\n\n'), en: sharingIntroduction.en.join('\n\n') },
+      href: '/about#about-greeting',
+      terms: [],
+    },
+    {
+      id: 'about:work-style',
+      title: { ko: '작업 방식', en: 'How I work' },
+      section: { ko: '포트폴리오', en: 'Portfolio' },
+      excerpt: profileApproach,
+      href: '/portfolio#about',
+      terms: [],
     },
     ...aboutGrowth.map((step) => ({
       id: `about:growth:${step.id}`,
@@ -97,7 +117,7 @@ export function buildSiteSearchIndex(): SiteSearchEntry[] {
           title: contribution.title,
           section: entry.organization ?? entry.title,
           excerpt: contribution.description,
-          href: getCareerHref(entry.slug),
+          href: `${getCareerHref(entry.slug)}#${getContributionAnchor(entry.slug, index)}`,
           terms: [
             ...(contribution.productSummary ? [contribution.productSummary] : []),
             ...(specialty ? [specialty.label] : []),
@@ -111,7 +131,7 @@ export function buildSiteSearchIndex(): SiteSearchEntry[] {
           title: name,
           section: entry.title,
           excerpt: venture.summary,
-          href: getCareerHref(entry.slug),
+          href: `${getCareerHref(entry.slug)}#${getVentureAnchor(venture.name)}`,
           terms: [
             venture.field,
             venture.statusText,
@@ -138,6 +158,14 @@ export function buildSiteSearchIndex(): SiteSearchEntry[] {
         ...work.notes.flatMap((note) => [note.title, note.body]),
         ...(work.href ? [sameCopy(new URL(work.href).hostname)] : []),
       ],
+    })),
+    ...projectEvidence.map(screen => ({
+      id: `project-evidence:${screen.slug}`,
+      title: screen.title,
+      section: sameCopy(selectedWorks.find(work => work.slug === screen.slug)?.title ?? screen.slug),
+      excerpt: screen.description,
+      href: `/portfolio/${screen.slug}#project-evidence`,
+      terms: [sameCopy(screen.capturedOn)],
     })),
     ...designCaseStudies.flatMap(study => study.screens.map(screen => ({
       id: `project-screen:${study.slug}:${screen.id}`,

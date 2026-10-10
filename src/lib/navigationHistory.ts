@@ -25,9 +25,12 @@ export function readNavigationEntry(value: unknown, href: string): NavigationEnt
 
 export function createNavigationEntry(href: string, current?: NavigationEntry | null, replace = false): NavigationEntry {
   const sameScreen = current && getNavigationScreenKey(current.href) === getNavigationScreenKey(href);
+  const view: NavigationView = sameScreen && !replace ? { ...current.view } : {};
+  // Search deep links must not disappear behind a previously selected filter.
+  if (new URL(href, SITE_ORIGIN).hash.startsWith('#contribution-company-work-')) view.companySpecialty = 'all';
   return {
     index: current ? current.index + (replace ? 0 : 1) : 0, href, scrollY: 0,
     previous: !current || replace ? null : sameScreen ? current.previous : { index: current.index, href: current.href },
-    view: sameScreen && !replace ? { ...current.view } : {},
+    view,
   };
 }

@@ -28,7 +28,7 @@ function renderPage(path, language = 'ko') {
   return html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1] ?? '';
 }
 
-test('the home reading flow ends with original work previews and a direct portfolio destination', () => {
+test('the home reading flow ends with public work previews and a direct portfolio destination', () => {
   for (const language of ['ko', 'en']) {
     const main = renderPage('/', language);
     const preview = main.match(/<section\b[^>]*id="about-work"[\s\S]*?<\/section>/)?.[0] ?? '';
@@ -37,7 +37,7 @@ test('the home reading flow ends with original work previews and a direct portfo
     assert.match(preview, /href="\/portfolio#projects"/);
     for (const slug of ['one-to-z', 'designgraphy']) {
       assert.match(preview, new RegExp(`href="/portfolio/${slug}"`));
-      assert.match(preview, new RegExp(`src="/assets/${slug}/[^" ]+"`));
+      assert.match(preview, new RegExp(`src="/assets/previews/${slug}-[^" ]+\\.webp"`));
     }
     assert.match(preview, language === 'ko' ? /시안/ : /prototype/i);
     assert.doesNotMatch(renderPage('/contact', language), /id="about-work"/);
@@ -73,11 +73,11 @@ test('the portfolio uses the supplied LinkedIn banner without replacing the prof
   }
 });
 
-test('1 to Z shows all 18 original screens with accessible explanations and original-size links', () => {
+test('1 to Z shows all 18 screen previews with accessible explanations without original-size links', () => {
   for (const language of ['ko', 'en']) {
     const main = renderPage('/portfolio/one-to-z', language);
     assert.equal((main.match(/data-design-screen="/g) ?? []).length, 18);
-    assert.equal((main.match(/data-screen-original="/g) ?? []).length, 18);
+    assert.equal((main.match(/data-screen-original="/g) ?? []).length, 0);
     assert.equal((main.match(/data-screen-image="/g) ?? []).length, 18);
     assert.match(main, language === 'ko' ? /화면 해설/ : /Screen notes/);
     assert.match(main, language === 'ko' ? /디자인 시안/ : /Design prototype/);

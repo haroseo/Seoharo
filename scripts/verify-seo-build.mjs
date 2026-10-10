@@ -7,6 +7,7 @@ import { SITE_ORIGIN, normalizeAppPath } from '../src/data/siteUrl.ts';
 import { parsePageBootstrap } from '../src/data/pageBootstrap.ts';
 import { aboutGrowth } from '../src/data/aboutContent.ts';
 import { selectedWorks, careerEntries } from '../src/data/portfolioContent.ts';
+import { imagePreviewAssets } from '../src/data/imagePreviewAssets.ts';
 import { getHtmlOutputPath, makeRobots, makeSitemap, readSharingImage } from './seo-artifacts.mjs';
 import { escapeHtml } from './seo-html.mjs';
 
@@ -23,12 +24,21 @@ async function listFiles(directory) {
 export async function verifySeoBuild(outputDirectory) {
   const root = resolve(outputDirectory);
   const expectedHtml = new Set([...publicPages.map(page => getHtmlOutputPath(root, page.path)), getHtmlOutputPath(root, '/404')]);
+  const expectedPreviews = new Set(Object.values(imagePreviewAssets).map(asset => asset.image.slice(1)));
+  const seenPreviews = new Set();
   for (const file of await listFiles(root)) {
     const path = relative(root, file).replace(/\\/g, '/');
+    if (path.startsWith('assets/previews/')) {
+      requireCheck(expectedPreviews.has(path), `Unexpected preview asset: ${path}`);
+      seenPreviews.add(path);
+    }
+    requireCheck(!/^assets\/(?:one-to-z|designgraphy|project-evidence)\//.test(path), `Original artwork in public build: ${path}`);
+    if (/\.(?:js|html)$/.test(path)) requireCheck(!/https:\/\/(?:www\.)?(?:figma\.com\/design|claude\.ai\/artifact)\//i.test(await readFile(file, 'utf8')), `Source editor URL in public build: ${path}`);
     requireCheck(expectedHtml.has(file) || ['CNAME', 'robots.txt', 'sitemap.xml', 'favicon.svg', 'icons.svg', '.nojekyll', '.well-known/discord.txt', 'licenses/bootstrap-icons-MIT.txt'].includes(path)
       || (/^assets\//.test(path) && /\.(?:js|css|png|jpg|jpeg|webp|svg|woff2?|ttf)$/i.test(extname(path))), `Unexpected public file: ${path}`);
     if (path === '.well-known/discord.txt') requireCheck(/^dh=[a-zA-Z0-9_-]+$/.test((await readFile(file, 'utf8')).trim()), 'Unexpected content in legacy public domain challenge');
   }
+  for (const path of expectedPreviews) requireCheck(seenPreviews.has(path), `Missing preview asset: ${path}`);
   requireCheck((await readFile(resolve(root, 'CNAME'), 'utf8')).trim() === new URL(SITE_ORIGIN).hostname, 'Wrong CNAME');
   requireCheck(await readFile(resolve(root, 'robots.txt'), 'utf8') === makeRobots(), 'Wrong robots policy');
   requireCheck(await readFile(resolve(root, 'sitemap.xml'), 'utf8') === makeSitemap(), 'Wrong sitemap');

@@ -10,6 +10,7 @@ import {
 import { Link, useRouter } from './router';
 import ReturnNavigation from './ReturnNavigation';
 import { useLanguage } from './LanguageContext';
+import { getContributionAnchor, getVentureAnchor } from '../data/careerAnchors';
 
 interface CareerPageProps {
   slug?: string;
@@ -93,7 +94,7 @@ export default function CareerPage({ slug, fromWorkTab = false, initialGroup }: 
         <header className="mt-7 rounded-2xl border border-[var(--career-line)] bg-[var(--career-surface)] p-5 sm:p-8">
           <div className="flex items-start gap-4 sm:gap-6">
             {entry.logo && <span className="size-14 shrink-0 overflow-hidden rounded-xl border border-[var(--line)] bg-white sm:size-20">
-              <img src={entry.logo} alt="" aria-hidden="true" className={`size-full object-contain ${entry.slug === 'company-work' ? 'scale-[1.65]' : 'p-1.5'}`} />
+              <img src={entry.logo} alt="" aria-hidden="true" className={`size-full object-contain ${entry.slug === 'company-work' ? 'scale-[1.65]' : 'p-1.5'}`} draggable={false} />
             </span>}
             <div className="min-w-0">
               <p className="text-sm font-semibold text-[var(--brand-accent)]">{t('경력 상세', 'Career details')}</p>
@@ -151,7 +152,7 @@ export default function CareerPage({ slug, fromWorkTab = false, initialGroup }: 
               </div>
               <ol className="space-y-3" aria-live="polite">
               {visibleContributions.map((contribution, index) => (
-                <li key={contribution.title.ko} className="grid grid-cols-[2.25rem_minmax(0,1fr)] gap-4 rounded-xl border border-[var(--line)] bg-white p-4 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-5 sm:p-5">
+                <li id={getContributionAnchor(entry.slug, entry.contributions!.indexOf(contribution))} tabIndex={-1} key={contribution.title.ko} className="scroll-mt-20 grid grid-cols-[2.25rem_minmax(0,1fr)] gap-4 rounded-xl border border-[var(--line)] bg-white p-4 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-5 sm:p-5">
                   <span className="flex size-9 items-center justify-center rounded-full bg-[var(--career-surface)] text-xs font-bold tabular-nums text-[var(--brand-accent)] sm:size-10">{String(index + 1).padStart(2, '0')}</span>
                   <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                     <div className="min-w-0 flex-1">
@@ -201,10 +202,10 @@ export default function CareerPage({ slug, fromWorkTab = false, initialGroup }: 
             <h2 id="career-ventures-heading" className="text-base font-bold text-[var(--ink)]">{t('운영한 사업', 'Businesses operated')}</h2>
             <div className="divide-y divide-[var(--career-line)] border-y border-[var(--career-line)]">
               {entry.ventures.map((venture) => (
-                <article key={venture.name} className="py-5 sm:py-6">
+                <article id={getVentureAnchor(venture.name)} tabIndex={-1} key={venture.name} className="scroll-mt-20 py-5 sm:py-6">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <div className="flex min-w-0 items-center gap-3">
-                      <img src={venture.logo} alt="" aria-hidden="true" className="size-12 shrink-0 rounded-lg border border-[var(--line)] bg-white object-contain p-1" />
+                      <img src={venture.logo} alt="" aria-hidden="true" className="size-12 shrink-0 rounded-lg border border-[var(--line)] bg-white object-contain p-1" draggable={false} />
                       <div className="min-w-0">
                         <h3 className="text-lg font-bold text-[var(--ink)] sm:text-xl">{venture.name}</h3>
                         <p className="mt-1 text-sm font-semibold text-[var(--brand-accent)]">{venture.field[language]}</p>

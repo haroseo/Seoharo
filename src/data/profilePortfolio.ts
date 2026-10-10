@@ -2,15 +2,15 @@ import { visiblePortfolioItems } from './siteRevision.ts';
 import { selectedWorks, type WorkCategory } from './portfolioContent.ts';
 
 export type ProfileLanguage = 'ko' | 'en';
-export type ProfileCategory = 'brand' | 'marketing' | 'development' | 'operations' | 'club';
+export type ProfileCategory = 'brand' | 'marketing' | 'planning' | 'development' | 'operations' | 'club';
 export type ProfileCategoryFilter = ProfileCategory | 'all';
 export type ProjectStatusFilter = 'all' | 'ongoing';
 
 export const profileCategoryTabs = [
-  { category: 'all', path: '/portfolio', label: { ko: '프로젝트', en: 'Projects' } },
+  { category: 'all', path: '/portfolio', label: { ko: '전체 분야', en: 'All fields' } },
   { category: 'brand', path: '/design', label: { ko: '디자인', en: 'Design' } },
   { category: 'marketing', path: '/marketing', label: { ko: '마케팅', en: 'Marketing' } },
-  { category: 'development', path: '/development', label: { ko: '개발', en: 'Development' } },
+  { category: 'development', path: '/development', label: { ko: '기획 · 개발', en: 'Planning · Development' } },
   { category: 'operations', path: '/operations', label: { ko: '사업 운영', en: 'Business' } },
   { category: 'club', path: '/clubs', label: { ko: '동아리', en: 'Clubs' } },
 ] as const;
@@ -41,7 +41,7 @@ export interface ProfilePortfolioItem {
 const profileCategoryByWorkCategory: Record<WorkCategory, ProfileCategory> = {
   design: 'brand',
   development: 'development',
-  planning: 'development',
+  planning: 'planning',
   operations: 'operations',
 };
 
@@ -83,7 +83,7 @@ export const profilePortfolioItems: ProfilePortfolioItem[] = [
     subtitle: { ko: '마케팅 담당자', en: 'Marketing associate' },
     description: {
       ko: 'SNS 마케팅과 데이터 분석을 배웠고, 놀리AI 제작 일부와 사이트 구성 기획, 리턴 제품 UI/UX에도 참여했습니다.',
-      en: 'Learned social media marketing and data analysis; also contributed to Nolli AI, website planning, and UI/UX for a Return product.',
+      en: 'Learned social media marketing and data analysis; also contributed to Knowly AI, website planning, and UI/UX for a Return product.',
     },
     tags: [{ ko: 'SNS 마케팅', en: 'Social media marketing' }, { ko: '데이터 분석', en: 'Data analysis' }],
     status: { ko: '업무 경험', en: 'Work experience' },
@@ -188,7 +188,8 @@ export function filterProfilePortfolioItems(
   const normalizedTag = activeTag?.toLocaleLowerCase();
 
   return visiblePortfolioItems(profilePortfolioItems).filter((item) => {
-    if (category !== 'all' && item.category !== category) return false;
+    if (category !== 'all' && item.category !== category
+      && !(category === 'development' && item.category === 'planning')) return false;
     if (normalizedTag && !item.tags.some((tag) => [tag.ko, tag.en].some((value) => value.toLocaleLowerCase() === normalizedTag))) return false;
 
     const copy = [item.title, item.subtitle, item.description, ...(item.status ? [item.status] : []), ...item.tags];

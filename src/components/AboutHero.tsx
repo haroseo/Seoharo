@@ -30,9 +30,9 @@ export default function AboutHero() {
             <p className="mx-auto max-w-xl text-[15px] font-normal leading-7 text-zinc-300 lg:mx-0">{aboutHeroIntro[language]}</p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
               <Link to="/portfolio#projects" className="about-original-primary inline-flex min-h-12 w-full items-center justify-center rounded-full px-8 py-3.5 text-sm font-bold text-white sm:w-auto">{t('포트폴리오 보기', 'Explore the portfolio')}</Link>
-              <Link to="/contact" className="about-original-secondary inline-flex min-h-12 w-full items-center justify-center rounded-full border border-white/10 bg-white/5 px-8 py-3.5 text-sm font-bold text-white sm:w-auto">{t('협업 문의', 'Collaborate')}</Link>
+              <Link to="/contact" className="about-original-secondary inline-flex min-h-12 w-full items-center justify-center rounded-full border border-white/10 bg-white/5 px-8 py-3.5 text-sm font-bold text-white sm:w-auto">{t('이야기 나누기', 'Get in touch')}</Link>
             </div>
-            <details id="about-greeting" className="group mx-auto max-w-xl text-left lg:mx-0">
+            <details id="about-greeting" tabIndex={-1} className="group mx-auto max-w-xl scroll-mt-20 text-left lg:mx-0">
               <summary className="inline-flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-sm text-sm font-semibold text-zinc-300 hover:text-white focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-4 [&::-webkit-details-marker]:hidden">
                 {t('인사글 전체 보기', 'Read my introduction')}
                 <ChevronDown size={16} aria-hidden="true" className="group-open:rotate-180 motion-safe:transition-transform" />

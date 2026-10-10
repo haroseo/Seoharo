@@ -17,15 +17,15 @@ export default function Header() {
   const activePath = getPrimaryNavigationPath(currentPath);
 
   useEffect(() => {
-    if (!isMenuOpen) return;
+    if (!isMenuOpen || isSearchOpen) return;
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key !== 'Escape') return;
+      if (event.key !== 'Escape' || event.isComposing || event.keyCode === 229) return;
       setIsMenuOpen(false);
       menuButtonRef.current?.focus();
     };
     document.addEventListener('keydown', closeOnEscape);
     return () => document.removeEventListener('keydown', closeOnEscape);
-  }, [isMenuOpen]);
+  }, [isMenuOpen, isSearchOpen]);
 
   const handleNavClick = () => {
     setIsMenuOpen(false);
@@ -77,7 +77,7 @@ export default function Header() {
           className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-sm text-white focus-visible:outline-2 focus-visible:outline-[var(--brand-accent)] focus-visible:outline-offset-2 hover:text-white/75 sm:gap-2.5"
         >
           <span className="relative block size-8 shrink-0 overflow-hidden sm:size-9">
-            <img src="/assets/juwon-mark.svg" alt="" aria-hidden="true" width="36" height="36" className="sj-header-mark size-full object-contain" />
+            <img src="/assets/juwon-mark.svg" alt="" aria-hidden="true" width="36" height="36" className="sj-header-mark size-full object-contain" draggable={false} />
           </span>
           <span className="flex flex-col items-start leading-tight">
             <span className="text-sm font-bold tracking-normal">{t('서주원', 'Seo Juwon')}</span>
@@ -149,7 +149,7 @@ export default function Header() {
           })}
         </nav>
       )}
-      {isSearchOpen && <SiteSearchDialog open={isSearchOpen} onClose={closeSearch} />}
+      {isSearchOpen && <SiteSearchDialog open={isSearchOpen} onClose={closeSearch} onNavigate={handleNavClick} />}
     </header>
   );
 }

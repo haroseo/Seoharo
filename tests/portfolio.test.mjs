@@ -159,10 +159,10 @@ test('career details include only verified experience and handed-over ventures',
   assert.equal(profilePortfolioItems.find(item => item.id === 'roblox-gallery').status.ko, '양도 후 운영에서 물러남');
   assert.deepEqual(filterProfilePortfolioItems('club').map(item => item.id), ['functionfactory']);
   assert.deepEqual(profileCategoryTabs.map(tab => [tab.path, tab.label.ko]), [
-    ['/portfolio', '프로젝트'],
+    ['/portfolio', '전체 분야'],
     ['/design', '디자인'],
     ['/marketing', '마케팅'],
-    ['/development', '개발'],
+    ['/development', '기획 · 개발'],
     ['/operations', '사업 운영'],
     ['/clubs', '동아리'],
   ]);
@@ -455,7 +455,7 @@ test('about introduces the person without former affiliations, community metrics
   assert.match(timeline, /step\.tags\.map/);
   assert.match(about, /SEOHARO/);
   assert.match(about, /포트폴리오 보기/);
-  assert.match(about, /협업 문의/);
+  assert.match(about, /이야기 나누기/);
   assert.match(about, /lg:grid-cols/);
   assert.doesNotMatch(about, /juwon-mark\.png/);
   assert.ok(aboutIntro.ko.length > 150, 'the original intro should retain a substantial, personal introduction');
@@ -634,14 +634,13 @@ test('small-text colors retain WCAG AA contrast on their surfaces', () => {
   }
   function contrast(a, b) { const values = [luminance(a), luminance(b)].sort((x,y)=>y-x); return (values[0]+.05)/(values[1]+.05); }
   const css = readFileSync(new URL('../src/portfolio.css', import.meta.url), 'utf8');
-  const tds = readFileSync(new URL('../node_modules/@toss/tds-colors/colors.light.css', import.meta.url), 'utf8');
-  const color = name => tds.match(new RegExp(`--adaptive${name}:(#[a-f\\d]{6})`, 'i'))[1];
-  assert.match(css, /--sj-blue:\s*var\(--adaptiveBlue700\)/);
-  assert.match(css, /--sj-muted:\s*var\(--adaptiveGrey600\)/);
-  assert.ok(contrast(color('Blue700'), '#ffffff') >= 4.5);
-  assert.ok(contrast(color('Grey600'), '#ffffff') >= 4.5);
-  assert.ok(contrast(color('Grey700'), color('Grey50')) >= 4.5);
-  assert.ok(contrast(color('Grey900'), color('Blue50')) >= 4.5);
+  const tds = readFileSync(new URL('../node_modules/@toss/tds-colors/colors.css', import.meta.url), 'utf8');
+  const color = name => tds.match(new RegExp(`--${name}:(#[a-f\\d]{6})`, 'i'))[1];
+  const semanticColor = name => color(css.match(new RegExp(`--sj-${name}:\\s*var\\(--([\\w-]+)\\)`))[1]);
+  assert.ok(contrast(semanticColor('blue'), color('background')) >= 4.5);
+  assert.ok(contrast(semanticColor('muted'), color('background')) >= 4.5);
+  assert.ok(contrast(semanticColor('body'), semanticColor('pale')) >= 4.5);
+  assert.ok(contrast(semanticColor('ink'), semanticColor('blue-soft')) >= 4.5);
 });
 
 test('production metadata preserves approved page titles with a concise search name and no private details', () => {

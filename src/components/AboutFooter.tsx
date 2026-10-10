@@ -14,7 +14,7 @@ export default function AboutFooter() {
         <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
           <div>
             <Link to="/" className="inline-flex items-center gap-3 text-white">
-              <img src="/assets/juwon-mark.svg" alt="" width="32" height="32" aria-hidden="true" />
+              <img src="/assets/juwon-mark.svg" alt="" width="32" height="32" aria-hidden="true" draggable={false} />
               <span className="text-base font-bold">SEOHARO</span>
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-7">{t('디자인, 마케팅, 개발을 연결해 생각을 시도하고 현실로 만듭니다.', 'Connecting design, marketing, and development to turn ideas into real work.')}</p>

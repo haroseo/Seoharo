@@ -1,4 +1,3 @@
-import { ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 import type { DesignCaseStudy } from '../../data/designCaseStudies';
 
@@ -21,10 +20,8 @@ export function DesignScreenGallery({ study }: { study: DesignCaseStudy }) {
     </nav>
     {study.screens.map((screen, index) => <section id={`screen-${screen.id}`} data-design-screen={screen.id} className={`sj-screen-row sj-screen-row--${screen.format}`} aria-labelledby={`screen-title-${screen.id}`} key={screen.id}>
       <figure>
-        <a href={screen.image} target="_blank" rel="noopener noreferrer" data-screen-original={screen.id} aria-label={t(`${screen.title.ko} 이미지 전체 보기 (새 창)`, `View the full ${screen.title.en} image (new tab)`)}>
-          <img data-screen-image={screen.id} src={screen.image} alt={t(`${screen.title.ko} 전체 디자인 시안`, `${screen.title.en} full design prototype`)} width={screen.width} height={screen.height} loading="lazy" decoding="async" />
-        </a>
-        <figcaption>{screen.width} × {screen.height} · {t('이미지 전체 보기', 'Open full image')}<ArrowUpRight size={14} aria-hidden="true" /></figcaption>
+        <img data-screen-image={screen.id} src={screen.image} alt={t(`${screen.title.ko} 디자인 시안 미리보기`, `${screen.title.en} design preview`)} width={screen.width} height={screen.height} loading="lazy" decoding="async" draggable={false} />
+        <figcaption>{t('공개용 미리보기', 'Public preview')}</figcaption>
       </figure>
       <div className="sj-screen-notes">
         <p className="sj-caption">{String(index + 1).padStart(2, '0')} / {screen.format === 'web' ? 'WEB' : 'MOBILE'}</p>

@@ -110,6 +110,12 @@ export function RouterProvider({ children, initialPath = '/' }: { children: Reac
 
       const anchor = anchorId ? document.getElementById(anchorId) : null;
       if (anchor) {
+        // A search hit inside a closed introduction must be readable on arrival.
+        let disclosure = anchor.closest('details');
+        while (disclosure) {
+          disclosure.open = true;
+          disclosure = disclosure.parentElement?.closest('details') ?? null;
+        }
         anchor.scrollIntoView({ block: 'start', behavior: 'instant' });
         anchor.focus({ preventScroll: true });
         navigationIntentRef.current = null;
@@ -153,7 +159,16 @@ export function RouterProvider({ children, initialPath = '/' }: { children: Reac
     if (url.origin !== window.location.origin) return;
     const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
     const nextUrl = `${url.pathname}${url.search}${url.hash}`;
-    if (currentUrl === nextUrl) return;
+    if (currentUrl === nextUrl) {
+      if (!url.hash) return;
+      if (url.hash.startsWith('#contribution-company-work-')) updateViewState({ companySpecialty: 'all' });
+      navigationIntentRef.current = {
+        nextPath: currentPathRef.current, previousPath: currentPathRef.current,
+        hash: url.hash, previousScrollY: window.scrollY, preserveScroll: false,
+      };
+      setNavigationVersion((version) => version + 1);
+      return;
+    }
 
     const previousPath = window.location.pathname;
     const previousScrollY = window.scrollY;
