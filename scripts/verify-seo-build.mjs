@@ -25,7 +25,7 @@ export async function verifySeoBuild(outputDirectory) {
   const expectedHtml = new Set([...publicPages.map(page => getHtmlOutputPath(root, page.path)), getHtmlOutputPath(root, '/404')]);
   for (const file of await listFiles(root)) {
     const path = relative(root, file).replace(/\\/g, '/');
-    requireCheck(expectedHtml.has(file) || ['CNAME', 'robots.txt', 'sitemap.xml', 'favicon.svg', 'icons.svg', '.nojekyll', '.well-known/discord.txt'].includes(path)
+    requireCheck(expectedHtml.has(file) || ['CNAME', 'robots.txt', 'sitemap.xml', 'favicon.svg', 'icons.svg', '.nojekyll', '.well-known/discord.txt', 'licenses/bootstrap-icons-MIT.txt'].includes(path)
       || (/^assets\//.test(path) && /\.(?:js|css|png|jpg|jpeg|webp|svg|woff2?|ttf)$/i.test(extname(path))), `Unexpected public file: ${path}`);
     if (path === '.well-known/discord.txt') requireCheck(/^dh=[a-zA-Z0-9_-]+$/.test((await readFile(file, 'utf8')).trim()), 'Unexpected content in legacy public domain challenge');
   }
