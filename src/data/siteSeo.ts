@@ -6,10 +6,18 @@ import { SITE_ORIGIN, normalizeAppPath, toCanonicalUrl } from './siteUrl.ts';
 
 export type PageMetadata = {
   language: Locale; title: string; description: string;
+  socialTitle: string; socialDescription: string; imageAlt: string;
   robots: 'index, follow' | 'noindex, follow'; canonicalUrl: string | null;
   imageUrl: string; imageWidth: number; imageHeight: number;
   structuredData: Record<string, unknown>;
 };
+
+const koreanHomeIntroduction = [
+  '떠오른 아이디어를 기획으로 정리하고, 디자인과 개발로 직접 만듭니다. 생각을 오래 붙잡기보다 먼저 시도하고, 만들면서 배우는 편입니다.',
+  '글과 말로 방향을 정리하고, 사람들과 함께 결과물까지 이어가는 일을 좋아합니다. 디자인과 마케팅, 개발을 오가며 작업하고 여러 팀을 이끌어 본 경험이 있습니다. 이곳에는 제가 해온 작업과 맡은 역할, 그 과정에서 배운 것들을 담았습니다. 작업을 살펴보시면 제가 어떻게 생각하고 실행하는 사람인지 조금 더 알 수 있을 거예요.',
+  '먼저 제 작업을 통해 저를 소개하고, 서로의 생각과 경험을 나눠보고 싶습니다. 읽어보시고 궁금한 점이나 나누고 싶은 이야기가 있다면 편하게 연락 주세요.',
+].join('\n\n');
+
 export function getPageMetadata(pathname: string, language: Locale): PageMetadata {
   const page = resolvePublicPage(pathname);
   const path = normalizeAppPath(page?.canonicalPath ?? pathname) ?? '/404';
@@ -31,6 +39,18 @@ export function getPageMetadata(pathname: string, language: Locale): PageMetadat
     : project ? `${project.title} | ${SITE_NAME}`
     : career ? `${career.title[language]} | ${SITE_NAME}` : getSitePageTitle(path, language);
   const canonicalUrl = page ? toCanonicalUrl(page.canonicalPath) : null;
+  const personName = language === 'ko' ? '서주원' : 'Seo Juwon';
+  const socialTitle = isAbout && language === 'ko' ? '안녕하세요, 서주원입니다.'
+    : isAbout || path === '/portfolio'
+    ? (language === 'ko' ? '서주원 | 생각을 시도하고 현실로 만듭니다' : 'Seo Juwon | I try ideas. Then make them real.')
+    : project ? `${project.title} | ${personName}`
+    : career ? `${career.title[language]} | ${personName}`
+    : `${title.split(' | ')[0]} | ${personName}`;
+  const socialDescription = isAbout
+    ? (language === 'ko' ? koreanHomeIntroduction : 'From planning to design and prototypes. Explore the ideas, decisions and process behind my projects.')
+    : path === '/portfolio'
+      ? (language === 'ko' ? '작업 화면과 맡은 역할, 배운 점을 한곳에 정리했습니다.' : 'Explore Designgraphy, 1 to Z and web projects through real screens, individual roles and lessons learned.')
+      : description;
   const graph: Record<string, unknown>[] = [{ '@type': 'WebSite', '@id': `${SITE_ORIGIN}/#website`, name: SEARCH_SITE_NAME, alternateName: [...SEARCH_SITE_ALIASES], url: `${SITE_ORIGIN}/` }];
   if (page) {
     graph.push({ '@type': isAbout ? 'ProfilePage' : 'WebPage', '@id': canonicalUrl + '#page', url: canonicalUrl, name: title, description, inLanguage: language,
@@ -43,6 +63,8 @@ export function getPageMetadata(pathname: string, language: Locale): PageMetadat
       graph.push({ '@type': 'BreadcrumbList', itemListElement: crumbs.map((item, index) => ({ '@type': 'ListItem', position: index + 1, name: item.name, item: item.url })) });
     }
   }
-  return { language, title, description, robots: page ? 'index, follow' : 'noindex, follow', canonicalUrl,
-    imageUrl: `${SITE_ORIGIN}/assets/juwon-mark.png`, imageWidth: 1254, imageHeight: 1254, structuredData: { '@context': 'https://schema.org', '@graph': graph } };
+  return { language, title, description, socialTitle, socialDescription,
+    imageAlt: language === 'ko' ? '서주원·Seoharo 이름과 개인 로고, 생각을 시도하고 현실로 만든다는 소개가 담긴 카드' : 'Seo Juwon · Seoharo, personal logo and the introduction: I try ideas. Then make them real.',
+    robots: page ? 'index, follow' : 'noindex, follow', canonicalUrl,
+    imageUrl: `${SITE_ORIGIN}/assets/share/seoharo-${language}-v1.png`, imageWidth: 1200, imageHeight: 630, structuredData: { '@context': 'https://schema.org', '@graph': graph } };
 }

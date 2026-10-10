@@ -44,7 +44,7 @@ export default function Header() {
       type="button"
       onClick={toggleLanguage}
       aria-label={t('언어를 영어로 바꾸기', 'Switch language to Korean')}
-      className="inline-flex min-h-10 items-center justify-center rounded-md px-2.5 text-sm font-semibold text-white/75 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-[var(--brand-accent)] focus-visible:outline-offset-2"
+      className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md px-2.5 text-sm font-semibold text-white/75 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-[var(--brand-accent)] focus-visible:outline-offset-2"
     >
       {language === 'ko' ? 'EN' : '한국어'}
     </button>
@@ -58,7 +58,7 @@ export default function Header() {
       aria-label={isSearchOpen ? t('검색 닫기', 'Close search') : t('사이트 검색', 'Search this site')}
       aria-expanded={isSearchOpen}
       aria-controls={isSearchOpen ? 'site-search-dialog' : undefined}
-      className="inline-flex size-10 items-center justify-center rounded-md text-white/75 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-[var(--brand-accent)] focus-visible:outline-offset-2"
+      className="inline-flex size-11 items-center justify-center rounded-md text-white/75 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-[var(--brand-accent)] focus-visible:outline-offset-2"
     >
       {isSearchOpen ? <X size={18} aria-hidden="true" /> : <Search size={18} aria-hidden="true" />}
     </button>
@@ -69,14 +69,14 @@ export default function Header() {
       <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-white focus:px-4 focus:py-3 focus:text-sm focus:font-semibold focus:text-[var(--ink)] focus:shadow-lg">
         {t('본문으로 바로가기', 'Skip to content')}
       </a>
-      <div className="mx-auto flex min-h-14 max-w-7xl items-center justify-between gap-3 px-4 sm:px-8 lg:px-10">
+      <div className="mx-auto flex min-h-14 max-w-7xl items-center justify-between gap-2 px-3 sm:gap-3 sm:px-8 lg:px-10">
         <Link
           to="/"
           onClick={handleNavClick}
-          aria-label={t('서주원 소개', 'Seo Juwon — About')}
-          className="inline-flex shrink-0 items-center gap-2.5 rounded-sm text-white focus-visible:outline-2 focus-visible:outline-[var(--brand-accent)] focus-visible:outline-offset-2 hover:text-white/75"
+          aria-label={t('서주원 소개', 'Seo Juwon About')}
+          className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-sm text-white focus-visible:outline-2 focus-visible:outline-[var(--brand-accent)] focus-visible:outline-offset-2 hover:text-white/75 sm:gap-2.5"
         >
-          <span className="relative block size-9 shrink-0 overflow-hidden">
+          <span className="relative block size-8 shrink-0 overflow-hidden sm:size-9">
             <img src="/assets/juwon-mark.svg" alt="" aria-hidden="true" width="36" height="36" className="sj-header-mark size-full object-contain" />
           </span>
           <span className="flex flex-col items-start leading-tight">
@@ -123,7 +123,7 @@ export default function Header() {
               aria-label={isMenuOpen ? t('메뉴 닫기', 'Close menu') : t('메뉴 열기', 'Open menu')}
               aria-expanded={isMenuOpen}
               aria-controls={isMenuOpen ? 'mobile-navigation' : undefined}
-              className="inline-flex size-10 items-center justify-center rounded-md text-white/75 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-[var(--brand-accent)] focus-visible:outline-offset-2 md:hidden"
+              className="inline-flex size-11 items-center justify-center rounded-md text-white/75 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-[var(--brand-accent)] focus-visible:outline-offset-2 md:hidden"
             >
               {isMenuOpen ? <X size={19} aria-hidden="true" /> : <Menu size={19} aria-hidden="true" />}
             </button>

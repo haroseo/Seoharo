@@ -229,7 +229,7 @@
 .sj-contact-channel strong { display: block; font-size: 16px; font-weight: 650; }
 .sj-contact-channel span span { display: block; font-size: 11px; color: var(--sj-muted); margin-top: 5px; }
 .sj-contact-channel:hover { color: var(--sj-blue); }
-.sj-project-detail { padding-block: 45px 55px; }
+.sj-project-detail { padding-block: 101px 55px; }
 .sj-screen-gallery { padding-top: 48px; }
 .sj-screen-gallery-header { max-width: 760px; }
 .sj-screen-gallery h2 { margin: 12px 0 16px; font-size: 28px; font-weight: 750; }
@@ -271,6 +271,7 @@
   .sj-screen-notes h3 { font-size: 21px; margin-bottom: 20px; }
 }
 .sj-back-link { padding-block: 12px; color: var(--sj-muted); font-size: 12px; }
+.sj-back-link[data-return-navigation] { font-size: 14px; color: var(--body-copy); }
 .sj-detail-header { padding-block: 42px 30px; }
 .sj-detail-header > p { max-width: 720px; margin: 24px 0 36px; font-size: 16px; color: var(--sj-muted); line-height: 1.9; word-break: keep-all; }
 .sj-project-facts { display: grid; grid-template-columns: .7fr 1fr 1fr; gap: 25px; border-top: 1px solid var(--sj-line); padding-top: 24px; margin: 0; }
@@ -447,7 +448,7 @@
   .sj-email-address { font-size: clamp(18px,5.4vw,26px); }
   .sj-email-actions .sj-button { padding-inline: 13px; }
   .sj-contact-channel { gap: 13px; padding-block: 22px; }
-  .sj-project-detail { padding-block: 26px 30px; }
+  .sj-project-detail { padding-block: 82px 30px; }
   .sj-detail-header { padding-block: 28px 23px; }
   .sj-detail-header > p { font-size: 14px; margin-block: 20px 25px; }
   .sj-project-facts { grid-template-columns: 1fr; gap: 17px; padding-top: 20px; }

@@ -1,5 +1,5 @@
 import { ArrowRight, ExternalLink } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { aboutIntro } from '../data/aboutContent';
 import { careerEntries, profile, skillGroups } from '../data/portfolioContent';
 import {
@@ -31,11 +31,12 @@ function careerDetailPath(slug: string) {
 
 export default function PortfolioPage({ focusSection }: { focusSection?: 'experience' }) {
   const { language, t } = useLanguage();
-  const { currentPath, navigate } = useRouter();
+  const { currentPath, navigate, viewState, updateViewState } = useRouter();
   const { query, activeTag } = useSearch();
-  const [projectStatusFilter, setProjectStatusFilter] = useState<ProjectStatusFilter>('all');
+  const projectStatusFilter = viewState.projectStatus ?? 'all';
+  const setProjectStatusFilter = (projectStatus: ProjectStatusFilter) => updateViewState({ projectStatus });
   const projectSectionRef = useRef<HTMLElement>(null);
-  const [filterHeightReserve, setFilterHeightReserve] = useState(0);
+  const filterHeightReserve = viewState.heightReserve ?? 0;
 
   function preserveFilterHeight() {
     const section = projectSectionRef.current;
@@ -46,14 +47,14 @@ export default function PortfolioPage({ focusSection }: { focusSection?: 'experi
       scrollY: window.scrollY,
       viewportHeight: window.innerHeight,
     });
-    setFilterHeightReserve((previous) => Math.max(previous, reserve));
+    updateViewState({ heightReserve: Math.max(filterHeightReserve, reserve) });
   }
 
   useEffect(() => {
-    const resetHeightReserve = () => setFilterHeightReserve(0);
+    const resetHeightReserve = () => updateViewState({ heightReserve: 0 });
     window.addEventListener('resize', resetHeightReserve);
     return () => window.removeEventListener('resize', resetHeightReserve);
-  }, []);
+  }, [updateViewState]);
 
   const filterTabs = profileCategoryTabs.map((tab) => ({ label: t(tab.label.ko, tab.label.en), path: tab.path }));
   const categoryByPath = Object.fromEntries(profileCategoryTabs.map((tab) => [tab.path, tab.category])) as Record<string, ProfileCategoryFilter>;
@@ -79,7 +80,7 @@ export default function PortfolioPage({ focusSection }: { focusSection?: 'experi
           <div className="min-w-0 space-y-3">
             <section className="overflow-hidden rounded-xl border border-[#d6dce5] bg-white" aria-labelledby="profile-heading">
               <div className="profile-banner relative h-[92px] overflow-hidden bg-[#e5edfa] sm:h-[112px]" aria-hidden="true">
-                <img src="/assets/juwon-mark.svg" alt="" className="absolute -right-1 top-1/2 h-[175px] w-[175px] -translate-y-1/2 object-contain opacity-[0.12] sm:h-[210px] sm:w-[210px]" />
+                <img src="/assets/profile-banner.jpg" alt="" width="1400" height="349" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
               </div>
               <div className="relative px-4 pb-5 pt-4 sm:px-6 sm:pb-6">
                 <span className="absolute -top-11 left-4 block size-[76px] overflow-hidden rounded-xl border-4 border-white bg-[#eef1f6] shadow-sm sm:left-6 sm:size-[84px]">
@@ -100,7 +101,7 @@ export default function PortfolioPage({ focusSection }: { focusSection?: 'experi
                       ['#experience', t('경력', 'Experience')],
                       ['#projects', t('프로젝트', 'Projects')],
                     ].map(([href, label]) => (
-                      <a key={href} href={href} className="inline-flex min-h-10 items-center rounded-full border border-[#d6dce5] px-3.5 text-sm font-semibold text-[var(--body-copy)] transition-colors hover:border-[var(--brand-accent)] hover:text-[var(--brand-accent)] focus-visible:outline-2 focus-visible:outline-[var(--brand-accent)] focus-visible:outline-offset-2">
+                      <a key={href} href={href} className="inline-flex min-h-11 items-center rounded-full border border-[#d6dce5] px-3.5 text-sm font-semibold text-[var(--body-copy)] transition-colors hover:border-[var(--brand-accent)] hover:text-[var(--brand-accent)] focus-visible:outline-2 focus-visible:outline-[var(--brand-accent)] focus-visible:outline-offset-2">
                         {label}
                       </a>
                     ))}
@@ -202,10 +203,10 @@ export default function PortfolioPage({ focusSection }: { focusSection?: 'experi
               </nav>
 
               <div className="mt-4 flex flex-wrap gap-2" role="group" aria-label={t('프로젝트 진행 상태', 'Project status')}>
-                <button type="button" aria-pressed={projectStatusFilter === 'all'} onClick={() => { preserveFilterHeight(); setProjectStatusFilter('all'); }} className={`min-h-9 rounded-full border px-3 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-[var(--brand-accent)] focus-visible:outline-offset-2 ${projectStatusFilter === 'all' ? 'border-[var(--brand-accent)] bg-[var(--brand-accent)] text-white' : 'border-[#d6dce5] bg-white text-[var(--body-copy)] hover:border-[var(--brand-accent)] hover:text-[var(--brand-accent)]'}`}>
+                <button type="button" aria-pressed={projectStatusFilter === 'all'} onClick={() => { preserveFilterHeight(); setProjectStatusFilter('all'); }} className={`min-h-11 rounded-full border px-4 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-[var(--brand-accent)] focus-visible:outline-offset-2 ${projectStatusFilter === 'all' ? 'border-[var(--brand-accent)] bg-[var(--brand-accent)] text-white' : 'border-[#d6dce5] bg-white text-[var(--body-copy)] hover:border-[var(--brand-accent)] hover:text-[var(--brand-accent)]'}`}>
                   {t('전체', 'All')}
                 </button>
-                <button type="button" aria-pressed={projectStatusFilter === 'ongoing'} onClick={() => { preserveFilterHeight(); setProjectStatusFilter('ongoing'); }} className={`min-h-9 rounded-full border px-3 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-[var(--brand-accent)] focus-visible:outline-offset-2 ${projectStatusFilter === 'ongoing' ? 'border-[var(--brand-accent)] bg-[var(--brand-accent)] text-white' : 'border-[#d6dce5] bg-white text-[var(--body-copy)] hover:border-[var(--brand-accent)] hover:text-[var(--brand-accent)]'}`}>
+                <button type="button" aria-pressed={projectStatusFilter === 'ongoing'} onClick={() => { preserveFilterHeight(); setProjectStatusFilter('ongoing'); }} className={`min-h-11 rounded-full border px-4 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-[var(--brand-accent)] focus-visible:outline-offset-2 ${projectStatusFilter === 'ongoing' ? 'border-[var(--brand-accent)] bg-[var(--brand-accent)] text-white' : 'border-[#d6dce5] bg-white text-[var(--body-copy)] hover:border-[var(--brand-accent)] hover:text-[var(--brand-accent)]'}`}>
                   {t('진행 중', 'Ongoing')}
                 </button>
               </div>
@@ -217,16 +218,16 @@ export default function PortfolioPage({ focusSection }: { focusSection?: 'experi
               <ol className="divide-y divide-[#e7eaf0]">
                 {visibleProjectItems.map((item) => (
                   <li key={item.id}>
-                    <article className="flex gap-3 py-4 first:pt-4 last:pb-0">
+                    <article className="flex flex-col gap-3 py-4 first:pt-4 last:pb-0 sm:flex-row">
                       {item.logo ? (
                         <span className="relative block size-[76px] shrink-0 overflow-hidden rounded-lg border border-[#e7eaf0] bg-white sm:size-[88px]">
                           <img src={item.logo} alt={t(`${item.title.ko} 로고`, `${item.title.en} logo`)} className="size-full object-contain p-1.5" />
                         </span>
                       ) : item.id === 'planor' || item.id === 'naratmalsami' ? (
-                        <span className="hidden h-[76px] w-[132px] shrink-0 overflow-hidden rounded-lg border border-[#e7eaf0] sm:block">
+                        <span className="block h-[160px] w-full shrink-0 overflow-hidden rounded-lg border border-[#e7eaf0] sm:h-[76px] sm:w-[132px]">
                           <ProjectCover slug={item.id} title={item.title[language]} language={language} compact />
                         </span>
-                      ) : item.image && <img src={item.image} alt={item.imageAlt?.[language] ?? ''} loading="lazy" decoding="async" width="104" height="76" className={`hidden h-[76px] w-[104px] shrink-0 rounded-lg border border-[#e7eaf0] object-cover sm:block ${item.imagePresentation === 'screen' ? 'object-top' : ''}`} />}
+                      ) : item.image && <img src={item.image} alt={item.imageAlt?.[language] ?? ''} loading="lazy" decoding="async" width="104" height="76" className={`aspect-[16/9] w-full shrink-0 rounded-lg border border-[#e7eaf0] object-cover sm:aspect-auto sm:h-[76px] sm:w-[104px] ${item.imagePresentation === 'screen' ? 'object-top' : ''}`} />}
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                           <h3 className="text-base font-bold text-[var(--ink)]">
@@ -241,10 +242,10 @@ export default function PortfolioPage({ focusSection }: { focusSection?: 'experi
                           <ul className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-[var(--muted-copy)]" aria-label={t('프로젝트 분야', 'Project areas')}>
                             {item.tags.map((tag) => <li key={tag.ko}>{tag[language]}</li>)}
                           </ul>
-                          {item.detailHref && <Link to={item.detailHref} className="inline-flex min-h-9 items-center gap-1 text-sm font-semibold text-[var(--brand-accent)] hover:text-[var(--brand-accent-hover)] focus-visible:outline-2 focus-visible:outline-[var(--brand-accent)] focus-visible:outline-offset-2">
+                          {item.detailHref && <Link to={item.detailHref} className="inline-flex min-h-11 items-center gap-1 text-sm font-semibold text-[var(--brand-accent)] hover:text-[var(--brand-accent-hover)] focus-visible:outline-2 focus-visible:outline-[var(--brand-accent)] focus-visible:outline-offset-2">
                             {t('상세 보기', 'View details')} <ArrowRight size={14} aria-hidden="true" />
                           </Link>}
-                          {item.href && <a href={item.href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-9 items-center gap-1 text-sm font-semibold text-[var(--body-copy)] hover:text-[var(--brand-accent)] focus-visible:outline-2 focus-visible:outline-[var(--brand-accent)] focus-visible:outline-offset-2">
+                          {item.href && <a href={item.href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-1 text-sm font-semibold text-[var(--body-copy)] hover:text-[var(--brand-accent)] focus-visible:outline-2 focus-visible:outline-[var(--brand-accent)] focus-visible:outline-offset-2">
                             {t('프로젝트 열기', 'Open project')} <ExternalLink size={13} aria-hidden="true" />
                           </a>}
                         </div>

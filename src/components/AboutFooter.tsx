@@ -34,7 +34,7 @@ export default function AboutFooter() {
         </div>
         <details className="mt-8 border-t border-zinc-900 pt-5 text-xs leading-6">
           <summary className="w-fit cursor-pointer font-semibold hover:text-white">{t('오픈소스 라이선스', 'Open-source licenses')}</summary>
-          <p className="mt-3">React · Vite · Framer Motion · Tailwind CSS — MIT / Lucide — ISC / Pretendard — SIL OFL 1.1 / TypeScript — Apache-2.0</p>
+          <p className="mt-3">React · Vite · Framer Motion · Tailwind CSS (MIT) / Lucide (ISC) / Pretendard (SIL OFL 1.1) / TypeScript (Apache-2.0)</p>
         </details>
         <div className="mt-6 border-t border-zinc-900 pt-5 text-xs leading-6 text-zinc-400">
           <p>© {new Date().getFullYear()} {SITE_NAME}</p>

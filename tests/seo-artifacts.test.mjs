@@ -24,6 +24,23 @@ test('real public HTML artifacts stay within output and exclude private data', a
     const home = await readFile(join(directory, 'index.html'), 'utf8');
     const homeHead = home.match(/<head\b[^>]*>([\s\S]*?)<\/head>/)[1];
     for (const tag of [
+      '<meta property="og:image:alt" content="서주원·Seoharo 이름과 개인 로고, 생각을 시도하고 현실로 만든다는 소개가 담긴 카드" />',
+      '<meta name="twitter:card" content="summary_large_image" />',
+    ]) {
+      assert.ok(homeHead.includes(tag));
+      await writeFile(join(directory, 'index.html'), home.replace(tag, ''));
+      await assert.rejects(verifySeoBuild(directory), /Wrong sharing metadata/);
+      await writeFile(join(directory, 'index.html'), home.replace(tag, `${tag}${tag}`));
+      await assert.rejects(verifySeoBuild(directory), /Wrong sharing metadata/);
+      await writeFile(join(directory, 'index.html'), home);
+    }
+    for (const imageUrl of ['https://evil.example/image.png', 'https://seoharo.kro.kr/assets/../private.png', 'https://seoharo.kro.kr/assets/share/seoharo-ko-v1.png?key=private']) {
+      const unsafePages = pages.map((page, index) => index ? page : { ...page, metadata: { ...page.metadata, imageUrl } });
+      await assert.rejects(writeSiteArtifacts({ ...input, pages: unsafePages }), /Invalid sharing image/);
+    }
+    const wrongDimensions = pages.map((page, index) => index ? page : { ...page, metadata: { ...page.metadata, imageWidth: 999 } });
+    await assert.rejects(writeSiteArtifacts({ ...input, pages: wrongDimensions }), /Image metadata mismatch/);
+    for (const tag of [
       '<meta name="msvalidate.01" content="230AE140E58F75920EDB0EA20EC0FD39" />',
       '<meta name="naver-site-verification" content="239679eef06375e786bdccfc7fad64c1c67d1e7c" />',
     ]) {
