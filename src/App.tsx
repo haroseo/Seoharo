@@ -16,6 +16,7 @@ import { getPortfolioRoute, getPrimaryNavigationPath } from './data/portfolioRou
 import { getPageMetadata } from './data/siteSeo';
 import { applyPageMetadata } from './lib/applyPageMetadata';
 import { usePageRendering } from './components/PageRenderingContext';
+import { preventImageCopy } from './lib/imageCopyPolicy';
 import './index.css';
 import './portfolio.css';
 
@@ -41,11 +42,13 @@ function Portfolio() {
   const pageKey = getPrimaryNavigationPath(currentPath) ?? currentPath;
 
   return (
-    <div className="min-h-screen bg-white text-[var(--ink)] flex flex-col justify-between">
+    <div className="min-h-screen bg-white text-[var(--ink)] flex flex-col justify-between"
+      onContextMenuCapture={preventImageCopy}
+      onDragStartCapture={preventImageCopy}>
       <div>
         <ProgressBar />
         <Header />
-        <main id="main-content" tabIndex={-1}>
+        <main id="main-content" tabIndex={-1} className="overflow-x-clip">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               data-page-path={currentPath}

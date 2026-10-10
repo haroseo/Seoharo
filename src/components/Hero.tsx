@@ -40,7 +40,7 @@ export default function Hero() {
         <aside className="border-t border-white/20 pt-7 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0" aria-label={t('소개 요약', 'Profile summary')}>
           <div className="flex items-center gap-5">
             <span className="relative block h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-[#eef1f6] sm:h-24 sm:w-24">
-              <img src="/assets/juwon-mark.png" alt="" className="absolute left-1/2 top-1/2 h-[180%] w-[180%] max-w-none -translate-x-1/2 -translate-y-1/2 object-contain" />
+              <img src="/assets/juwon-mark.png" alt="" className="absolute left-1/2 top-1/2 h-[180%] w-[180%] max-w-none -translate-x-1/2 -translate-y-1/2 object-contain" draggable={false} />
             </span>
             <p className="max-w-xs text-base font-semibold leading-7 sm:text-lg">Brand Designer • Marketer • Developer</p>
           </div>

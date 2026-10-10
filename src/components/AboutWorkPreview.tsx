@@ -27,7 +27,7 @@ export default function AboutWorkPreview() {
           {previewWorks.map((work) => (
             <Link key={work.slug} to={`/portfolio/${work.slug}`} className="about-work-link group block min-w-0 rounded-lg">
               <div className="about-work-image overflow-hidden rounded-lg border border-white/10 bg-zinc-950">
-                <img src={work.image} alt={work.imageAlt?.[language] ?? work.title} loading="lazy" decoding="async" />
+                <img src={work.image} alt={work.imageAlt?.[language] ?? work.title} loading="lazy" decoding="async" draggable={false} />
               </div>
               <div className="mt-4 flex items-center justify-between gap-3">
                 <h3 className="text-lg font-bold text-white">{work.title}</h3>

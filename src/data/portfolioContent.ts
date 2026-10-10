@@ -1,3 +1,5 @@
+import { getImagePreview } from '../lib/imagePreview.ts';
+
 export type Locale = 'ko' | 'en';
 export type Copy = Record<Locale, string>;
 export type WorkCategory = 'design' | 'development' | 'planning' | 'operations';
@@ -16,7 +18,7 @@ export interface SelectedWork {
   image?: string;
   imageAlt?: Copy;
   imagePresentation?: 'screen';
-  href: string;
+  href?: string;
   github?: string;
   theme: 'ink' | 'paper' | 'blue';
   notes: { title: Copy; body: Copy }[];
@@ -30,9 +32,14 @@ export const profile = {
     en: 'Brand Designer · Marketer · Developer',
   },
   summary: {
-    ko: '떠오른 생각을 먼저 시도하고, 디자인과 개발로 직접 만듭니다. 글과 말로 방향을 정리하고 사람들과 목표를 맞춰 실행하는 일을 좋아합니다. AI로 상상을 빠르게 시험하며, 맡은 일은 끝까지 이어갑니다.',
-    en: 'I start by trying an idea, then build it through design and development. I enjoy clarifying direction through writing and conversation, and working with people toward a shared goal. I use AI to test what I imagine and follow through on the work I take on.',
+    ko: 'Seoharo라는 이름으로 활동해 온 서주원입니다. 기획과 글로 생각을 정리하고, 디자인·마케팅·개발을 오가며 직접 만듭니다.',
+    en: 'I’m Seo Juwon, known online as Seoharo. I shape ideas through planning and writing, then build across design, marketing and development.',
   },
+};
+
+export const profileApproach: Copy = {
+  ko: '먼저 생각을 말과 글로 정리하고, 사람들과 목표를 맞춥니다. AI로 아이디어를 시험하고 디자인과 웹 작업으로 구체화합니다. 보이는 내용은 간결하게, 자세한 과정은 작업 안에 담는 방식을 지향합니다.',
+  en: 'I clarify ideas through writing and conversation, align people around a goal, and use AI to try ideas before turning them into design and web projects. I aim for a clear overview with the detailed process inside each project.',
 };
 
 export const skillGroups = [
@@ -51,9 +58,8 @@ export const selectedWorks: SelectedWork[] = [
     summary: { ko: '기업과 대학의 공식 디자인 가이드를 모아 검색하고, 원문으로 연결하는 레퍼런스 아카이브 프로토타입.', en: 'A reference archive prototype for finding official company and university design guides and opening their original sources.' },
     roles: { ko: '개인 프로젝트 · 웹 프로토타입', en: 'Personal project · Web prototype' },
     output: { ko: '검색 · 분야별 목록 · 가이드 상세 화면', en: 'Search · Categorized index · Guide detail pages' },
-    image: '/assets/designgraphy/home.webp', imagePresentation: 'screen',
-    imageAlt: { ko: 'Claude 원본 디자인그래피 홈페이지 화면', en: 'Homepage captured from the original Claude Designgraphy prototype' },
-    href: 'https://claude.ai/artifact/SMJrhw1mdYerMNnQNVWyur',
+    image: getImagePreview('designgraphy:home').image, imagePresentation: 'screen',
+    imageAlt: { ko: '디자인그래피 홈페이지 공개용 미리보기', en: 'Public preview of the Designgraphy homepage' },
     notes: [
       { title: { ko: '무엇을 만들었나요?', en: 'What is it?' }, body: { ko: '디자인을 참고할 때 기업과 대학의 공식 자료를 한곳에서 찾을 수 있도록 구성한 웹 프로토타입입니다. 자료 소개에서 원문 가이드로 바로 이동하는 흐름을 담았습니다.', en: 'A web prototype that brings official design references from companies and universities into one place, connecting guide summaries to their original sources.' } },
       { title: { ko: '화면에서 확인할 수 있는 것', en: 'What the prototype shows' }, body: { ko: '검색, 국내·해외와 기업·대학 분류, 가이드 목록과 상세 화면을 구성했습니다. 공식 자료를 만든 기관과 아카이브의 역할을 구분합니다.', en: 'The interface includes search, domestic and international company and university categories, a guide index, and detail pages. The archive remains distinct from the organizations that created the guides.' } },
@@ -63,15 +69,14 @@ export const selectedWorks: SelectedWork[] = [
   {
     slug: 'one-to-z', title: '1 to Z', category: 'design', status: 'prototype', eyebrow: 'FASHION PLATFORM · UI/UX', theme: 'paper',
     headline: { ko: '취향을 발견하고,\n옷을 고르는 화면.', en: 'Discover a style.\nExplore the clothes.' },
-    summary: { ko: '의류 관련 플랫폼 1 to Z의 웹·모바일 디자인 시안. 홈부터 상품 탐색, 주문과 배송 조회까지 18개 원본 화면을 정리했습니다.', en: 'Web and mobile design prototypes for the clothing platform 1 to Z. Eighteen original screens cover home, discovery, products, ordering and delivery tracking.' },
+    summary: { ko: '의류 관련 플랫폼 1 to Z의 웹·모바일 디자인 시안. 홈부터 상품 탐색, 주문과 배송 조회까지 18개 화면을 정리했습니다.', en: 'Web and mobile design prototypes for the clothing platform 1 to Z. Eighteen screens cover home, discovery, products, ordering and delivery tracking.' },
     roles: { ko: '개인 디자인 시안 · UI/UX 구성', en: 'Personal design prototype · UI/UX layout' },
     output: { ko: '웹 5개 · 모바일 13개 디자인 화면', en: '5 web · 13 mobile design screens' },
-    image: '/assets/one-to-z/one-to-z-20-11859.webp', imagePresentation: 'screen',
+    image: getImagePreview('one-to-z:20-11859').image, imagePresentation: 'screen',
     imageAlt: { ko: '1 to Z 의류 플랫폼 쇼핑 홈페이지 디자인 시안', en: '1 to Z clothing platform shopping homepage design prototype' },
-    href: 'https://www.figma.com/design/EnoG62fRkbWFIPsRd7MJA5?node-id=20-11859',
     notes: [
       { title: { ko: '작업 범위', en: 'Scope' }, body: { ko: '의류 관련 플랫폼의 웹·모바일 화면을 구성한 디자인 시안입니다. 상품 목록과 상세, 브랜드 이야기와 에디토리얼, 찜과 장바구니, 주문 이후 화면까지 담았습니다.', en: 'Design prototypes for a clothing platform across web and mobile, including product lists and details, brand stories, editorial content, saved items, cart and post-order screens.' } },
-      { title: { ko: '화면 전체로 확인하기', en: 'Inspect the full screens' }, body: { ko: 'Figma 화면 18개를 내보내어 화면별 기능과 함께 정리했습니다. 각 화면은 잘리지 않은 전체 이미지로 볼 수 있으며, 이미지를 누르면 새 창에서 크게 확인할 수 있습니다.', en: 'Eighteen exported Figma screens are documented with notes. Each full-length image is shown without cropping and can be opened in a new tab for closer inspection.' } },
+      { title: { ko: '화면 전체로 확인하기', en: 'Inspect the screens' }, body: { ko: '디자인 화면 18개를 화면별 기능과 함께 정리했습니다. 원본 파일 대신 공개용 미리보기를 사용하며, 각 화면의 전체 흐름은 페이지 안에서 확인할 수 있습니다.', en: 'Eighteen design screens are documented with notes. Public previews replace the source files, while the complete screen flow remains viewable within this page.' } },
       { title: { ko: '시안과 실제 서비스 구분', en: 'Prototype, not a live service' }, body: { ko: '화면에 있는 상품·가격·주문·회원·회사 정보는 예시입니다. 실제 판매, 고객 수, 구매 성과나 개발 완료를 주장하지 않습니다.', en: 'Products, prices, orders, member and company information in the design are examples, not claims of sales, customers, purchase outcomes or a completed implementation.' } },
     ],
   },
@@ -89,15 +94,16 @@ export const selectedWorks: SelectedWork[] = [
   },
   {
     slug: 'design-pick', title: 'Design Pick', category: 'design', status: 'project', eyebrow: 'DESIGN & WEB', theme: 'paper',
-    headline: { ko: '디자인의 영감을,\n한곳에 모으다.', en: 'Design inspiration,\nall in one place.' },
-    summary: { ko: '디자인 자료와 비주얼을 모아 탐색하는 웹 프로젝트. 보기 좋은 화면과 읽기 쉬운 구조를 함께 고민했습니다.', en: 'A web project for exploring design resources and visuals, with attention to both presentation and readable structure.' },
+    headline: { ko: '색을 고르고,\n작업에 가져다 쓰다.', en: 'Choose a color.\nBring it into your work.' },
+    summary: { ko: 'RGB 조절과 컬러 피커, 팔레트 탐색, HEX·RGB 복사와 CSS·Tailwind 내보내기를 한곳에 모은 디자인 도구 웹 프로젝트.', en: 'A design tools web project bringing together RGB controls, a color picker, palette browsing, HEX and RGB copying, and CSS and Tailwind export.' },
     roles: { ko: '기획 · UI 디자인 · 웹 제작', en: 'Planning · UI design · Web building' },
-    output: { ko: '디자인 큐레이션 웹 프로젝트', en: 'Design curation web project' },
+    output: { ko: '컬러 피커 · 팔레트 · 디자인 도구', en: 'Color picker · Palettes · Design tools' },
     image: '/assets/designpick.png', imageAlt: { ko: 'Design Pick 색상환과 디자인 도구 소개 커버', en: 'Design Pick cover featuring a color wheel and design tools' },
     href: 'https://designs.kro.kr',
+    github: 'https://github.com/haroseo/Design-Pick',
     notes: [
-      { title: { ko: '출발점', en: 'Starting point' }, body: { ko: '디자인 영감을 찾고 자료를 살펴보는 과정을 하나의 웹 경험으로 구성했습니다.', en: 'I brought design inspiration and resource exploration into a single web experience.' } },
-      { title: { ko: '내가 고민한 일', en: 'My focus' }, body: { ko: '타이포그래피와 레이아웃으로 정보를 정리하고, 시각적인 탐색이 자연스럽게 이어지도록 만들었습니다.', en: 'I organized information through typography and layout to support a natural visual browsing experience.' } },
+      { title: { ko: '화면에서 확인할 수 있는 것', en: 'What the public version shows' }, body: { ko: 'RGB 채널 조절, 색상 코드 복사, 팔레트 탐색과 보관함을 구성한 컬러 도구입니다. CSS 변수와 Tailwind 설정 내보내기, 폰트 미리보기와 디자인 학습 자료 메뉴도 공개 버전에 포함되어 있습니다.', en: 'The public version includes RGB channel controls, color-code copying, palette browsing and saved palettes. It also presents CSS variable and Tailwind config export, font previews and design learning resources.' } },
+      { title: { ko: '공개 버전 안내', en: 'About the linked version' }, body: { ko: '이곳에서는 Design Pick이라는 이름으로 소개합니다. 연결된 공개 사이트의 제목과 일부 메뉴에는 RGBdom이라는 이름이 남아 있습니다. 실제 기능과 작업 범위를 구분해 기록하며, 이용자 수나 성과를 주장하지 않습니다.', en: 'This portfolio introduces the project as Design Pick. The linked public site still uses RGBdom in its title and some menus. This record describes the visible tools without claiming user counts or business outcomes.' } },
     ],
   },
   {

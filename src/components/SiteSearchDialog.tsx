@@ -9,13 +9,14 @@ import { useRouter } from './router';
 interface SiteSearchDialogProps {
   open: boolean;
   onClose: () => void;
+  onNavigate: () => void;
 }
 
 function optionId(id: string) {
   return `site-search-option-${id.replace(/[^a-z0-9_-]/gi, '-')}`;
 }
 
-export default function SiteSearchDialog({ open, onClose }: SiteSearchDialogProps) {
+export default function SiteSearchDialog({ open, onClose, onNavigate }: SiteSearchDialogProps) {
   const { language, t } = useLanguage();
   const { navigate } = useRouter();
   const [query, setQuery] = useState('');
@@ -32,11 +33,15 @@ export default function SiteSearchDialog({ open, onClose }: SiteSearchDialogProp
   useEffect(() => {
     if (!open) return;
     const previousOverflow = document.body.style.overflow;
+    const root = document.getElementById('root');
+    const previousInert = root?.inert ?? false;
+    if (root) root.inert = true;
     document.body.style.overflow = 'hidden';
     const focusFrame = requestAnimationFrame(() => inputRef.current?.focus());
     return () => {
       cancelAnimationFrame(focusFrame);
       document.body.style.overflow = previousOverflow;
+      if (root) root.inert = previousInert;
     };
   }, [open]);
 
@@ -46,7 +51,7 @@ export default function SiteSearchDialog({ open, onClose }: SiteSearchDialogProp
 
   const selectResult = (entry: (typeof entries)[number]) => {
     navigate(entry.href);
-    onClose();
+    onNavigate();
   };
 
   const handleKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>) => {

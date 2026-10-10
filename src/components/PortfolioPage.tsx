@@ -1,7 +1,6 @@
 import { ArrowRight, ExternalLink } from 'lucide-react';
 import { useEffect, useRef } from 'react';
-import { aboutIntro } from '../data/aboutContent';
-import { careerEntries, profile, skillGroups } from '../data/portfolioContent';
+import { careerEntries, profile, profileApproach, skillGroups } from '../data/portfolioContent';
 import {
   filterProjectStatus,
   getProfilePortfolioDisplayItems,
@@ -21,6 +20,7 @@ const categoryLabels: Record<ProfileCategory, { ko: string; en: string }> = {
   brand: { ko: '디자인', en: 'Design' },
   marketing: { ko: '마케팅', en: 'Marketing' },
   development: { ko: '개발', en: 'Development' },
+  planning: { ko: '기획', en: 'Planning' },
   operations: { ko: '사업 운영', en: 'Business operations' },
   club: { ko: '동아리', en: 'Clubs' },
 };
@@ -80,11 +80,11 @@ export default function PortfolioPage({ focusSection }: { focusSection?: 'experi
           <div className="min-w-0 space-y-3">
             <section className="overflow-hidden rounded-xl border border-[#d6dce5] bg-white" aria-labelledby="profile-heading">
               <div className="profile-banner relative h-[92px] overflow-hidden bg-[#e5edfa] sm:h-[112px]" aria-hidden="true">
-                <img src="/assets/profile-banner.jpg" alt="" width="1400" height="349" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
+                <img src="/assets/profile-banner.jpg" alt="" width="1400" height="349" decoding="async" className="absolute inset-0 h-full w-full object-cover" draggable={false} />
               </div>
               <div className="relative px-4 pb-5 pt-4 sm:px-6 sm:pb-6">
                 <span className="absolute -top-11 left-4 block size-[76px] overflow-hidden rounded-xl border-4 border-white bg-[#eef1f6] shadow-sm sm:left-6 sm:size-[84px]">
-                  <img src="/assets/juwon-mark.svg" alt={t('서주원 개인 로고', 'Seo Juwon personal logo')} className="absolute left-1/2 top-1/2 h-[82%] w-[82%] -translate-x-1/2 -translate-y-1/2 object-contain" />
+                  <img src="/assets/juwon-mark.svg" alt={t('서주원 개인 로고', 'Seo Juwon personal logo')} className="absolute left-1/2 top-1/2 h-[82%] w-[82%] -translate-x-1/2 -translate-y-1/2 object-contain" draggable={false} />
                 </span>
                 <div className="pt-10">
                   <p className="text-sm font-semibold text-[var(--muted-copy)]">{t('프로필', 'Profile')}</p>
@@ -100,6 +100,7 @@ export default function PortfolioPage({ focusSection }: { focusSection?: 'experi
                       ['#about', t('소개', 'About')],
                       ['#experience', t('경력', 'Experience')],
                       ['#projects', t('프로젝트', 'Projects')],
+                      ['#skills', t('역량', 'Skills')],
                     ].map(([href, label]) => (
                       <a key={href} href={href} className="inline-flex min-h-11 items-center rounded-full border border-[#d6dce5] px-3.5 text-sm font-semibold text-[var(--body-copy)] transition-colors hover:border-[var(--brand-accent)] hover:text-[var(--brand-accent)] focus-visible:outline-2 focus-visible:outline-[var(--brand-accent)] focus-visible:outline-offset-2">
                         {label}
@@ -110,9 +111,9 @@ export default function PortfolioPage({ focusSection }: { focusSection?: 'experi
               </div>
             </section>
 
-            <section id="about" className="scroll-mt-20 rounded-xl border border-[#d6dce5] bg-white px-4 py-5 sm:px-6 sm:py-6" aria-labelledby="about-heading">
+            <section id="about" tabIndex={-1} className="scroll-mt-20 rounded-xl border border-[#d6dce5] bg-white px-4 py-5 sm:px-6 sm:py-6" aria-labelledby="about-heading">
               <h2 id="about-heading" className="text-lg font-bold text-[var(--ink)] sm:text-xl">{t('소개', 'About')}</h2>
-              <p className="mt-3 max-w-3xl text-sm leading-7 text-[var(--body-copy)] sm:text-base">{aboutIntro[language]}</p>
+              <p className="mt-3 max-w-3xl text-sm leading-7 text-[var(--body-copy)] sm:text-base">{profileApproach[language]}</p>
               <Link to="/#about-growth" className="mt-3 inline-flex min-h-10 items-center text-sm font-semibold text-[var(--brand-accent)] hover:text-[var(--brand-accent-hover)] focus-visible:outline-2 focus-visible:outline-[var(--brand-accent)] focus-visible:outline-offset-2">
                 {t('성장 과정 자세히 보기', 'Read the full story')} <ArrowRight size={15} className="ml-1" aria-hidden="true" />
               </Link>
@@ -134,7 +135,7 @@ export default function PortfolioPage({ focusSection }: { focusSection?: 'experi
                   <li key={entry.slug} className="py-4 first:pt-3 last:pb-0">
                     <article>
                       <div className="flex items-start gap-3">
-                        {entry.logo && <img src={entry.logo} alt="" aria-hidden="true" className="size-11 shrink-0 rounded-lg border border-[#e7eaf0] bg-white object-contain p-1" />}
+                        {entry.logo && <img src={entry.logo} alt="" aria-hidden="true" className="size-11 shrink-0 rounded-lg border border-[#e7eaf0] bg-white object-contain p-1" draggable={false} />}
                         <div className="min-w-0 flex-1">
                           <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
                             <div className="min-w-0">
@@ -153,10 +154,12 @@ export default function PortfolioPage({ focusSection }: { focusSection?: 'experi
                       </div>
                       <p className={`mt-2 text-sm leading-6 text-[var(--body-copy)] ${entry.logo ? 'pl-14' : ''}`}>{entry.summary[language]}</p>
                       {entry.ventures && (
-                        <ul className="mt-4 grid gap-2 sm:grid-cols-3" aria-label={t('운영한 커뮤니티', 'Communities operated')}>
+                        <details className="mt-3">
+                        <summary className="min-h-11 cursor-pointer rounded-sm py-3 text-sm font-semibold text-[var(--brand-accent)] focus-visible:outline-2 focus-visible:outline-[var(--brand-accent)] focus-visible:outline-offset-2">{t('운영 기록 3개 펼쳐보기', 'Expand 3 business records')}</summary>
+                        <ul className="grid gap-2 sm:grid-cols-3" aria-label={t('운영한 커뮤니티', 'Communities operated')}>
                           {entry.ventures.map((venture) => (
                             <li key={venture.name} className="flex min-w-0 items-start gap-2 border-t border-[#e7eaf0] py-3">
-                              <img src={venture.logo} alt="" aria-hidden="true" className="size-9 shrink-0 rounded-md border border-[#e7eaf0] bg-white object-contain p-1" />
+                              <img src={venture.logo} alt="" aria-hidden="true" width="36" height="36" loading="lazy" decoding="async" className="size-9 shrink-0 rounded-md border border-[#e7eaf0] bg-white object-contain p-1" draggable={false} />
                               <div className="min-w-0">
                                 <p className="truncate text-sm font-semibold text-[var(--ink)]">{venture.name}</p>
                                 <p className="mt-0.5 text-xs leading-5 text-[var(--body-copy)]">{venture.field[language]}</p>
@@ -165,6 +168,7 @@ export default function PortfolioPage({ focusSection }: { focusSection?: 'experi
                             </li>
                           ))}
                         </ul>
+                        </details>
                       )}
                       {entry.areas && !entry.ventures && (
                         <ul className={`mt-3 flex flex-wrap gap-x-3 gap-y-1 text-xs text-[var(--muted-copy)] ${entry.logo ? 'pl-14' : ''}`} aria-label={t('업무 분야', 'Areas of work')}>
@@ -221,13 +225,13 @@ export default function PortfolioPage({ focusSection }: { focusSection?: 'experi
                     <article className="flex flex-col gap-3 py-4 first:pt-4 last:pb-0 sm:flex-row">
                       {item.logo ? (
                         <span className="relative block size-[76px] shrink-0 overflow-hidden rounded-lg border border-[#e7eaf0] bg-white sm:size-[88px]">
-                          <img src={item.logo} alt={t(`${item.title.ko} 로고`, `${item.title.en} logo`)} className="size-full object-contain p-1.5" />
+                          <img src={item.logo} alt={t(`${item.title.ko} 로고`, `${item.title.en} logo`)} className="size-full object-contain p-1.5" draggable={false} />
                         </span>
                       ) : item.id === 'planor' || item.id === 'naratmalsami' ? (
                         <span className="block h-[160px] w-full shrink-0 overflow-hidden rounded-lg border border-[#e7eaf0] sm:h-[76px] sm:w-[132px]">
                           <ProjectCover slug={item.id} title={item.title[language]} language={language} compact />
                         </span>
-                      ) : item.image && <img src={item.image} alt={item.imageAlt?.[language] ?? ''} loading="lazy" decoding="async" width="104" height="76" className={`aspect-[16/9] w-full shrink-0 rounded-lg border border-[#e7eaf0] object-cover sm:aspect-auto sm:h-[76px] sm:w-[104px] ${item.imagePresentation === 'screen' ? 'object-top' : ''}`} />}
+                      ) : item.image && <img src={item.image} alt={item.imageAlt?.[language] ?? ''} loading="lazy" decoding="async" width="104" height="76" className={`aspect-[16/9] w-full shrink-0 rounded-lg border border-[#e7eaf0] object-cover sm:aspect-auto sm:h-[76px] sm:w-[104px] ${item.imagePresentation === 'screen' ? 'object-top' : ''}`} draggable={false} />}
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                           <h3 className="text-base font-bold text-[var(--ink)]">
@@ -286,7 +290,7 @@ export default function PortfolioPage({ focusSection }: { focusSection?: 'experi
           </div>
 
           <aside className="space-y-3 lg:sticky lg:top-[76px]">
-            <nav className="rounded-xl border border-[#d6dce5] bg-white px-4 py-5 sm:px-5" aria-label={t('프로필 내 이동', 'Profile sections')}>
+            <nav className="hidden rounded-xl border border-[#d6dce5] bg-white px-4 py-5 sm:px-5 lg:block" aria-label={t('프로필 내 이동', 'Profile sections')}>
               <h2 className="text-base font-bold text-[var(--ink)]">{t('이 페이지에서 보기', 'On this page')}</h2>
               <ul className="mt-2 divide-y divide-[#e7eaf0]">
                 {[

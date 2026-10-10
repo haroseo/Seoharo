@@ -21,6 +21,10 @@ test('real public HTML artifacts stay within output and exclude private data', a
     const input = { outputDirectory: directory, template, pages, cname: 'seoharo.kro.kr' };
     assert.deepEqual(await writeSiteArtifacts(input), { pages: 13, aliases: 12, notFound: 1 });
     assert.deepEqual(await verifySeoBuild(directory), { pages: 13, aliases: 12, notFound: 1, sitemapUrls: 13 });
+    const stalePreview = join(directory, 'assets/previews/retired-screen-preview.webp');
+    await cp('public/assets/previews/designgraphy-home-preview.webp', stalePreview);
+    await assert.rejects(verifySeoBuild(directory), /Unexpected preview asset/);
+    await rm(stalePreview);
     // Removing a configured search verification tag from the rendered head must fail release validation.
     const home = await readFile(join(directory, 'index.html'), 'utf8');
     const homeHead = home.match(/<head\b[^>]*>([\s\S]*?)<\/head>/)[1];

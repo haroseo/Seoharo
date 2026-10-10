@@ -9,6 +9,7 @@ import { ContactBanner, WorkCard, WorkVisual } from './PortfolioUI';
 import { getDesignCaseStudy } from '../../data/designCaseStudies';
 import { DesignScreenGallery } from './DesignScreenGallery';
 import ReturnNavigation from '../ReturnNavigation';
+import { projectEvidence } from '../../data/projectEvidence';
 
 export function ProjectsPage({ initialCategory = 'all' }: { initialCategory?: WorkCategory | 'all' }) {
   const { language, t } = useLanguage();
@@ -31,9 +32,54 @@ export function ProjectDetail({ slug }: { slug: string }) {
   if (!work) return <MissingPage />;
   const next = selectedWorks[(selectedWorks.indexOf(work) + 1) % selectedWorks.length];
   const study = getDesignCaseStudy(slug);
-  return <article className="sj-project-detail sj-container"><ReturnNavigation className="sj-back-link" /><header className="sj-detail-header"><span className="sj-eyebrow">{work.eyebrow}</span><h1>{work.headline[language]}</h1><p>{work.summary[language]}</p><dl className="sj-project-facts"><div><dt>PROJECT</dt><dd>{work.title}</dd></div><div><dt>{t('참여한 일', 'CONTRIBUTION')}</dt><dd>{work.roles[language]}</dd></div><div><dt>{t('작업', 'OUTPUT')}</dt><dd>{work.output[language]}</dd></div></dl></header>{!study && <WorkVisual key={work.slug} work={work} priority />}
+  const evidence = projectEvidence.find(item => item.slug === slug);
+  return (
+    <article className="sj-project-detail sj-container">
+      <ReturnNavigation className="sj-back-link" />
+      <header className="sj-detail-header">
+        <span className="sj-eyebrow">{work.eyebrow}</span>
+        <h1>{work.headline[language]}</h1>
+        <p>{work.summary[language]}</p>
+        <dl className="sj-project-facts">
+          <div><dt>PROJECT</dt><dd>{work.title}</dd></div>
+          <div><dt>{t('참여한 일', 'CONTRIBUTION')}</dt><dd>{work.roles[language]}</dd></div>
+          <div><dt>{t('작업', 'OUTPUT')}</dt><dd>{work.output[language]}</dd></div>
+        </dl>
+        {study && <nav className="sj-detail-actions" aria-label={t('작업 내 이동', 'Case study sections')}>
+          <a href="#project-notes" className="sj-button sj-button--outline">{t('작업 요약', 'Work summary')}</a>
+          <a href="#design-screens-heading" className="sj-button sj-button--primary">{t(`전체 화면 ${study.screens.length}개 보기`, `See all ${study.screens.length} screens`)}<ArrowRight size={16} aria-hidden="true" /></a>
+        </nav>}
+      </header>
+      {!study && !evidence && <WorkVisual key={work.slug} work={work} priority />}
+      <section id="project-notes" tabIndex={-1} className="sj-case-notes scroll-mt-20" aria-labelledby="project-notes-heading">
+        <h2 id="project-notes-heading">{t('작업에 담은 생각.', 'Thinking behind the work.')}</h2>
+        <div>
+          {work.notes.map((note, index) => <section key={note.title.en}>
+            <span className="sj-caption">0{index + 1}</span>
+            <h3>{note.title[language]}</h3><p>{note.body[language]}</p>
+          </section>)}
+          <p className="sj-case-note">{t('개인 프로젝트 기록입니다. 공개 링크의 현재 서비스 상태는 달라질 수 있습니다.', 'Personal project archive. The current availability of linked services may vary.')}</p>
+          <div className="sj-detail-actions">
+            {work.href && <a href={work.href} target="_blank" rel="noopener noreferrer" className="sj-button sj-button--primary">{t('프로젝트 열기', 'Open project')}<ArrowUpRight size={18} aria-hidden="true" /></a>}
+            {work.github && <a href={work.github} target="_blank" rel="noopener noreferrer" className="sj-button sj-button--outline"><Github size={17} />{t('코드 살펴보기', 'Explore the code')}</a>}
+          </div>
+        </div>
+      </section>
       {study && <DesignScreenGallery study={study} />}
-      <div className="sj-case-notes"><h2>{t('작업에 담은 생각.', 'Thinking behind the work.')}</h2><div>{work.notes.map((note, index) => <section key={note.title.en}><span className="sj-caption">0{index + 1}</span><h3>{note.title[language]}</h3><p>{note.body[language]}</p></section>)}<p className="sj-case-note">{t('개인 프로젝트 기록입니다. 공개 링크의 현재 서비스 상태는 달라질 수 있습니다.', 'Personal project archive. The current availability of linked services may vary.')}</p><div className="sj-detail-actions"><a href={work.href} target="_blank" rel="noopener noreferrer" className="sj-button sj-button--primary">{t('원본 작업 보기', 'View original work')}<ArrowUpRight size={18} /></a>{work.github && <a href={work.github} target="_blank" rel="noopener noreferrer" className="sj-button sj-button--outline"><Github size={17} />{t('코드 살펴보기', 'Explore the code')}</a>}</div></div></div><Link to={`/portfolio/${next.slug}`} className="sj-next-project"><div><span className="sj-eyebrow">NEXT PROJECT</span><h2>{next.title}</h2></div><ArrowRight size={30} /></Link></article>;
+      {evidence && <section id="project-evidence" tabIndex={-1} data-project-evidence={work.slug} className="sj-project-evidence scroll-mt-20" aria-labelledby="project-evidence-heading">
+        <header>
+          <p className="sj-caption">{t('공개 서비스 화면', 'Public service interface')} · {evidence.capturedOn}</p>
+          <h2 id="project-evidence-heading">{evidence.title[language]}</h2>
+          <p>{evidence.description[language]}</p>
+        </header>
+        <figure>
+          <img src={evidence.image} alt={`${work.title} · ${evidence.title[language]}`} width={evidence.width} height={evidence.height} loading="lazy" decoding="async" draggable={false} />
+          <figcaption>{t('실제 공개 화면의 미리보기입니다. 현재 서비스는 달라질 수 있으며, 사용자 수나 운영 성과를 증명하는 자료는 아닙니다.', 'A preview captured from the public interface. The live service may change; this image does not establish user counts or business outcomes.')}</figcaption>
+        </figure>
+      </section>}
+      <Link to={`/portfolio/${next.slug}`} className="sj-next-project"><div><span className="sj-eyebrow">NEXT PROJECT</span><h2>{next.title}</h2></div><ArrowRight size={30} aria-hidden="true" /></Link>
+    </article>
+  );
 }
 
 export function MissingPage() {

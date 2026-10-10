@@ -1,4 +1,5 @@
 import type { Copy } from './portfolioContent';
+import { getImagePreview } from '../lib/imagePreview.ts';
 
 export interface DesignScreen {
   id: string;
@@ -17,14 +18,14 @@ export interface DesignCaseStudy {
   screens: readonly DesignScreen[];
 }
 const copy = (ko: string, en: string): Copy => ({ ko, en });
-function oneToZScreen(id: string, title: Copy, width: number, height: number, functionality: Copy, rationale: Copy): DesignScreen {
-  return { id, title, format: width === 390 ? 'mobile' : 'web', image: `/assets/one-to-z/one-to-z-${id}.webp`, width, height, function: functionality, rationale };
+function oneToZScreen(id: string, title: Copy, width: number, _height: number, functionality: Copy, rationale: Copy): DesignScreen {
+  return { id, title, format: width === 390 ? 'mobile' : 'web', ...getImagePreview(`one-to-z:${id}`), function: functionality, rationale };
 }
 
 // Original Figma exports, not live storefronts. Rationale is interpretation.
 export const oneToZCaseStudy: DesignCaseStudy = {
   slug: 'one-to-z',
-  source: copy('Figma 원본 · 웹 5개 / 모바일 13개', 'Original Figma designs · 5 web / 13 mobile screens'),
+  source: copy('디자인 시안 미리보기 · 웹 5개 / 모바일 13개', 'Design previews · 5 web / 13 mobile screens'),
   disclaimer: copy('디자인 시안입니다. 화면 속 상품, 가격, 리뷰, 주문·회원·회사 정보는 시안의 예시이며, 실제 서비스 운영이나 실적을 뜻하지 않습니다. 구성 이유는 화면을 바탕으로 정리한 해석입니다.', 'Design prototype. Products, prices, reviews, orders, member and company information shown belong to the example design, not a live service or verified results. Layout rationale is an interpretation of the screens.'),
   screens: [
     oneToZScreen('20-11859', copy('쇼핑 웹사이트', 'Shopping website'), 1301, 4096,
@@ -38,7 +39,7 @@ export const oneToZCaseStudy: DesignCaseStudy = {
       copy('탐색 조건과 결과를 동시에 볼 수 있게 나누고, 선택 조건을 칩으로 다시 보여줘 현재 목록의 기준을 확인하기 쉽습니다.', 'Keeping filters beside results and showing active chips clarifies why these products are displayed.')),
     oneToZScreen('31-14780', copy('웹 블레이저 상세', 'Web blazer detail'), 1277, 4096,
       copy('블레이저 상품의 이미지와 구매 정보를 시작으로 상세 콘텐츠를 길게 보여주는 웹 상품 페이지입니다.', 'A web product page beginning with blazer imagery and purchase information, followed by extended details.'),
-      copy('목록에서 생긴 관심을 제품 확인과 구매 검토로 이어가는 단계입니다. 긴 정보는 이미지를 새 창으로 열어 확인할 수 있습니다.', 'This connects discovery to closer inspection and purchase consideration; open the full image to inspect the longer details.')),
+      copy('목록에서 생긴 관심을 제품 확인과 구매 검토로 이어가는 단계입니다. 긴 정보는 페이지 안에서 화면을 따라 내려가며 확인할 수 있습니다.', 'This connects discovery to closer inspection and purchase consideration; follow the screen down this page to inspect its longer details.')),
     oneToZScreen('31-15105', copy('웹 에디토리얼 아티클', 'Web editorial article'), 898, 4096,
       copy('사진과 긴 글로 브랜드·스타일의 이야기를 풀어내는 웹 에디토리얼 화면입니다.', 'A long-form web editorial screen telling a brand and style story through photographs and text.'),
       copy('빠른 상품 탐색과 별도로 충분히 읽을 수 있는 콘텐츠 영역을 두어, 제품을 선택할 맥락을 보여주는 구성입니다.', 'A separate reading experience provides context for the products, alongside the faster shopping flow.')),
@@ -83,13 +84,13 @@ export const oneToZCaseStudy: DesignCaseStudy = {
       copy('브랜드별로 배송 블록을 분리해 한 주문의 상품들이 서로 다른 상태일 수 있다는 점을 보여줍니다.', 'Separate shipment blocks communicate that products in one order can have different delivery states.')),
   ],
 };
-function designgraphyScreen(id: string, title: Copy, height: number, functionality: Copy, rationale: Copy): DesignScreen {
-  return { id: `dg-${id}`, title, format: 'web', image: `/assets/designgraphy/${id}.webp`, width: 1710, height, function: functionality, rationale };
+function designgraphyScreen(id: string, title: Copy, _height: number, functionality: Copy, rationale: Copy): DesignScreen {
+  return { id: `dg-${id}`, title, format: 'web', ...getImagePreview(`designgraphy:${id}`), function: functionality, rationale };
 }
 
 export const designgraphyCaseStudy: DesignCaseStudy = {
   slug: 'designgraphy',
-  source: copy('Claude 원본 사이트 · 주요 화면 12개', 'Original Claude prototype · 12 key screens'),
+  source: copy('Claude 프로토타입 미리보기 · 주요 화면 12개', 'Claude prototype previews · 12 key screens'),
   disclaimer: copy('공유된 Claude 사이트의 실제 화면을 가져왔습니다. Figma의 디자인 창고 시안과는 다른 버전입니다. 화면 속 아카이브 수와 자료 설명은 원본 표시이며 전체 정확성을 별도로 검증한 것은 아닙니다. 준비 중 메뉴와 미정리 상세도 그대로 구분했습니다. 구성 이유는 화면을 바탕으로 한 해석입니다.', 'Captured from the shared Claude prototype, separate from the Figma Design Archive version. Archive counts and guide descriptions are source content, not independently validated facts. Coming-soon sections and incomplete details remain distinguishable. Layout rationale is an interpretation.'),
   screens: [
     designgraphyScreen('home', copy('홈페이지', 'Homepage'), 1719,

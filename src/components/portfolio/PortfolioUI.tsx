@@ -12,7 +12,7 @@ export function WorkVisual({ work, priority = false }: { work: SelectedWork; pri
   return (
     <div className={`sj-work-visual sj-work-visual--${work.theme}${work.imagePresentation === 'screen' ? ' sj-work-visual--screen' : ''}`}>
       {work.image && !imageFailed ? (
-        <img src={work.image} alt={work.imageAlt?.[language] ?? work.title} loading={priority ? 'eager' : 'lazy'} decoding="async" width="1024" height="1024" onError={() => setImageFailed(true)} />
+        <img src={work.image} alt={work.imageAlt?.[language] ?? work.title} loading={priority ? 'eager' : 'lazy'} decoding="async" width="1024" height="1024" onError={() => setImageFailed(true)} draggable={false} />
       ) : projectCover ?? (
         <div className="sj-image-fallback"><strong>{work.title}</strong><span>{work.eyebrow}</span></div>
       )}
