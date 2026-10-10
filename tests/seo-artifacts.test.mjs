@@ -14,6 +14,7 @@ test('real public HTML artifacts stay within output and exclude private data', a
     const { renderPage, publicPages } = await server.ssrLoadModule('/src/entry-server.tsx');
     const template = (await readFile('index.html', 'utf8')).replace('/src/main.tsx', '/assets/runtime.js');
     await cp('public/assets', join(directory, 'assets'), { recursive: true });
+    await cp('public/licenses', join(directory, 'licenses'), { recursive: true });
     await writeFile(join(directory, 'assets/runtime.js'), '/* Fixture resource; rendering is the real App. */');
     await cp('public/favicon.svg', join(directory, 'favicon.svg'));
     const pages = [...publicPages.map(page => renderPage(page.path)), renderPage('/404')];
@@ -80,6 +81,9 @@ test('real public HTML artifacts stay within output and exclude private data', a
     await writeFile(join(directory, 'portfolio/planor/index.html'), planor.replace(/<main\b[^>]*>[\s\S]*?<\/main>/, aboutMain));
     await assert.rejects(verifySeoBuild(directory));
     await writeFile(join(directory, 'portfolio/planor/index.html'), planor);
+    await writeFile(join(directory, 'licenses/private.txt'), 'PRIVATE_FIXTURE=not-a-license');
+    await assert.rejects(verifySeoBuild(directory), /Unexpected public file: licenses\/private\.txt/);
+    await rm(join(directory, 'licenses/private.txt'));
     await writeFile(join(directory, '.env'), 'PRIVATE_FIXTURE=not-a-secret');
     await assert.rejects(verifySeoBuild(directory));
     await rm(join(directory, '.env'));

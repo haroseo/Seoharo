@@ -4,6 +4,7 @@ import { useLanguage } from './LanguageContext';
 import { contactChannels } from '../data/contactChannels';
 import { primaryNavigation } from '../data/portfolioRoutes';
 import { SITE_NAME } from '../data/siteIdentity';
+import FooterContactLinks from './FooterContactLinks';
 
 export default function AboutFooter() {
   const { t, language } = useLanguage();
@@ -30,11 +31,13 @@ export default function AboutFooter() {
             <ul className="space-y-1 text-sm">
               {contactChannels.map((channel) => <li key={channel.id}><a href={channel.href} target={channel.id === 'email' ? undefined : '_blank'} rel={channel.id === 'email' ? undefined : 'noopener noreferrer'} className="inline-flex min-h-9 items-center hover:text-white">{channel.label[language]}</a></li>)}
             </ul>
+            <FooterContactLinks dark />
           </div>
         </div>
         <details className="mt-8 border-t border-zinc-900 pt-5 text-xs leading-6">
           <summary className="w-fit cursor-pointer font-semibold hover:text-white">{t('오픈소스 라이선스', 'Open-source licenses')}</summary>
           <p className="mt-3">React · Vite · Framer Motion · Tailwind CSS (MIT) / Lucide (ISC) / Pretendard (SIL OFL 1.1) / TypeScript (Apache-2.0)</p>
+          <p><a href="/licenses/bootstrap-icons-MIT.txt" className="hover:text-white">Bootstrap Icons · MIT</a></p>
         </details>
         <div className="mt-6 border-t border-zinc-900 pt-5 text-xs leading-6 text-zinc-400">
           <p>© {new Date().getFullYear()} {SITE_NAME}</p>

@@ -4,6 +4,7 @@ import { Link } from './router';
 import { primaryNavigation } from '../data/portfolioRoutes';
 import { SITE_NAME } from '../data/siteIdentity';
 import AboutFooter from './AboutFooter';
+import FooterContactLinks from './FooterContactLinks';
 
 const LICENSES = [
   { name: 'React', license: 'MIT', url: 'https://github.com/facebook/react/blob/main/LICENSE' },
@@ -13,6 +14,7 @@ const LICENSES = [
   { name: 'Lucide React', license: 'ISC', url: 'https://github.com/lucide-icons/lucide/blob/main/LICENSE' },
   { name: 'Pretendard', license: 'SIL OFL 1.1', url: 'https://github.com/orioncactus/pretendard/blob/main/LICENSE' },
   { name: 'TypeScript', license: 'Apache-2.0', url: 'https://github.com/microsoft/TypeScript/blob/main/LICENSE.txt' },
+  { name: 'Bootstrap Icons', license: 'MIT', url: '/licenses/bootstrap-icons-MIT.txt' },
 ];
 
 export default function Footer({ originalAbout = false }: { originalAbout?: boolean }) {
@@ -32,6 +34,7 @@ export default function Footer({ originalAbout = false }: { originalAbout?: bool
             <p className="mt-2 max-w-md text-sm leading-6">
               {t('기획·디자인·개발 작업과 경험을 정리했습니다.', 'A selection of planning, design, development, and related experience.')}
             </p>
+            <FooterContactLinks />
           </div>
 
           <nav aria-label={t('푸터 메뉴', 'Footer navigation')}>
