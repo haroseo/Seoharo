@@ -160,7 +160,12 @@ export function RouterProvider({ children, initialPath = '/' }: { children: Reac
     const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
     const nextUrl = `${url.pathname}${url.search}${url.hash}`;
     if (currentUrl === nextUrl) {
-      if (!url.hash) return;
+      if (!url.hash) {
+        // Search may close its dialog even when the destination is already open.
+        // Wait for the dialog's inert cleanup, without moving the reading position.
+        if (!options.preserveScroll) requestAnimationFrame(() => document.getElementById('main-content')?.focus({ preventScroll: true }));
+        return;
+      }
       if (url.hash.startsWith('#contribution-company-work-')) updateViewState({ companySpecialty: 'all' });
       navigationIntentRef.current = {
         nextPath: currentPathRef.current, previousPath: currentPathRef.current,
