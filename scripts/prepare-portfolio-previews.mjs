@@ -13,13 +13,13 @@ const assets = {};
 const groups = [
   { folder: 'one-to-z', key: name => `one-to-z:${name.replace(/^one-to-z-/, '')}`, name: name => name },
   { folder: 'designgraphy', key: name => `designgraphy:${name}`, name: name => `designgraphy-${name}` },
-  { folder: 'project-evidence', key: name => `evidence:${name.startsWith('design-pick-') ? 'design-pick' : name.startsWith('naratmalsami-') ? 'naratmalsami' : name.startsWith('planor-') ? 'planor' : ''}`, name: name => `evidence-${name}` },
+  { folder: 'project-evidence', key: name => `evidence:${name.startsWith('design-pick-') ? 'design-pick' : name.startsWith('naratmalsami-') ? 'naratmalsami' : name.startsWith('planor-') ? 'planor' : name.startsWith('packinapp-') ? 'packinapp' : ''}`, name: name => `evidence-${name}` },
 ];
 for (const group of groups) {
   const directory = resolve(originals, group.folder);
   const entries = await readdir(directory, { withFileTypes: true });
   for (const entry of entries) {
-    if (!entry.isFile() || !/^[a-z0-9-]+\.(?:webp|jpg)$/i.test(entry.name)) throw new Error(`Unexpected source: ${entry.name}`);
+    if (!entry.isFile() || !/^[a-z0-9-]+\.(?:webp|jpg|png)$/i.test(entry.name)) throw new Error(`Unexpected source: ${entry.name}`);
     const name = entry.name.replace(/\.[^.]+$/, '');
     const id = group.key(name);
     if (id.endsWith(':') || assets[id]) throw new Error(`Invalid or duplicate preview: ${id}`);

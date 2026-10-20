@@ -81,6 +81,22 @@ export const selectedWorks: SelectedWork[] = [
     ],
   },
   {
+    slug: 'packinapp', title: '패킨앱', category: 'planning', status: 'project', projectStatus: 'ongoing', eyebrow: 'WEB FEATURE REFERENCE', theme: 'paper',
+    headline: { ko: '웹에 필요한 기능을,\n이해하고 선택하다.', en: 'Understand the features.\nChoose what your web needs.' },
+    summary: { ko: '웹사이트 기능을 검색·비교하고, 사용자 흐름과 구현 체크리스트를 살펴보는 한국어 레퍼런스. 패킨웹(PackinWeb)이라는 이름으로 공개했습니다.', en: 'PackinWeb is a Korean reference for searching and comparing web features, reviewing user flows, and planning implementation with checklists.' },
+    roles: { ko: '개인 프로젝트 · 기획 · AI 활용 제작', en: 'Personal project · Planning · AI-assisted production' },
+    output: { ko: '기능 라이브러리 · 비교 · 컬렉션 · 체크리스트', en: 'Feature library · Comparison · Collections · Checklists' },
+    image: getImagePreview('evidence:packinapp').image, imagePresentation: 'screen',
+    imageAlt: { ko: '패킨앱 PackinWeb의 기능 라이브러리와 분야별 탐색 화면', en: 'PackinWeb feature library and category navigation' },
+    href: 'https://packinweb.pages.dev/',
+    notes: [
+      { title: { ko: '왜 만들었나요?', en: 'Why this project?' }, body: { ko: '개발자가 코드 오류 하나를 고치거나 기능 하나를 만들기 위해 여러 사이트와 문서를 뒤져야 하는 불편함에서 시작했습니다. 필요한 설명과 구현 방법, 참고 자료를 한곳에서 편하게 찾을 수 있게 하려고 패킨앱을 만들었습니다.', en: 'The project started with the frustration of developers having to search across websites and documentation to fix a code error or build a feature. I made PackinWeb so they can find the explanations, implementation approaches and references they need in one place.' } },
+      { title: { ko: '찾기에서 선택까지', en: 'From discovery to selection' }, body: { ko: '이름과 키워드로 검색하고 분야·목적·난이도로 범위를 좁힙니다. 최대 3개 기능을 나란히 비교하고, 필요한 항목을 컬렉션에 저장할 수 있습니다. 서비스 유형별 체크리스트는 JSON 파일로 내려받아 기획에 참고하도록 구성했습니다.', en: 'Search by name or keyword, then narrow results by category, purpose and difficulty. Compare up to three features, save useful items to a collection, and download service-specific checklists as JSON for planning.' } },
+      { title: { ko: '기능명보다 자세한 설명', en: 'More than feature names' }, body: { ko: '각 가이드는 도입 이유, 사용자 흐름, 필수 구성 요소, 예외 상황과 구현 선택지를 같은 목차로 정리합니다. 보안·개인정보·접근성 점검 항목과 공식 참고 자료도 함께 두었습니다. 2026년 10월 20일 공개 화면 기준 16개 분야·108개 가이드가 있으며, 이는 콘텐츠 규모이지 이용자나 사업 성과가 아닙니다.', en: 'Each guide uses a consistent outline for purpose, user flow, required components, edge cases and implementation options, with security, privacy, accessibility checks and official references. The public interface showed 16 categories and 108 guides on October 20, 2026; these are content counts, not user or business results.' } },
+      { title: { ko: '현재 작업 범위', en: 'Current scope' }, body: { ko: '패킨앱은 공개 사이트에서 패킨웹(PackinWeb)으로 소개하는 개인 웹 프로젝트입니다. AI를 활용해 제작했으며 기능 설명과 탐색·비교·저장 흐름을 중심으로 정리했습니다. 로그인이나 결제 가이드가 있다는 것이 이 사이트에서 실제 인증이나 금융 거래를 제공한다는 뜻은 아닙니다. 가이드는 구현 전 검토를 돕는 참고 자료입니다.', en: 'This personal, AI-assisted web project is published as PackinWeb. The work focuses on feature explanations and the discovery, comparison and saving flow. A login or payments guide does not mean the reference site itself provides production authentication or financial transactions. Guides support review before implementation.' } },
+    ],
+  },
+  {
     slug: 'planor', title: 'Planor', category: 'planning', status: 'project', eyebrow: 'PRODUCT & PLANNING', theme: 'blue',
     headline: { ko: '계획을 짜는\n새로운 방식.', en: 'A new way\nto plan your days.' },
     summary: { ko: '일정과 계획을 한눈에 볼 수 있는 캘린더 웹 서비스. 아이디어를 실제 화면과 흐름으로 옮겨 본 프로젝트입니다.', en: 'A calendar web project for organizing plans and turning an idea into a working interface.' },

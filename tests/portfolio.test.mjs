@@ -34,7 +34,7 @@ test('filters combine category and case-insensitive, trimmed bilingual search', 
   assert.equal(filterWorks('all', 'no-such-work').length, 0);
 });
 test('work view keeps employment and clubs inside their selected categories', () => {
-  assert.deepEqual(profilePortfolioModule.getProfilePortfolioDisplayItems('all').map(item => item.id), ['designgraphy', 'one-to-z', 'planor', 'design-pick', 'naratmalsami', 'cokform']);
+  assert.deepEqual(profilePortfolioModule.getProfilePortfolioDisplayItems('all').map(item => item.id), ['designgraphy', 'one-to-z', 'packinapp', 'planor', 'design-pick', 'naratmalsami', 'cokform']);
   assert.deepEqual(profilePortfolioModule.getProfilePortfolioDisplayItems('marketing').map(item => item.id), ['company-work']);
   assert.deepEqual(profilePortfolioModule.getProfilePortfolioDisplayItems('club').map(item => item.id), ['functionfactory']);
 });
@@ -220,10 +220,10 @@ test('ongoing project filter includes only explicitly ongoing project items', ()
   assert.deepEqual(filter(items, 'ongoing').map(item => item.id), ['active']);
 });
 
-test('only Designgraphy is marked as an ongoing project', () => {
+test('Designgraphy and Packin are marked as ongoing projects', () => {
   const projects = profilePortfolioItems.filter(item => item.kind === 'project');
   assert.ok(projects.length > 0);
-  assert.deepEqual(projects.filter(item => item.projectStatus === 'ongoing').map(item => item.id), ['designgraphy']);
+  assert.deepEqual(projects.filter(item => item.projectStatus === 'ongoing').map(item => item.id), ['designgraphy', 'packinapp']);
   assert.equal(projects.find(item => item.id === 'designgraphy').status.ko, '진행 중');
 });
 

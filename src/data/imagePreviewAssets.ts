@@ -161,6 +161,11 @@ export const imagePreviewAssets: Readonly<Record<string, ImagePreviewAsset>> = {
     "width": 1200,
     "height": 603
   },
+  "evidence:packinapp": {
+    "image": "/assets/previews/evidence-packinapp-home-2026-10-20-preview.webp",
+    "width": 1200,
+    "height": 675
+  },
   "evidence:planor": {
     "image": "/assets/previews/evidence-planor-calendar-2026-10-10-preview.webp",
     "width": 1200,
