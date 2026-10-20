@@ -40,7 +40,7 @@ test('the preview generator does not add watermark overlays', () => {
 
 test('portfolio pages do not expose design editor or direct image download links', async () => {
   await withAppRenderer(render => {
-    for (const path of ['/', '/portfolio', '/portfolio/one-to-z', '/portfolio/designgraphy', '/portfolio/planor', '/portfolio/design-pick', '/portfolio/naratmalsami']) {
+    for (const path of ['/', '/portfolio', '/portfolio/one-to-z', '/portfolio/designgraphy', '/portfolio/packinapp', '/portfolio/planor', '/portfolio/design-pick', '/portfolio/naratmalsami']) {
       for (const language of ['ko', 'en']) {
         const html = render({ initialPath: path, initialLanguage: language, prerendered: true });
         const hrefs = [...html.matchAll(/<a\b[^>]*href="([^"]+)"/g)].map(match => match[1]);
@@ -54,7 +54,7 @@ test('portfolio pages do not expose design editor or direct image download links
 
 test('all design and evidence images render bounded local previews with native dragging disabled', async () => {
   await withAppRenderer(render => {
-    for (const [slug, count] of [['one-to-z', 18], ['designgraphy', 12], ['planor', 1], ['design-pick', 1], ['naratmalsami', 1]]) {
+    for (const [slug, count] of [['one-to-z', 18], ['designgraphy', 12], ['packinapp', 1], ['planor', 1], ['design-pick', 1], ['naratmalsami', 1]]) {
       const html = render({ initialPath: `/portfolio/${slug}`, prerendered: true });
       const images = [...html.matchAll(/<img\b[^>]*src="(\/assets\/previews\/[^"?#]+\.webp)"[^>]*>/g)];
       assert.equal(images.length, count, slug);

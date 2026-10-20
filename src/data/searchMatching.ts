@@ -8,6 +8,7 @@ const nameAliases: readonly (readonly string[])[] = [
   ['1 to Z', '1toz', '원투지', '원투제트'],
   ['Design Pick', '디자인픽'],
   ['Planor', '플래너'],
+  ['패킨앱', '패킨웹', 'PackinApp', 'PackinWeb'],
   ['Naratmalsami', '나랏말싸미'],
   ['Cokform', '콕폼'],
   ['F(x) Factory', 'Function Factory', '펑션팩토리'],
