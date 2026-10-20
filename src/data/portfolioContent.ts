@@ -63,7 +63,7 @@ export const selectedWorks: SelectedWork[] = [
     notes: [
       { title: { ko: '무엇을 만들었나요?', en: 'What is it?' }, body: { ko: '디자인을 참고할 때 기업과 대학의 공식 자료를 한곳에서 찾을 수 있도록 구성한 웹 프로토타입입니다. 자료 소개에서 원문 가이드로 바로 이동하는 흐름을 담았습니다.', en: 'A web prototype that brings official design references from companies and universities into one place, connecting guide summaries to their original sources.' } },
       { title: { ko: '화면에서 확인할 수 있는 것', en: 'What the prototype shows' }, body: { ko: '검색, 국내·해외와 기업·대학 분류, 가이드 목록과 상세 화면을 구성했습니다. 공식 자료를 만든 기관과 아카이브의 역할을 구분합니다.', en: 'The interface includes search, domestic and international company and university categories, a guide index, and detail pages. The archive remains distinct from the organizations that created the guides.' } },
-      { title: { ko: '현재 작업 범위', en: 'Current scope' }, body: { ko: '공유된 Claude 아티팩트 버전입니다. 컬러 팔레트와 타이포그래피 메뉴는 준비 중이며, 아카이브 전체 자료의 정확성이나 서비스 운영 성과를 검증한 결과는 아닙니다.', en: 'The shared Claude artifact version. Color palette and typography sections are marked as coming soon. This record does not claim independently validated archive data or service outcomes.' } },
+      { title: { ko: '현재 작업 범위', en: 'Current scope' }, body: { ko: '컬러 팔레트와 타이포그래피 메뉴는 준비 중이며, 아카이브 전체 자료의 정확성이나 서비스 운영 성과를 검증한 결과는 아닙니다.', en: 'Color palette and typography sections are marked as coming soon. This record does not claim independently validated archive data or service outcomes.' } },
     ],
   },
   {
@@ -76,7 +76,7 @@ export const selectedWorks: SelectedWork[] = [
     imageAlt: { ko: '1 to Z 의류 플랫폼 쇼핑 홈페이지 디자인 시안', en: '1 to Z clothing platform shopping homepage design prototype' },
     notes: [
       { title: { ko: '작업 범위', en: 'Scope' }, body: { ko: '의류 관련 플랫폼의 웹·모바일 화면을 구성한 디자인 시안입니다. 상품 목록과 상세, 브랜드 이야기와 에디토리얼, 찜과 장바구니, 주문 이후 화면까지 담았습니다.', en: 'Design prototypes for a clothing platform across web and mobile, including product lists and details, brand stories, editorial content, saved items, cart and post-order screens.' } },
-      { title: { ko: '화면 전체로 확인하기', en: 'Inspect the screens' }, body: { ko: '디자인 화면 18개를 화면별 기능과 함께 정리했습니다. 원본 파일 대신 공개용 미리보기를 사용하며, 각 화면의 전체 흐름은 페이지 안에서 확인할 수 있습니다.', en: 'Eighteen design screens are documented with notes. Public previews replace the source files, while the complete screen flow remains viewable within this page.' } },
+      { title: { ko: '화면 전체로 확인하기', en: 'Inspect the screens' }, body: { ko: '디자인 화면 18개를 화면별 기능과 함께 정리했습니다. 각 화면의 전체 흐름은 페이지 안에서 확인할 수 있습니다.', en: 'Eighteen design screens are documented with notes, with the complete screen flow viewable within this page.' } },
       { title: { ko: '시안과 실제 서비스 구분', en: 'Prototype, not a live service' }, body: { ko: '화면에 있는 상품·가격·주문·회원·회사 정보는 예시입니다. 실제 판매, 고객 수, 구매 성과나 개발 완료를 주장하지 않습니다.', en: 'Products, prices, orders, member and company information in the design are examples, not claims of sales, customers, purchase outcomes or a completed implementation.' } },
     ],
   },
