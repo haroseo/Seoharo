@@ -5,7 +5,6 @@ export function DesignScreenGallery({ study }: { study: DesignCaseStudy }) {
   const { language, t } = useLanguage();
   return <section className="sj-screen-gallery" aria-labelledby="design-screens-heading">
     <header className="sj-screen-gallery-header">
-      <p className="sj-caption">{study.source[language]}</p>
       <h2 id="design-screens-heading">{t('화면으로 보는 작업', 'The work, screen by screen')}</h2>
       <p>{study.disclaimer[language]}</p>
     </header>
@@ -21,7 +20,6 @@ export function DesignScreenGallery({ study }: { study: DesignCaseStudy }) {
     {study.screens.map((screen, index) => <section id={`screen-${screen.id}`} data-design-screen={screen.id} className={`sj-screen-row sj-screen-row--${screen.format}`} aria-labelledby={`screen-title-${screen.id}`} key={screen.id}>
       <figure>
         <img data-screen-image={screen.id} src={screen.image} alt={t(`${screen.title.ko} 디자인 시안 미리보기`, `${screen.title.en} design preview`)} width={screen.width} height={screen.height} loading="lazy" decoding="async" draggable={false} />
-        <figcaption>{t('공개용 미리보기', 'Public preview')}</figcaption>
       </figure>
       <div className="sj-screen-notes">
         <p className="sj-caption">{String(index + 1).padStart(2, '0')} / {screen.format === 'web' ? 'WEB' : 'MOBILE'}</p>

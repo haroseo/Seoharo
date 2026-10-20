@@ -68,13 +68,11 @@ export function ProjectDetail({ slug }: { slug: string }) {
       {study && <DesignScreenGallery study={study} />}
       {evidence && <section id="project-evidence" tabIndex={-1} data-project-evidence={work.slug} className="sj-project-evidence scroll-mt-20" aria-labelledby="project-evidence-heading">
         <header>
-          <p className="sj-caption">{t('공개 서비스 화면', 'Public service interface')} · {evidence.capturedOn}</p>
           <h2 id="project-evidence-heading">{evidence.title[language]}</h2>
           <p>{evidence.description[language]}</p>
         </header>
         <figure>
           <img src={evidence.image} alt={`${work.title} · ${evidence.title[language]}`} width={evidence.width} height={evidence.height} loading="lazy" decoding="async" draggable={false} />
-          <figcaption>{t('실제 공개 화면의 미리보기입니다. 현재 서비스는 달라질 수 있으며, 사용자 수나 운영 성과를 증명하는 자료는 아닙니다.', 'A preview captured from the public interface. The live service may change; this image does not establish user counts or business outcomes.')}</figcaption>
         </figure>
       </section>}
       <Link to={`/portfolio/${next.slug}`} className="sj-next-project"><div><span className="sj-eyebrow">NEXT PROJECT</span><h2>{next.title}</h2></div><ArrowRight size={30} aria-hidden="true" /></Link>

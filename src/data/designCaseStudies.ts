@@ -13,7 +13,6 @@ export interface DesignScreen {
 }
 export interface DesignCaseStudy {
   slug: string;
-  source: Copy;
   disclaimer: Copy;
   screens: readonly DesignScreen[];
 }
@@ -25,7 +24,6 @@ function oneToZScreen(id: string, title: Copy, width: number, _height: number, f
 // Original Figma exports, not live storefronts. Rationale is interpretation.
 export const oneToZCaseStudy: DesignCaseStudy = {
   slug: 'one-to-z',
-  source: copy('디자인 시안 미리보기 · 웹 5개 / 모바일 13개', 'Design previews · 5 web / 13 mobile screens'),
   disclaimer: copy('디자인 시안입니다. 화면 속 상품, 가격, 리뷰, 주문·회원·회사 정보는 시안의 예시이며, 실제 서비스 운영이나 실적을 뜻하지 않습니다. 구성 이유는 화면을 바탕으로 정리한 해석입니다.', 'Design prototype. Products, prices, reviews, orders, member and company information shown belong to the example design, not a live service or verified results. Layout rationale is an interpretation of the screens.'),
   screens: [
     oneToZScreen('20-11859', copy('쇼핑 웹사이트', 'Shopping website'), 1301, 4096,
@@ -90,8 +88,7 @@ function designgraphyScreen(id: string, title: Copy, _height: number, functional
 
 export const designgraphyCaseStudy: DesignCaseStudy = {
   slug: 'designgraphy',
-  source: copy('Claude 프로토타입 미리보기 · 주요 화면 12개', 'Claude prototype previews · 12 key screens'),
-  disclaimer: copy('공유된 Claude 사이트의 실제 화면을 가져왔습니다. Figma의 디자인 창고 시안과는 다른 버전입니다. 화면 속 아카이브 수와 자료 설명은 원본 표시이며 전체 정확성을 별도로 검증한 것은 아닙니다. 준비 중 메뉴와 미정리 상세도 그대로 구분했습니다. 구성 이유는 화면을 바탕으로 한 해석입니다.', 'Captured from the shared Claude prototype, separate from the Figma Design Archive version. Archive counts and guide descriptions are source content, not independently validated facts. Coming-soon sections and incomplete details remain distinguishable. Layout rationale is an interpretation.'),
+  disclaimer: copy('아직 공개 전인 프로토타입입니다. 일부 메뉴와 상세 내용은 준비 중입니다.', 'An unreleased prototype. Some sections and details are still in progress.'),
   screens: [
     designgraphyScreen('home', copy('홈페이지', 'Homepage'), 1719,
       copy('검색창, 국내·해외 기업과 대학의 분류, 대표 레퍼런스와 전체 목록 진입을 보여주는 첫 화면입니다.', 'The entry screen combines search, domestic/international company and university categories, featured references and access to the full index.'),

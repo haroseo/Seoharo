@@ -59,7 +59,26 @@ test('web project details show dated real screenshot previews after the summary,
       assert.match(image, new RegExp(`width="${width}"`));
       assert.match(image, new RegExp(`height="${height}"`));
       assert.match(image, /loading="lazy"/);
-      assert.match(html, /공개 서비스 화면/);
+      assert.match(html, /data-project-evidence=/);
+    }
+  });
+});
+
+test('project details retain screens and explanations without production-source or preview banners', async () => {
+  await withAppRenderer(render => {
+    for (const language of ['ko', 'en']) {
+      for (const [slug, count] of [
+        ['one-to-z', 18], ['designgraphy', 12], ['packinapp', 1],
+        ['planor', 1], ['design-pick', 1], ['naratmalsami', 1],
+      ]) {
+        const html = render({ initialPath: `/portfolio/${slug}`, initialLanguage: language, prerendered: true });
+        const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1] ?? '';
+        assert.doesNotMatch(main, /Claude 프로토타입 미리보기|Claude prototype previews|디자인 시안 미리보기 ·|Design previews ·|공개 서비스 화면|Public service interface/);
+        assert.doesNotMatch(main, /<figcaption[^>]*>\s*(?:공개용 미리보기|Public preview|실제 공개 화면의 미리보기|A preview captured from the public interface)/);
+        assert.equal((main.match(/<img\b/g) ?? []).length, count, `${slug}: no screens removed`);
+        assert.match(main, /id="project-notes"/);
+        assert.match(main, count > 1 ? /id="design-screens-heading"/ : /id="project-evidence"/);
+      }
     }
   });
 });

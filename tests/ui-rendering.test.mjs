@@ -85,12 +85,16 @@ test('1 to Z shows all 18 screen previews with accessible explanations without o
   }
 });
 
-test('Designgraphy displays the actual Claude screens separately from the Figma archive', () => {
-  const main = renderPage('/portfolio/designgraphy');
-  assert.equal((main.match(/data-design-screen="/g) ?? []).length, 12);
-  assert.match(main, /Claude/);
-  assert.match(main, /준비 중/);
-  assert.ok(!main.includes('iframe'), 'The source application must not run inside the portfolio');
+test('Designgraphy identifies an unreleased prototype and retains its documented screens without tool attribution', () => {
+  for (const language of ['ko', 'en']) {
+    const main = renderPage('/portfolio/designgraphy', language);
+    assert.equal((main.match(/data-design-screen="/g) ?? []).length, 12);
+    assert.match(main, /id="screen-dg-home"/);
+    assert.match(main, language === 'ko' ? /공개 전인 프로토타입/ : /unreleased prototype/i);
+    assert.match(main, language === 'ko' ? /준비 중/ : /in progress/i);
+    assert.doesNotMatch(main, /Claude/i);
+    assert.ok(!main.includes('iframe'), 'The source application must not run inside the portfolio');
+  }
 });
 
 test('rendered design images have real local assets, accurate dimensions and searchable anchors', () => {
