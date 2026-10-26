@@ -54,7 +54,7 @@ test('portfolio pages do not expose design editor or direct image download links
 
 test('all design and evidence images render bounded local previews with native dragging disabled', async () => {
   await withAppRenderer(render => {
-    for (const [slug, count] of [['one-to-z', 18], ['designgraphy', 12], ['packinapp', 1], ['planor', 1], ['design-pick', 1], ['naratmalsami', 1]]) {
+    for (const [slug, count] of [['one-to-z', 18], ['designgraphy', 13], ['packinapp', 1], ['planor', 1], ['design-pick', 1], ['naratmalsami', 1]]) {
       const html = render({ initialPath: `/portfolio/${slug}`, prerendered: true });
       const images = [...html.matchAll(/<img\b[^>]*src="(\/assets\/previews\/[^"?#]+\.webp)"[^>]*>/g)];
       assert.equal(images.length, count, slug);

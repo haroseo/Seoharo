@@ -10,7 +10,7 @@ export function WorkVisual({ work, priority = false }: { work: SelectedWork; pri
   const [imageFailed, setImageFailed] = useState(false);
   const projectCover = <ProjectCover slug={work.slug} title={work.title} language={language} />;
   return (
-    <div className={`sj-work-visual sj-work-visual--${work.theme}${work.imagePresentation === 'screen' ? ' sj-work-visual--screen' : ''}`}>
+    <div className={`sj-work-visual sj-work-visual--${work.theme}${work.imagePresentation === 'screen' ? ' sj-work-visual--screen' : work.imagePresentation === 'brand' ? ' sj-work-visual--brand' : ''}`}>
       {work.image && !imageFailed ? (
         <img src={work.image} alt={work.imageAlt?.[language] ?? work.title} loading={priority ? 'eager' : 'lazy'} decoding="async" width="1024" height="1024" onError={() => setImageFailed(true)} draggable={false} />
       ) : projectCover ?? (

@@ -8,6 +8,7 @@ export interface DesignScreen {
   image: string;
   width: number;
   height: number;
+  imageAlt?: Copy;
   function: Copy;
   rationale: Copy;
 }
@@ -82,17 +83,18 @@ export const oneToZCaseStudy: DesignCaseStudy = {
       copy('브랜드별로 배송 블록을 분리해 한 주문의 상품들이 서로 다른 상태일 수 있다는 점을 보여줍니다.', 'Separate shipment blocks communicate that products in one order can have different delivery states.')),
   ],
 };
-function designgraphyScreen(id: string, title: Copy, _height: number, functionality: Copy, rationale: Copy): DesignScreen {
-  return { id: `dg-${id}`, title, format: 'web', ...getImagePreview(`designgraphy:${id}`), function: functionality, rationale };
+function designgraphyScreen(id: string, title: Copy, _height: number, functionality: Copy, rationale: Copy, imageAlt?: Copy): DesignScreen {
+  return { id: `dg-${id}`, title, format: 'web', ...getImagePreview(`designgraphy:${id}`), function: functionality, rationale, imageAlt };
 }
 
 export const designgraphyCaseStudy: DesignCaseStudy = {
   slug: 'designgraphy',
-  disclaimer: copy('아직 공개 전인 프로토타입입니다. 일부 메뉴와 상세 내용은 준비 중입니다.', 'An unreleased prototype. Some sections and details are still in progress.'),
+  disclaimer: copy('공개 사이트에서 확인할 수 있는 프로토타입입니다. 홈·소개·브랜드 리소스는 2026년 10월 26일 공개 화면이며, 나머지는 앞선 작업 기록입니다. 일부 메뉴와 상세 내용은 준비 중입니다.', 'A publicly accessible prototype. Home, introduction and brand resources show the public site on October 26, 2026; other screens are earlier work records. Some sections and details are still in progress.'),
   screens: [
     designgraphyScreen('home', copy('홈페이지', 'Homepage'), 1719,
       copy('검색창, 국내·해외 기업과 대학의 분류, 대표 레퍼런스와 전체 목록 진입을 보여주는 첫 화면입니다.', 'The entry screen combines search, domestic/international company and university categories, featured references and access to the full index.'),
-      copy('목적이 정해진 사용자는 검색으로, 아직 찾는 자료가 없는 사용자는 분류와 대표 자료로 시작할 수 있게 두 경로를 나눴습니다.', 'Search supports a specific goal, while categories and featured references offer a starting point for browsing.')),
+      copy('목적이 정해진 사용자는 검색으로, 아직 찾는 자료가 없는 사용자는 분류와 대표 자료로 시작할 수 있게 두 경로를 나눴습니다.', 'Search supports a specific goal, while categories and featured references offer a starting point for browsing.'),
+      copy('디자인그래피 홈페이지 공개 사이트 화면', 'Designgraphy homepage on the public website')),
     designgraphyScreen('guides', copy('디자인 가이드 전체 목록', 'All design guides'), 1617,
       copy('지역·기관 필터, 결과 내 재검색, 자료 카드와 페이지 이동을 담은 목록입니다. 원본의 첫 페이지를 보여줍니다.', 'A guide index with region/type filters, search within results, reference cards and pagination. This capture shows its first page.'),
       copy('필터와 자료를 좌우로 나눠 탐색 조건을 유지하면서 결과를 비교할 수 있는 구성입니다.', 'Filters sit beside the results so users can retain their selection while comparing references.')),
@@ -118,8 +120,13 @@ export const designgraphyCaseStudy: DesignCaseStudy = {
       copy('대학 자료의 요약, 태그·대표 컬러와 공식 원문 링크를 보여주는 상세 화면입니다.', 'A university reference detail with a summary, tags, representative color and official source link.'),
       copy('기업 자료와 동일한 상세 구조를 사용해 기관 유형이 달라도 정보를 찾는 위치가 일정합니다.', 'Using the same detail structure as company references keeps information in predictable positions.')),
     designgraphyScreen('about', copy('서비스 소개', 'Service introduction'), 1613,
-      copy('서비스를 만든 이유, 자료 분류, 준비 중인 영역과 운영 원칙을 소개하는 화면입니다.', 'An introduction explaining the service purpose, source categories, planned areas and operating principles.'),
-      copy('사용 가능한 기능과 이후 계획을 함께 보여주되 상태를 나눠, 현재 제공 범위를 읽을 수 있게 구성했습니다.', 'Available areas and future plans are shown with different status labels to make the current scope clear.')),
+      copy('제작 목적, 기업·대학 자료의 분류, 앞으로 다룰 분야와 운영 원칙을 정리한 공개 사이트의 소개 화면입니다.', 'The public introduction explains the purpose, company and university categories, planned topics and operating principles.'),
+      copy('현재 이용할 수 있는 디자인 가이드와 준비 중인 분야를 구분하고, 각 기관의 공식 원문으로 연결하는 아카이브의 역할을 설명합니다.', 'It distinguishes available guides from planned categories and explains the archive’s role in linking to each institution’s original materials.'),
+      copy('디자인그래피 서비스 소개 공개 사이트 화면', 'Designgraphy service introduction on the public website')),
+    designgraphyScreen('brand', copy('브랜드 리소스 센터', 'Brand resource center'), 0,
+      copy('기본·박스 로고와 공유 이미지, 로고·UI 컬러, 서체와 자산 사용 안내를 한곳에서 확인하는 화면입니다.', 'A single place to find the standard and boxed logos, sharing artwork, logo and UI colors, typography and asset usage guidance.'),
+      copy('서비스를 소개하는 사람이 공식 자산과 사용 기준을 함께 확인하도록 구성했습니다. 이 포트폴리오의 대표 이미지도 해당 페이지에서 제공하는 공유 이미지를 사용했습니다.', 'Assets and usage guidance sit together for people introducing the service. This portfolio also uses the sharing artwork supplied on that page.'),
+      copy('디자인그래피 브랜드 리소스 센터 공개 사이트 화면', 'Designgraphy brand resource center on the public website')),
     designgraphyScreen('palette-soon', copy('컬러 팔레트 · 준비 중', 'Color palettes · coming soon'), 929,
       copy('컬러 팔레트는 아직 준비 중이라고 안내하고 사용 가능한 디자인 가이드로 연결합니다.', 'The palette section is explicitly coming soon and links to the available design guides.'),
       copy('완성되지 않은 메뉴의 현재 상태를 알리고, 대신 이용할 수 있는 경로를 남긴 구성입니다.', 'The unfinished state is disclosed while an alternative usable path remains available.')),

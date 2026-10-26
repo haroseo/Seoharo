@@ -231,7 +231,7 @@ export default function PortfolioPage({ focusSection }: { focusSection?: 'experi
                         <span className="block h-[160px] w-full shrink-0 overflow-hidden rounded-lg border border-[#e7eaf0] sm:h-[76px] sm:w-[132px]">
                           <ProjectCover slug={item.id} title={item.title[language]} language={language} compact />
                         </span>
-                      ) : item.image && <img src={item.image} alt={item.imageAlt?.[language] ?? ''} loading="lazy" decoding="async" width="104" height="76" className={`aspect-[16/9] w-full shrink-0 rounded-lg border border-[#e7eaf0] object-cover sm:aspect-auto sm:h-[76px] sm:w-[104px] ${item.imagePresentation === 'screen' ? 'object-top' : ''}`} draggable={false} />}
+                      ) : item.image && <img src={item.image} alt={item.imageAlt?.[language] ?? ''} loading="lazy" decoding="async" width="104" height="76" className={`aspect-[16/9] w-full shrink-0 rounded-lg border border-[#e7eaf0] sm:aspect-auto sm:h-[76px] sm:w-[104px] ${item.imagePresentation === 'brand' ? 'object-contain bg-[#f8fafc]' : 'object-cover'} ${item.imagePresentation === 'screen' ? 'object-top' : ''}`} draggable={false} />}
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                           <h3 className="text-base font-bold text-[var(--ink)]">

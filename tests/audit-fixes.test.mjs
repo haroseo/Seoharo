@@ -68,7 +68,7 @@ test('project details retain screens and explanations without production-source 
   await withAppRenderer(render => {
     for (const language of ['ko', 'en']) {
       for (const [slug, count] of [
-        ['one-to-z', 18], ['designgraphy', 12], ['packinapp', 1],
+        ['one-to-z', 18], ['designgraphy', 13], ['packinapp', 1],
         ['planor', 1], ['design-pick', 1], ['naratmalsami', 1],
       ]) {
         const html = render({ initialPath: `/portfolio/${slug}`, initialLanguage: language, prerendered: true });
@@ -124,7 +124,7 @@ test('Planor is labeled as planning while remaining discoverable under planning 
 
 test('case summaries precede all full-length screens and career search anchors exist in the real page', async () => {
   await withAppRenderer(render => {
-    for (const [slug, count] of [['one-to-z', 18], ['designgraphy', 12]]) {
+    for (const [slug, count] of [['one-to-z', 18], ['designgraphy', 13]]) {
       const html = render({ initialPath: `/portfolio/${slug}`, prerendered: true });
       const notes = html.indexOf('id="project-notes"');
       assert.ok(notes >= 0 && notes < html.indexOf('id="screen-'), slug);

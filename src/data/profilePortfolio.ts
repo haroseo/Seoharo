@@ -31,7 +31,7 @@ export interface ProfilePortfolioItem {
   logo?: string;
   image?: string;
   imageAlt?: LocalizedText;
-  imagePresentation?: 'screen';
+  imagePresentation?: 'screen' | 'brand';
   href?: string;
   detailHref?: string;
   status?: LocalizedText;
