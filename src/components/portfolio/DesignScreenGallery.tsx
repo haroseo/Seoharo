@@ -19,7 +19,7 @@ export function DesignScreenGallery({ study }: { study: DesignCaseStudy }) {
     </nav>
     {study.screens.map((screen, index) => <section id={`screen-${screen.id}`} data-design-screen={screen.id} className={`sj-screen-row sj-screen-row--${screen.format}`} aria-labelledby={`screen-title-${screen.id}`} key={screen.id}>
       <figure>
-        <img data-screen-image={screen.id} src={screen.image} alt={t(`${screen.title.ko} 디자인 시안 미리보기`, `${screen.title.en} design preview`)} width={screen.width} height={screen.height} loading="lazy" decoding="async" draggable={false} />
+        <img data-screen-image={screen.id} src={screen.image} alt={screen.imageAlt?.[language] ?? t(`${screen.title.ko} 디자인 시안 미리보기`, `${screen.title.en} design preview`)} width={screen.width} height={screen.height} loading="lazy" decoding="async" draggable={false} />
       </figure>
       <div className="sj-screen-notes">
         <p className="sj-caption">{String(index + 1).padStart(2, '0')} / {screen.format === 'web' ? 'WEB' : 'MOBILE'}</p>

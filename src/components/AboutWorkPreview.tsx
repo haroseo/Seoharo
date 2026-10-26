@@ -26,7 +26,7 @@ export default function AboutWorkPreview() {
         <div className="about-work-grid mt-8">
           {previewWorks.map((work) => (
             <Link key={work.slug} to={`/portfolio/${work.slug}`} className="about-work-link group block min-w-0 rounded-lg">
-              <div className="about-work-image overflow-hidden rounded-lg border border-white/10 bg-zinc-950">
+              <div className={`about-work-image${work.imagePresentation === 'brand' ? ' about-work-image--brand' : ''} overflow-hidden rounded-lg border border-white/10 bg-zinc-950`}>
                 <img src={work.image} alt={work.imageAlt?.[language] ?? work.title} loading="lazy" decoding="async" draggable={false} />
               </div>
               <div className="mt-4 flex items-center justify-between gap-3">

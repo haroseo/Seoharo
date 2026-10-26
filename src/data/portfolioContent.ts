@@ -17,7 +17,7 @@ export interface SelectedWork {
   output: Copy;
   image?: string;
   imageAlt?: Copy;
-  imagePresentation?: 'screen';
+  imagePresentation?: 'screen' | 'brand';
   href?: string;
   github?: string;
   theme: 'ink' | 'paper' | 'blue';
@@ -58,11 +58,13 @@ export const selectedWorks: SelectedWork[] = [
     summary: { ko: '기업과 대학의 공식 디자인 가이드를 모아 검색하고, 원문으로 연결하는 레퍼런스 아카이브 프로토타입.', en: 'A reference archive prototype for finding official company and university design guides and opening their original sources.' },
     roles: { ko: '개인 프로젝트 · 웹 프로토타입', en: 'Personal project · Web prototype' },
     output: { ko: '검색 · 분야별 목록 · 가이드 상세 화면', en: 'Search · Categorized index · Guide detail pages' },
-    image: getImagePreview('designgraphy:home').image, imagePresentation: 'screen',
-    imageAlt: { ko: '디자인그래피 홈페이지 공개용 미리보기', en: 'Public preview of the Designgraphy homepage' },
+    image: getImagePreview('designgraphy:cover').image, imagePresentation: 'brand',
+    imageAlt: { ko: '디자인그래피 브랜드 리소스 센터에서 제공하는 로고와 서비스 소개 이미지', en: 'Designgraphy logo and introduction artwork supplied by its brand resource center' },
+    href: 'https://designgraphy.pages.dev/',
     notes: [
-      { title: { ko: '무엇을 만들었나요?', en: 'What is it?' }, body: { ko: '디자인을 참고할 때 기업과 대학의 공식 자료를 한곳에서 찾을 수 있도록 구성한 웹 프로토타입입니다. 자료 소개에서 원문 가이드로 바로 이동하는 흐름을 담았습니다.', en: 'A web prototype that brings official design references from companies and universities into one place, connecting guide summaries to their original sources.' } },
+      { title: { ko: '왜 만들었나요?', en: 'Why this project?' }, body: { ko: '레퍼런스를 찾을 때마다 여러 기업과 대학의 사이트를 일일이 방문해야 하는 불편함에서 시작했습니다. 공식 디자인 가이드를 한곳에서 검색하고 분류별로 살펴본 뒤 원문으로 이동할 수 있도록 만든 레퍼런스 아카이브입니다.', en: 'The project started with having to visit separate company and university websites whenever I needed design references. The archive brings official design guides into one searchable, categorized index with links to their original sources.' } },
       { title: { ko: '화면에서 확인할 수 있는 것', en: 'What the prototype shows' }, body: { ko: '검색, 국내·해외와 기업·대학 분류, 가이드 목록과 상세 화면을 구성했습니다. 공식 자료를 만든 기관과 아카이브의 역할을 구분합니다.', en: 'The interface includes search, domestic and international company and university categories, a guide index, and detail pages. The archive remains distinct from the organizations that created the guides.' } },
+      { title: { ko: '서비스 소개와 브랜드 리소스', en: 'Service introduction and brand resources' }, body: { ko: '서비스 소개에서 제작 목적과 현재 제공하는 자료, 앞으로의 분야와 운영 원칙을 설명합니다. 브랜드 리소스 센터에는 기본·박스 로고와 공유 이미지, 컬러·서체·사용 안내를 모았습니다. 이곳의 대표 이미지도 해당 센터에서 제공하는 자료를 사용합니다.', en: 'The service introduction explains its purpose, current scope, planned categories and operating principles. The brand resource center collects the standard and boxed logos, sharing artwork, colors, typography and usage guidance. The portfolio cover uses the artwork supplied there.' } },
       { title: { ko: '현재 작업 범위', en: 'Current scope' }, body: { ko: '컬러 팔레트와 타이포그래피 메뉴는 준비 중이며, 아카이브 전체 자료의 정확성이나 서비스 운영 성과를 검증한 결과는 아닙니다.', en: 'Color palette and typography sections are marked as coming soon. This record does not claim independently validated archive data or service outcomes.' } },
     ],
   },

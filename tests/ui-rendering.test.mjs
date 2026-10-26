@@ -85,15 +85,37 @@ test('1 to Z shows all 18 screen previews with accessible explanations without o
   }
 });
 
-test('Designgraphy identifies an unreleased prototype and retains its documented screens without tool attribution', () => {
+test('Designgraphy opens its public prototype safely and retains its documented screens without tool attribution', () => {
   for (const language of ['ko', 'en']) {
     const main = renderPage('/portfolio/designgraphy', language);
-    assert.equal((main.match(/data-design-screen="/g) ?? []).length, 12);
+    const projectLink = main.match(/<a\b[^>]*href="https:\/\/designgraphy\.pages\.dev\/"[^>]*>[\s\S]*?<\/a>/)?.[0] ?? '';
+    assert.ok(projectLink, 'Visitors should be able to open the published Designgraphy website');
+    assert.match(projectLink, /target="_blank"/);
+    assert.match(projectLink, /rel="noopener noreferrer"/);
+    assert.equal((main.match(/data-design-screen="/g) ?? []).length, 13);
     assert.match(main, /id="screen-dg-home"/);
-    assert.match(main, language === 'ko' ? /공개 전인 프로토타입/ : /unreleased prototype/i);
+    assert.match(main, language === 'ko' ? /프로토타입/ : /prototype/i);
+    assert.doesNotMatch(main, /공개 전|unreleased/i);
     assert.match(main, language === 'ko' ? /준비 중/ : /in progress/i);
     assert.doesNotMatch(main, /Claude/i);
     assert.ok(!main.includes('iframe'), 'The source application must not run inside the portfolio');
+  }
+});
+
+test('Designgraphy uses its brand-center artwork and includes the brand resource screen while linking only to its main website', () => {
+  for (const language of ['ko', 'en']) {
+    const portfolio = renderPage('/portfolio', language);
+    assert.match(portfolio, /src="\/assets\/previews\/designgraphy-cover-preview\.webp"/);
+    const cover = portfolio.match(/<img\b[^>]*src="\/assets\/previews\/designgraphy-cover-preview\.webp"[^>]*>/)?.[0] ?? '';
+    assert.match(cover, /object-contain/);
+    assert.doesNotMatch(cover, /object-cover/);
+    const home = renderPage('/', language);
+    assert.match(home, /about-work-image--brand/);
+    const detail = renderPage('/portfolio/designgraphy', language);
+    assert.match(detail, /id="screen-dg-brand"/);
+    assert.match(detail, /src="\/assets\/previews\/designgraphy-brand-preview\.webp"/);
+    const publicDestinations = [...detail.matchAll(/<a\b[^>]*href="(https:\/\/designgraphy\.pages\.dev[^"]*)"/g)].map(match => match[1]);
+    assert.deepEqual(publicDestinations, ['https://designgraphy.pages.dev/']);
   }
 });
 
@@ -102,7 +124,7 @@ test('rendered design images have real local assets, accurate dimensions and sea
   for (const slug of ['one-to-z', 'designgraphy']) {
     const main = renderPage(`/portfolio/${slug}`);
     const images = [...main.matchAll(/<img data-screen-image="([^"]+)" src="([^"]+)"[^>]*width="(\d+)" height="(\d+)"/g)];
-    assert.equal(images.length, slug === 'one-to-z' ? 18 : 12);
+    assert.equal(images.length, slug === 'one-to-z' ? 18 : 13);
     for (const [, id, source, width, height] of images) {
       const bytes = readFileSync(new URL(`../public${source}`, import.meta.url));
       assert.equal(bytes.toString('ascii', 0, 4), 'RIFF');

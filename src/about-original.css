@@ -45,6 +45,8 @@
 .about-work-grid { display: grid; gap: 32px; }
 .about-work-image { aspect-ratio: 16 / 9; }
 .about-work-image img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; transition: opacity .2s ease; }
+.about-original .about-work-image--brand { background: #f8fafc; }
+.about-work-image--brand img { object-fit: contain; object-position: center; }
 .about-work-link:hover .about-work-image img { opacity: .85; }
 @media (min-width: 640px) {
   .about-work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }

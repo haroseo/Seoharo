@@ -94,7 +94,7 @@ export const imagePreviewAssets: Readonly<Record<string, ImagePreviewAsset>> = {
   "designgraphy:about": {
     "image": "/assets/previews/designgraphy-about-preview.webp",
     "width": 1200,
-    "height": 1132
+    "height": 1558
   },
   "designgraphy:domestic": {
     "image": "/assets/previews/designgraphy-domestic-preview.webp",
@@ -119,7 +119,7 @@ export const imagePreviewAssets: Readonly<Record<string, ImagePreviewAsset>> = {
   "designgraphy:home": {
     "image": "/assets/previews/designgraphy-home-preview.webp",
     "width": 1200,
-    "height": 1206
+    "height": 1661
   },
   "designgraphy:palette-soon": {
     "image": "/assets/previews/designgraphy-palette-soon-preview.webp",
@@ -170,5 +170,15 @@ export const imagePreviewAssets: Readonly<Record<string, ImagePreviewAsset>> = {
     "image": "/assets/previews/evidence-planor-calendar-2026-10-10-preview.webp",
     "width": 1200,
     "height": 603
+  },
+  "designgraphy:brand": {
+    "image": "/assets/previews/designgraphy-brand-preview.webp",
+    "width": 1200,
+    "height": 1423
+  },
+  "designgraphy:cover": {
+    "image": "/assets/previews/designgraphy-cover-preview.webp",
+    "width": 1200,
+    "height": 630
   }
 };
