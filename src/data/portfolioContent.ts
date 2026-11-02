@@ -99,6 +99,23 @@ export const selectedWorks: SelectedWork[] = [
     ],
   },
   {
+    slug: 'jobsearching', title: '잡서칭', category: 'planning', status: 'project', projectStatus: 'ongoing', eyebrow: 'JOBSEARCHING · CAREER EXPLORATION', theme: 'paper',
+    headline: { ko: '직업을 탐색하고,\n다음 준비를 찾다.', en: 'Explore occupations.\nFind your next step.' },
+    summary: { ko: '직업을 검색하고 하는 일과 준비 경로, 출처별 지표를 살펴보는 학생 진로 탐색 웹 프로젝트.', en: 'JobSearching is a career exploration web project for students to find occupations and review tasks, preparation paths and source-specific indicators.' },
+    roles: { ko: '개인 프로젝트 · 기획 · AI 활용 제작', en: 'Personal project · Planning · AI-assisted production' },
+    output: { ko: '직업 검색 · 관심 기반 추천 · 준비 경로 · 취업처 탐색', en: 'Occupation search · Interest-based recommendations · Preparation paths · Employer exploration' },
+    image: getImagePreview('brand:jobsearching').image, imagePresentation: 'brand',
+    imageAlt: { ko: '잡서칭의 남색·파란색 Jobsearching 워드마크', en: 'JobSearching wordmark in navy and blue' },
+    href: 'https://jobsearching.pages.dev/',
+    notes: [
+      { title: { ko: '왜 만들었나요?', en: 'Why this project?' }, body: { ko: '학생이 이미 알고 있는 직업을 넘어 더 넓은 선택지를 살펴볼 수 있도록 시작했습니다. 직업 이름을 찾는 데서 그치지 않고, 실제로 하는 일과 필요한 역량, 준비할 수 있는 경로까지 이어서 살펴보는 진로 탐색 사이트입니다.', en: 'I started the project to help students discover occupations beyond the ones they already know. The site connects occupation discovery with day-to-day tasks, relevant skills and possible preparation paths.' } },
+      { title: { ko: '탐색에서 관심 직업까지', en: 'From discovery to saved interests' }, body: { ko: '직업명·키워드 검색과 분야별 필터로 목록을 좁히고, 상세페이지에서 업무와 준비 경로를 확인하도록 구성했습니다. 선택한 관심사와 중요도를 바탕으로 추천 이유를 보여주며, 관심 직업은 로그인 없이 브라우저에 저장할 수 있습니다.', en: 'Keyword search and category filters narrow the list, while detail pages explain tasks and preparation paths. Interest-based recommendations show their reasoning and use adjustable priorities. Saved occupations stay in the browser without an account.' } },
+      { title: { ko: '정보를 비교할 때의 기준', en: 'Keeping source context visible' }, body: { ko: '공식 직업 정보와 분류 항목을 구분하고, 원문 출처를 연결했습니다. 국가별 지표에는 조사 연도와 기준을 함께 표시하도록 구성했습니다. 서로 다른 조사에서 나온 수치를 하나의 순위로 단순 비교하지 않도록 정보의 맥락을 남기는 데 신경 썼습니다.', en: 'The site distinguishes occupation profiles from classification headings and links to original sources. Indicators retain their country, reference year and definitions, keeping the context needed to interpret figures from different surveys.' } },
+      { title: { ko: '직업 이후의 탐색', en: 'Exploring possible next steps' }, body: { ko: '직업 정보와 별도로 취업처와 창업 지원 정보를 탐색하는 흐름도 구성했습니다. 관심 있는 조직의 공식 채용 안내로 이동할 수 있으며, 현재 채용 여부와 지원 조건은 해당 출처에서 확인하도록 연결합니다.', en: 'Separate sections support employer and startup-support exploration. Employer entries link to official recruitment information, where visitors can check current openings and application requirements.' } },
+      { title: { ko: '현재 작업 범위', en: 'Current scope' }, body: { ko: '진행 중인 웹 MVP입니다. 추천은 선택한 관심사와 중요도를 활용하는 진로 탐색 참고 기능입니다. 실제 이용자 반응과 서비스 효과는 앞으로 확인하고 개선할 과제로 남겨두었습니다.', en: 'This is an ongoing web MVP. Recommendations are an exploration aid based on selected interests and priorities. User feedback and the effectiveness of the service remain areas for future evaluation and improvement.' } },
+    ],
+  },
+  {
     slug: 'planor', title: 'Planor', category: 'planning', status: 'project', eyebrow: 'PRODUCT & PLANNING', theme: 'blue',
     headline: { ko: '계획을 짜는\n새로운 방식.', en: 'A new way\nto plan your days.' },
     summary: { ko: '일정과 계획을 한눈에 볼 수 있는 캘린더 웹 서비스. 아이디어를 실제 화면과 흐름으로 옮겨 본 프로젝트입니다.', en: 'A calendar web project for organizing plans and turning an idea into a working interface.' },

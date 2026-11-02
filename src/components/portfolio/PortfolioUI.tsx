@@ -3,16 +3,18 @@ import { useState } from 'react';
 import { useLanguage } from '../LanguageContext';
 import { Link } from '../router';
 import type { SelectedWork } from '../../data/portfolioContent';
+import { imagePreviewAssets } from '../../data/imagePreviewAssets';
 import { ProjectCover } from './ProjectCover';
 
 export function WorkVisual({ work, priority = false }: { work: SelectedWork; priority?: boolean }) {
   const { language, t } = useLanguage();
   const [imageFailed, setImageFailed] = useState(false);
+  const preview = Object.values(imagePreviewAssets).find(asset => asset.image === work.image);
   const projectCover = <ProjectCover slug={work.slug} title={work.title} language={language} />;
   return (
     <div className={`sj-work-visual sj-work-visual--${work.theme}${work.imagePresentation === 'screen' ? ' sj-work-visual--screen' : work.imagePresentation === 'brand' ? ' sj-work-visual--brand' : ''}`}>
       {work.image && !imageFailed ? (
-        <img src={work.image} alt={work.imageAlt?.[language] ?? work.title} loading={priority ? 'eager' : 'lazy'} decoding="async" width="1024" height="1024" onError={() => setImageFailed(true)} draggable={false} />
+        <img src={work.image} alt={work.imageAlt?.[language] ?? work.title} loading={priority ? 'eager' : 'lazy'} decoding="async" width={preview?.width ?? 1024} height={preview?.height ?? 1024} onError={() => setImageFailed(true)} draggable={false} />
       ) : projectCover ?? (
         <div className="sj-image-fallback"><strong>{work.title}</strong><span>{work.eyebrow}</span></div>
       )}

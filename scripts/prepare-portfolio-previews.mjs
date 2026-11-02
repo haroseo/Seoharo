@@ -14,6 +14,7 @@ const groups = [
   { folder: 'one-to-z', key: name => `one-to-z:${name.replace(/^one-to-z-/, '')}`, name: name => name },
   { folder: 'designgraphy', key: name => `designgraphy:${name}`, name: name => `designgraphy-${name}` },
   { folder: 'project-evidence', key: name => `evidence:${name.startsWith('design-pick-') ? 'design-pick' : name.startsWith('naratmalsami-') ? 'naratmalsami' : name.startsWith('planor-') ? 'planor' : name.startsWith('packinapp-') ? 'packinapp' : ''}`, name: name => `evidence-${name}` },
+  { folder: 'project-brands', key: name => `brand:${name}`, name: name => `${name}-cover`, background: '#ffffff' },
 ];
 for (const group of groups) {
   const directory = resolve(originals, group.folder);
@@ -27,9 +28,10 @@ for (const group of groups) {
     const filename = `${group.name(name)}-preview.webp`;
     const target = resolve(output, filename);
     if (relative(directory, source).startsWith('..') || relative(output, target).startsWith('..')) throw new Error('Asset outside allowed directory');
-    const { width, height } = await sharp(source)
-      .resize({ width: 1200, height: 2400, fit: 'inside', withoutEnlargement: true })
-      .removeAlpha().webp({ quality: 78, effort: 5 }).toFile(target);
+    let preview = sharp(source)
+      .resize({ width: 1200, height: 2400, fit: 'inside', withoutEnlargement: true });
+    if (group.background) preview = preview.flatten({ background: group.background });
+    const { width, height } = await preview.removeAlpha().webp({ quality: 78, effort: 5 }).toFile(target);
     assets[id] = { image: `/assets/previews/${filename}`, width, height };
   }
 }
