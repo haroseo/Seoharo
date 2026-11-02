@@ -180,5 +180,10 @@ export const imagePreviewAssets: Readonly<Record<string, ImagePreviewAsset>> = {
     "image": "/assets/previews/designgraphy-cover-preview.webp",
     "width": 1200,
     "height": 630
+  },
+  "brand:jobsearching": {
+    "image": "/assets/previews/jobsearching-cover-preview.webp",
+    "width": 1200,
+    "height": 400
   }
 };
