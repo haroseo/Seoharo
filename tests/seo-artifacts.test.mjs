@@ -19,8 +19,8 @@ test('real public HTML artifacts stay within output and exclude private data', a
     await cp('public/favicon.svg', join(directory, 'favicon.svg'));
     const pages = [...publicPages.map(page => renderPage(page.path)), renderPage('/404')];
     const input = { outputDirectory: directory, template, pages, cname: 'seoharo.kro.kr' };
-    assert.deepEqual(await writeSiteArtifacts(input), { pages: 15, aliases: 12, notFound: 1 });
-    assert.deepEqual(await verifySeoBuild(directory), { pages: 15, aliases: 12, notFound: 1, sitemapUrls: 15 });
+    assert.deepEqual(await writeSiteArtifacts(input), { pages: 16, aliases: 12, notFound: 1 });
+    assert.deepEqual(await verifySeoBuild(directory), { pages: 16, aliases: 12, notFound: 1, sitemapUrls: 16 });
     const stalePreview = join(directory, 'assets/previews/retired-screen-preview.webp');
     await cp('public/assets/previews/designgraphy-home-preview.webp', stalePreview);
     await assert.rejects(verifySeoBuild(directory), /Unexpected preview asset/);

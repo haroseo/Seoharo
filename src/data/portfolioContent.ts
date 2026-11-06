@@ -116,6 +116,19 @@ export const selectedWorks: SelectedWork[] = [
     ],
   },
   {
+    slug: 'k-00', title: 'K-00', category: 'development', status: 'project', eyebrow: 'PUBLIC SERVICE DIRECTORY', theme: 'blue',
+    headline: { ko: '기관 이름을 몰라도\n공공서비스를 찾을 수 있게.', en: 'Find public services\nwithout knowing the agency.' },
+    summary: { ko: 'K-00(국민공공)은 필요한 기관과 공공서비스를 업무, 주제, 상황으로 찾을 수 있는 비공식 안내 사이트입니다.', en: 'K-00 is an independent directory for finding Korean public services by task, topic, or situation.' },
+    roles: { ko: '서비스 기획 · UI 디자인 · 웹 개발', en: 'Service planning · UI design · Web development' },
+    output: { ko: '상황 검색 · 기관 안내 · 브랜드 센터', en: 'Situation search · Agency directory · Brand center' },
+    href: 'https://gov-links.pages.dev/',
+    notes: [
+      { title: { ko: '왜 만들었나요?', en: 'Why build it?' }, body: { ko: '어떤 일을 처리해야 하는지는 알아도 담당 기관 이름까지 알기는 어렵습니다. 전입신고나 실업급여처럼 사용자가 먼저 떠올리는 말에서 출발해 관련 기관과 안내를 찾을 수 있게 만들었습니다.', en: 'People often know what they need to do before they know which agency handles it. K-00 starts with familiar tasks, like reporting a change of address or looking for unemployment benefits, and points to the relevant agencies and guidance.' } },
+      { title: { ko: '어떤 결정을 했나요?', en: 'What decisions shaped it?' }, body: { ko: '기관명 검색과 상황별 안내를 같은 검색창에 배치했습니다. 상황 안내는 먼저 할 일과 관련 기관을 보여주고, 기관 상세에서는 주소와 사이트 연결을 확인할 수 있게 했습니다. 자주 쓰는 링크는 로그인 없이 브라우저에 저장할 수 있습니다.', en: 'One search box supports agency names and common situations. Situation guides show next steps and relevant agencies, and each agency card exposes its address and website. Visitors can save useful links in the browser without an account.' } },
+      { title: { ko: '무엇을 할 수 있게 됐나요?', en: 'What can visitors do now?' }, body: { ko: '사용자는 자기 상황을 입력해 관련 기관으로 이동하거나, 기관 유형과 주제로 목록을 좁힐 수 있습니다. 사이트 소개에서 링크의 표시 기준을 확인하고 브랜드 센터에서 로고와 아이콘을 받을 수 있습니다.', en: 'Visitors can search a situation and open relevant agency websites, or narrow the directory by agency type and topic. The about page explains link labels, and the brand center provides the logo and icon.' } },
+    ],
+  },
+  {
     slug: 'planor', title: 'Planor', category: 'planning', status: 'project', eyebrow: 'PRODUCT & PLANNING', theme: 'blue',
     headline: { ko: '계획을 짜는\n새로운 방식.', en: 'A new way\nto plan your days.' },
     summary: { ko: '일정과 계획을 한눈에 볼 수 있는 캘린더 웹 서비스. 아이디어를 실제 화면과 흐름으로 옮겨 본 프로젝트입니다.', en: 'A calendar web project for organizing plans and turning an idea into a working interface.' },
