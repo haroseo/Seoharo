@@ -1,5 +1,6 @@
 import type { Locale } from './portfolioContent.ts';
-import { careerEntries, selectedWorks } from './portfolioContent.ts';
+import { careerEntries, selectedWorks, profile } from './portfolioContent.ts';
+import { projectEvidence } from './projectEvidence.ts';
 import { SITE_NAME, SEARCH_SITE_NAME, SEARCH_SITE_ALIASES, getSitePageTitle } from './siteIdentity.ts';
 import { resolvePublicPage } from './publicPages.ts';
 import { SITE_ORIGIN, normalizeAppPath, toCanonicalUrl } from './siteUrl.ts';
@@ -19,7 +20,10 @@ export function getPageMetadata(pathname: string, language: Locale): PageMetadat
   const project = selectedWorks.find(work => path === `/portfolio/${work.slug}`);
   const career = careerEntries.find(entry => path === (entry.slug === 'company-work' ? '/portfolio/company-work' : `/career/${entry.slug}`));
   const isAbout = path === '/';
-  const description = project?.summary[language] ?? career?.summary[language] ?? (language === 'ko' ? {
+  const projectDescription = project && (language === 'ko'
+    ? `서주원의 ${project.title} 프로젝트. ${project.summary.ko} 기획과 구현 과정, 주요 결정을 확인하세요.`
+    : `Seo Juwon’s ${project.title} project. ${project.summary.en} Explore the planning, implementation and key decisions.`);
+  const description = projectDescription ?? career?.summary[language] ?? (language === 'ko' ? {
     '/': 'Seoharo라는 이름으로 활동해 온 서주원입니다. 브랜드 디자인·마케팅·웹 개발을 통해 생각을 직접 만들고, 기획과 글로 협업의 방향을 정리합니다.',
     '/portfolio': '서주원의 프로필과 경력, 디자인·마케팅·개발 프로젝트를 한곳에서 확인합니다. 진행 중인 작업과 각 작업의 역할·배운 점을 구분합니다.',
     '/contact': '서주원의 작업에 관한 질문과 생각, 경험을 나누는 연락 페이지입니다. Email, GitHub, LinkedIn으로 연결됩니다.',
@@ -46,12 +50,47 @@ export function getPageMetadata(pathname: string, language: Locale): PageMetadat
     : path === '/portfolio'
       ? (language === 'ko' ? '작업 화면과 맡은 역할, 배운 점을 한곳에 정리했습니다.' : 'Explore Designgraphy, 1 to Z and web projects through real screens, individual roles and lessons learned.')
       : description;
-  const graph: Record<string, unknown>[] = [{ '@type': 'WebSite', '@id': `${SITE_ORIGIN}/#website`, name: SEARCH_SITE_NAME, alternateName: [...SEARCH_SITE_ALIASES], url: `${SITE_ORIGIN}/` }];
+  const personId = `${SITE_ORIGIN}/#person`;
+  const websiteId = `${SITE_ORIGIN}/#website`;
+  const pageId = canonicalUrl + '#page';
+  const projectId = canonicalUrl + '#project';
+  const graph: Record<string, unknown>[] = [{
+    '@type': 'WebSite', '@id': websiteId, name: SEARCH_SITE_NAME, alternateName: [...SEARCH_SITE_ALIASES],
+    url: `${SITE_ORIGIN}/`, inLanguage: ['ko', 'en'], publisher: { '@id': personId },
+  }];
   if (page) {
-    graph.push({ '@type': isAbout ? 'ProfilePage' : 'WebPage', '@id': canonicalUrl + '#page', url: canonicalUrl, name: title, description, inLanguage: language,
-      isPartOf: { '@id': `${SITE_ORIGIN}/#website` }, ...(isAbout ? { mainEntity: { '@id': `${SITE_ORIGIN}/#person` } } : {}) });
-    if (isAbout) graph.push({ '@type': 'Person', '@id': `${SITE_ORIGIN}/#person`, name: '서주원', alternateName: 'Seoharo', url: `${SITE_ORIGIN}/`, sameAs: ['https://github.com/haroseo', 'https://www.linkedin.com/in/seoharo/'] });
-    else {
+    const pageType = isAbout ? 'ProfilePage' : path === '/portfolio' ? 'CollectionPage' : path === '/contact' ? 'ContactPage' : 'WebPage';
+    const mainEntity = isAbout ? personId : project ? projectId : path === '/portfolio' ? canonicalUrl + '#projects' : personId;
+    graph.push({
+      '@type': pageType, '@id': pageId, url: canonicalUrl, name: title, description, inLanguage: language,
+      isPartOf: { '@id': websiteId }, author: { '@id': personId }, about: { '@id': personId },
+      mainEntity: { '@id': mainEntity },
+    });
+    graph.push({
+      '@type': 'Person', '@id': personId, name: '서주원', alternateName: ['Seoharo', 'Seo Juwon'],
+      description: profile.summary[language], url: `${SITE_ORIGIN}/`,
+      sameAs: ['https://github.com/haroseo', 'https://www.linkedin.com/in/seoharo/'],
+    });
+    if (project) {
+      const evidence = projectEvidence.find(item => item.slug === project.slug);
+      graph.push({
+        '@type': 'CreativeWork', '@id': projectId, name: project.title, description: project.summary[language],
+        url: project.href ?? canonicalUrl, creator: { '@id': personId }, mainEntityOfPage: { '@id': pageId },
+        inLanguage: language, text: project.notes.map(note => `${note.title[language]}\n${note.body[language]}`).join('\n\n'),
+        ...(evidence ? { image: { '@type': 'ImageObject', contentUrl: SITE_ORIGIN + evidence.image,
+          width: evidence.width, height: evidence.height, caption: evidence.description[language] } } : {}),
+      });
+    }
+    if (path === '/portfolio') {
+      graph.push({
+        '@type': 'ItemList', '@id': canonicalUrl + '#projects', name: language === 'ko' ? '서주원의 프로젝트' : 'Seo Juwon’s projects',
+        numberOfItems: selectedWorks.length,
+        itemListElement: selectedWorks.map((work, index) => ({
+          '@type': 'ListItem', position: index + 1, name: work.title, url: toCanonicalUrl(`/portfolio/${work.slug}`),
+        })),
+      });
+    }
+    if (!isAbout) {
       const crumbs = [{ name: language === 'ko' ? '소개' : 'About', url: `${SITE_ORIGIN}/` }];
       if (project || career) crumbs.push({ name: language === 'ko' ? '포트폴리오' : 'Portfolio', url: `${SITE_ORIGIN}/portfolio/` });
       crumbs.push({ name: project?.title ?? career?.title[language] ?? title.split(' | ')[0], url: canonicalUrl! });

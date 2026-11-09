@@ -185,5 +185,10 @@ export const imagePreviewAssets: Readonly<Record<string, ImagePreviewAsset>> = {
     "image": "/assets/previews/jobsearching-cover-preview.webp",
     "width": 1200,
     "height": 400
+  },
+  "evidence:formulazip": {
+    "image": "/assets/previews/evidence-formulazip-home-2026-11-08-preview.webp",
+    "width": 1200,
+    "height": 833
   }
 };

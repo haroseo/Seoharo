@@ -34,7 +34,7 @@ test('filters combine category and case-insensitive, trimmed bilingual search', 
   assert.equal(filterWorks('all', 'no-such-work').length, 0);
 });
 test('work view keeps employment and clubs inside their selected categories', () => {
-  assert.deepEqual(profilePortfolioModule.getProfilePortfolioDisplayItems('all').map(item => item.id), ['designgraphy', 'one-to-z', 'packinapp', 'jobsearching', 'k-00', 'planor', 'design-pick', 'naratmalsami', 'cokform']);
+  assert.deepEqual(profilePortfolioModule.getProfilePortfolioDisplayItems('all').map(item => item.id), ['designgraphy', 'one-to-z', 'packinapp', 'jobsearching', 'k-00', 'formulazip', 'planor', 'design-pick', 'naratmalsami', 'cokform']);
   assert.deepEqual(profilePortfolioModule.getProfilePortfolioDisplayItems('marketing').map(item => item.id), ['company-work']);
   assert.deepEqual(profilePortfolioModule.getProfilePortfolioDisplayItems('club').map(item => item.id), ['functionfactory']);
 });

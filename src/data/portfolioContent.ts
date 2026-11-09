@@ -129,6 +129,22 @@ export const selectedWorks: SelectedWork[] = [
     ],
   },
   {
+    slug: 'formulazip', title: '공식집', category: 'development', status: 'project', eyebrow: 'MATH & SCIENCE FORMULA INDEX', theme: 'paper',
+    headline: { ko: '공식을 찾고,\n어디에 쓰는지 이해하다.', en: 'Find a formula.\nUnderstand when to use it.' },
+    summary: { ko: '초·중·고 수학·과학 공식을 학교급, 학년, 과목과 단원으로 찾아보고 뜻과 활용 예시를 확인하는 웹 프로젝트.', en: 'A web project for finding school mathematics and science formulas by level, grade, subject and topic, with meanings and worked examples.' },
+    roles: { ko: '서비스 기획 · UI 디자인 · 웹 개발', en: 'Service planning · UI design · Web development' },
+    output: { ko: '공식 검색 · 학년·단원 탐색 · 기호와 계산 예시', en: 'Formula search · Grade and topic navigation · Symbols and worked examples' },
+    href: 'https://formulazip.pages.dev/',
+    image: getImagePreview('evidence:formulazip').image,
+    imagePresentation: 'screen',
+    imageAlt: { ko: '공식집 공개 사이트의 공식 검색과 과목·단원 탐색 화면', en: 'The public FormulaZIP website with formula search and subject and topic navigation' },
+    notes: [
+      { title: { ko: '왜 만들었나요?', en: 'Why build it?' }, body: { ko: '문제를 풀 때 식의 모습은 기억나지만 공식 이름이 떠오르지 않거나, 어떤 조건에서 써야 하는지 헷갈릴 수 있습니다. 공식 이름부터 기호의 뜻, 활용 예시까지 이어서 확인할 수 있는 공간을 만들었습니다.', en: 'When solving a problem, people may remember the shape of a formula but forget its name or the conditions for using it. The project connects formula discovery with explanations of its symbols and examples of how it is used.' } },
+      { title: { ko: '어떤 결정을 했나요?', en: 'What decisions shaped it?' }, body: { ko: '이름·기호·단원을 함께 검색하고 학교급·학년·과목으로 목록을 좁히도록 구성했습니다. 상세 화면에는 공식의 뜻과 기호·조건, 계산 예시를 함께 배치해 검색한 다음 무엇을 확인해야 하는지 이어지게 했습니다.', en: 'Search covers names, symbols and topics, while level, grade and subject filters narrow the list. Each detail page places the meaning, symbols, conditions and a worked example together so discovery leads directly into understanding.' } },
+      { title: { ko: '무엇을 할 수 있게 됐나요?', en: 'What can visitors do now?' }, body: { ko: '필요한 공식을 찾고 같은 화면에서 설명과 계산 예시를 확인할 수 있습니다. 관련 공식으로 탐색을 이어가거나, 자주 보는 공식을 브라우저에 저장해 다시 볼 수 있습니다. 피타고라스 정리에는 증명과 수 조합을 살펴보는 체험도 연결했습니다.', en: 'Visitors can find a formula and read its explanation and worked example on the detail page. They can continue to related formulas or save frequently used entries in the browser. Pythagorean theorem entries also connect to proofs and an interactive exploration of number triples.' } },
+    ],
+  },
+  {
     slug: 'planor', title: 'Planor', category: 'planning', status: 'project', eyebrow: 'PRODUCT & PLANNING', theme: 'blue',
     headline: { ko: '계획을 짜는\n새로운 방식.', en: 'A new way\nto plan your days.' },
     summary: { ko: '일정과 계획을 한눈에 볼 수 있는 캘린더 웹 서비스. 아이디어를 실제 화면과 흐름으로 옮겨 본 프로젝트입니다.', en: 'A calendar web project for organizing plans and turning an idea into a working interface.' },

@@ -13,7 +13,7 @@ const assets = {};
 const groups = [
   { folder: 'one-to-z', key: name => `one-to-z:${name.replace(/^one-to-z-/, '')}`, name: name => name },
   { folder: 'designgraphy', key: name => `designgraphy:${name}`, name: name => `designgraphy-${name}` },
-  { folder: 'project-evidence', key: name => `evidence:${name.startsWith('design-pick-') ? 'design-pick' : name.startsWith('naratmalsami-') ? 'naratmalsami' : name.startsWith('planor-') ? 'planor' : name.startsWith('packinapp-') ? 'packinapp' : ''}`, name: name => `evidence-${name}` },
+  { folder: 'project-evidence', key: name => `evidence:${name.startsWith('design-pick-') ? 'design-pick' : name.startsWith('naratmalsami-') ? 'naratmalsami' : name.startsWith('planor-') ? 'planor' : name.startsWith('packinapp-') ? 'packinapp' : name.startsWith('formulazip-') ? 'formulazip' : ''}`, name: name => `evidence-${name}` },
   { folder: 'project-brands', key: name => `brand:${name}`, name: name => `${name}-cover`, background: '#ffffff' },
 ];
 for (const group of groups) {

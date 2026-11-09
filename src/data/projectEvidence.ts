@@ -14,6 +14,11 @@ export interface ProjectEvidence {
 
 export const projectEvidence: readonly ProjectEvidence[] = [
   {
+    slug: 'formulazip', ...getImagePreview('evidence:formulazip'), capturedOn: '2026-11-08',
+    title: { ko: '공식 검색과 단원별 탐색', en: 'Formula search and topic navigation' },
+    description: { ko: '공식집 공개 사이트의 실제 첫 화면입니다. 검색창과 과목별 메뉴, 학교급·학년 필터에서 공식 목록과 상세 설명으로 이어지는 구성을 볼 수 있습니다.', en: 'The live homepage connects the search box, subject navigation, and school level and grade filters to formula entries and their explanations.' },
+  },
+  {
     slug: 'packinapp', ...getImagePreview('evidence:packinapp'), capturedOn: '2026-10-20',
     title: { ko: '필요한 웹 기능을 찾는 라이브러리', en: 'A library for finding web features' },
     description: { ko: '실제 공개 사이트의 첫 화면입니다. 분야별 메뉴와 기능 검색, 비교·컬렉션·서비스 체크리스트로 이어지는 입구를 볼 수 있습니다. 16개 분야와 108개 가이드 표시는 캡처 시점의 콘텐츠 수량입니다.', en: 'The live homepage shows category navigation and entry points for feature search, comparison, collections and service checklists. The 16 categories and 108 guides shown are content counts at the time of capture.' },
