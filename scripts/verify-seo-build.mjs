@@ -69,9 +69,12 @@ export async function verifySeoBuild(outputDirectory) {
     }
     requireCheck(html.includes(`<title>${escapeHtml(metadata.title)}</title>`), `Wrong title: ${page.path}`);
     requireCheck(html.includes(`name="description" content="${escapeHtml(metadata.description)}"`), `Wrong description: ${page.path}`);
+    requireCheck(html.includes(`<html lang="${metadata.language}">`), `Wrong document language: ${page.path}`);
     requireCheck(html.includes(`name="robots" content="${metadata.robots}"`), `Wrong robots: ${page.path}`);
     const canonical = html.match(/<link rel="canonical" href="([^"]+)"/g) ?? [];
     requireCheck(metadata.canonicalUrl ? canonical.length === 1 && canonical[0].includes(metadata.canonicalUrl) : canonical.length === 0, `Wrong canonical: ${page.path}`);
+    const socialUrl = head.match(/<meta property="og:url" content="([^"]+)"/g) ?? [];
+    requireCheck(metadata.canonicalUrl ? socialUrl.length === 1 && socialUrl[0].includes(metadata.canonicalUrl) : socialUrl.length === 0, `Wrong social canonical: ${page.path}`);
     const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1] ?? '';
     requireCheck((main.match(/<h1\b/g) ?? []).length === 1 && main.length > 200 && !/opacity:0(?:;|"|\b)/.test(main), `Empty or hidden main: ${page.path}`);
     const schema = JSON.parse(html.match(/<script id="site-schema" type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1] ?? 'null');
