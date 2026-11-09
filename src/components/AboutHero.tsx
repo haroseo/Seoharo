@@ -27,7 +27,7 @@ export default function AboutHero() {
               {t('소개', 'Introduction')} <span className="h-px w-4 bg-zinc-800" aria-hidden="true" />
             </p>
             <h1 className="text-[40px] font-extrabold leading-[1.1] text-white sm:text-6xl lg:text-7xl">SEOHARO</h1>
-            <p className="mx-auto max-w-xl text-[15px] font-normal leading-7 text-zinc-300 lg:mx-0">{aboutHeroIntro[language]}</p>
+            <p id="about-identity" className="mx-auto max-w-xl text-[15px] font-normal leading-7 text-zinc-300 lg:mx-0">{aboutHeroIntro[language]}</p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
               <Link to="/portfolio#projects" className="about-original-primary inline-flex min-h-12 w-full items-center justify-center rounded-full px-8 py-3.5 text-sm font-bold text-white sm:w-auto">{t('포트폴리오 보기', 'Explore the portfolio')}</Link>
               <Link to="/contact" className="about-original-secondary inline-flex min-h-12 w-full items-center justify-center rounded-full border border-white/10 bg-white/5 px-8 py-3.5 text-sm font-bold text-white sm:w-auto">{t('이야기 나누기', 'Get in touch')}</Link>
@@ -52,7 +52,7 @@ export default function AboutHero() {
 
           <AboutReveal delay={0.12} className="py-4 sm:py-8 lg:py-10" aria-label={t('프로필과 연락처', 'Profile and contact information')}>
             <div className="space-y-8">
-              <h2 className="text-2xl font-bold text-white">SEOHARO</h2>
+              <h2 className="text-2xl font-bold text-white">{t('서주원 · Seoharo', 'Seo Juwon · Seoharo')}</h2>
               <p className="text-sm font-medium leading-6 text-zinc-300">Brand Design · Marketing · Programming</p>
               <dl className="grid grid-cols-1 gap-x-8 gap-y-6 text-zinc-300 sm:grid-cols-2">
                 {channels.map((channel) => {
