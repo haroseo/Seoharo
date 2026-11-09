@@ -10,6 +10,7 @@ import { selectedWorks, careerEntries } from '../src/data/portfolioContent.ts';
 import { imagePreviewAssets } from '../src/data/imagePreviewAssets.ts';
 import { getHtmlOutputPath, makeRobots, makeSitemap, readSharingImage } from './seo-artifacts.mjs';
 import { escapeHtml } from './seo-html.mjs';
+import { indexNowKey, indexNowKeyFile } from './indexnow.mjs';
 
 function requireCheck(condition, message) { if (!condition) throw new Error(message); }
 async function listFiles(directory) {
@@ -34,7 +35,7 @@ export async function verifySeoBuild(outputDirectory) {
     }
     requireCheck(!/^assets\/(?:one-to-z|designgraphy|project-evidence)\//.test(path), `Original artwork in public build: ${path}`);
     if (/\.(?:js|html)$/.test(path)) requireCheck(!/https:\/\/(?:www\.)?(?:figma\.com\/design|claude\.ai\/artifact)\//i.test(await readFile(file, 'utf8')), `Source editor URL in public build: ${path}`);
-    requireCheck(expectedHtml.has(file) || ['CNAME', 'robots.txt', 'sitemap.xml', 'favicon.svg', 'icons.svg', '.nojekyll', '.well-known/discord.txt', 'licenses/bootstrap-icons-MIT.txt'].includes(path)
+    requireCheck(expectedHtml.has(file) || [indexNowKeyFile, 'CNAME', 'robots.txt', 'sitemap.xml', 'favicon.svg', 'icons.svg', '.nojekyll', '.well-known/discord.txt', 'licenses/bootstrap-icons-MIT.txt'].includes(path)
       || (/^assets\//.test(path) && /\.(?:js|css|png|jpg|jpeg|webp|svg|woff2?|ttf)$/i.test(extname(path))), `Unexpected public file: ${path}`);
     if (path === '.well-known/discord.txt') requireCheck(/^dh=[a-zA-Z0-9_-]+$/.test((await readFile(file, 'utf8')).trim()), 'Unexpected content in legacy public domain challenge');
   }
@@ -42,6 +43,7 @@ export async function verifySeoBuild(outputDirectory) {
   requireCheck((await readFile(resolve(root, 'CNAME'), 'utf8')).trim() === new URL(SITE_ORIGIN).hostname, 'Wrong CNAME');
   requireCheck(await readFile(resolve(root, 'robots.txt'), 'utf8') === makeRobots(), 'Wrong robots policy');
   requireCheck(await readFile(resolve(root, 'sitemap.xml'), 'utf8') === makeSitemap(), 'Wrong sitemap');
+  requireCheck(await readFile(resolve(root, indexNowKeyFile), 'utf8') === indexNowKey + '\n', 'Wrong IndexNow verification file');
   for (const language of ['ko', 'en']) await readSharingImage(root, getPageMetadata('/', language));
   const descriptions = new Set();
   for (const page of [...publicPages, { path: '/404', indexable: false }]) {

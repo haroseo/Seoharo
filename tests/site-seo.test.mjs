@@ -4,6 +4,7 @@ import { normalizeAppPath } from '../src/data/siteUrl.ts';
 import { publicPages, resolvePublicPage } from '../src/data/publicPages.ts';
 import { getPageMetadata } from '../src/data/siteSeo.ts';
 import { selectedWorks } from '../src/data/portfolioContent.ts';
+import { aboutHeroIntro, aboutPublicWorkSlugs } from '../src/data/aboutContent.ts';
 
 test('only real detail pages and canonical equivalents are indexable', () => {
   assert.equal(normalizeAppPath('/contact/'), '/contact');
@@ -22,10 +23,14 @@ test('only real detail pages and canonical equivalents are indexable', () => {
 
 test('metadata describes approved identity without inferring private facts', () => {
   const about = getPageMetadata('/', 'ko');
-  assert.match(about.description, /Seoharo.*서주원/);
+  assert.match(about.description, /서주원\(Seoharo\).*공식집.*K-00/);
   const person = about.structuredData['@graph'].find(item => item['@type'] === 'Person');
   assert.equal(person.name, '서주원');
   assert.deepEqual(person.alternateName, ['Seoharo', 'Seo Juwon']);
+  assert.equal(person.description, aboutHeroIntro.ko);
+  assert.equal(person.mainEntityOfPage['@id'], 'https://seoharo.kro.kr/#page');
+  const profile = about.structuredData['@graph'].find(item => item['@type'] === 'ProfilePage');
+  assert.deepEqual(profile.mentions.map(item => item['@id']), aboutPublicWorkSlugs.map(slug => `https://seoharo.kro.kr/portfolio/${slug}/#project`));
   assert.deepEqual(person.sameAs, ['https://github.com/haroseo', 'https://www.linkedin.com/in/seoharo/']);
   assert.doesNotMatch(JSON.stringify(person), /birthDate|worksFor|address|email|school/i);
   const descriptions = publicPages.filter(p => p.indexable).map(p => getPageMetadata(p.path, 'ko').description);

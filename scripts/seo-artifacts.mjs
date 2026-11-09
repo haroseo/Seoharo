@@ -1,8 +1,10 @@
 import { mkdir, readFile, writeFile, lstat } from 'node:fs/promises';
 import { resolve, dirname, relative, isAbsolute, sep } from 'node:path';
 import { publicPages, resolvePublicPage } from '../src/data/publicPages.ts';
+import { aboutContentUpdatedOn } from '../src/data/aboutContent.ts';
 import { normalizeAppPath, SITE_ORIGIN, toCanonicalUrl } from '../src/data/siteUrl.ts';
 import { renderHtml } from './seo-html.mjs';
+import { indexNowKey, indexNowKeyFile } from './indexnow.mjs';
 
 export function getHtmlOutputPath(outputDirectory, pagePath) {
   const path = normalizeAppPath(pagePath);
@@ -31,7 +33,11 @@ export async function readSharingImage(outputDirectory, metadata) {
   return dimensions;
 }
 export function makeSitemap() {
-  return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + publicPages.filter(page => page.indexable).map(page => `  <url><loc>${toCanonicalUrl(page.path)}</loc></url>`).join('\n') + '\n</urlset>\n';
+  const urls = publicPages.filter(page => page.indexable).map(page => {
+    const lastModified = page.path === '/' ? `<lastmod>${aboutContentUpdatedOn}</lastmod>` : '';
+    return `  <url><loc>${toCanonicalUrl(page.path)}</loc>${lastModified}</url>`;
+  });
+  return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls.join('\n') + '\n</urlset>\n';
 }
 export function makeRobots() {
   return `User-agent: *\nAllow: /\n\nSitemap: ${SITE_ORIGIN}/sitemap.xml\n\nDisallow: /dist/\nDisallow: /.github/\nDisallow: /node_modules/\n`;
@@ -62,6 +68,7 @@ export async function writeSiteArtifacts({ outputDirectory, template, pages, cna
   }
   if (seen.size !== expected.size) throw new Error('Incomplete public page set');
   files.push([resolve(outputDirectory, 'sitemap.xml'), makeSitemap()], [resolve(outputDirectory, 'robots.txt'), makeRobots()], [resolve(outputDirectory, 'CNAME'), cname.trim() + '\n']);
+  files.push([resolve(outputDirectory, indexNowKeyFile), indexNowKey + '\n']);
   for (const [path] of files) await rejectSymlinkAncestors(resolve(outputDirectory), path);
   for (const [path, html] of files) { await mkdir(dirname(path), { recursive: true }); await writeFile(path, html, 'utf8'); }
   return { pages: publicPages.filter(page => page.indexable).length, aliases: publicPages.filter(page => !page.indexable).length, notFound: 1 };

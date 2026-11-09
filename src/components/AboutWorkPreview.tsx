@@ -1,5 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 import { selectedWorks } from '../data/portfolioContent';
+import { aboutPublicWorkSlugs } from '../data/aboutContent';
 import { Link } from './router';
 import { useLanguage } from './LanguageContext';
 import AboutReveal from './AboutReveal';
@@ -10,14 +11,22 @@ const previewWorks = ['one-to-z', 'designgraphy'].flatMap((slug) =>
 
 export default function AboutWorkPreview() {
   const { language, t } = useLanguage();
+  const [formulaSlug, publicServicesSlug] = aboutPublicWorkSlugs;
+  const projectLink = 'font-semibold text-white underline underline-offset-4 hover:text-zinc-200';
   return (
     <section id="about-work" tabIndex={-1} className="about-work-preview border-t border-zinc-900 px-4 py-16 sm:px-6 sm:py-20 lg:px-8" aria-labelledby="about-work-heading">
       <div className="mx-auto max-w-7xl">
         <AboutReveal className="about-work-intro">
           <div>
             <p className="text-xs font-semibold text-zinc-400">{t('이어서 볼 작업', 'Explore the work')}</p>
-            <h2 id="about-work-heading" className="mt-3 text-2xl font-bold leading-snug text-white sm:text-3xl">{t('제가 만든 작업도 살펴보세요.', 'Take a look at what I have made.')}</h2>
-            <p className="mt-3 max-w-xl text-sm leading-7 text-zinc-300">{t('디자인 시안과 웹 프로젝트의 화면, 맡은 역할과 만든 과정을 담았습니다.', 'Explore design prototypes and web projects, with screens, my role and the process behind them.')}</p>
+            <h2 id="about-work-heading" className="mt-3 text-2xl font-bold leading-snug text-white sm:text-3xl">{t('서주원이 만든 프로젝트', 'Projects by Seo Juwon')}</h2>
+            <p className="mt-3 max-w-xl text-sm leading-7 text-zinc-300">
+              {t('수학·과학 공식 검색 사이트 ', 'I planned and built ')}
+              <Link to={`/portfolio/${formulaSlug}/`} className={projectLink}>{t('공식집', 'FormulaZIP')}</Link>
+              {t('과 공공서비스 안내 사이트 ', ', a school formula index, and ')}
+              <Link to={`/portfolio/${publicServicesSlug}/`} className={projectLink}>K-00</Link>
+              {t('을 기획하고 만들었습니다. 각 작업에서 맡은 역할과 실제 화면을 볼 수 있습니다.', ', a public-service directory. Each project shows what I did and what the site looks like.')}
+            </p>
           </div>
           <Link to="/portfolio#projects" className="about-original-primary about-work-all inline-flex min-h-12 items-center justify-center gap-3 rounded-full px-6 py-3 text-sm font-bold text-white">
             {t('포트폴리오 전체 보기', 'Explore the portfolio')} <ArrowRight size={18} aria-hidden="true" />

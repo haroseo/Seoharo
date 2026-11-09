@@ -35,6 +35,8 @@ test('the home reading flow ends with public work previews and a direct portfoli
     assert.ok(preview, 'Reading the home page should lead to work before the footer');
     assert.ok(main.indexOf('id="about-work"') > main.indexOf('id="about-skills"'));
     assert.match(preview, /href="\/portfolio#projects"/);
+    assert.match(main, language === 'ko' ? /서주원\(Seoharo\)입니다/ : /Seo Juwon \(Seoharo\)/);
+    for (const slug of ['formulazip', 'k-00']) assert.match(preview, new RegExp(`href="/portfolio/${slug}/"`));
     for (const slug of ['one-to-z', 'designgraphy']) {
       assert.match(preview, new RegExp(`href="/portfolio/${slug}"`));
       assert.match(preview, new RegExp(`src="/assets/previews/${slug}-[^" ]+\\.webp"`));

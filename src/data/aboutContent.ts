@@ -1,9 +1,12 @@
 import type { Copy } from './portfolioContent';
 
 export const aboutHeroIntro: Copy = {
-  ko: 'Seoharo라는 이름으로 활동해 온 서주원입니다. 상상한 것을 말과 글로 정리하고, 디자인과 개발로 직접 만듭니다. 생각을 오래 붙잡기보다 먼저 시도하고, 사람들과 함께 끝까지 결과물로 이어갑니다.',
-  en: 'I’m Seo Juwon, known online as Seoharo. I shape ideas through writing and conversation, then bring them to life through design and development. I start by trying, and work with people to carry an idea through to a result.',
+  ko: '서주원(Seoharo)입니다. 브랜드 디자인, 마케팅, 웹 개발을 하며 아이디어를 실제 화면과 서비스로 만듭니다. 생각을 말과 글로 정리하고, 직접 만들며 개선합니다.',
+  en: 'I’m Seo Juwon (Seoharo). I work across brand design, marketing, and web development to turn ideas into usable interfaces and services. I clarify ideas through writing and conversation, then build and improve them.',
 };
+
+export const aboutPublicWorkSlugs = ['formulazip', 'k-00'] as const;
+export const aboutContentUpdatedOn = '2026-11-09';
 
 export const aboutIntro: Copy = {
   ko: '온라인에서는 Seoharo라는 이름으로 활동해 온 서주원입니다. 상상한 것을 직접 만들어 보고, 더 나은 방향을 찾아가는 일을 좋아합니다. 디자인과 마케팅, 개발을 오가며 아이디어를 구체적인 화면과 서비스로 옮깁니다. 기획과 글로 생각을 정리하고, 사람들과 목표를 맞춰 팀을 이끌어 실행합니다. 새로운 일을 배우는 데 주저하지 않고, 맡은 일은 끝까지 이어가는 것을 중요하게 생각합니다.',
