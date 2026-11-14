@@ -6,7 +6,10 @@ export const aboutHeroIntro: Copy = {
 };
 
 export const aboutPublicWorkSlugs = ['formulazip', 'k-00'] as const;
+/** Date of the latest About content revision, kept for the sitemap `lastmod`. */
 export const aboutContentUpdatedOn = '2026-11-09';
+/** The same revision as a full ISO 8601 datetime in KST, which schema.org `dateModified` requires. */
+export const aboutContentModifiedAt = '2026-11-09T22:15:57+09:00';
 
 export const aboutIntro: Copy = {
   ko: '온라인에서는 Seoharo라는 이름으로 활동해 온 서주원입니다. 상상한 것을 직접 만들어 보고, 더 나은 방향을 찾아가는 일을 좋아합니다. 디자인과 마케팅, 개발을 오가며 아이디어를 구체적인 화면과 서비스로 옮깁니다. 기획과 글로 생각을 정리하고, 사람들과 목표를 맞춰 팀을 이끌어 실행합니다. 새로운 일을 배우는 데 주저하지 않고, 맡은 일은 끝까지 이어가는 것을 중요하게 생각합니다.',
