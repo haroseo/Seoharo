@@ -88,3 +88,19 @@ test('portfolio collection lists actual canonical projects once in display order
   assert.equal(new Set(list.itemListElement.map(item => item.url)).size, list.numberOfItems);
   assert.equal(getPageMetadata('/contact', 'ko').structuredData['@graph'].find(item => item['@type'] === 'ContactPage').url, 'https://seoharo.kro.kr/contact/');
 });
+
+test('profile page dateModified is a full ISO 8601 datetime with timezone', () => {
+  for (const language of ['ko', 'en']) {
+    const profile = getPageMetadata('/', language).structuredData['@graph'].find(item => item['@type'] === 'ProfilePage');
+    assert.match(profile.dateModified, /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})$/);
+    assert.ok(!Number.isNaN(Date.parse(profile.dateModified)));
+  }
+  for (const language of ['ko', 'en']) {
+    for (const page of publicPages.map(page => page.path)) {
+      const graph = getPageMetadata(page, language).structuredData['@graph'];
+      for (const node of graph.filter(node => 'dateModified' in node)) {
+        assert.match(node.dateModified, /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})$/);
+      }
+    }
+  }
+});

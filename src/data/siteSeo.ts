@@ -1,7 +1,7 @@
 import type { Locale } from './portfolioContent.ts';
 import { careerEntries, selectedWorks } from './portfolioContent.ts';
 import { projectEvidence } from './projectEvidence.ts';
-import { aboutContentUpdatedOn, aboutHeroIntro, aboutPublicWorkSlugs } from './aboutContent.ts';
+import { aboutContentModifiedAt, aboutHeroIntro, aboutPublicWorkSlugs } from './aboutContent.ts';
 import { SITE_NAME, SEARCH_SITE_NAME, SEARCH_SITE_ALIASES, getSitePageTitle } from './siteIdentity.ts';
 import { resolvePublicPage } from './publicPages.ts';
 import { SITE_ORIGIN, normalizeAppPath, toCanonicalUrl } from './siteUrl.ts';
@@ -66,7 +66,7 @@ export function getPageMetadata(pathname: string, language: Locale): PageMetadat
       '@type': pageType, '@id': pageId, url: canonicalUrl, name: title, description, inLanguage: language,
       isPartOf: { '@id': websiteId }, author: { '@id': personId }, about: { '@id': personId },
       mainEntity: { '@id': mainEntity },
-      ...(isAbout ? { dateModified: aboutContentUpdatedOn, mentions: aboutPublicWorkSlugs.map(slug => ({ '@id': toCanonicalUrl(`/portfolio/${slug}`) + '#project' })) } : {}),
+      ...(isAbout ? { dateModified: aboutContentModifiedAt, mentions: aboutPublicWorkSlugs.map(slug => ({ '@id': toCanonicalUrl(`/portfolio/${slug}`) + '#project' })) } : {}),
     });
     graph.push({
       '@type': 'Person', '@id': personId, name: '서주원', alternateName: ['Seoharo', 'Seo Juwon'],
